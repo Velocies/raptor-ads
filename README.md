@@ -1,6 +1,6 @@
-# Project Name
+# Raptor Ads
 
-> Pithy project description
+> A modern classifieds where the contractors come to you.
 
 ## Team
 
@@ -43,7 +43,7 @@ npm install
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [https://waffle.io/Velocies/raptor-ads]
 
 
 ## Contributing

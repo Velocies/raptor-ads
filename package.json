@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
-    "test": "mocha ./server/tests"
+    "test": "mocha ./server/tests",
+    "build": "webpack -p",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",

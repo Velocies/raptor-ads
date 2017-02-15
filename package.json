@@ -1,0 +1,36 @@
+{
+  "name": "raptorads",
+  "version": "1.0.0",
+  "description": "Modern classifieds where the contractors come to you",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bwuphan/raptor-ads.git"
+  },
+  "author": "Cory Wolnewitz, Jimmie Gisclair, Tyler Mackay, Bobby Phan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bwuphan/raptor-ads/issues"
+  },
+  "homepage": "https://github.com/bwuphan/raptor-ads#readme",
+  "dependencies": {
+    "express": "^4.14.1",
+    "nodemon": "^1.11.0",
+    "react": "^15.4.2",
+    "webpack": "^2.2.1",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "webpack": "^1.14.0"
+  }
+}

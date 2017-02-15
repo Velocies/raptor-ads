@@ -10,11 +10,11 @@ app.use(express.static(rootPath));
 
 app.get('/testing', (req, res) => {
   res.send(200, 'testing');
-})
+});
 
 app.get('*', (req, res) => {
-  res.sendFile('index.html');
-})
+  res.sendFile(path.resolve(rootPath + '/index.html'));
+});
 
 app.listen(port, () => {
   console.log('Example app listening on port', port);

@@ -1,3 +1,10 @@
 language: node_js
 node_js:
-  - 'node'
+- node
+deploy:
+  provider: heroku
+  api_key:
+    secure: qjcTNi1keXmPtusD6UgAXG6F9lu1Na+2mjBDSIuBera85nEiwD9pE8pft98oi/f1YhLFqRcVLBy58E1j7R6Q5uRdQd5DE/hX5z1n5MhaZWUswiCbuJa7AXmWlSzCHXWgwbpNi1e9BUk2I/2z6mQhvTaiLIRxFaL14eZVq6pPlqGkKECX4VgMEu2zCmFzDsoQb8hvb4yDIt5nWNwRpjIT8vZyI6EqIgIEOiPD0p+6tNvCG3kGG+G9I501Mxly9SyvaYLfmdBkj11g08yl6h65wzS/ghFdAr7WZmJnS+4HPSwuiEWRIaPzVHufr1outNzjTKwZsI9NOtk7Beyqk3TGYxJBfioIQ7H05I1ESFLhyGR9XA3T1wUGD4Mz1eibp73/xuSnd1NjVMWnyv0z/qMS4oiAaAxn87+af7ar3pUv57t4EJFfDQHvQwgtPgIoZh+rwApZxEYAO1IU0Te8qf3sFEWdXsk/nRP6gA4CeD40DPEJ66Kn1BnUxuE7+yQSz58tOay7ywUnRUQ2qvDyFDOkyQFM2bJhq6y3lORZoFkuJhSVI4Qyp5dNjtQZLEAKWYYgitmVCS+WaYXMLXNl5YWhKuYJ7Bdfone2bfBqYW2irxTRCjTwP4AWgY13VVOIdyJa3U9xF0Hqw0MHeL23/lDbHbOP6FuwJCGT47EsupWqBFc=
+  app:
+    master: raptor-ads-staging
+    production: raptor-ads-production

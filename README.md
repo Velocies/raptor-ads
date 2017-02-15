@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Jimmie Gisclair
+  - __Scrum Master__: Cory Wolnewitz
+  - __Development Team Members__: Tyler Mackay, Bobby Phan
 
 ## Table of Contents
 
@@ -20,15 +20,15 @@
 
 ## Usage
 
-> Some usage instructions
+From within the root directory, run "webpack", then "npm start"
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node
+- Express
+- mySQL
+- React
+- Redux
 
 ## Development
 
@@ -37,9 +37,8 @@
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
+npm install -g webpack
 npm install
-bower install
 ```
 
 ### Roadmap

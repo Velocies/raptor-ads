@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
-
-
-const app = document.getElementById('app');
+import { App } from './components/App';
 
 render(
-  <h2>HELLo wORLD</h2>
+  <App />
   ,app
 );

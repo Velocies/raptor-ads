@@ -7,7 +7,7 @@ const store = configureStore();
 
 export const App = ({store}) =>
   <Provider store={store}>
-    <Router>
+    <Router history={browserHistory}>
       <Route path="/" component={HomePage} />
     </Router>
   </Provider>

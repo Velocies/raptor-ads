@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const db = requick('../database/schemas/schemas.js');
 
 const port = process.env.PORT || 3000;
 
@@ -8,13 +9,7 @@ const rootPath = path.join(__dirname, '/..');
 
 app.use(express.static(rootPath));
 
-app.get('/testing', (req, res) => {
-  res.send(200, 'testing');
-});
-
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(rootPath + '/index.html'));
-});
+require('./config/routes.js')(app, db);
 
 app.listen(port, () => {
   console.log('Example app listening on port', port);

@@ -1,16 +1,13 @@
-import React from 'react';
-import configureStore from '../../configureStore';
-import { Provider } from 'react-redux';
-import { Router, Route, browserHistory } from 'react-router';
+import React, { Component } from 'react';
+import { Navbar } from './Navbar.jsx';
 
-const store = configureStore();
-
-export const App = ({store}) =>
-  <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path="/" component={HomePage} />
-    </Router>
-  </Provider>
-
-
-
+export default class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Navbar/>
+        {this.props.children}
+      </div>
+    );
+  }
+}

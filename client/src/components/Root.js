@@ -4,6 +4,7 @@ import { Router, Route, browserHistory } from 'react-router';
 import { LandingPage } from './LandingPage';
 import { Signup } from './Signup';
 import { Login } from './Login';
+import { CustomerDashboard } from './CustomerDashboard';
 import App from './App';
 import configureStore from '../../configureStore.js';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -18,6 +19,7 @@ export const Root = () =>
         <Route path="landing" component={LandingPage}/>
         <Route path="signup" component={Signup}/>
         <Route path="login" component={Login}/>
+        <Route path="/customer/dashboard" component={CustomerDashboard}/>
       </Route>
     </Router>
   </Provider>

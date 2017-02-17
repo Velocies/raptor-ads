@@ -2,23 +2,21 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Menu, Segment } from 'semantic-ui-react'
 
-export const Navbar = ({handleItemClick, activeLink}) => {
+export const Navbar = ({location}) => {
   return (
     <Segment inverted>
       <Menu inverted pointing secondary>
         <Menu.Item header>Our Company</Menu.Item>
-        <Link to='landing' className='item' onClick={() => handleItemClick('aboutUs')}>
-          About Us
-        </Link>
-          <Menu.Item active={activeLink === 'jobs'} onClick={() => handleItemClick('jobs')} name='jobs'/>
-          <Menu.Item active={activeLink === 'location'} onClick={()=>handleItemClick('location')} name='locations'/>
+        <Menu.Item as={Link} to='landing' name='About' active={location === 'landing'} />
+          <Menu.Item active={location === 'jobs'} name='jobs'/>
+          <Menu.Item active={location === 'location'} name='locations'/>
 
           <Menu.Menu position='right'>
             <Link to='signup' className='item'>
               Sign Up
             </Link>
 
-            <Menu.Item name='login'>
+            <Menu.Item as={Link} to='login' name='login'>
               Login
             </Menu.Item>
           </Menu.Menu>

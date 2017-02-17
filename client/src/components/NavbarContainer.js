@@ -1,20 +1,14 @@
 import { Navbar } from './Navbar'
 import { connect } from 'react-redux'
-import { toggleNavigation } from '../actions'
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handleItemClick: (link) => {
-      dispatch(toggleNavigation(link));
-    }
-  }
+const mapStateToProps = (state) => {
+  const location = state.routing.locationBeforeTransitions.pathname;
+
+  return { location };
 }
 
-const mapStateToProps = (state) => state
-
 const NavbarContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Navbar);
 
 export default NavbarContainer;

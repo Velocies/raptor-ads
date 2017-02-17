@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Menu, Segment } from 'semantic-ui-react'
+import { Menu, Segment } from 'semantic-ui-react';
 
 export const Navbar = ({location}) => {
   console.log('location', location);
@@ -15,15 +15,14 @@ export const Navbar = ({location}) => {
             <Link to='signup' className='item'>
               Sign Up
             </Link>
-
-            <Menu.Item as={Link} to='login' name='login'>
-              Login
-            </Menu.Item>
-          </Menu.Menu>
-        </Menu>
-      </Segment>
-      )
-      };
+          <Menu.Item as={Link} to='login' name='login'>
+            Login
+          </Menu.Item>
+        </Menu.Menu>
+      </Menu>
+    </Segment>
+  )
+};
 
 
 

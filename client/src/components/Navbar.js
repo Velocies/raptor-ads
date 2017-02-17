@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Menu, Segment } from 'semantic-ui-react'
+import { Menu, Segment } from 'semantic-ui-react';
 
 export const Navbar = ({location}) => {
   console.log('location', location);

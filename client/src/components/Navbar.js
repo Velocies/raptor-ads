@@ -7,16 +7,16 @@ export const Navbar = ({handleItemClick, activeLink}) => {
     <Segment inverted>
       <Menu inverted pointing secondary>
         <Menu.Item header>Our Company</Menu.Item>
-        <Link to='landing' className='item' active={activeLink === 'aboutUs'} onClick={() => handleItemClick('aboutUs')}>
+        <Link to='landing' className='item' onClick={() => handleItemClick('aboutUs')}>
           About Us
         </Link>
           <Menu.Item active={activeLink === 'jobs'} onClick={() => handleItemClick('jobs')} name='jobs'/>
           <Menu.Item active={activeLink === 'location'} onClick={()=>handleItemClick('location')} name='locations'/>
 
           <Menu.Menu position='right'>
-            <Menu.Item name='signup'>
+            <Link to='signup' className='item'>
               Sign Up
-            </Menu.Item>
+            </Link>
 
             <Menu.Item name='login'>
               Login

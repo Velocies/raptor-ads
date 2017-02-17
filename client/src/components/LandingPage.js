@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const HomePage = () => {
+export const LandingPage = () => {
   return(
     <h1>HOMEPAGE</h1>
   )

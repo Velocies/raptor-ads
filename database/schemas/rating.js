@@ -14,7 +14,7 @@ module.exports = (db, Sequelize, User) => {
       primaryKey: true
     },
     stars: Sequelize.INTEGER,
-    content: Sequelize.STRING
+    content: Sequelize.STRING,
     rater_id: Sequelize.INTEGER,
     user_id: Sequelize.INTEGER
   });

@@ -2,17 +2,17 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Menu } from 'semantic-ui-react'
 
-export const Navbar = () => {
-
+export const Navbar = ({handleItemClick, activeLink}) => {
   return (
       <Menu>
         <Menu.Item header>Our Company</Menu.Item>
-        <Menu.Item name='aboutUs'/>
-        <Menu.Item name='jobs'/>
-        <Menu.Item name='locations'/>
+        <Menu.Item active={activeLink === 'aboutUs'} onClick={() => handleItemClick('aboutUs')} name='aboutUs'/>
+        <Menu.Item active={activeLink === 'jobs'} onClick={() => handleItemClick('jobs')} name='jobs'/>
+        <Menu.Item active={activeLink === 'location'} onClick={()=>handleItemClick('location')} name='locations'/>
       </Menu>
     )
 };
+
 
 
 // import React, { Component } from 'react'
@@ -30,7 +30,7 @@ export const Navbar = () => {
 //       <Menu>
 //         <Menu.Item header>Our Company</Menu.Item>
 //         <Menu.Item name='aboutUs' active={activeItem === 'aboutUs'} onClick={this.handleItemClick} />
-//         <Menu.Item name='jobs' active={activeItem === 'jobs'} onClick={this.handleItemClick} />
+//         <Menu.Item name='jobs'  onClick={this.handleItemClick} />
 //         <Menu.Item name='locations' active={activeItem === 'locations'} onClick={this.handleItemClick} />
 //       </Menu>
 //     )

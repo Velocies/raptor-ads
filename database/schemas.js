@@ -1,9 +1,11 @@
-var user = require('./schemas/user.js');
-var post = require('./schemas/post.js');
-var picture = require('./schemas/picture.js');
-var comment = require('./schemas/comment.js');
-var rating = require('./schemas/rating.js');
-var business = require('./schemas/business.js');
+var db = require('./database.js');
+
+var user = require('./schemas/user.js')(db.database, db.Sequelize);
+var post = require('./schemas/post.js')(db.database, db.Sequelize);
+var picture = require('./schemas/picture.js')(db.database, db.Sequelize);
+var comment = require('./schemas/comment.js')(db.database, db.Sequelize);
+var rating = require('./schemas/rating.js')(db.database, db.Sequelize);
+var business = require('./schemas/business.js')(db.database, db.Sequelize);
 
 module.exports = {
   User: user,

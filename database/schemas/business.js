@@ -10,8 +10,6 @@ module.exports = (db, Sequelize, User) => {
     license: Sequelize.STRING,
     user_id: Sequelize.INTEGER
   });
-  Business.sync({});
-  Business.belongsTo(User, {foreignKey: 'user_id'});
 
   return Business;
 };

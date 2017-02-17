@@ -9,8 +9,6 @@ module.exports = (db, Sequelize, Post) => {
     img_path: Sequelize.STRING,
     post_id: Sequelize.INTEGER
   });
-  Picture.sync({});
-  Picture.belongsTo(Post, {foreignKey: 'post_id'});
 
   return Picture;
 };

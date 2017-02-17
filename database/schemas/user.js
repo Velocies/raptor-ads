@@ -1,5 +1,5 @@
 module.exports = (db, Sequelize) => {
-  var User = db.define('user', {
+  var User = db.define('users', {
     id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
@@ -10,7 +10,6 @@ module.exports = (db, Sequelize) => {
     address: Sequelize.STRING,
     role: Sequelize.STRING,
   });
-  User.sync({});
 
   return User;
 };

@@ -6,7 +6,7 @@ import { Signup } from './Signup';
 import { Login } from './Login';
 import { CustomerDashboard } from './CustomerDashboard';
 import App from './App';
-import configureStore from '../../configureStore.js';
+import configureStore from '../configureStore.js';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 const store = configureStore();

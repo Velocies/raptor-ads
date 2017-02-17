@@ -7,19 +7,19 @@ var message = require('./schemas/message.js')(db.database, db.Sequelize, post, u
 var rating = require('./schemas/rating.js')(db.database, db.Sequelize, user);
 var business = require('./schemas/business.js')(db.database, db.Sequelize, user);
 
-user.sync({force: true})
+user.sync({})
   .then(() => post.belongsTo(user, {foreignKey: 'user_id'}))
-  .then(() => post.sync({force: true}))
+  .then(() => post.sync({}))
   .then(() => picture.belongsTo(post, {foreignKey: 'post_id'}))
-  .then(() => picture.sync({force:true}))
+  .then(() => picture.sync({}))
   .then(() => message.belongsTo(post, {foreignKey: 'post_id'}))
   .then(() => message.belongsTo(user, {foreignKey: 'user_id'}))
-  .then(() => message.sync({force: true}))
+  .then(() => message.sync({}))
   .then(() => rating.belongsTo(user, {foreignKey: 'user_id'}))
   .then(() => rating.belongsTo(user, {foreignKey: 'rater_id'}))
-  .then(() => rating.sync({force: true}))
+  .then(() => rating.sync({}))
   .then(() => business.belongsTo(user, {foreignKey: 'user_id'}))
-  .then(() => business.sync({force: true}));
+  .then(() => business.sync({}));
 
 module.exports = {
   User: user,

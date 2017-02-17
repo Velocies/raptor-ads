@@ -15,15 +15,14 @@ export const Navbar = ({location}) => {
             <Link to='signup' className='item'>
               Sign Up
             </Link>
-
-            <Menu.Item as={Link} to='login' name='login'>
-              Login
-            </Menu.Item>
-          </Menu.Menu>
-        </Menu>
-      </Segment>
-      )
-      };
+          <Menu.Item as={Link} to='login' name='login'>
+            Login
+          </Menu.Item>
+        </Menu.Menu>
+      </Menu>
+    </Segment>
+  )
+};
 
 
 

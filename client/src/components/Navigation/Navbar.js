@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import { Menu, Segment } from 'semantic-ui-react';
 
 export const Navbar = ({location}) => {
-  console.log('location', location);
   return (
     <Segment inverted>
       <Menu inverted pointing secondary>

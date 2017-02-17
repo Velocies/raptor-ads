@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 
-db = new Sequelize('postgres', 'postgres', ' ', {
+var db = new Sequelize('postgres', 'postgres', ' ', {
   dialect: 'postgres',
   port: 5432
 });

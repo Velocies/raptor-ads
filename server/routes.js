@@ -1,4 +1,4 @@
-module.exports = (app, db) => {
+module.exports = (app, db, path, rootPath) => {
 
   app.get('/testing', (req, res) => {
     res.send(200, 'testing');

@@ -1,6 +1,9 @@
 var Sequelize = require('sequelize');
 
-db = new Sequelize('postgres://postgres:4D6514efa@localhost:5432');
+db = new Sequelize('postgres', 'postgres', '4D6514efa', {
+  dialect: 'postgres',
+  port: 5432
+});
 
 db.authenticate()
   .then((err) => {

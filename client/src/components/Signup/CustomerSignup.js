@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Icon } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { changeSignupField } from '../../actions';
 
-export default class CustomerSignup extends Component {
-  constructor() {
+class CustomerSignup extends Component {
+  constructor(props) {
     super();
     this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   onSubmit(e) {
-    console.log('e', e)
     e.preventDefault()
   }
 
+  onChange(e) {
+    console.log('e', e.target.name, e.target.value)
+    this.props.dispatch(changeSignupField(e.target.name, e.target.value))
+  }
+
   render() {
+    const { firstName, lastName, email, password, passwordConfirmation } = this.props.signupForm
     return(
       <div>
         <div className="signup-buttons">
@@ -22,29 +30,54 @@ export default class CustomerSignup extends Component {
           <Grid.Column width={5}>
           </Grid.Column>
           <Grid.Column width={11}>
-            <Form>
+            <Form onSubmit={(e)=>this.onSubmit(e)}>
               <Form.Field width="8">
                 <label>First Name</label>
-                <input placeholder='First Name' />
+                <input
+                  name="firstName"
+                  placeholder='First Name'
+                  value={firstName}
+                  onChange={(e) => this.onChange(e)}
+                />
               </Form.Field>
               <Form.Field width="8">
                 <label>Last Name</label>
-                <input placeholder='Last Name' />
+                <input
+                  name="lastName"
+                  placeholder='Last Name'
+                  value={lastName}
+                  onChange={(e) => this.onChange(e)}
+                />
               </Form.Field>
               <Form.Field width="8">
                 <label>Email</label>
-                <input placeholder='Email' />
+                <input
+                  name="email"
+                  placeholder='Email'
+                  value={email}
+                  onChange={(e) => this.onChange(e)}
+                />
               </Form.Field>
               <Form.Field width="8">
                 <label>Password</label>
-                <input placeholder='Password' />
+                <input
+                  name="password"
+                  placeholder='Password'
+                  value={password}
+                  onChange={(e) => this.onChange(e)}
+                />
               </Form.Field>
               <Form.Field width="8">
                 <label>Confirm Password</label>
-                <input placeholder='Confirm Password' />
+                <input
+                  name="passwordConfirmation"
+                  placeholder='Confirm Password'
+                  value={passwordConfirmation}
+                  onChange={(e) => this.onChange(e)}
+                />
               </Form.Field>
               <Form.Field width="8">
-                <Button onSubmit={(e)=>this.onSubmit(e)}type='submit'>Sign Up</Button>
+                <Button type='submit'>Sign Up</Button>
               </Form.Field>
             </Form>
           </Grid.Column>
@@ -53,3 +86,13 @@ export default class CustomerSignup extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  const { signupForm } = state.auth
+  return {
+    signupForm
+  }
+}
+
+export default connect(mapStateToProps)(CustomerSignup)
+

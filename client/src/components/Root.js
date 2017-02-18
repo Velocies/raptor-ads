@@ -19,7 +19,9 @@ export const Root = () =>
         <Route path="landing" component={LandingPage}/>
         <Route path="signup" component={Signup}/>
         <Route path="login" component={Login}/>
-        <Route path="/customer/dashboard" component={CustomerDashboard}/>
+        <Route path="customer">
+          <Route path="dashboard" component={CustomerDashboard}/>
+        </Route>
       </Route>
     </Router>
   </Provider>

@@ -1,4 +1,4 @@
-const db = require('../../database/schemas.js');
+const db = require('../../../database/schemas.js');
 
 module.exports = {
   getOne: (req, res) => {

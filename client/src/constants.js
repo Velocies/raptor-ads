@@ -1,1 +1,1 @@
-export const TOGGLE_SIGNUP = "TOGGLE_SIGNUP";
+export const TOGGLE_SIGNUP_FORM = "TOGGLE_SIGNUP_FORM";

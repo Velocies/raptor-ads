@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Checkbox, Form, Container, Grid, Header, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { toggleSignup } from '../../actions';
+import { toggleSignupLink } from '../../actions';
 import CustomerSignup from '../Signup/CustomerSignup';
 import ProSignup from '../Signup/ProSignup';
 
@@ -12,30 +12,27 @@ class Signup extends Component {
   }
 
   findActiveLink(link) {
-    return this.props.link === link ? 'active' : '';
-  }
-
-  renderSignupForm(link) {
-    return this.props.link === link ? 'active' : '';
+    return this.props.activeLink === link ? 'active' : '';
   }
 
   render() {
     const { dispatch } = this.props;
-    const { link } = this.props;
+    const { activeLink: link } = this.props;
+    console.log('link', link)
     return (
       <div>
         <Grid centered>
           <div className="signup-buttons">
             <Button.Group size='large'>
               <Button
-                onClick={()=>dispatch(toggleSignup('customer'))}
+                onClick={()=>dispatch(toggleSignupLink('customer'))}
                 className={this.findActiveLink('customer')}
               >
                 Customer
               </Button>
               <Button.Or />
               <Button
-                onClick={()=>dispatch(toggleSignup('professional'))}
+                onClick={()=>dispatch(toggleSignupLink('professional'))}
                 className={this.findActiveLink('professional')}
               >
                 Professional
@@ -51,7 +48,7 @@ class Signup extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    link: state.app.link
+    activeLink: state.auth.signupForm.activeLink
   }
 }
 export default connect(mapStateToProps)(Signup)

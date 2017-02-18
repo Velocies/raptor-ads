@@ -1,7 +1,7 @@
-import { TOGGLE_SIGNUP } from '../constants.js'
+import { TOGGLE_SIGNUP_FORM } from '../constants.js'
 
-export const toggleSignup = (link) =>
+export const toggleSignupLink = (link) =>
   ({
-    type: TOGGLE_SIGNUP,
+    type: TOGGLE_SIGNUP_FORM,
     link
   })

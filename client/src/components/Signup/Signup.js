@@ -18,7 +18,6 @@ class Signup extends Component {
   render() {
     const { dispatch } = this.props;
     const { activeLink: link } = this.props;
-    console.log('link', link)
     return (
       <div>
         <Grid centered>

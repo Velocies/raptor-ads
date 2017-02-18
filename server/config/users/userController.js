@@ -13,7 +13,21 @@ module.exports = {
   },
 
   createOne: (req, res) => {
-
+    db.User.findOne({
+      where: {
+        email: req.body.email
+      }
+    })
+    .then((user) => {
+      if (!user) {
+        db.User.create(req.body)
+        .then((createdUser)=>{
+          res.send(createdUser);
+        });
+      } else {
+        res.send('User already exists!');
+      }
+    });
   },
 
   patchOne: (req, res) => {

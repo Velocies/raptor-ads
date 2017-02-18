@@ -1,7 +1,7 @@
-import { TOGGLE_NAVIGATION } from '../constants.js'
+import { TOGGLE_SIGNUP } from '../constants.js'
 
-export const toggleNavigation = (link) =>
+export const toggleSignup = (link) =>
   ({
-    type: TOGGLE_NAVIGATION,
+    type: TOGGLE_SIGNUP,
     link
   })

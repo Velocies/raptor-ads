@@ -39,7 +39,7 @@ class Signup extends Component {
             </Button.Group>
           </div>
         </Grid>
-        {link === 'professional' ? <ProSignup /> : <CustomerSignup /> }
+        {link === 'professional' ? <ProSignup /> : <CustomerSignup />}
       </div>
     )
   }

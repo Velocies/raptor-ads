@@ -42,8 +42,13 @@ module.exports = {
   },
 
   patchOne: (req, res) => {
-
-  },
+    db.User.update(req.body,
+    {
+      where: {
+        id: req.params.id
+      }
+    })
+   },
 
   deleteOne: (req, res) => {
 

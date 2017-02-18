@@ -9,7 +9,7 @@ const rootPath = path.join(__dirname, '/..');
 
 app.use(express.static(rootPath));
 
-require('./routes.js')(app, db, path, rootPath);
+require('./config/routes.js')(app, db, path, rootPath);
 
 app.listen(port, () => {
   console.log('Example app listening on port', port);

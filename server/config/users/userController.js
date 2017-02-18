@@ -2,7 +2,18 @@ const db = require('../../../database/schemas.js');
 
 module.exports = {
   getOne: (req, res) => {
-
+    db.User.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+    .then((user) => {
+      if (user) {
+        res.send(user);
+      } else {
+        res.send("User not found!");
+      }
+    });
   },
 
   getAll: (req, res) => {

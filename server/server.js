@@ -1,8 +1,9 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const app = express();
 const db = require('../database/schemas.js');
+
+const app = express();
 
 const port = process.env.PORT || 3000;
 

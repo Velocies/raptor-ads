@@ -2,7 +2,6 @@ const userController = require('./users/userController.js');
 const listingController = require('./listings/listingController.js');
 
 module.exports = (app, db, path, rootPath) => {
-
   // Routes for all users
   app.get('/api/users', userController.getAll);
   app.post('/api/users', userController.createOne);
@@ -31,6 +30,6 @@ module.exports = (app, db, path, rootPath) => {
 
   // Catch-all route to allow reloading
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(rootPath + '/index.html'));
+    res.sendFile(path.resolve(`${rootPath}/index.html`));
   });
-}
+};

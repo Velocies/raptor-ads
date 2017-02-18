@@ -1,0 +1,81 @@
+exports[`test Navigation test 1`] = `
+<div
+  className="ui inverted segment">
+  <div
+    className="ui inverted pointing secondary menu">
+    <div
+      className="header item"
+      onClick={[Function]}>
+      Our Company
+    </div>
+    <a
+      className="item"
+      onClick={[Function]}
+      style={Object {}}>
+      About
+    </a>
+    <a
+      className="item"
+      onClick={[Function]}
+      style={Object {}}>
+      Customer Dashboard
+    </a>
+    <div
+      className="right menu">
+      <a
+        className="item"
+        onClick={[Function]}
+        style={Object {}}>
+        Sign Up
+      </a>
+      <a
+        className="item"
+        onClick={[Function]}
+        style={Object {}}>
+        Login
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`test Navigation test 2`] = `
+<div
+  className="ui inverted segment">
+  <div
+    className="ui inverted pointing secondary menu">
+    <div
+      className="header item"
+      onClick={[Function]}>
+      Our Company
+    </div>
+    <a
+      className="item"
+      onClick={[Function]}
+      style={Object {}}>
+      About
+    </a>
+    <a
+      className="item"
+      onClick={[Function]}
+      style={Object {}}>
+      Customer Dashboard
+    </a>
+    <div
+      className="right menu">
+      <a
+        className="item"
+        onClick={[Function]}
+        style={Object {}}>
+        Sign Up
+      </a>
+      <a
+        className="item"
+        onClick={[Function]}
+        style={Object {}}>
+        Login
+      </a>
+    </div>
+  </div>
+</div>
+`;

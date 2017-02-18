@@ -8,7 +8,7 @@ module.exports = {
   getAll: (req, res) => {
     db.User.findAll({})
     .then((users) => {
-      res.send(JSON.stringify(users));
+      res.send(users);
     });
   },
 

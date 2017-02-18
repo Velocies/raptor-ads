@@ -3,7 +3,13 @@ import { Button, Form, Grid, Header, Icon } from 'semantic-ui-react';
 
 export default class CustomerSignup extends Component {
   constructor() {
-    super()
+    super();
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(e) {
+    console.log('e', e)
+    e.preventDefault()
   }
 
   render() {
@@ -38,7 +44,7 @@ export default class CustomerSignup extends Component {
                 <input placeholder='Confirm Password' />
               </Form.Field>
               <Form.Field width="8">
-                <Button type='submit'>Sign Up</Button>
+                <Button onSubmit={(e)=>this.onSubmit(e)}type='submit'>Sign Up</Button>
               </Form.Field>
             </Form>
           </Grid.Column>

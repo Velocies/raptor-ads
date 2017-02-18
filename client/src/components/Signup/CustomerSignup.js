@@ -15,7 +15,6 @@ class CustomerSignup extends Component {
   }
 
   onChange(e) {
-    console.log('e', e.target.name, e.target.value)
     this.props.dispatch(changeSignupField(e.target.name, e.target.value))
   }
 

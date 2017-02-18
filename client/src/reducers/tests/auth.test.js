@@ -1,6 +1,6 @@
 import { auth } from '../auth'
 import { initialState } from '../auth'
-import * as types from '../../actions'
+import * as actions from '../../actions'
 
 describe('auth reducer', () => {
   it('should return the initial state', () => {
@@ -8,7 +8,8 @@ describe('auth reducer', () => {
       auth(undefined, {})
     ).toEqual(initialState)
   })
-  it('should handle TOGGLE_SIGNUP_FORM', () => {
+
+  it('should handle toggleSignup', () => {
     const expectedState = {
       signupForm: {
         activeLink: 'customer',
@@ -21,7 +22,31 @@ describe('auth reducer', () => {
     }
 
     expect(
-      auth(initialState, {type: types.TOGGLE_SIGNUP_FORM, link: 'customer'})
-    ).toEqual(expectedState)
+      auth(initialState, actions.toggleSignupLink('customer'))
+    ).
+    toEqual(expectedState)
+
+    const changedLink =
+      auth(expectedState, actions.toggleSignupLink('professional')).signupForm.activeLink
+
+    expect(changedLink).toEqual('professional')
+  })
+
+  it('should handle CHANGE_SIGNUP_FIELD', () => {
+    const expectedState = {
+      signupForm: {
+        activeLink: 'customer',
+        firstName: 'cory',
+        email: '',
+        lastName: '',
+        password: '',
+        passwordConfirmation: ''
+      }
+    }
+
+    const newState =
+      auth(initialState, actions.changeSignupField('firstName', 'cory'));
+
+    expect(newState).toEqual(expectedState)
   })
 })

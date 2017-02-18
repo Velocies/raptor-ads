@@ -5,9 +5,10 @@ exports[`test App test 1`] = `
     <div
       className="ui inverted pointing secondary menu">
       <div
-        className="header item"
+        className="item logo"
         onClick={[Function]}>
-        Our Company
+        <img
+          src="/client/src/assets/half-raptor.png" />
       </div>
       <a
         className="item"

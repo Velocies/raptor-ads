@@ -16,7 +16,7 @@ class Signup extends Component {
   }
 
   render() {
-    const { dispatch } = this.props;
+    const { toggleSignupLink } = this.props;
     const { activeLink: link } = this.props;
     return (
       <div>
@@ -24,14 +24,14 @@ class Signup extends Component {
           <div className="signup-buttons">
             <Button.Group size='large'>
               <Button
-                onClick={()=>dispatch(toggleSignupLink('customer'))}
+                onClick={()=>toggleSignupLink('customer')}
                 className={this.findActiveLink('customer')}
               >
                 Customer
               </Button>
               <Button.Or />
               <Button
-                onClick={()=>dispatch(toggleSignupLink('professional'))}
+                onClick={()=>toggleSignupLink('professional')}
                 className={this.findActiveLink('professional')}
               >
                 Professional
@@ -39,7 +39,7 @@ class Signup extends Component {
             </Button.Group>
           </div>
         </Grid>
-        { link === undefined ? null : link === 'professional' ? <ProSignup /> : <CustomerSignup /> }
+        {link === 'professional' ? <ProSignup /> : <CustomerSignup /> }
       </div>
     )
   }
@@ -50,4 +50,11 @@ const mapStateToProps = (state) => {
     activeLink: state.auth.signupForm.activeLink
   }
 }
-export default connect(mapStateToProps)(Signup)
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleSignupLink: link => dispatch(toggleSignupLink(link))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup)

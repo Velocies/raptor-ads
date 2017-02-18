@@ -1,5 +1,5 @@
-var userController = require('./users/userController.js');
-var listingController = require('./listings/listingController.js');
+const userController = require('./users/userController.js');
+const listingController = require('./listings/listingController.js');
 
 module.exports = (app, db) => {
 

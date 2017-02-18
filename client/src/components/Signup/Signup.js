@@ -3,6 +3,7 @@ import { Button, Checkbox, Form, Container, Grid, Header, Icon } from 'semantic-
 import { connect } from 'react-redux';
 import { toggleSignup } from '../../actions';
 import CustomerSignup from '../Signup/CustomerSignup';
+import ProSignup from '../Signup/ProSignup';
 
 class Signup extends Component {
   constructor() {
@@ -42,7 +43,7 @@ class Signup extends Component {
             </Button.Group>
           </div>
         </Grid>
-        {link === 'customer' ? <CustomerSignup /> : null }
+        { link === undefined ? null : link === 'professional' ? <ProSignup /> : <CustomerSignup /> }
       </div>
     )
   }

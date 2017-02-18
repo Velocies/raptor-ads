@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { LandingPage } from './LandingPage';
 import Signup from './Signup';
-import { Login } from './Login';
+import Login from './Login';
 import { CustomerDashboard } from './CustomerDashboard';
 import App from './App';
 import configureStore from '../configureStore.js';

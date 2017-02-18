@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
-import { Button, Checkbox, Form, Container, Grid, Header, Icon } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Icon } from 'semantic-ui-react';
 
-export default class Signup extends Component {
+export default class CustomerSignup extends Component {
   constructor() {
     super()
   }
 
   render() {
-    return (
+    return(
       <div>
-        <div className="signup-button-group">
-          <Grid centered>
-            <Button.Group size='large'>
-              <Button>Customer</Button>
-              <Button.Or />
-              <Button>Professional</Button>
-            </Button.Group>
-          </Grid>
+        <div className="signup-buttons">
+          <Header textAlign='center'><Icon name="user" />Customer Sign Up</Header>
         </div>
         <Grid width={16}>
           <Grid.Column width={5}>
@@ -50,6 +44,6 @@ export default class Signup extends Component {
           </Grid.Column>
         </Grid>
       </div>
-    )
+    );
   }
 }

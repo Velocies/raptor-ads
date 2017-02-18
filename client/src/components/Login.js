@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Checkbox, Form, Container, Grid, Header } from 'semantic-ui-react'
+import { Button, Checkbox, Form, Container, Grid, Header, Icon } from 'semantic-ui-react'
 
 export default class Login extends Component {
   constructor() {
@@ -9,7 +9,8 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <Grid textAlign="center" width={16}>
+        <Header textAlign="centered"><Icon name="user"/>Log In</Header>
+        <Grid width={16}>
           <Grid.Column width={5}>
           </Grid.Column>
           <Grid.Column width={11}>

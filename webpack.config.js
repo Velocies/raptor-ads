@@ -15,7 +15,8 @@ module.exports = {
       include: path.join(__dirname, '/client/src'),
       loader: 'babel-loader',
       query: {
-        presets: ["react", "es2015", "stage-2"]
+        presets: ["react", "es2015", "stage-2"],
+        plugins: ["transform-object-rest-spread"]
       }
     }],
   },

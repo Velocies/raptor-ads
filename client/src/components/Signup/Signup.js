@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Checkbox, Form, Container, Grid, Header, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { toggleSignup } from '../../actions';
+import { toggleSignupLink } from '../../actions';
 import CustomerSignup from '../Signup/CustomerSignup';
 import ProSignup from '../Signup/ProSignup';
 
@@ -12,30 +12,26 @@ class Signup extends Component {
   }
 
   findActiveLink(link) {
-    return this.props.link === link ? 'active' : '';
-  }
-
-  renderSignupForm(link) {
-    return this.props.link === link ? 'active' : '';
+    return this.props.activeLink === link ? 'active' : '';
   }
 
   render() {
-    const { dispatch } = this.props;
-    const { link } = this.props;
+    const { toggleSignupLink } = this.props;
+    const { activeLink: link } = this.props;
     return (
       <div>
         <Grid centered>
           <div className="signup-buttons">
             <Button.Group size='large'>
               <Button
-                onClick={()=>dispatch(toggleSignup('customer'))}
+                onClick={()=>toggleSignupLink('customer')}
                 className={this.findActiveLink('customer')}
               >
                 Customer
               </Button>
               <Button.Or />
               <Button
-                onClick={()=>dispatch(toggleSignup('professional'))}
+                onClick={()=>toggleSignupLink('professional')}
                 className={this.findActiveLink('professional')}
               >
                 Professional
@@ -43,7 +39,7 @@ class Signup extends Component {
             </Button.Group>
           </div>
         </Grid>
-        { link === undefined ? null : link === 'professional' ? <ProSignup /> : <CustomerSignup /> }
+        {link === 'professional' ? <ProSignup /> : <CustomerSignup /> }
       </div>
     )
   }
@@ -51,7 +47,14 @@ class Signup extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    link: state.app.link
+    activeLink: state.auth.signupForm.activeLink
   }
 }
-export default connect(mapStateToProps)(Signup)
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleSignupLink: link => dispatch(toggleSignupLink(link))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup)

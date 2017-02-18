@@ -48,9 +48,23 @@ module.exports = {
         id: req.params.id
       }
     })
+    .then(() => {
+      res.send("user patched");
+    })
    },
 
   deleteOne: (req, res) => {
-
+    db.User.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    .then((status) => {
+      if (status === 1) {
+        res.send('User deleted!');
+      } else {
+        res.send('User did not exist');
+      }
+    })
   },
 };

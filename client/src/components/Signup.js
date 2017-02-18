@@ -9,6 +9,7 @@ export default class Signup extends Component {
   render() {
     return (
       <div>
+        <Icon name="user" /><Header textAlign="centered">Sign Up</Header>
         <Grid textAlign="center" width={16}>
           <Grid.Column width={5}>
           </Grid.Column>

@@ -9,10 +9,10 @@ export default class Signup extends Component {
   render() {
     return (
       <div>
-        <Grid textAlign="center" width={14}>
-          <Grid.Column width={4}>
+        <Grid textAlign="center" width={16}>
+          <Grid.Column width={5}>
           </Grid.Column>
-          <Grid.Column width={9}>
+          <Grid.Column width={11}>
             <Form>
               <Form.Field width="8">
                 <label>First Name</label>

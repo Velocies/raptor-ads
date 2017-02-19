@@ -33,5 +33,5 @@ module.exports = {
 
   deleteOnePhoto: (req, res) => {
 
-  }
+  },
 };

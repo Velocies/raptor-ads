@@ -3,47 +3,46 @@ import { Button, Form, Grid, Header, Icon } from 'semantic-ui-react';
 
 export default class ProSignup extends Component {
   constructor() {
-    super()
+    super();
   }
 
   render() {
-    return(
+    return (
       <div>
         <div className="signup-buttons">
-          <Header textAlign='center'><Icon name="travel"/>Professional Signup</Header>
+          <Header textAlign="center"><Icon name="travel" />Professional Signup</Header>
         </div>
         <Grid width={16}>
-          <Grid.Column width={5}>
-          </Grid.Column>
+          <Grid.Column width={5} />
           <Grid.Column width={11}>
             <Form>
               <Form.Field width="8">
-                <label>First Name</label>
-                <input placeholder='First Name' />
+                <label htmlFor="password">First Name</label>
+                <input placeholder="First Name" />
               </Form.Field>
               <Form.Field width="8">
-                <label>Last Name</label>
-                <input placeholder='Last Name' />
+                <label htmlFor="password">Last Name</label>
+                <input placeholder="Last Name" />
               </Form.Field>
               <Form.Field width="8">
-                <label>Email</label>
-                <input placeholder='Email' />
+                <label htmlFor="password">Email</label>
+                <input placeholder="Email" />
               </Form.Field>
               <Form.Field width="8">
-                <label>Password</label>
-                <input placeholder='Password' />
+                <label htmlFor="password">Password</label>
+                <input placeholder="Password" />
               </Form.Field>
               <Form.Field width="8">
-                <label>Confirm Password</label>
-                <input placeholder='Confirm Password' />
+                <label htmlFor="password">Confirm Password</label>
+                <input placeholder="Confirm Password" />
               </Form.Field>
               <Form.Field width="8">
-                <Button type='submit'>Sign Up</Button>
+                <Button type="submit">Sign Up</Button>
               </Form.Field>
             </Form>
           </Grid.Column>
         </Grid>
       </div>
-    )
+    );
   }
 }

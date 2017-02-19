@@ -1,35 +1,34 @@
 import React, { Component } from 'react';
-import { Button, Checkbox, Form, Container, Grid, Header, Icon } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Icon } from 'semantic-ui-react';
 
 export default class Login extends Component {
   constructor() {
-    super()
+    super();
   }
 
   render() {
     return (
       <div>
-        <Header textAlign="centered"><Icon name="user"/>Log In</Header>
+        <Header textAlign="centered"><Icon name="user" />Log In</Header>
         <Grid width={16}>
-          <Grid.Column width={5}>
-          </Grid.Column>
+          <Grid.Column width={5} />
           <Grid.Column width={11}>
             <Form>
               <Form.Field width="8">
-                <label>Email</label>
-                <input placeholder='Email' />
+                <label htmlFor="email">Email</label>
+                <input placeholder="Email" />
               </Form.Field>
               <Form.Field width="8">
-                <label>Password</label>
-                <input placeholder='Password' />
+                <label htmlFor="email">Password</label>
+                <input placeholder="Password" />
               </Form.Field>
               <Form.Field width="8">
-                <Button type='submit'>Login</Button>
+                <Button type="submit">Login</Button>
               </Form.Field>
             </Form>
           </Grid.Column>
         </Grid>
       </div>
-    )
+    );
   }
 }

@@ -92,9 +92,8 @@ CustomerSignup.propTypes = {
     lastName: React.PropTypes.string.isRequired,
     password: React.PropTypes.string.isRequired,
     passwordConfirmation: React.PropTypes.string.isRequired,
-    dispatch: React.PropTypes.func.isRequired,
   }).isRequired,
-  dispatch: React.propTypes.func.isRequired,
+  dispatch: React.PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {

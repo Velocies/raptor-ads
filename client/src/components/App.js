@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import NavbarContainer from './Navigation/NavbarContainer';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <NavbarContainer />
-        {this.props.children}
-      </div>
-    );
-  }
-}
+const App = ({ children }) =>
+  <div>
+    <NavbarContainer />
+    { children }
+  </div>;
+
+App.propTypes = {
+  children: React.PropTypes.element.isRequired,
+};
+
+export default App;

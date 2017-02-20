@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
-    "test": "jest",
+    "test": "jest client/* && mocha server/tests/*",
     "heroku-postbuild": "webpack -p --progress"
   },
   "repository": {

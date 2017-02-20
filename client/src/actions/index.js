@@ -25,7 +25,7 @@ export const changeSignupField = (field, value) =>
 
 export const customerSignup = customer =>
   (dispatch) => {
-    fetchPostUser(consumer)
+    fetchPostUser(customer)
     .then((user) => {
       console.log('post to users returns', user);
     });

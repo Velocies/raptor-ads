@@ -14,7 +14,7 @@ class CustomerSignup extends Component {
     e.preventDefault();
     const data = this.props.signupForm;
     data.role = 'customer';
-    this.props.dispatch(consumerSignup(data));
+    this.props.dispatch(customerSignup(data));
   }
 
   onChange(e) {

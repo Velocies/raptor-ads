@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { changeSignupField } from '../../actions';
+import { changeSignupField, customerSignup } from '../../actions';
 
 class ProSignup extends Component {
   constructor(props) {
@@ -11,6 +11,13 @@ class ProSignup extends Component {
 
   onChange(e) {
     this.props.dispatch(changeSignupField(e.target.name, e.target.value));
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    const data = this.props.signupForm;
+    data.role = 'professional';
+    this.props.dispatch(customerSignup(data));
   }
 
   render() {
@@ -30,7 +37,7 @@ class ProSignup extends Component {
         <Grid width={16}>
           <Grid.Column width={5} />
           <Grid.Column width={11}>
-            <Form>
+            <Form onSubmit={e => this.onSubmit(e)}>
               <Form.Field width="8">
                 <label htmlFor="firstName">First Name</label>
                 <input

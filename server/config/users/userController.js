@@ -4,14 +4,14 @@ module.exports = {
   getOne: (req, res) => {
     db.User.findOne({
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     })
     .then((user) => {
       if (user) {
         res.send(user);
       } else {
-        res.send("User not found!");
+        res.send('User not found!');
       }
     });
   },
@@ -26,13 +26,13 @@ module.exports = {
   createOne: (req, res) => {
     db.User.findOne({
       where: {
-        email: req.body.email
-      }
+        email: req.body.email,
+      },
     })
     .then((user) => {
       if (!user) {
         db.User.create(req.body)
-        .then((createdUser)=>{
+        .then((createdUser) => {
           res.send(createdUser);
         });
       } else {
@@ -42,22 +42,21 @@ module.exports = {
   },
 
   patchOne: (req, res) => {
-    db.User.update(req.body,
-    {
+    db.User.update(req.body, {
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     })
     .then(() => {
-      res.send("user patched");
-    })
-   },
+      res.send('user patched');
+    });
+  },
 
   deleteOne: (req, res) => {
     db.User.destroy({
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     })
     .then((status) => {
       if (status === 1) {
@@ -65,6 +64,6 @@ module.exports = {
       } else {
         res.send('User did not exist');
       }
-    })
+    });
   },
 };

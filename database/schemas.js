@@ -1,11 +1,11 @@
 const db = require('./database.js');
 
 const user = require('./schemas/user.js')(db.database, db.Sequelize);
-const post = require('./schemas/post.js')(db.database, db.Sequelize, user);
-const picture = require('./schemas/picture.js')(db.database, db.Sequelize, post);
-const message = require('./schemas/message.js')(db.database, db.Sequelize, post, user);
-const rating = require('./schemas/rating.js')(db.database, db.Sequelize, user);
-const business = require('./schemas/business.js')(db.database, db.Sequelize, user);
+const post = require('./schemas/post.js')(db.database, db.Sequelize);
+const picture = require('./schemas/picture.js')(db.database, db.Sequelize);
+const message = require('./schemas/message.js')(db.database, db.Sequelize);
+const rating = require('./schemas/rating.js')(db.database, db.Sequelize);
+const business = require('./schemas/business.js')(db.database, db.Sequelize);
 
 user.sync({})
   .then(() => post.belongsTo(user, { foreignKey: 'user_id' }))

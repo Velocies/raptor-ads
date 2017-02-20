@@ -1,3 +1,5 @@
+const db = require('../../../database/schemas.js');
+
 module.exports = {
   getOne: (req, res) => {
 
@@ -8,7 +10,14 @@ module.exports = {
   },
 
   createOne: (req, res) => {
-
+    db.Post.create({
+      body: req.body.body,
+      tags: req.body.tags,
+      user_id: req.params.id,
+    })
+    .then((listing) => {
+      res.send(listing);
+    });
   },
 
   patchOne: (req, res) => {

@@ -6,7 +6,10 @@ module.exports = {
   },
 
   getAll: (req, res) => {
-
+    db.Post.findAll({})
+    .then((listings) => {
+      res.send(listings);
+    });
   },
 
   createOne: (req, res) => {

@@ -1,5 +1,15 @@
 import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD } from '../constants';
 
+const fetchPostUser = (customer) =>
+  fetch('/api/users', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(customer),
+  });
+
 export const toggleSignupLink = link =>
   ({
     type: TOGGLE_SIGNUP_FORM,
@@ -15,14 +25,7 @@ export const changeSignupField = (field, value) =>
 
 export const customerSignup = customer =>
   (dispatch) => {
-    console.log('customer is', customer);
-    fetch('/api/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(customer),
-    })
+    fetchPostUser(consumer)
     .then((user) => {
       console.log('post to users returns', user);
     });

@@ -2,7 +2,14 @@ const db = require('../../../database/schemas.js');
 
 module.exports = {
   getOne: (req, res) => {
-
+    db.Post.findOne({
+      where: {
+        id: req.params.listId,
+      },
+    })
+    .then((listing) => {
+      res.send(listing);
+    });
   },
 
   getAll: (req, res) => {

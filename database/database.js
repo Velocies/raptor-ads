@@ -14,4 +14,4 @@ db.authenticate()
     }
   });
 
-module.exports = { database: db, Sequelize: Sequelize };
+module.exports = { database: db, Sequelize };

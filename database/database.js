@@ -1,15 +1,17 @@
-var Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 
-var db = new Sequelize('postgres', 'postgres', ' ', {
+const db = new Sequelize('postgres', 'postgres', ' ', {
   dialect: 'postgres',
-  port: 5432
+  port: 5432,
 });
 
 db.authenticate()
   .then((err) => {
-    console.log('Database connection established');
-  }, (err) => {
-    console.log('Unable to connect to the database: ', err);
+    if (err) {
+      console.log('Unable to connect to the database');
+    } else {
+      console.log('Database connection established');
+    }
   });
 
-  module.exports = {database: db, Sequelize:Sequelize};
+module.exports = { database: db, Sequelize: Sequelize };

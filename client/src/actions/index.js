@@ -1,10 +1,12 @@
-import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR } from '../constants';
+import isEmpty from 'lodash/isEmpty';
+import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS } from '../constants';
+import { validateSignup } from '../components/helpers/validateSignup';
 
-const fetchPostUser = (customer) =>
+const fetchPostUser = customer =>
   fetch('/api/users', {
     method: 'POST',
     headers: {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(customer),
@@ -30,10 +32,24 @@ export const changeSignupField = (field, value) =>
     value,
   });
 
+export const clearErrors = () =>
+  ({
+    type: CLEAR_ERRORS,
+  });
+
+// checkingForm
+
 export const customerSignup = customer =>
-  (dispatch) => {
-    fetchPostUser(customer)
-    .then((user) => {
-      console.log('post to users returns', user);
-    });
+  (dispatch, getState) => {
+    // validate customer data
+    validateSignup(customer, dispatch);
+    if (isEmpty(getState().formErrors)) {
+      fetchPostUser(customer)
+      .then((user) => {
+        console.log('post to users returns', user);
+        dispatch(clearErrors);
+      });
+    } else {
+      console.log('did nothing');
+    }
   };

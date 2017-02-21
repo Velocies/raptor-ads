@@ -72,4 +72,24 @@ describe('auth reducer', () => {
 
     expect(newState).toEqual(expectedState);
   });
+
+  it('should handle CLEAR_ERRORS', () => {
+    const startingState = {
+      signupForm: {
+        activeLink: 'customer',
+        firstName: '',
+        email: '',
+        lastName: '',
+        businessName: '',
+        password: '',
+        passwordConfirmation: '',
+      },
+      formErrors: { passwordConfirmation: 'dont match' },
+    };
+
+    const newState =
+      auth(startingState, actions.clearErrors());
+
+    expect(newState).toEqual(initialState);
+  });
 });

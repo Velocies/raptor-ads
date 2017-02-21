@@ -1,5 +1,7 @@
+import { addSignupFormError } from '../../actions';
+
 export const validateSignup = (data, dispatch) => {
   if (data.password !== data.passwordConfirmation) {
-    dispatch(addSignupformError('passwordConfirmation', 'passwords must match'));
+    dispatch(addSignupFormError('passwordConfirmation', 'passwords must match'));
   }
 };

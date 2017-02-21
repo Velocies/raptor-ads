@@ -37,11 +37,8 @@ export const clearErrors = () =>
     type: CLEAR_ERRORS,
   });
 
-// checkingForm
-
 export const customerSignup = customer =>
   (dispatch, getState) => {
-    // validate customer data
     validateSignup(customer, dispatch);
     if (isEmpty(getState().auth.formErrors)) {
       fetchPostUser(customer)

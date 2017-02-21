@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import isEmpty from 'lodash/isEmpty';
-import { changeSignupField, customerSignup } from '../../actions';
+import { changeSignupField, customerSignup, clearErrors } from '../../actions';
 import { validateSignup } from '../helpers/validateSignup';
 
 class CustomerSignup extends Component {
@@ -15,10 +15,10 @@ class CustomerSignup extends Component {
   onSubmit(e) {
     e.preventDefault();
     const data = this.props.signupForm;
+    this.props.dispatch(clearErrors());
     validateSignup(data, this.props.dispatch);
     data.role = 'customer';
     if (isEmpty(this.props.formErrors)) {
-      console.log('here')
       this.props.dispatch(customerSignup(data));
     }
   }
@@ -57,6 +57,7 @@ class CustomerSignup extends Component {
                   onChange={e => this.onChange(e)}
                 />
               </Form.Field>
+              {formErrors.email && <span>{formErrors.email}</span>}
               <Form.Field width="8">
                 <label htmlFor="email">Email</label>
                 <input
@@ -76,7 +77,7 @@ class CustomerSignup extends Component {
                   onChange={e => this.onChange(e)}
                 />
               </Form.Field>
-              {formErrors.passwordConfirmation && <span>formErrors.passwordConfirmation</span>}
+              {formErrors.passwordConfirmation && <span className='bobbyIsDumb'>{formErrors.passwordConfirmation}</span>}
               <Form.Field width="8">
                 <label htmlFor="confirmPassword">Confirm Password</label>
                 <input

@@ -47,7 +47,6 @@ export const customerSignup = customer =>
       fetchPostUser(customer)
       .then((user) => {
         console.log('post to users returns', user);
-        dispatch(clearErrors);
       });
     } else {
       console.log('did nothing');

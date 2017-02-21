@@ -42,7 +42,18 @@ module.exports = {
   },
 
   deleteOne: (req, res) => {
-
+    db.Post.destroy({
+      where: {
+        id: req.params.listId,
+      },
+    })
+    .then((status) => {
+      if (status === 1) {
+        res.send('listing deleted!');
+      } else {
+        res.send('listing wasn\'t found');
+      }
+    });
   },
 
   getAllPhotos: (req, res) => {

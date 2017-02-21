@@ -62,6 +62,7 @@ class CustomerSignup extends Component {
               <Form.Field width="8">
                 <label htmlFor="password">Password</label>
                 <input
+                  type="password"
                   name="password"
                   placeholder="Password"
                   value={password}
@@ -71,6 +72,7 @@ class CustomerSignup extends Component {
               <Form.Field width="8">
                 <label htmlFor="confirmPassword">Confirm Password</label>
                 <input
+                  type="password"
                   name="passwordConfirmation"
                   placeholder="Confirm Password"
                   value={passwordConfirmation}

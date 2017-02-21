@@ -20,7 +20,7 @@ export default class Login extends Component {
               </Form.Field>
               <Form.Field width="8">
                 <label htmlFor="email">Password</label>
-                <input placeholder="Password" />
+                <input type="password" placeholder="Password" />
               </Form.Field>
               <Form.Field width="8">
                 <Button type="submit">Login</Button>

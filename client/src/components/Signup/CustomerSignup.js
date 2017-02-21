@@ -34,7 +34,7 @@ class CustomerSignup extends Component {
       lastName,
       email,
       password,
-      passwordConfirmation
+      passwordConfirmation,
     } = this.props.signupForm;
     const { formErrors } = this.props;
     return (

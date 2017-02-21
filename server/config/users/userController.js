@@ -48,8 +48,8 @@ module.exports = {
         id: req.params.id,
       },
     })
-    .then(() => {
-      res.send('user patched');
+    .then((status) => {
+      res.send(status);
     });
   },
 

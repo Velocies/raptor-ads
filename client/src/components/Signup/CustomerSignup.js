@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { changeSignupField } from '../../actions';
+import { changeSignupField, customerSignup } from '../../actions';
 
 class CustomerSignup extends Component {
   constructor(props) {
@@ -12,6 +12,9 @@ class CustomerSignup extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    const data = this.props.signupForm;
+    data.role = 'customer';
+    this.props.dispatch(customerSignup(data));
   }
 
   onChange(e) {

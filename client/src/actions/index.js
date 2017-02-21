@@ -1,14 +1,32 @@
-import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD } from '../constants.js'
+import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD } from '../constants';
 
-export const toggleSignupLink = (link) =>
+const fetchPostUser = (customer) =>
+  fetch('/api/users', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(customer),
+  });
+
+export const toggleSignupLink = link =>
   ({
     type: TOGGLE_SIGNUP_FORM,
-    link
-  })
+    link,
+  });
 
 export const changeSignupField = (field, value) =>
   ({
     type: CHANGE_SIGNUP_FIELD,
     field,
-    value
-  })
+    value,
+  });
+
+export const customerSignup = customer =>
+  (dispatch) => {
+    fetchPostUser(customer)
+    .then((user) => {
+      console.log('post to users returns', user);
+    });
+  };

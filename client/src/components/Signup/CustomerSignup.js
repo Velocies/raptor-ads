@@ -36,6 +36,7 @@ class CustomerSignup extends Component {
           <Grid.Column width={5} />
           <Grid.Column width={11}>
             <Form onSubmit={e => this.onSubmit(e)}>
+              {formErrors.firstName && <span className="formError">{formErrors.firstName}</span>}
               <Form.Field width="8">
                 <label htmlFor="firstName">First Name</label>
                 <input
@@ -45,6 +46,7 @@ class CustomerSignup extends Component {
                   onChange={e => this.onChange(e)}
                 />
               </Form.Field>
+              {formErrors.lastName && <span className="formError">{formErrors.lastName}</span>}
               <Form.Field width="8">
                 <label htmlFor="lastName">Last Name</label>
                 <input
@@ -54,7 +56,7 @@ class CustomerSignup extends Component {
                   onChange={e => this.onChange(e)}
                 />
               </Form.Field>
-              {formErrors.email && <span>{formErrors.email}</span>}
+              {formErrors.email && <span className="formError">{formErrors.email}</span>}
               <Form.Field width="8">
                 <label htmlFor="email">Email</label>
                 <input
@@ -64,6 +66,7 @@ class CustomerSignup extends Component {
                   onChange={e => this.onChange(e)}
                 />
               </Form.Field>
+              {formErrors.password && <span className='formError'>{formErrors.password}</span>}
               <Form.Field width="8">
                 <label htmlFor="password">Password</label>
                 <input
@@ -74,7 +77,8 @@ class CustomerSignup extends Component {
                   onChange={e => this.onChange(e)}
                 />
               </Form.Field>
-              {formErrors.passwordConfirmation && <span className='bobbyIsDumb'>{formErrors.passwordConfirmation}</span>}
+              {formErrors.passwordMatch && <span className='formError'>{formErrors.passwordMatch}</span>}
+              {formErrors.passwordConfirmation && <span className='formError'>{formErrors.passwordConfirmation}</span>}
               <Form.Field width="8">
                 <label htmlFor="confirmPassword">Confirm Password</label>
                 <input

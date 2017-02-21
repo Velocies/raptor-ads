@@ -35,7 +35,8 @@ module.exports = {
       where: {
         id: req.params.listId,
       },
-    }).then((status) => {
+    })
+    .then((status) => {
       res.send(status);
     });
   },

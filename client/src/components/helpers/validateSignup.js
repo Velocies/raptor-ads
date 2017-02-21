@@ -10,10 +10,10 @@ export const validateSignup = (data, dispatch) => {
     dispatch(addSignupFormError('email', 'Email is invalid'));
   }
   if (data.firstName === '') {
-    dispatch(addSignupFormError('firstName', 'First Name cant be blank'));
+    dispatch(addSignupFormError('firstName', 'First Name is required'));
   }
   if (data.lastName === '') {
-    dispatch(addSignupFormError('lastName', 'Last Name cant be blank'));
+    dispatch(addSignupFormError('lastName', 'Last Name is required'));
   }
 
   if (data.email === '') {
@@ -24,8 +24,5 @@ export const validateSignup = (data, dispatch) => {
   }
   if (data.passwordConfirmation === '') {
     dispatch(addSignupFormError('passwordConfirmation', 'Password confirmation cant be blank'));
-  }
-  if (data.firstName === '') {
-    dispatch(addSignupFormError('firstName', 'First Name cant be blank'));
   }
 };

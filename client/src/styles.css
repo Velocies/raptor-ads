@@ -11,5 +11,5 @@
 }
 
 .fieldInvalid {
-  border: 1px solid red;
+  border-color: red !important;
 }

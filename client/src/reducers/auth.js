@@ -1,4 +1,4 @@
-import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD } from '../constants';
+import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR } from '../constants';
 
 export const initialState = {
   signupForm: {
@@ -10,6 +10,8 @@ export const initialState = {
     password: '',
     passwordConfirmation: '',
   },
+  formErrors: {
+  },
 };
 
 export const auth = (state = initialState, action) => {
@@ -18,6 +20,8 @@ export const auth = (state = initialState, action) => {
       return ({ ...state, signupForm: { ...state.signupForm, activeLink: action.link } });
     case CHANGE_SIGNUP_FIELD:
       return ({ ...state, signupForm: { ...state.signupForm, [action.field]: action.value } });
+    case ADD_SIGNUP_ERROR:
+      return ({ ...state, formErrors: {...state.formErrors, [action.error]: action.message} });
     default:
       return state;
   }

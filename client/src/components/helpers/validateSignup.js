@@ -23,6 +23,9 @@ export const validateSignup = (data, dispatch) => {
     dispatch(addSignupFormError('password', 'Password is required'));
   }
   if (data.passwordConfirmation === '') {
-    dispatch(addSignupFormError('passwordConfirmation', 'Password confirmation cant be blank'));
+    dispatch(addSignupFormError('passwordConfirmation', 'Password confirmation is required'));
+  }
+  if (data.businessName === '') {
+    dispatch(addSignupFormError('businessName', 'Business name is required'));
   }
 };

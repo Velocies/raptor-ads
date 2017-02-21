@@ -26,10 +26,16 @@ class CustomerSignup extends Component {
 
   getFormClass(name) {
     return classnames({ fieldInvalid: this.props.formErrors[name] });
-  };
+  }
 
   render() {
-    const { firstName, lastName, email, password, passwordConfirmation } = this.props.signupForm;
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      passwordConfirmation
+    } = this.props.signupForm;
     const { formErrors } = this.props;
     return (
       <div>

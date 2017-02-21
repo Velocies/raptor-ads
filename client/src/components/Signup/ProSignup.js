@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { changeSignupField, customerSignup } from '../../actions';
+import classnames from 'classnames';
+import { changeSignupField, customerSignup, clearErrors } from '../../actions';
 
 class ProSignup extends Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.getFormClass = this.getFormClass.bind(this);
   }
 
   onChange(e) {
@@ -17,7 +20,12 @@ class ProSignup extends Component {
     e.preventDefault();
     const data = this.props.signupForm;
     data.role = 'professional';
+    this.props.dispatch(clearErrors());
     this.props.dispatch(customerSignup(data));
+  }
+
+  getFormClass(name) {
+    return classnames({ fieldInvalid: this.props.formErrors[name] });
   }
 
   render() {
@@ -29,6 +37,7 @@ class ProSignup extends Component {
       passwordConfirmation,
       businessName,
     } = this.props.signupForm;
+    const { formErrors } = this.props;
     return (
       <div>
         <div className="signup-buttons">
@@ -37,6 +46,7 @@ class ProSignup extends Component {
         <Grid width={16}>
           <Grid.Column width={5} />
           <Grid.Column width={11}>
+            {formErrors.firstName && <span className="formError">{formErrors.firstName}</span>}
             <Form onSubmit={e => this.onSubmit(e)}>
               <Form.Field width="8">
                 <label htmlFor="firstName">First Name</label>
@@ -45,8 +55,10 @@ class ProSignup extends Component {
                   name="firstName"
                   value={firstName}
                   onChange={e => this.onChange(e)}
+                  className={this.getFormClass('firstName')}
                 />
               </Form.Field>
+              {formErrors.lastName && <span className="formError">{formErrors.lastName}</span>}
               <Form.Field width="8">
                 <label htmlFor="lastName">Last Name</label>
                 <input
@@ -54,8 +66,10 @@ class ProSignup extends Component {
                   name="lastName"
                   value={lastName}
                   onChange={e => this.onChange(e)}
+                  className={this.getFormClass('lastName')}
                 />
               </Form.Field>
+              {formErrors.email && <span className="formError">{formErrors.email}</span>}
               <Form.Field width="8">
                 <label htmlFor="email">Email</label>
                 <input
@@ -63,8 +77,10 @@ class ProSignup extends Component {
                   name="email"
                   value={email}
                   onChange={e => this.onChange(e)}
+                  className={this.getFormClass('email')}
                 />
               </Form.Field>
+              { formErrors.businessName && <span className='formError'>{formErrors.businessName}</span> }
               <Form.Field width="8">
                 <label htmlFor="businessName">Business Name</label>
                 <input
@@ -72,8 +88,10 @@ class ProSignup extends Component {
                   name="businessName"
                   value={businessName}
                   onChange={e => this.onChange(e)}
+                  className={this.getFormClass('businessName')}
                 />
               </Form.Field>
+              {formErrors.password && <span className='formError'>{formErrors.password}</span>}
               <Form.Field width="8">
                 <label htmlFor="password">Password</label>
                 <input
@@ -82,8 +100,10 @@ class ProSignup extends Component {
                   name="password"
                   value={password}
                   onChange={e => this.onChange(e)}
+                  className={this.getFormClass('password')}
                 />
               </Form.Field>
+              {formErrors.passwordConfirmation && <span className='formError'>{formErrors.passwordConfirmation}</span>}
               <Form.Field width="8">
                 <label htmlFor="confirmPassword">Confirm Password</label>
                 <input
@@ -92,6 +112,7 @@ class ProSignup extends Component {
                   name="passwordConfirmation"
                   value={passwordConfirmation}
                   onChange={e => this.onChange(e)}
+                  className={this.getFormClass('passwordConfirmation')}
                 />
               </Form.Field>
               <Form.Field width="8">
@@ -118,9 +139,10 @@ ProSignup.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { signupForm } = state.auth;
+  const { signupForm, formErrors } = state.auth;
   return {
     signupForm,
+    formErrors,
   };
 };
 

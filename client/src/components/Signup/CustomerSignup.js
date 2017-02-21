@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { changeSignupField, customerSignup } from '../../actions';
+import isEmpty from 'lodash/isEmpty'
 
 class CustomerSignup extends Component {
   constructor(props) {
@@ -13,8 +14,11 @@ class CustomerSignup extends Component {
   onSubmit(e) {
     e.preventDefault();
     const data = this.props.signupForm;
+    validateSignup(data, this.props.dispatch);
     data.role = 'customer';
-    this.props.dispatch(customerSignup(data));
+    if (isEmpty(this.props.formErrors)) {
+      this.props.dispatch(customerSignup(data));
+    }
   }
 
   onChange(e) {

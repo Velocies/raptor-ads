@@ -19,6 +19,7 @@ describe('auth reducer', () => {
         password: '',
         passwordConfirmation: '',
       },
+      formErrors: {},
     };
 
     const newState =
@@ -30,7 +31,7 @@ describe('auth reducer', () => {
       auth(expectedState, actions.toggleSignupLink('professional')).signupForm.activeLink;
 
     expect(changedLink).toEqual('professional');
-  })
+  });
 
   it('should handle CHANGE_SIGNUP_FIELD', () => {
     const expectedState = {
@@ -43,10 +44,31 @@ describe('auth reducer', () => {
         password: '',
         passwordConfirmation: '',
       },
+      formErrors: {},
     };
 
     const newState =
       auth(initialState, actions.changeSignupField('firstName', 'cory'));
+
+    expect(newState).toEqual(expectedState);
+  });
+
+  it('should handle ADD_SIGNUP_ERROR', () => {
+    const expectedState = {
+      signupForm: {
+        activeLink: 'customer',
+        firstName: '',
+        email: '',
+        lastName: '',
+        businessName: '',
+        password: '',
+        passwordConfirmation: '',
+      },
+      formErrors: {'passwordConfirmation': 'passwords dont match'},
+    };
+
+    const newState =
+      auth(initialState, actions.addSignupFormError('passwordConfirmation', 'passwords dont match'));
 
     expect(newState).toEqual(expectedState);
   });

@@ -1,4 +1,4 @@
-import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD } from '../constants';
+import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR } from '../constants';
 
 const fetchPostUser = (customer) =>
   fetch('/api/users', {
@@ -14,6 +14,13 @@ export const toggleSignupLink = link =>
   ({
     type: TOGGLE_SIGNUP_FORM,
     link,
+  });
+
+export const addSignupFormError = (error, message) =>
+  ({
+    type: ADD_SIGNUP_ERROR,
+    error,
+    message,
   });
 
 export const changeSignupField = (field, value) =>

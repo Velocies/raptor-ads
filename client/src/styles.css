@@ -6,6 +6,10 @@
   padding: 0 10px 0 0 !important;
 }
 
-.bobbyIsDumb {
+.formError {
   color: red;
+}
+
+.fieldInvalid {
+  border-color: red !important;
 }

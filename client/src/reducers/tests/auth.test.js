@@ -64,11 +64,11 @@ describe('auth reducer', () => {
         password: '',
         passwordConfirmation: '',
       },
-      formErrors: {'passwordConfirmation': 'passwords dont match'},
+      formErrors: {'passwordMatch': 'passwords must match'},
     };
 
     const newState =
-      auth(initialState, actions.addSignupFormError('passwordConfirmation', 'passwords dont match'));
+      auth(initialState, actions.addSignupFormError('passwordMatch', 'passwords must match'));
 
     expect(newState).toEqual(expectedState);
   });

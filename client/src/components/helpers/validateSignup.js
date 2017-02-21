@@ -4,8 +4,28 @@ const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+")
 
 export const validateSignup = (data, dispatch) => {
   if (data.password !== data.passwordConfirmation) {
-    dispatch(addSignupFormError('passwordConfirmation', 'passwords must match'));
-  } else if (!emailRegex.test(data.email)) {
-    dispatch(addSignupFormError('email', 'email is invalid'));
+    dispatch(addSignupFormError('passwordMatch', 'Passwords must match'));
+  }
+  if (!emailRegex.test(data.email)) {
+    dispatch(addSignupFormError('email', 'Email is invalid'));
+  }
+  if (data.firstName === '') {
+    dispatch(addSignupFormError('firstName', 'First Name is required'));
+  }
+  if (data.lastName === '') {
+    dispatch(addSignupFormError('lastName', 'Last Name is required'));
+  }
+
+  if (data.email === '') {
+    dispatch(addSignupFormError('email', 'Email is required'));
+  }
+  if (data.password === '') {
+    dispatch(addSignupFormError('password', 'Password is required'));
+  }
+  if (data.passwordConfirmation === '') {
+    dispatch(addSignupFormError('passwordConfirmation', 'Password confirmation is required'));
+  }
+  if (data.businessName === '') {
+    dispatch(addSignupFormError('businessName', 'Business name is required'));
   }
 };

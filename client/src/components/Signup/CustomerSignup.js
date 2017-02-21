@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import isEmpty from 'lodash/isEmpty';
+import classnames from 'classnames';
 import { changeSignupField, customerSignup, clearErrors } from '../../actions';
-import { validateSignup } from '../helpers/validateSignup';
 
 class CustomerSignup extends Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.getFormClass = this.getFormClass.bind(this);
   }
 
   onSubmit(e) {
@@ -24,8 +24,18 @@ class CustomerSignup extends Component {
     this.props.dispatch(changeSignupField(e.target.name, e.target.value));
   }
 
+  getFormClass(name) {
+    return classnames({ fieldInvalid: this.props.formErrors[name] });
+  }
+
   render() {
-    const { firstName, lastName, email, password, passwordConfirmation } = this.props.signupForm;
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      passwordConfirmation,
+    } = this.props.signupForm;
     const { formErrors } = this.props;
     return (
       <div>
@@ -36,6 +46,7 @@ class CustomerSignup extends Component {
           <Grid.Column width={5} />
           <Grid.Column width={11}>
             <Form onSubmit={e => this.onSubmit(e)}>
+              {formErrors.firstName && <span className="formError">{formErrors.firstName}</span>}
               <Form.Field width="8">
                 <label htmlFor="firstName">First Name</label>
                 <input
@@ -43,8 +54,10 @@ class CustomerSignup extends Component {
                   placeholder="First Name"
                   value={firstName}
                   onChange={e => this.onChange(e)}
+                  className={this.getFormClass('firstName')}
                 />
               </Form.Field>
+              {formErrors.lastName && <span className="formError">{formErrors.lastName}</span>}
               <Form.Field width="8">
                 <label htmlFor="lastName">Last Name</label>
                 <input
@@ -52,9 +65,10 @@ class CustomerSignup extends Component {
                   placeholder="Last Name"
                   value={lastName}
                   onChange={e => this.onChange(e)}
+                  className={this.getFormClass('lastName')}
                 />
               </Form.Field>
-              {formErrors.email && <span>{formErrors.email}</span>}
+              {formErrors.email && <span className="formError">{formErrors.email}</span>}
               <Form.Field width="8">
                 <label htmlFor="email">Email</label>
                 <input
@@ -62,8 +76,10 @@ class CustomerSignup extends Component {
                   placeholder="Email"
                   value={email}
                   onChange={e => this.onChange(e)}
+                  className={this.getFormClass('email')}
                 />
               </Form.Field>
+              {formErrors.password && <span className='formError'>{formErrors.password}</span>}
               <Form.Field width="8">
                 <label htmlFor="password">Password</label>
                 <input
@@ -72,9 +88,11 @@ class CustomerSignup extends Component {
                   placeholder="Password"
                   value={password}
                   onChange={e => this.onChange(e)}
+                  className={this.getFormClass('password')}
                 />
               </Form.Field>
-              {formErrors.passwordConfirmation && <span className='bobbyIsDumb'>{formErrors.passwordConfirmation}</span>}
+              {formErrors.passwordMatch && <span className='formError'>{formErrors.passwordMatch}</span>}
+              {formErrors.passwordConfirmation && <span className='formError'>{formErrors.passwordConfirmation}</span>}
               <Form.Field width="8">
                 <label htmlFor="confirmPassword">Confirm Password</label>
                 <input
@@ -83,6 +101,7 @@ class CustomerSignup extends Component {
                   placeholder="Confirm Password"
                   value={passwordConfirmation}
                   onChange={e => this.onChange(e)}
+                  className={this.getFormClass('passwordConfirmation')}
                 />
               </Form.Field>
               <Form.Field width="8">

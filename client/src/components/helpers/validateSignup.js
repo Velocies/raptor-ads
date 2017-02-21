@@ -1,5 +1,11 @@
+import { addSignupFormError } from '../../actions';
+
+const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 export const validateSignup = (data, dispatch) => {
   if (data.password !== data.passwordConfirmation) {
-    dispatch(addSignupformError('passwordConfirmation', 'passwords must match'));
+    dispatch(addSignupFormError('passwordConfirmation', 'passwords must match'));
+  } else if (!emailRegex.test(data.email)) {
+    dispatch(addSignupFormError('email', 'email is invalid'));
   }
 };

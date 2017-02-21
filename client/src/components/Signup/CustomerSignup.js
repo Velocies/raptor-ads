@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { changeSignupField, customerSignup } from '../../actions';
-import isEmpty from 'lodash/isEmpty'
+import isEmpty from 'lodash/isEmpty';
+import { changeSignupField, customerSignup, clearErrors } from '../../actions';
+import { validateSignup } from '../helpers/validateSignup';
 
 class CustomerSignup extends Component {
   constructor(props) {
@@ -14,11 +15,9 @@ class CustomerSignup extends Component {
   onSubmit(e) {
     e.preventDefault();
     const data = this.props.signupForm;
-    validateSignup(data, this.props.dispatch);
+    this.props.dispatch(clearErrors());
     data.role = 'customer';
-    if (isEmpty(this.props.formErrors)) {
-      this.props.dispatch(customerSignup(data));
-    }
+    this.props.dispatch(customerSignup(data));
   }
 
   onChange(e) {
@@ -27,6 +26,7 @@ class CustomerSignup extends Component {
 
   render() {
     const { firstName, lastName, email, password, passwordConfirmation } = this.props.signupForm;
+    const { formErrors } = this.props;
     return (
       <div>
         <div className="signup-buttons">
@@ -54,6 +54,7 @@ class CustomerSignup extends Component {
                   onChange={e => this.onChange(e)}
                 />
               </Form.Field>
+              {formErrors.email && <span>{formErrors.email}</span>}
               <Form.Field width="8">
                 <label htmlFor="email">Email</label>
                 <input
@@ -73,6 +74,7 @@ class CustomerSignup extends Component {
                   onChange={e => this.onChange(e)}
                 />
               </Form.Field>
+              {formErrors.passwordConfirmation && <span className='bobbyIsDumb'>{formErrors.passwordConfirmation}</span>}
               <Form.Field width="8">
                 <label htmlFor="confirmPassword">Confirm Password</label>
                 <input
@@ -107,8 +109,10 @@ CustomerSignup.propTypes = {
 
 const mapStateToProps = (state) => {
   const { signupForm } = state.auth;
+  const { formErrors } = state.auth;
   return {
     signupForm,
+    formErrors,
   };
 };
 

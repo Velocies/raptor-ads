@@ -43,7 +43,7 @@ export const customerSignup = customer =>
   (dispatch, getState) => {
     // validate customer data
     validateSignup(customer, dispatch);
-    if (isEmpty(getState().formErrors)) {
+    if (isEmpty(getState().auth.formErrors)) {
       fetchPostUser(customer)
       .then((user) => {
         console.log('post to users returns', user);

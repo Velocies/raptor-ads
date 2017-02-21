@@ -16,11 +16,8 @@ class CustomerSignup extends Component {
     e.preventDefault();
     const data = this.props.signupForm;
     this.props.dispatch(clearErrors());
-    validateSignup(data, this.props.dispatch);
     data.role = 'customer';
-    if (isEmpty(this.props.formErrors)) {
-      this.props.dispatch(customerSignup(data));
-    }
+    this.props.dispatch(customerSignup(data));
   }
 
   onChange(e) {

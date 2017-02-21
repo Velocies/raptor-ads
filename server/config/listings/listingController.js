@@ -31,7 +31,13 @@ module.exports = {
   },
 
   patchOne: (req, res) => {
-
+    db.Post.update(req.body, {
+      where: {
+        id: req.params.listId,
+      },
+    }).then((status) => {
+      res.send(status);
+    });
   },
 
   deleteOne: (req, res) => {

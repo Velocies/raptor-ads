@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-export default class AddListing extends Component {
+class AddListing extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <h2>Add Listing</h2>
@@ -10,3 +12,12 @@ export default class AddListing extends Component {
   }
 
 }
+
+const mapStateToProps = (state) => {
+  const { listingForm } = state.listing;
+  return {
+    listingForm,
+  };
+};
+
+export default connect(mapStateToProps)(AddListing);

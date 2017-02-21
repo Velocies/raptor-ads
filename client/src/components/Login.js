@@ -9,7 +9,7 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <Header textAlign="centered"><Icon name="user" />Log In</Header>
+        <Header textAlign="center"><Icon name="user" />Log In</Header>
         <Grid width={16}>
           <Grid.Column width={5} />
           <Grid.Column width={11}>
@@ -20,7 +20,7 @@ export default class Login extends Component {
               </Form.Field>
               <Form.Field width="8">
                 <label htmlFor="email">Password</label>
-                <input placeholder="Password" />
+                <input type="password" placeholder="Password" />
               </Form.Field>
               <Form.Field width="8">
                 <Button type="submit">Login</Button>

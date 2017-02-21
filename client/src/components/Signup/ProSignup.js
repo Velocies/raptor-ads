@@ -77,6 +77,7 @@ class ProSignup extends Component {
               <Form.Field width="8">
                 <label htmlFor="password">Password</label>
                 <input
+                  type="password"
                   placeholder="Password"
                   name="password"
                   value={password}
@@ -86,6 +87,7 @@ class ProSignup extends Component {
               <Form.Field width="8">
                 <label htmlFor="confirmPassword">Confirm Password</label>
                 <input
+                  type="password"
                   placeholder="Confirm Password"
                   name="passwordConfirmation"
                   value={passwordConfirmation}

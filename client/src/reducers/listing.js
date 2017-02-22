@@ -1,3 +1,6 @@
+import { CHANGE_LISTING_FIELD } from '../constants';
+
+
 export const initialState = {
   listingForm: {
     title: '',

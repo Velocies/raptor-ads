@@ -1,5 +1,5 @@
 import isEmpty from 'lodash/isEmpty';
-import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS } from '../constants';
+import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD } from '../constants';
 import { validateSignup } from '../components/helpers/validateSignup';
 
 const fetchPostUser = customer =>

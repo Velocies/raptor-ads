@@ -23,6 +23,8 @@ module.exports = {
     db.Post.create({
       body: req.body.body,
       tags: req.body.tags,
+      title: req.body.title,
+      type: req.body.type,
       user_id: req.params.id,
     })
     .then((listing) => {

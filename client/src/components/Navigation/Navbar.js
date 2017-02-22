@@ -25,6 +25,8 @@ const Navbar = ({ location }) =>
     </Menu>
   </Segment>;
 
+export default Navbar;
+
 Navbar.propTypes = {
   location: React.PropTypes.string.isRequired,
 };

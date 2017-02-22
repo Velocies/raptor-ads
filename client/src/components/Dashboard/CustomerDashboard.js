@@ -4,7 +4,7 @@ import Listing from '../shared/Listing';
 
 class CustomerDashboard extends Component {
   constructor(props) {
-    super();
+    super(props);
   }
 
   render() {

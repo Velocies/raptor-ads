@@ -8,6 +8,7 @@ exports[`test Navigation test 1`] = `
       onClick={[Function]}
       style={Object {}}>
       <img
+        alt="raptor"
         src="/client/src/assets/half-raptor.png" />
     </a>
     <a

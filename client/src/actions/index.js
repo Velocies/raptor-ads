@@ -49,3 +49,10 @@ export const customerSignup = customer =>
       console.log('did nothing');
     }
   };
+
+export const changeListingField = (field, value) =>
+  ({
+    type: CHANGE_LISTING_FIELD,
+    field,
+    value,
+  });

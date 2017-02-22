@@ -3,6 +3,11 @@ import { Form } from 'semantic-ui-react';
 
 export const ListingImages = () => {
   return (
-    <div>HELLO WORLD</div>
+    <Form.TextArea
+      rows="1"
+      className="ui center aligned grid"
+      label="Images"
+      placeholder="Insert title of job here"
+    />
   )
 }

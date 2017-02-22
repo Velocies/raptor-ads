@@ -21,11 +21,11 @@ class AddListing extends Component {
     const { title, body, images } = this.props.listingForm;
     return (
       <div>
+        <Header textAlign="center"><Icon name="file text" />Add Listing</Header>
         <Grid width={16}>
           <Grid.Column width={5} />
           <Grid.Column width={6}>
             <Form >
-              <Header textAlign="center"><Icon name="file text" />Add Listing</Header>
               <ListingTitle title={title} onChange={this.onChange} />
               <ListingJobTypes />
               <ListingBody body={body} onChange={this.onChange} />

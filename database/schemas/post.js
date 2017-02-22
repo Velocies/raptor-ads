@@ -7,6 +7,8 @@ module.exports = (db, Sequelize) => {
     },
     body: Sequelize.STRING,
     tags: Sequelize.STRING,
+    title: Sequelize.STRING,
+    type: Sequelize.STRING,
     user_id: Sequelize.INTEGER,
   });
 

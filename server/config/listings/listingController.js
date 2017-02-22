@@ -95,6 +95,17 @@ module.exports = {
   },
 
   deleteOnePhoto: (req, res) => {
-
+    db.Picture.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
+    .then((status) => {
+      if (status === 1) {
+        res.send('photo deleted!');
+      } else {
+        res.send('photo wasn\'t found');
+      }
+    });
   },
 };

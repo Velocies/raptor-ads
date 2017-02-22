@@ -17,8 +17,4 @@ module.exports = {
       }
     });
   },
-
-  logOut: (req, res) => {
-    // TODO: logout currently logged in user
-  },
 };

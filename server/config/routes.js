@@ -3,9 +3,8 @@ const listingController = require('./listings/listingController.js');
 const authController = require('./auth/authController.js');
 
 module.exports = (app, db, path, rootPath) => {
-  // Routes for logging in and out
+  // Route for logging in
   app.post('/api/login', authController.logIn);
-  app.post('/api/logout', authController.logOut);
 
   // Routes for all users
   app.get('/api/users', userController.getAll);

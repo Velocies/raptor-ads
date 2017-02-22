@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Image, Icon } from 'semantic-ui-react';
 
-const Listing = ({ title, createdAt, body }) =>
+const Listing = ({ id, title, createdAt, body }) =>
   <Card centered raised>
     <Card.Content>
       <Image floated="right">

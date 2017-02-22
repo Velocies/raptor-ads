@@ -7,6 +7,8 @@ import Signup from './Signup/Signup';
 import Login from './Login';
 import CustomerDashboard from './Dashboard/CustomerDashboard';
 import App from './App';
+import FullListing from './Listing/FullListing';
+import NotFound from './NotFound';
 import configureStore from '../configureStore';
 
 const store = configureStore();
@@ -21,6 +23,8 @@ const Root = () =>
         <Route path="signup" component={Signup} />
         <Route path="login" component={Login} />
         <Route path="dashboard" component={CustomerDashboard} />
+        <Route path="/listing/:id" component={FullListing} />
+        <Route path="*" component={NotFound} />
       </Route>
     </Router>
   </Provider>;

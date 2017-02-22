@@ -1,13 +1,15 @@
 import React from 'react';
-import { Form } from 'semantic-ui-react';
+import { Form, Input, Icon } from 'semantic-ui-react';
 
-export const ListingImages = () => {
+export const ListingImages = ({ onClick }) => {
   return (
-    <Form.TextArea
-      rows="1"
-      className="ui center aligned grid"
-      label="Images"
-      placeholder="Insert title of job here"
-    />
+    <div>
+      <Form.Field>
+        <Input
+          icon={<Icon onClick={() => onClick()} name="plus" inverted circular link />}
+          placeholder='Add image URL here'
+        />
+      </Form.Field>
+    </div>
   )
 }

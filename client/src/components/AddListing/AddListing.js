@@ -17,6 +17,10 @@ class AddListing extends Component {
     this.props.dispatch(changeListingField(e.target.name, e.target.value));
   }
 
+  onClick() {
+    console.log('clicked');
+  }
+
   render() {
     const { title, body, images } = this.props.listingForm;
     return (
@@ -29,7 +33,7 @@ class AddListing extends Component {
               <ListingTitle title={title} onChange={this.onChange} />
               <ListingJobTypes />
               <ListingBody body={body} onChange={this.onChange} />
-              <ListingImages images={images} />
+              <ListingImages images={images} onClick={this.onClick} />
               <Form.Button className="ui center aligned grid" >Submit</Form.Button>
             </Form>
           </Grid.Column>

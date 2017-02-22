@@ -13,3 +13,7 @@
 .fieldInvalid {
   border-color: red !important;
 }
+
+.icon-bar {
+  margin: 10px 0;
+}

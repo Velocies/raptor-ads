@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Icon, Card } from 'semantic-ui-react';
-import ListingCard from '../shared/ListingCard';
+import Listing from '../shared/Listing';
 
 class CustomerDashboard extends Component {
   constructor(props) {
@@ -11,45 +11,47 @@ class CustomerDashboard extends Component {
     return (
       <Container textAlign="center">
         <Header as="h1" className="center">Customer Dashboard</Header>
-        <Icon name="home" size="huge" />
-        <Icon name="laptop" size="huge" />
+        <div className="icon-bar">
+          <Icon name="home" size="huge" />
+          <Icon name="laptop" size="huge" />
+        </div>
         <Card.Group itemsPerRow={4} stackable>
-          <ListingCard
+          <Listing
             title={'Window Repair'}
             createdAt={'1 day ago'}
             body={'fix my window dude'}
           />
-          <ListingCard
+          <Listing
             title={'Window Repair'}
             createdAt={'1 day ago'}
             body={'fix my window dude'}
           />
-          <ListingCard
+          <Listing
             title={'Window Repair'}
             createdAt={'1 day ago'}
             body={'fix my window dude'}
           />
-          <ListingCard
+          <Listing
             title={'Window Repair'}
             createdAt={'1 day ago'}
             body={'fix my window dude'}
           />
-          <ListingCard
+          <Listing
             title={'Window Repair'}
             createdAt={'1 day ago'}
             body={'fix my window dude'}
           />
-          <ListingCard
+          <Listing
             title={'Window Repair'}
             createdAt={'1 day ago'}
             body={'fix my window dude'}
           />
-          <ListingCard
+          <Listing
             title={'Window Repair'}
             createdAt={'1 day ago'}
             body={'fix my window dude'}
           />
-          <ListingCard
+          <Listing
             title={'Window Repair'}
             createdAt={'1 day ago'}
             body={'fix my window dude'}

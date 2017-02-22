@@ -50,6 +50,7 @@ class CustomerSignup extends Component {
               <Form.Field width="8">
                 <label htmlFor="firstName">First Name</label>
                 <input
+                  id="firstName"
                   name="firstName"
                   placeholder="First Name"
                   value={firstName}

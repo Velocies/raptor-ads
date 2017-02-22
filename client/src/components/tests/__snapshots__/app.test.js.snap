@@ -4,12 +4,13 @@ exports[`test App test 1`] = `
     className="ui inverted segment">
     <div
       className="ui inverted pointing secondary menu">
-      <div
+      <a
         className="item logo"
-        onClick={[Function]}>
+        onClick={[Function]}
+        style={Object {}}>
         <img
           src="/client/src/assets/half-raptor.png" />
-      </div>
+      </a>
       <a
         className="item"
         onClick={[Function]}

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server/server.js",
     "test": "jest client/* && mocha server/tests/*",
-    "heroku-postbuild": "webpack -p --progress"
+    "heroku-postbuild": "webpack -p --progress",
+    "jest-test": "jest client/*"
   },
   "repository": {
     "type": "git",

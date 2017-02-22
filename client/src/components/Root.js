@@ -19,9 +19,7 @@ const Root = () =>
         <Route path="landing" component={LandingPage} />
         <Route path="signup" component={Signup} />
         <Route path="login" component={Login} />
-        <Route path="customer">
-          <Route path="dashboard" component={CustomerDashboard} />
-        </Route>
+        <Route path="dashboard" component={CustomerDashboard} />
       </Route>
     </Router>
   </Provider>;

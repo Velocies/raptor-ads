@@ -79,7 +79,19 @@ module.exports = {
   },
 
   patchOnePhoto: (req, res) => {
-
+    db.Picture.update(
+      {
+        img_name: req.body.img_name,
+        img_path: req.body.img_path,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      })
+    .then((status) => {
+      res.send(status);
+    });
   },
 
   deleteOnePhoto: (req, res) => {

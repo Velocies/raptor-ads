@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { LandingPage } from './LandingPage';
 import Signup from './Signup/Signup';
@@ -16,6 +16,7 @@ const Root = () =>
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
+        <IndexRoute component={LandingPage} />
         <Route path="landing" component={LandingPage} />
         <Route path="signup" component={Signup} />
         <Route path="login" component={Login} />

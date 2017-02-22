@@ -1,4 +1,5 @@
 const db = require('../../../database/schemas.js');
+const bcrypt = require('bcrypt-nodejs');
 
 module.exports = {
   getOne: (req, res) => {
@@ -31,7 +32,22 @@ module.exports = {
     })
     .then((user) => {
       if (!user) {
-        db.User.create(req.body)
+        const salt = bcrypt.genSaltSync(10);
+        const passwordToSave = bcrypt.hashSync(req.body.password, salt);
+
+        db.User.create({
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
+          password: passwordToSave,
+          email: req.body.email,
+          address: req.body.address,
+          city: req.body.city,
+          state: req.body.state,
+          zip: req.body.zip,
+          country: req.body.country,
+          role: req.body.role,
+
+        })
         .then((createdUser) => {
           res.send(createdUser);
         });

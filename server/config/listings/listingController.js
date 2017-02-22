@@ -57,7 +57,14 @@ module.exports = {
   },
 
   getAllPhotos: (req, res) => {
-
+    db.Picture.findAll({
+      where: {
+        post_id: req.params.listId,
+      },
+    })
+    .then((photos) => {
+      res.send(photos);
+    });
   },
 
   createOnePhoto: (req, res) => {

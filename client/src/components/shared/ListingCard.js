@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Image, Icon } from 'semantic-ui-react';
 
-const Listing = ({ title, createdAt, body }) => (
+const ListingCard = ({ title, createdAt, body }) => (
   <Card centered raised>
     <Card.Content>
       <Image floated="right">
@@ -20,4 +20,4 @@ const Listing = ({ title, createdAt, body }) => (
   </Card>
 );
 
-export default Listing;
+export default ListingCard;

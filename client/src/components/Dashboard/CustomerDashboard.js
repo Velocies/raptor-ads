@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Icon, Card } from 'semantic-ui-react';
-import Listing from '../shared/Listing';
+import ListingCard from '../shared/ListingCard';
 
 class CustomerDashboard extends Component {
   constructor(props) {
@@ -14,42 +14,42 @@ class CustomerDashboard extends Component {
         <Icon name="home" size="huge" />
         <Icon name="laptop" size="huge" />
         <Card.Group itemsPerRow={4} stackable>
-          <Listing
+          <ListingCard
             title={'Window Repair'}
             createdAt={'1 day ago'}
             body={'fix my window dude'}
           />
-          <Listing
+          <ListingCard
             title={'Window Repair'}
             createdAt={'1 day ago'}
             body={'fix my window dude'}
           />
-          <Listing
+          <ListingCard
             title={'Window Repair'}
             createdAt={'1 day ago'}
             body={'fix my window dude'}
           />
-          <Listing
+          <ListingCard
             title={'Window Repair'}
             createdAt={'1 day ago'}
             body={'fix my window dude'}
           />
-          <Listing
+          <ListingCard
             title={'Window Repair'}
             createdAt={'1 day ago'}
             body={'fix my window dude'}
           />
-          <Listing
+          <ListingCard
             title={'Window Repair'}
             createdAt={'1 day ago'}
             body={'fix my window dude'}
           />
-          <Listing
+          <ListingCard
             title={'Window Repair'}
             createdAt={'1 day ago'}
             body={'fix my window dude'}
           />
-          <Listing
+          <ListingCard
             title={'Window Repair'}
             createdAt={'1 day ago'}
             body={'fix my window dude'}

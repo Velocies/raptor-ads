@@ -5,7 +5,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { LandingPage } from './LandingPage';
 import Signup from './Signup/Signup';
 import Login from './Login';
-import { CustomerDashboard } from './CustomerDashboard';
+import { CustomerDashboard } from './Dashboard/CustomerDashboard';
 import App from './App';
 import configureStore from '../configureStore';
 

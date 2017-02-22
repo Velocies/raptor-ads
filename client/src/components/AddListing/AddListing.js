@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, Grid } from 'semantic-ui-react';
+import { Button, Form, Grid, Icon, Header } from 'semantic-ui-react';
 import { changeListingField } from '../../actions';
 import { ListingTitle } from './AddListingComponents/ListingTitle';
 import { ListingImages } from './AddListingComponents/ListingImages';
@@ -25,10 +25,11 @@ class AddListing extends Component {
           <Grid.Column width={5} />
           <Grid.Column width={6}>
             <Form >
-              <ListingTitle title={title} onChange={this.onChange.bind(this)} />
+              <Header textAlign="center"><Icon name="file text" />Add Listing</Header>
+              <ListingTitle title={title} onChange={this.onChange} />
               <ListingJobTypes />
-              <ListingBody body={body} onChange={this.onChange.bind(this)}/>
-              <ListingImages />
+              <ListingBody body={body} onChange={this.onChange} />
+              <ListingImages images={images} />
               <Form.Button className="ui center aligned grid" >Submit</Form.Button>
             </Form>
           </Grid.Column>

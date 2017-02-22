@@ -61,7 +61,14 @@ module.exports = {
   },
 
   createOnePhoto: (req, res) => {
-
+    db.Picture.create({
+      img_name: req.body.img_name,
+      img_path: req.body.img_path,
+      post_id: req.params.listId,
+    })
+    .then((photoData) => {
+      res.send(photoData);
+    });
   },
 
   patchOnePhoto: (req, res) => {

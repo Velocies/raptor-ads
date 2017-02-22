@@ -24,7 +24,6 @@ module.exports = {
   },
 
   createOne: (req, res) => {
-    console.log('the body is', req.body)
     db.User.findOne({
       where: {
         email: req.body.email,

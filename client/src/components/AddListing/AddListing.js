@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, Grid, Header, Icon } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Icon, TextArea } from 'semantic-ui-react';
 import { changeListingField } from '../../actions';
-import { ListingTitle } from './ListingTitle';
+import { ListingTitle } from './AddListingComponents/ListingTitle';
 
 class AddListing extends Component {
   constructor(props) {
@@ -16,16 +16,18 @@ class AddListing extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Add Listing</h2>
-        <Grid width={16}>
-          <Grid.Column width={5} />
-          <Grid.Column width={11}>
-            <ListingTitle onChange={this.onChange} titleField={this.props.title}/>
-          </Grid.Column>
-        </Grid>
-      </div>
-    );
+      <Grid width={16}>
+        <Grid.Column width={5} />
+        <Grid.Column width={6}>
+          <Form widths="equal">
+            <Form.TextArea rows="1" className="ui center aligned grid" label='Title' placeholder='Insert title of job here' />
+            <Form.Select className="ui center aligned grid" label='Jobs' />
+            <Form.TextArea rows="5" className="ui center aligned grid" label='Job Description' placeholder='Tell us about the job...' />
+            <Form.Button className="ui center aligned grid" >Submit</Form.Button>
+          </Form>
+        </Grid.Column>
+      </Grid>
+    )
   }
 }
 

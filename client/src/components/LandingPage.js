@@ -4,8 +4,7 @@ import { Container, Grid, Item, Link, Statistic } from 'semantic-ui-react';
 export const LandingPage = () => {
   return(
     <div className="landingContainer">
-      <Grid width={16} className="landingGrid">
-        <div className="testText">HELLO</div>
+      <Grid width={16}>
         <Grid.Column width={1} />
         <Grid.Column className="ui right aligned grid" width={4} >
           <Item.Image
@@ -13,11 +12,8 @@ export const LandingPage = () => {
             to="landing"
             size="small"
             src="/client/src/assets/full-raptor.png"
-
           />
-
         </Grid.Column>
-
         <Grid.Column width={6}>
           <Item.Content verticalAlign="middle">
             <Statistic

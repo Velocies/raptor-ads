@@ -7,7 +7,7 @@ export const initialState = {
     body: '',
     images: [],
     image: '',
-    type: '',
+    type: 'Home Improvement',
   },
 };
 

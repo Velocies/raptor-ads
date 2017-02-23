@@ -18,6 +18,7 @@ class AddListing extends Component {
   }
 
   onChange(e) {
+    console.log(e.target.value);
     this.props.dispatch(changeListingField(e.target.name, e.target.value));
   }
 
@@ -35,7 +36,7 @@ class AddListing extends Component {
   }
 
   render() {
-    const { title, body, images, image } = this.props.listingForm;
+    const { title, body, images, image, type } = this.props.listingForm;
     return (
       <div>
         <Header textAlign="center"><Icon name="file text" />Add Listing</Header>
@@ -44,7 +45,7 @@ class AddListing extends Component {
           <Grid.Column width={6}>
             <Form onSubmit={e => this.onSubmit(e)}>
               <ListingTitle title={title} onChange={this.onChange} />
-              <ListingJobTypes onChange={this.onChange} />
+              <ListingJobTypes type={type} onChange={this.onChange} />
               <ListingBody body={body} onChange={this.onChange} />
               <ListingImage
                 images={images}

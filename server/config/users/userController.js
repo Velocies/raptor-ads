@@ -1,4 +1,6 @@
 const db = require('../../../database/schemas.js');
+const bcrypt = require('bcrypt-nodejs');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
   getOne: (req, res) => {
@@ -31,12 +33,33 @@ module.exports = {
     })
     .then((user) => {
       if (!user) {
-        db.User.create(req.body)
+        const salt = bcrypt.genSaltSync(10);
+        const passwordToSave = bcrypt.hashSync(req.body.password, salt);
+
+        db.User.create({
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
+          password: passwordToSave,
+          email: req.body.email,
+          address: req.body.address,
+          city: req.body.city,
+          state: req.body.state,
+          zip: req.body.zip,
+          country: req.body.country,
+          role: req.body.role,
+
+        })
         .then((createdUser) => {
-          res.send(createdUser);
+          const token = jwt.sign({
+            email: createdUser.email,
+            first_name: createdUser.first_name,
+            id: createdUser.id,
+          }, 'bobbyisbadatstarcraft', { expiresIn: '1h' });
+
+          res.send({ token, createdUser });
         });
       } else {
-        res.send('User already exists!');
+        res.send({ error: 'User already exists!' });
       }
     });
   },

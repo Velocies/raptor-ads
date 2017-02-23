@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Header, Icon, Card, Segment, Button, Divider } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { Container, Header, Card, Button, Divider } from 'semantic-ui-react';
 import Listing from '../shared/Listing';
 
 class CustomerDashboard extends Component {
@@ -8,9 +9,10 @@ class CustomerDashboard extends Component {
   }
 
   render() {
+    const { firstName } = this.props;
     return (
       <Container textAlign="center">
-        <Header as="h1" className="center">Customer Dashboard</Header>
+        <Header as="h1" className="center">{`${capitailize(firstName)}'s Dashboard`}</Header>
         <h3>Recent Listings</h3>
         <Divider />
         <Card.Group itemsPerRow={4} stackable>
@@ -68,4 +70,14 @@ class CustomerDashboard extends Component {
   }
 }
 
-export default CustomerDashboard;
+CustomerDashboard.propTypes = {
+  firstName: React.PropTypes.string.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  const { first_name: firstName } = state.auth.loggedInUser;
+
+  return { firstName };
+};
+
+export default connect(mapStateToProps)(CustomerDashboard);

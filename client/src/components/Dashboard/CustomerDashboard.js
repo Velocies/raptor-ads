@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Icon, Card } from 'semantic-ui-react';
+import { Container, Header, Icon, Card, Segment, Button, Divider } from 'semantic-ui-react';
 import Listing from '../shared/Listing';
 
 class CustomerDashboard extends Component {
@@ -11,10 +11,8 @@ class CustomerDashboard extends Component {
     return (
       <Container textAlign="center">
         <Header as="h1" className="center">Customer Dashboard</Header>
-        <div className="icon-bar">
-          <Icon name="home" size="huge" />
-          <Icon name="laptop" size="huge" />
-        </div>
+        <h3>Recent Listings</h3>
+        <Divider />
         <Card.Group itemsPerRow={4} stackable>
           <Listing
             id={1}

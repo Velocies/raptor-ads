@@ -24,7 +24,6 @@ const attemptLogin = data =>
   });
 
 const fetchPostListing = payload => {
-  console.log('here', payload);
   return fetch(`api/users/${payload.id}/listings`, {
     method: 'POST',
     headers: {
@@ -121,7 +120,6 @@ export const loginUser = data =>
   (dispatch) => {
     attemptLogin(data)
       .then((res) => {
-        console.log('res', res)
         res.json()
           .then((payload) => {
             if (payload.error) {
@@ -164,7 +162,6 @@ export const uploadListing = data =>
   (dispatch) => {
     fetchPostListing(data)
     .then((res) => {
-      console.log('res', res);
       res.json()
         .then((payload) => {
           if (payload.error) {

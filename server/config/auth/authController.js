@@ -1,5 +1,7 @@
 const db = require('../../../database/schemas.js');
 const bcrypt = require('bcrypt-nodejs');
+const jwt = require('jsonwebtoken');
+
 
 
 module.exports = {
@@ -8,7 +10,12 @@ module.exports = {
     .then((user) => {
       if (user) {
         if (bcrypt.compareSync(req.body.password, user.password)) {
-          res.send(user);
+          const token = jwt.sign({
+            email: user.email,
+            first_name: user.first_name,
+            id: user.id,
+          }, 'bobbyisbadatstarcraft', { expiresIn: '1h' });
+          res.send(token);
         } else {
           res.send({ error: 'Incorrect password' });
         }

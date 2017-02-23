@@ -21,3 +21,23 @@
 .notFound {
   margin-top: 75px;
 }
+
+.landingContainer {
+  background-color: #1B1C1D;
+  height: 400px;
+}
+
+.landingText {
+  color: white;
+  text-align: center;
+  font-family: calibri;
+  font-size: 15px
+}
+
+.landingGrid {
+  top: 500px
+}
+
+.testText {
+  color:white;
+}

@@ -8,6 +8,7 @@ import { ListingJobTypes } from './AddListingComponents/ListingJobTypes';
 import { ListingBody } from './AddListingComponents/ListingBody';
 import ListingDisplayImages from './AddListingComponents/ListingDisplayImages';
 
+
 class AddListing extends Component {
   constructor(props) {
     super(props);
@@ -28,6 +29,7 @@ class AddListing extends Component {
   onSubmit(e) {
     e.preventDefault();
     const data = this.props.listingForm;
+    data.id = this.props.id;
     console.log('SUBMIT', data);
   }
 
@@ -61,7 +63,9 @@ class AddListing extends Component {
 
 const mapStateToProps = (state) => {
   const { listingForm } = state.listing;
+  const { id } = state.auth.loggedInUser;
   return {
+    id,
     listingForm,
   };
 };
@@ -74,6 +78,7 @@ AddListing.propTypes = {
     images: React.PropTypes.array.isRequired,
     jobCategory: React.PropTypes.string.isRequired,
   }).isRequired,
+  id: React.PropTypes.number.isRequired,
   dispatch: React.PropTypes.func.isRequired,
 };
 

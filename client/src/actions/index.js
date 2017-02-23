@@ -23,6 +23,16 @@ const attemptLogin = data =>
     body: JSON.stringify(data),
   });
 
+const fetchPostListing = data =>
+  fetch(`api/users/${data.id}/listings`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
 export const toggleSignupLink = link =>
   ({
     type: TOGGLE_SIGNUP_FORM,
@@ -135,31 +145,19 @@ export const uploadListingImage = (value) =>
     value,
   });
 
-/*
+
 export const uploadListing = data =>
   (dispatch) => {
     fetchPostListing(data)
-      .then((res) => {
-        res.json()
-          .then((payload) => {
-            if (payload.error) {
-              dispatch(loginError());
-            } else {
-              dispatch(loginSuccess(payload));
-              dispatch(push('dashboard'));
-            }
-          })
-      })
-  }
+    .then((res) => {
+      res.json()
+        .then((payload) => {
+          if (payload.error) {
+            console.log('error in upload listing');
+          } else {
+            console.log('SUCCESS in upload listing');
+          }
+        });
+    });
+  };
 
-const fetchPostListing = data =>
-  fetch('api/login', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
-
-  */

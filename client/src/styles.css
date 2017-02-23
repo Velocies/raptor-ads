@@ -21,3 +21,12 @@
 .notFound {
   margin-top: 75px;
 }
+
+.landingContainer {
+  background-color: #1B1C1D;
+}
+
+.landingText {
+  color: white;
+  text-align: center;
+}

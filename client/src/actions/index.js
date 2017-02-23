@@ -1,6 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import { push } from 'react-router-redux';
-import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT } from '../constants';
+import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT, CHANGE_LOGIN_FIELD, LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS } from '../constants';
 import { validateSignup } from '../components/helpers/validateSignup';
 
 const fetchPostUser = customer =>
@@ -11,6 +11,16 @@ const fetchPostUser = customer =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(customer),
+  });
+
+const attemptLogin = data =>
+  fetch('api/login', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
   });
 
 export const toggleSignupLink = link =>
@@ -44,6 +54,12 @@ const signupSuccess = data =>
     data,
   });
 
+const loginSuccess = data =>
+  ({
+    type: LOGIN_SUCCESS,
+    data,
+  });
+
 const signupFailure = error =>
   ({
     type: SIGNUP_FAILURE,
@@ -53,6 +69,18 @@ const signupFailure = error =>
 export const logout = () =>
   ({
     type: LOGOUT,
+  });
+
+export const changeLoginField = (name, value) =>
+  ({
+    type: CHANGE_LOGIN_FIELD,
+    name,
+    value,
+  });
+
+const loginError = () =>
+  ({
+    type: LOGIN_FAILURE,
   });
 
 export const customerSignup = customer =>
@@ -74,6 +102,23 @@ export const customerSignup = customer =>
       console.log('did nothing');
     }
   };
+
+export const loginUser = data =>
+  (dispatch) => {
+    attemptLogin(data)
+      .then((res) => {
+        console.log('res', res)
+        res.json()
+          .then((payload) => {
+            if (payload.error) {
+              dispatch(loginError());
+            } else {
+              dispatch(loginSuccess(payload));
+              dispatch(push('dashboard'));
+            }
+          })
+      })
+  }
 
 export const changeListingField = (field, value) =>
   ({

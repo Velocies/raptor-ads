@@ -1,5 +1,5 @@
 import isEmpty from 'lodash/isEmpty';
-import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE } from '../constants';
+import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE } from '../constants';
 import { validateSignup } from '../components/helpers/validateSignup';
 
 const fetchPostUser = customer =>
@@ -37,13 +37,32 @@ export const clearErrors = () =>
     type: CLEAR_ERRORS,
   });
 
+const signupSuccess = data =>
+  ({
+    type: SIGNUP_SUCCESS,
+    data,
+  });
+
+const signupFailure = error =>
+  ({
+    type: SIGNUP_FAILURE,
+    error,
+  });
+
 export const customerSignup = customer =>
   (dispatch, getState) => {
     validateSignup(customer, dispatch);
     if (isEmpty(getState().auth.formErrors)) {
       fetchPostUser(customer)
-      .then((user) => {
-        console.log('post to users returns', user);
+      .then((res) => {
+        res.json()
+          .then((data) => {
+            if (data.error) {
+              dispatch(signupFailure(data.error));
+            }
+            console.log('data', data);
+            dispatch(signupSuccess(data));
+          });
       });
     } else {
       console.log('did nothing');

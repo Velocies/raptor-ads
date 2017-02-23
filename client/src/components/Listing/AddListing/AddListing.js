@@ -13,11 +13,10 @@ class AddListing extends Component {
     super(props);
     this.onChange = this.onChange.bind(this);
     this.onClick = this.onClick.bind(this);
-    this.onSelect = this.onSelect.bind(this);
+    this.Submit = this.Submit.bind(this);
   }
 
   onChange(e) {
-    console.log('E IS HERE', e);
     this.props.dispatch(changeListingField(e.target.name, e.target.value));
   }
 
@@ -25,8 +24,9 @@ class AddListing extends Component {
     this.props.dispatch(uploadListingImage(this.props.listingForm.image));
   }
 
-  onSelect(e) {
-    console.log('hello');
+  onSubmit(e) {
+    e.preventDefault();
+
   }
 
   render() {

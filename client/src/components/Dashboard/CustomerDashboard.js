@@ -26,10 +26,9 @@ class CustomerDashboard extends Component {
 
   render() {
     const { firstName, userListings } = this.props;
-    console.log('userListings', userListings)
     return (
       <Container textAlign="center">
-        <Header as="h1" className="center">{`s Dashboard`}</Header>
+        <Header as="h1" className="center">{`${capitalize(firstName)}'s Dashboard`}</Header>
         <h3>Recent Listings</h3>
         <Divider />
         <Card.Group itemsPerRow={4} stackable>

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Grid, Icon, Header } from 'semantic-ui-react';
-import { changeListingField, uploadListingImage } from '../../../actions';
+import { changeListingField, uploadListingImage, uploadListing } from '../../../actions';
 import { ListingTitle } from './AddListingComponents/ListingTitle';
 import ListingImage from './AddListingComponents/ListingImage';
-import { ListingJobTypes } from './AddListingComponents/ListingJobTypes';
+import ListingJobTypes from './AddListingComponents/ListingJobTypes';
 import { ListingBody } from './AddListingComponents/ListingBody';
 import ListingDisplayImages from './AddListingComponents/ListingDisplayImages';
 
@@ -17,8 +17,12 @@ class AddListing extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChange(e) {
-    this.props.dispatch(changeListingField(e.target.name, e.target.value));
+  onChange(e, data) {
+    if (data) {
+      this.props.dispatch(changeListingField('type', data.value));
+    } else {
+      this.props.dispatch(changeListingField(e.target.name, e.target.value));
+    }
   }
 
   onClick() {
@@ -29,12 +33,13 @@ class AddListing extends Component {
   onSubmit(e) {
     e.preventDefault();
     const data = this.props.listingForm;
-    data.id = this.props.id;
-    console.log('SUBMIT', data);
+    const id = this.props.id;
+    const payload = { data, id };
+    this.props.dispatch(uploadListing(payload));
   }
 
   render() {
-    const { title, body, images, image, jobCategory } = this.props.listingForm;
+    const { title, body, images, image, type } = this.props.listingForm;
     return (
       <div>
         <Header textAlign="center"><Icon name="file text" />Add Listing</Header>
@@ -43,7 +48,7 @@ class AddListing extends Component {
           <Grid.Column width={6}>
             <Form onSubmit={e => this.onSubmit(e)}>
               <ListingTitle title={title} onChange={this.onChange} />
-              <ListingJobTypes jobCategory={jobCategory} onChange={this.onChange} />
+              <ListingJobTypes type={type} onChange={this.onChange} />
               <ListingBody body={body} onChange={this.onChange} />
               <ListingImage
                 images={images}
@@ -76,7 +81,6 @@ AddListing.propTypes = {
     body: React.PropTypes.string.isRequired,
     image: React.PropTypes.string.isRequired,
     images: React.PropTypes.array.isRequired,
-    jobCategory: React.PropTypes.string.isRequired,
   }).isRequired,
   id: React.PropTypes.number.isRequired,
   dispatch: React.PropTypes.func.isRequired,

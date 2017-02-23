@@ -1,6 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import { push } from 'react-router-redux';
-import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT, CHANGE_LOGIN_FIELD, LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS } from '../constants';
+import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT, CHANGE_LOGIN_FIELD, LOGIN_FAILURE, LOGIN_SUCCESS, ADD_LISTING_FAILURE, ADD_LISTING_SUCCESS } from '../constants';
 import { validateSignup } from '../components/helpers/validateSignup';
 
 const fetchPostUser = customer =>
@@ -23,15 +23,17 @@ const attemptLogin = data =>
     body: JSON.stringify(data),
   });
 
-const fetchPostListing = data =>
-  fetch(`api/users/${data.id}/listings`, {
+const fetchPostListing = payload => {
+  console.log('here', payload);
+  return fetch(`api/users/${payload.id}/listings`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(payload.data),
   });
+};
 
 export const toggleSignupLink = link =>
   ({
@@ -128,9 +130,9 @@ export const loginUser = data =>
               dispatch(loginSuccess(payload));
               dispatch(push('dashboard'));
             }
-          })
-      })
-  }
+          });
+      });
+  };
 
 export const changeListingField = (field, value) =>
   ({
@@ -139,10 +141,22 @@ export const changeListingField = (field, value) =>
     value,
   });
 
-export const uploadListingImage = (value) =>
+export const uploadListingImage = value =>
   ({
     type: UPLOAD_LISTING_IMAGE,
     value,
+  });
+
+const addListingError = err =>
+  ({
+    type: ADD_LISTING_FAILURE,
+    err,
+  });
+
+const addListingSuccess = payload =>
+  ({
+    type: ADD_LISTING_SUCCESS,
+    payload,
   });
 
 
@@ -150,12 +164,14 @@ export const uploadListing = data =>
   (dispatch) => {
     fetchPostListing(data)
     .then((res) => {
+      console.log('res', res);
       res.json()
         .then((payload) => {
           if (payload.error) {
-            console.log('error in upload listing');
+            dispatch(addListingError(payload.error));
           } else {
-            console.log('SUCCESS in upload listing');
+            dispatch(addListingSuccess(payload));
+            dispatch(push('dashboard'));
           }
         });
     });

@@ -7,7 +7,7 @@ export const initialState = {
     body: '',
     images: [],
     image: '',
-    jobCategory: '',
+    type: 'Home Improvement',
   },
 };
 
@@ -16,7 +16,7 @@ export const listing = (state = initialState, action) => {
     case CHANGE_LISTING_FIELD:
       return ({ ...state, listingForm: { ...state.listingForm, [action.field]: action.value } });
     case UPLOAD_LISTING_IMAGE:
-      return ({ ...state, listingForm: { ...state.listingForm, images: [...state.listingForm.images, action.value] }});
+      return ({ ...state, listingForm: { ...state.listingForm, images: [...state.listingForm.images, action.value] } });
     default:
       return state;
   }

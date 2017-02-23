@@ -22,13 +22,14 @@ class Login extends Component {
   }
 
   render() {
-    const { dispatch, email, password } = this.props;
+    const { dispatch, email, password, formErrors } = this.props;
     return (
       <div>
         <Header textAlign="center"><Icon name="user" />Log In</Header>
         <Grid width={16}>
           <Grid.Column width={5} />
           <Grid.Column width={11}>
+            {formErrors.invalidPass && <span className='formError'>{formErrors.invalidPass}</span>}
             <Form>
               <Form.Field width="8">
                 <label htmlFor="email">Email</label>
@@ -73,8 +74,9 @@ Login.propTypes = {
 
 const mapStateToProps = (state) => {
   const { email, password } = state.auth.loginForm;
+  const { formErrors } = state.auth;
 
-  return { email, password };
+  return { email, password, formErrors };
 };
 
 export default connect(mapStateToProps)(Login);

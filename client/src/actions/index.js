@@ -66,10 +66,12 @@ const signupFailure = error =>
     error,
   });
 
+
 export const logout = () =>
-  ({
-    type: LOGOUT,
-  });
+  (dispatch) => {
+    dispatch({ type: LOGOUT });
+    dispatch(push('/'));
+  };
 
 export const changeLoginField = (name, value) =>
   ({

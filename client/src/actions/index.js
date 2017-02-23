@@ -1,4 +1,5 @@
 import isEmpty from 'lodash/isEmpty';
+import { push } from 'react-router-redux';
 import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE } from '../constants';
 import { validateSignup } from '../components/helpers/validateSignup';
 
@@ -61,6 +62,7 @@ export const customerSignup = customer =>
               dispatch(signupFailure(data.error));
             }
             dispatch(signupSuccess(data));
+            dispatch(push('dashboard'));
           });
       });
     } else {

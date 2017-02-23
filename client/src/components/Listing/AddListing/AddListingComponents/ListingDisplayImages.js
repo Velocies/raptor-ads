@@ -7,7 +7,7 @@ export const ListingDisplayImages = ({ images }) => {
       <Grid.Column width={5} />
       <Grid.Column width={6}>
         <div>
-          {images.map((currentImage) => <Image src={currentImage} size='small' wrapped />)}
+          {images.map((currentImage, index) => <Image src={currentImage} size='small' key={index} wrapped />)}
         </div>
       </Grid.Column>
     </Grid>

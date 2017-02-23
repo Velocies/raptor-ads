@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Grid, Icon, Header, Image } from 'semantic-ui-react';
-import { changeListingField, uploadListingImage } from '../../actions';
+import { changeListingField, uploadListingImage } from '../../../actions';
 import { ListingTitle } from './AddListingComponents/ListingTitle';
 import { ListingImage } from './AddListingComponents/ListingImage';
 import { ListingJobTypes } from './AddListingComponents/ListingJobTypes';

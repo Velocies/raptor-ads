@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { Form, Grid, Icon, Header } from 'semantic-ui-react';
 import { changeListingField, uploadListingImage } from '../../../actions';
 import { ListingTitle } from './AddListingComponents/ListingTitle';
-import { ListingImage } from './AddListingComponents/ListingImage';
+import ListingImage from './AddListingComponents/ListingImage';
 import { ListingJobTypes } from './AddListingComponents/ListingJobTypes';
 import { ListingBody } from './AddListingComponents/ListingBody';
-import { ListingDisplayImages } from './AddListingComponents/ListingDisplayImages';
+import ListingDisplayImages from './AddListingComponents/ListingDisplayImages';
 
 class AddListing extends Component {
   constructor(props) {

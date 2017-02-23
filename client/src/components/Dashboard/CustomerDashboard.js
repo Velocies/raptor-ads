@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { Container, Header, Card, Button, Divider } from 'semantic-ui-react';
 import Listing from '../shared/Listing';
+import { getUserListings } from '../../actions';
 import { capitalize } from '../../helpers/capitalize';
 
 class CustomerDashboard extends Component {
@@ -10,70 +12,37 @@ class CustomerDashboard extends Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { userId } = this.props;
-    //this.dispatch(fetchUserPosts());
+    this.props.dispatch(getUserListings(userId));
   }
 
   handleDelete() {
   }
 
+  convertTime(time) {
+    return moment(time).fromNow();
+  }
+
   render() {
-    const { firstName } = this.props;
+    const { firstName, userListings } = this.props;
+    console.log('userListings', userListings)
     return (
       <Container textAlign="center">
         <Header as="h1" className="center">{`s Dashboard`}</Header>
         <h3>Recent Listings</h3>
         <Divider />
         <Card.Group itemsPerRow={4} stackable>
-          <Listing
-            id={1}
-            title={'Window Repair'}
-            createdAt={'1 day ago'}
-            body={'fix my window dude'}
-          />
-          <Listing
-            id={2}
-            title={'Window Repair'}
-            createdAt={'1 day ago'}
-            body={'fix my window dude'}
-          />
-          <Listing
-            id={3}
-            title={'Window Repair'}
-            createdAt={'1 day ago'}
-            body={'fix my window dude'}
-          />
-          <Listing
-            id={4}
-            title={'Window Repair'}
-            createdAt={'1 day ago'}
-            body={'fix my window dude'}
-          />
-          <Listing
-            id={5}
-            title={'Window Repair'}
-            createdAt={'1 day ago'}
-            body={'fix my window dude'}
-          />
-          <Listing
-            id={6}
-            title={'Window Repair'}
-            createdAt={'1 day ago'}
-            body={'fix my window dude'}
-          />
-          <Listing
-            id={7}
-            title={'Window Repair'}
-            createdAt={'1 day ago'}
-            body={'fix my window dude'}
-          />
-          <Listing
-            id={8}
-            title={'Window Repair'}
-            createdAt={'1 day ago'}
-            body={'fix my window dude'}
-          />
+          {userListings && userListings.map(listing =>
+            <Listing
+              key={listing.id}
+              id={listing.id}
+              title={listing.title}
+              createdAt={this.convertTime(listing.createdAt)}
+              body={listing.body}
+              type={listing.type}
+            />
+          )}
         </Card.Group>
       </Container>
     );
@@ -85,9 +54,10 @@ CustomerDashboard.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { first_name: firstName, userId } = state.auth.loggedInUser;
+  const { first_name: firstName, id: userId } = state.auth.loggedInUser;
+  const { userListings } = state.listing;
 
-  return { firstName, userId };
+  return { firstName, userId, userListings };
 };
 
 export default connect(mapStateToProps)(CustomerDashboard);

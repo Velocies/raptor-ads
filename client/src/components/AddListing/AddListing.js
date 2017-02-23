@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, Grid, Icon, Header } from 'semantic-ui-react';
-import { changeListingField } from '../../actions';
+import { Form, Grid, Icon, Header, Image } from 'semantic-ui-react';
+import { changeListingField, uploadListingImage } from '../../actions';
 import { ListingTitle } from './AddListingComponents/ListingTitle';
 import { ListingImages } from './AddListingComponents/ListingImages';
 import { ListingJobTypes } from './AddListingComponents/ListingJobTypes';
 import { ListingBody } from './AddListingComponents/ListingBody';
+import { testData } from './AddListingComponents/imageTestData';
 
 class AddListing extends Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
   onChange(e) {
@@ -18,11 +20,11 @@ class AddListing extends Component {
   }
 
   onClick() {
-    console.log('clicked');
+    this.props.dispatch(uploadListingImage(this.props.listingForm.image));
   }
 
   render() {
-    const { title, body, images } = this.props.listingForm;
+    const { title, body, images, image } = this.props.listingForm;
     return (
       <div>
         <Header textAlign="center"><Icon name="file text" />Add Listing</Header>
@@ -33,7 +35,7 @@ class AddListing extends Component {
               <ListingTitle title={title} onChange={this.onChange} />
               <ListingJobTypes />
               <ListingBody body={body} onChange={this.onChange} />
-              <ListingImages images={images} onClick={this.onClick} />
+              <ListingImages images={images} onClick={this.onClick} onChange={this.onChange} image={image} />
               <Form.Button className="ui center aligned grid" >Submit</Form.Button>
             </Form>
           </Grid.Column>

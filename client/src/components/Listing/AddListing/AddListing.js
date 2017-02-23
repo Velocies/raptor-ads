@@ -22,13 +22,13 @@ class AddListing extends Component {
 
   onClick() {
     this.props.dispatch(uploadListingImage(this.props.listingForm.image));
+    this.props.dispatch(changeListingField('image', ''));
   }
 
   onSubmit(e) {
     e.preventDefault();
     const data = this.props.listingForm;
     console.log('SUBMIT', data);
-
   }
 
   render() {

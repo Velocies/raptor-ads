@@ -26,7 +26,9 @@ class AddListing extends Component {
   }
 
   onClick() {
-    this.props.dispatch(uploadListingImage(this.props.listingForm.image));
+    if (this.props.listingForm.images.length < 4) {
+      this.props.dispatch(uploadListingImage(this.props.listingForm.image));
+    }
     this.props.dispatch(changeListingField('image', ''));
   }
 

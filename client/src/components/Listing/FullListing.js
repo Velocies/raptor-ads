@@ -7,7 +7,7 @@ class FullListing extends Component {
   }
 
   render() {
-    const { title, body, images, createdAt } = this.props
+    const { title, body, images, createdAt } = this.props;
     return (
       <Container text>
         <h1>{title}</h1>

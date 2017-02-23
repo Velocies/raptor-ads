@@ -1,6 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import { push } from 'react-router-redux';
-import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE } from '../constants';
+import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT } from '../constants';
 import { validateSignup } from '../components/helpers/validateSignup';
 
 const fetchPostUser = customer =>
@@ -48,6 +48,11 @@ const signupFailure = error =>
   ({
     type: SIGNUP_FAILURE,
     error,
+  });
+
+export const logout = () =>
+  ({
+    type: LOGOUT,
   });
 
 export const customerSignup = customer =>

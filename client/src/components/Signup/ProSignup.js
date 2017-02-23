@@ -46,6 +46,7 @@ class ProSignup extends Component {
         <Grid width={16}>
           <Grid.Column width={5} />
           <Grid.Column width={11}>
+            {formErrors.userExists && <span className="formError">{formErrors.userExists}</span>}
             {formErrors.firstName && <span className="formError">{formErrors.firstName}</span>}
             <Form onSubmit={e => this.onSubmit(e)}>
               <Form.Field width="8">

@@ -60,7 +60,6 @@ export const customerSignup = customer =>
             if (data.error) {
               dispatch(signupFailure(data.error));
             }
-            console.log('data', data);
             dispatch(signupSuccess(data));
           });
       });

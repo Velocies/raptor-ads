@@ -134,3 +134,32 @@ export const uploadListingImage = (value) =>
     type: UPLOAD_LISTING_IMAGE,
     value,
   });
+
+/*
+export const uploadListing = data =>
+  (dispatch) => {
+    fetchPostListing(data)
+      .then((res) => {
+        res.json()
+          .then((payload) => {
+            if (payload.error) {
+              dispatch(loginError());
+            } else {
+              dispatch(loginSuccess(payload));
+              dispatch(push('dashboard'));
+            }
+          })
+      })
+  }
+
+const fetchPostListing = data =>
+  fetch('api/login', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  */

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Grid, Icon, Header } from 'semantic-ui-react';
-import { changeListingField, uploadListingImage } from '../../../actions';
+import { changeListingField, uploadListingImage,  } from '../../../actions';
 import { ListingTitle } from './AddListingComponents/ListingTitle';
 import ListingImage from './AddListingComponents/ListingImage';
 import { ListingJobTypes } from './AddListingComponents/ListingJobTypes';
@@ -13,7 +13,7 @@ class AddListing extends Component {
     super(props);
     this.onChange = this.onChange.bind(this);
     this.onClick = this.onClick.bind(this);
-    this.Submit = this.Submit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange(e) {
@@ -26,6 +26,8 @@ class AddListing extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    const data = this.props.listingForm;
+    console.log('SUBMIT', data);
 
   }
 
@@ -37,7 +39,7 @@ class AddListing extends Component {
         <Grid width={16}>
           <Grid.Column width={5} />
           <Grid.Column width={6}>
-            <Form >
+            <Form onSubmit={e => this.onSubmit(e)}>
               <ListingTitle title={title} onChange={this.onChange} />
               <ListingJobTypes jobCategory={jobCategory} onChange={this.onChange} />
               <ListingBody body={body} onChange={this.onChange} />

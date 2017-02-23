@@ -20,10 +20,6 @@
 
 .notFound {
   margin-top: 75px;
-
-.landingContainer {
-  background-color: #1B1C1D;
-  height: 400px;
 }
 
 .landingText {
@@ -33,3 +29,7 @@
   font-size: 15px
 }
 
+.landingContainer {
+  background-color: #1B1C1D;
+  height: 400px;
+}

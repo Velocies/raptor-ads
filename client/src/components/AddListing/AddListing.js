@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { Form, Grid, Icon, Header, Image } from 'semantic-ui-react';
 import { changeListingField, uploadListingImage } from '../../actions';
 import { ListingTitle } from './AddListingComponents/ListingTitle';
-import { ListingImages } from './AddListingComponents/ListingImages';
+import { ListingImage } from './AddListingComponents/ListingImage';
 import { ListingJobTypes } from './AddListingComponents/ListingJobTypes';
 import { ListingBody } from './AddListingComponents/ListingBody';
-import { testData } from './AddListingComponents/imageTestData';
+import { ListingDisplayImages } from './AddListingComponents/ListingDisplayImages';
 
 class AddListing extends Component {
   constructor(props) {
@@ -35,19 +35,12 @@ class AddListing extends Component {
               <ListingTitle title={title} onChange={this.onChange} />
               <ListingJobTypes />
               <ListingBody body={body} onChange={this.onChange} />
-              <ListingImages images={images} onClick={this.onClick} onChange={this.onChange} image={image} />
+              <ListingImage images={images} onClick={this.onClick} onChange={this.onChange} image={image} />
               <Form.Button className="ui center aligned grid" >Submit</Form.Button>
             </Form>
           </Grid.Column>
         </Grid>
-        <Grid width={16}>
-          <Grid.Column width={5} />
-          <Grid.Column width={6}>
-            <div>
-              {images.map((currentImage) => <Image src={currentImage} size='small' wrapped />)}
-            </div>
-          </Grid.Column>
-        </Grid>
+        <ListingDisplayImages images={images} />
       </div>
     );
   }

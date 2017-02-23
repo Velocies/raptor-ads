@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Icon } from 'semantic-ui-react';
 
-export const ListingImages = ({ onClick, onChange, image }) => {
+export const ListingImage = ({ onClick, onChange, image }) => {
   return (
     <div>
       <Form.Field>

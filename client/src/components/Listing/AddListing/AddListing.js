@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Form, Grid, Icon, Header, Image } from 'semantic-ui-react';
+import { Form, Grid, Icon, Header } from 'semantic-ui-react';
 import { changeListingField, uploadListingImage } from '../../../actions';
 import { ListingTitle } from './AddListingComponents/ListingTitle';
 import { ListingImage } from './AddListingComponents/ListingImage';
@@ -35,7 +35,12 @@ class AddListing extends Component {
               <ListingTitle title={title} onChange={this.onChange} />
               <ListingJobTypes />
               <ListingBody body={body} onChange={this.onChange} />
-              <ListingImage images={images} onClick={this.onClick} onChange={this.onChange} image={image} />
+              <ListingImage
+                images={images}
+                onClick={this.onClick}
+                onChange={this.onChange}
+                image={image}
+              />
               <Form.Button className="ui center aligned grid" >Submit</Form.Button>
             </Form>
           </Grid.Column>
@@ -53,8 +58,14 @@ const mapStateToProps = (state) => {
   };
 };
 
-// AddListing.propTypes = {
-
-// };
+AddListing.propTypes = {
+  listingForm: React.PropTypes.shape({
+    title: React.PropTypes.string.isRequired,
+    body: React.PropTypes.string.isRequired,
+    image: React.PropTypes.string.isRequired,
+    images: React.PropTypes.array.isRequired,
+  }).isRequired,
+  dispatch: React.PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps)(AddListing);

@@ -1,5 +1,6 @@
 const db = require('../../../database/schemas.js');
 const bcrypt = require('bcrypt-nodejs');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
   getOne: (req, res) => {
@@ -49,10 +50,16 @@ module.exports = {
 
         })
         .then((createdUser) => {
-          res.send(createdUser);
+          const token = jwt.sign({
+            email: createdUser.email,
+            first_name: createdUser.first_name,
+            id: createdUser.id,
+          }, 'bobbyisbadatstarcraft', { expiresIn: '1h' });
+
+          res.send({ token, createdUser });
         });
       } else {
-        res.send('User already exists!');
+        res.send({ error: 'User already exists!' });
       }
     });
   },

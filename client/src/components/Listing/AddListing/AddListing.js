@@ -18,7 +18,7 @@ class AddListing extends Component {
 
   onChange(e) {
     console.log('E IS HERE', e);
-    // this.props.dispatch(changeListingField(e.target.name, e.target.value));
+    this.props.dispatch(changeListingField(e.target.name, e.target.value));
   }
 
   onClick() {

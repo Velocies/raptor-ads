@@ -1,5 +1,5 @@
 import isEmpty from 'lodash/isEmpty';
-import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS } from '../constants';
+import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE } from '../constants';
 import { validateSignup } from '../components/helpers/validateSignup';
 
 const fetchPostUser = customer =>
@@ -49,3 +49,16 @@ export const customerSignup = customer =>
       console.log('did nothing');
     }
   };
+
+export const changeListingField = (field, value) =>
+  ({
+    type: CHANGE_LISTING_FIELD,
+    field,
+    value,
+  });
+
+export const uploadListingImage = (value) =>
+  ({
+    type: UPLOAD_LISTING_IMAGE,
+    value,
+  });

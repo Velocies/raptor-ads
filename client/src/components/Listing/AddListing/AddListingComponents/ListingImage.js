@@ -5,7 +5,7 @@ const ListingImage = ({ onClick, onChange, image }) => {
   return (
     <Form.Field>
       <Input
-        icon={<Icon onClick={e => onClick(e)} name="plus" inverted circular link />}
+        icon={<Icon onClick={() => onClick(image)} name="plus" inverted circular link />}
         placeholder="Add image URL here"
         value={image}
         name="image"

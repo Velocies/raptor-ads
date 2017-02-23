@@ -33,3 +33,7 @@
   background-color: #1B1C1D;
   height: 400px;
 }
+
+.deleteIcon {
+  background-color: white !important;
+}

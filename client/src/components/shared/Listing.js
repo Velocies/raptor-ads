@@ -1,11 +1,15 @@
 import React from 'react';
-import { Card, Image, Icon } from 'semantic-ui-react';
+import { Card, Image, Icon, Label } from 'semantic-ui-react';
 
-const Listing = ({ id, title, createdAt, body }) =>
+const getIconString = (str) =>
+  str === "home improvement" ? "home" : "laptop";
+
+const Listing = ({ id, title, createdAt, body, type }) =>
   <Card centered raised>
     <Card.Content>
+      <Label className="deleteIcon" circular floating><Icon name="delete" color="red" /></Label>
       <Image floated="right">
-        <Icon name="home" size="big" />
+        <Icon name={getIconString(type)} size="big" />
       </Image>
       <Card.Header>
         { title }

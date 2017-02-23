@@ -8,6 +8,7 @@ import { ListingJobTypes } from './AddListingComponents/ListingJobTypes';
 import { ListingBody } from './AddListingComponents/ListingBody';
 import { ListingDisplayImages } from './AddListingComponents/ListingDisplayImages';
 
+
 class AddListing extends Component {
   constructor(props) {
     super(props);

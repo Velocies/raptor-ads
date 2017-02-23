@@ -9,7 +9,9 @@ export const ListingJobTypes = ({ onChange }) => {
       className="ui center aligned grid"
       control="select"
       placeholder="Select type of job here"
+      name="jobCategory"
       onChange={e => onChange(e)}
+      label="Profession"
     >
       {jobCategories.map((category, index) =>
         <option value={category.value} key={index}>{category.text}</option>

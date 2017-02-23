@@ -13,20 +13,22 @@ class AddListing extends Component {
     super(props);
     this.onChange = this.onChange.bind(this);
     this.onClick = this.onClick.bind(this);
-    this.onSelect = this.onSelect.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange(e) {
-    console.log('E IS HERE', e);
     this.props.dispatch(changeListingField(e.target.name, e.target.value));
   }
 
   onClick() {
     this.props.dispatch(uploadListingImage(this.props.listingForm.image));
+    this.props.dispatch(changeListingField('image', ''));
   }
 
-  onSelect(e) {
-    console.log('hello');
+  onSubmit(e) {
+    e.preventDefault();
+    const data = this.props.listingForm;
+    console.log('SUBMIT', data);
   }
 
   render() {
@@ -37,7 +39,7 @@ class AddListing extends Component {
         <Grid width={16}>
           <Grid.Column width={5} />
           <Grid.Column width={6}>
-            <Form >
+            <Form onSubmit={e => this.onSubmit(e)}>
               <ListingTitle title={title} onChange={this.onChange} />
               <ListingJobTypes jobCategory={jobCategory} onChange={this.onChange} />
               <ListingBody body={body} onChange={this.onChange} />

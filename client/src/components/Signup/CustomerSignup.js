@@ -46,6 +46,7 @@ class CustomerSignup extends Component {
           <Grid.Column width={5} />
           <Grid.Column width={11}>
             <Form onSubmit={e => this.onSubmit(e)}>
+              {formErrors.userExists && <span className="formError">{formErrors.userExists}</span>}
               {formErrors.firstName && <span className="formError">{formErrors.firstName}</span>}
               <Form.Field width="8">
                 <label htmlFor="firstName">First Name</label>

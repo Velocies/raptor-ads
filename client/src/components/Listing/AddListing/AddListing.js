@@ -17,9 +17,12 @@ class AddListing extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChange(e) {
-    console.log(e.target.value);
-    this.props.dispatch(changeListingField(e.target.name, e.target.value));
+  onChange(e, data) {
+    if (data) {
+      this.props.dispatch(changeListingField('type', data.value));
+    } else {
+      this.props.dispatch(changeListingField(e.target.name, e.target.value));
+    }
   }
 
   onClick() {

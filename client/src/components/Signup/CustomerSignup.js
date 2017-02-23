@@ -20,7 +20,7 @@ class CustomerSignup extends Component {
     this.props.dispatch(customerSignup(data));
   }
 
-  onChange(e) {
+  onChange(e, data) {
     this.props.dispatch(changeSignupField(e.target.name, e.target.value));
   }
 

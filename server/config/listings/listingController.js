@@ -13,7 +13,11 @@ module.exports = {
   },
 
   getAll: (req, res) => {
-    db.Post.findAll({})
+    db.Post.findAll({
+      where: {
+        user_id: req.params.id,
+      },
+    })
     .then((listings) => {
       res.send(listings);
     });

@@ -15,8 +15,7 @@ class CustomerDashboard extends Component {
     //this.dispatch(fetchUserPosts());
   }
 
-  handleDelete(id) {
-    
+  handleDelete() {
   }
 
   render() {

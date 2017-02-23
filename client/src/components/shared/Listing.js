@@ -4,7 +4,7 @@ import { Card, Image, Icon, Label } from 'semantic-ui-react';
 const Listing = ({ id, title, createdAt, body }) =>
   <Card centered raised>
     <Card.Content>
-      <Label icon="remove" float />
+      <Label className="deleteIcon" floating><Icon name="delete" /></Label>
       <Image floated="right">
         <Icon name="home" size="big" />
       </Image>

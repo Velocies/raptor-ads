@@ -10,7 +10,7 @@ import App from './App';
 import FullListing from './Listing/FullListing';
 import NotFound from './NotFound';
 import configureStore from '../configureStore';
-import AddListing from './AddListing/AddListing'
+import AddListing from './Listing/AddListing/AddListing';
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);

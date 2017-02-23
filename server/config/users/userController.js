@@ -37,8 +37,8 @@ module.exports = {
         const passwordToSave = bcrypt.hashSync(req.body.password, salt);
 
         db.User.create({
-          first_name: req.body.first_name,
-          last_name: req.body.last_name,
+          first_name: req.body.firstName,
+          last_name: req.body.lastName,
           password: passwordToSave,
           email: req.body.email,
           address: req.body.address,

@@ -11,10 +11,6 @@ class CustomerDashboard extends Component {
     return (
       <Container textAlign="center">
         <Header as="h1" className="center">Customer Dashboard</Header>
-        <div className="icon-bar">
-          <Icon name="home" size="huge" />
-          <Icon name="laptop" size="huge" />
-        </div>
         <h3>Recent Listings</h3>
         <Divider />
         <Card.Group itemsPerRow={4} stackable>

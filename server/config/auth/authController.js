@@ -15,7 +15,7 @@ module.exports = {
             first_name: user.first_name,
             id: user.id,
           }, 'bobbyisbadatstarcraft', { expiresIn: '1h' });
-          res.send(token);
+          res.send({ user, token });
         } else {
           res.send({ error: 'Incorrect password' });
         }

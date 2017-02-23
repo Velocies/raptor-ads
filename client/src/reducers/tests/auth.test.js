@@ -19,7 +19,15 @@ describe('auth reducer', () => {
         password: '',
         passwordConfirmation: '',
       },
-      formErrors: {},
+      loginForm: {
+        email: '',
+        password: '',
+      },
+      formErrors: {
+      },
+      loggedInUser: {
+      },
+      token: '',
     };
 
     const newState =
@@ -44,7 +52,15 @@ describe('auth reducer', () => {
         password: '',
         passwordConfirmation: '',
       },
-      formErrors: {},
+      loginForm: {
+        email: '',
+        password: '',
+      },
+      formErrors: {
+      },
+      loggedInUser: {
+      },
+      token: '',
     };
 
     const newState =
@@ -65,6 +81,13 @@ describe('auth reducer', () => {
         passwordConfirmation: '',
       },
       formErrors: {'passwordMatch': 'passwords must match'},
+      loginForm: {
+        email: '',
+        password: '',
+      },
+      loggedInUser: {
+      },
+      token: '',
     };
 
     const newState =
@@ -85,6 +108,13 @@ describe('auth reducer', () => {
         passwordConfirmation: '',
       },
       formErrors: { passwordConfirmation: 'dont match' },
+      loginForm: {
+        email: '',
+        password: '',
+      },
+      loggedInUser: {
+      },
+      token: '',
     };
 
     const newState =

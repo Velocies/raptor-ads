@@ -56,7 +56,7 @@ module.exports = {
             id: createdUser.id,
           }, 'bobbyisbadatstarcraft', { expiresIn: '1h' });
 
-          res.send({ token, createdUser });
+          res.send({ token, user: createdUser });
         });
       } else {
         res.send({ error: 'User already exists!' });

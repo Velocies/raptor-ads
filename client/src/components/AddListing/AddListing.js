@@ -40,6 +40,14 @@ class AddListing extends Component {
             </Form>
           </Grid.Column>
         </Grid>
+        <Grid width={16}>
+          <Grid.Column width={5} />
+          <Grid.Column width={6}>
+            <div>
+              {images.map((currentImage) => <Image src={currentImage} size='small' wrapped />)}
+            </div>
+          </Grid.Column>
+        </Grid>
       </div>
     );
   }

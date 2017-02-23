@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Header, Card, Button, Divider } from 'semantic-ui-react';
 import Listing from '../shared/Listing';
+import { capitalize } from '../../helpers/capitalize';
 
 class CustomerDashboard extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class CustomerDashboard extends Component {
     const { firstName } = this.props;
     return (
       <Container textAlign="center">
-        <Header as="h1" className="center">{`${capitailize(firstName)}'s Dashboard`}</Header>
+        <Header as="h1" className="center">{`${capitalize(firstName)}'s Dashboard`}</Header>
         <h3>Recent Listings</h3>
         <Divider />
         <Card.Group itemsPerRow={4} stackable>

@@ -7,6 +7,7 @@ export const initialState = {
     body: '',
     images: [],
     image: '',
+    jobCategory: '',
   },
 };
 

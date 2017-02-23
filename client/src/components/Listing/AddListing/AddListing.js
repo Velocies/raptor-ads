@@ -13,18 +13,24 @@ class AddListing extends Component {
     super(props);
     this.onChange = this.onChange.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.onSelect = this.onSelect.bind(this);
   }
 
   onChange(e) {
-    this.props.dispatch(changeListingField(e.target.name, e.target.value));
+    console.log('E IS HERE', e);
+    // this.props.dispatch(changeListingField(e.target.name, e.target.value));
   }
 
   onClick() {
     this.props.dispatch(uploadListingImage(this.props.listingForm.image));
   }
 
+  onSelect(e) {
+    console.log('hello');
+  }
+
   render() {
-    const { title, body, images, image } = this.props.listingForm;
+    const { title, body, images, image, jobCategory } = this.props.listingForm;
     return (
       <div>
         <Header textAlign="center"><Icon name="file text" />Add Listing</Header>
@@ -33,7 +39,7 @@ class AddListing extends Component {
           <Grid.Column width={6}>
             <Form >
               <ListingTitle title={title} onChange={this.onChange} />
-              <ListingJobTypes />
+              <ListingJobTypes jobCategory={jobCategory} onChange={this.onChange} />
               <ListingBody body={body} onChange={this.onChange} />
               <ListingImage
                 images={images}
@@ -64,6 +70,7 @@ AddListing.propTypes = {
     body: React.PropTypes.string.isRequired,
     image: React.PropTypes.string.isRequired,
     images: React.PropTypes.array.isRequired,
+    jobCategory: React.PropTypes.string.isRequired,
   }).isRequired,
   dispatch: React.PropTypes.func.isRequired,
 };

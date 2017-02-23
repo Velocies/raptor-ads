@@ -10,7 +10,7 @@ const NotFound = () =>
           as={Link}
           to="landing"
           size="small"
-          src="/client/src/assets/half-raptor.png"
+          src="/client/src/assets/full-raptor.png"
         />
         <Item.Content verticalAlign="middle">
           <Statistic

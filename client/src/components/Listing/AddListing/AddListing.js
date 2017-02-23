@@ -12,24 +12,7 @@ import ListingDisplayImages from './AddListingComponents/ListingDisplayImages';
 class AddListing extends Component {
   constructor(props) {
     super(props);
-    this.onChange = this.onChange.bind(this);
-    this.onClick = this.onClick.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  onChange(e, data) {
-    if (data) {
-      this.props.dispatch(changeListingField('type', data.value));
-    } else {
-      this.props.dispatch(changeListingField(e.target.name, e.target.value));
-    }
-  }
-
-  onClick() {
-    if (this.props.listingForm.images.length < 4) {
-      this.props.dispatch(uploadListingImage(this.props.listingForm.image));
-    }
-    this.props.dispatch(changeListingField('image', ''));
   }
 
   onSubmit(e) {
@@ -42,6 +25,7 @@ class AddListing extends Component {
 
   render() {
     const { title, body, images, image, type } = this.props.listingForm;
+    const { onChange, onClick } = this.props;
     return (
       <div>
         <Header textAlign="center"><Icon name="file text" />Add Listing</Header>
@@ -49,13 +33,13 @@ class AddListing extends Component {
           <Grid.Column width={5} />
           <Grid.Column width={6}>
             <Form onSubmit={e => this.onSubmit(e)}>
-              <ListingTitle title={title} onChange={this.onChange} />
-              <ListingJobTypes type={type} onChange={this.onChange} />
-              <ListingBody body={body} onChange={this.onChange} />
+              <ListingTitle title={title} onChange={onChange} />
+              <ListingJobTypes type={type} onChange={onChange} />
+              <ListingBody body={body} onChange={onChange} />
               <ListingImage
                 images={images}
-                onClick={this.onClick}
-                onChange={this.onChange}
+                onClick={onClick}
+                onChange={onChange}
                 image={image}
               />
               <Form.Button className="ui center aligned grid" >Submit</Form.Button>
@@ -77,6 +61,22 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = dispatch =>
+  ({
+    onChange: (e, data) => {
+      if (data) {
+        dispatch(changeListingField('type', data.value));
+      } else {
+        dispatch(changeListingField(e.target.name, e.target.value));
+      }
+    },
+    onClick: (image) => {
+      dispatch(uploadListingImage(image));
+      dispatch(changeListingField('image', ''));
+    },
+    dispatch: dispatch,
+  });
+
 AddListing.propTypes = {
   listingForm: React.PropTypes.shape({
     title: React.PropTypes.string.isRequired,
@@ -84,8 +84,8 @@ AddListing.propTypes = {
     image: React.PropTypes.string.isRequired,
     images: React.PropTypes.array.isRequired,
   }).isRequired,
-  id: React.PropTypes.number.isRequired,
-  dispatch: React.PropTypes.func.isRequired,
+  onChange: React.PropTypes.func.isRequired,
+  onClick: React.PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(AddListing);
+export default connect(mapStateToProps, mapDispatchToProps)(AddListing);

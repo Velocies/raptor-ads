@@ -13,7 +13,6 @@ export const initialState = {
 };
 
 export const listing = (state = initialState, action) => {
-  console.log('here', action);
   switch (action.type) {
     case CHANGE_LISTING_FIELD:
       return ({ ...state, listingForm: { ...state.listingForm, [action.field]: action.value } });

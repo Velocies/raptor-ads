@@ -74,7 +74,7 @@ const mapDispatchToProps = dispatch =>
       dispatch(uploadListingImage(image));
       dispatch(changeListingField('image', ''));
     },
-    dispatch: dispatch,
+    dispatch,
   });
 
 AddListing.propTypes = {

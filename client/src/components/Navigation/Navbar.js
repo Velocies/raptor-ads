@@ -15,6 +15,7 @@ const Navbar = ({ token, location, logout }) =>
       </Menu.Item>
       <Menu.Item as={Link} to="landing" name="About" active={location === 'landing'} />
       <Menu.Item as={Link} to="dashboard" name="customer dashboard" active={location === 'dashboard'} />
+      <Menu.Item as={Link} to="addlisting" name="addlisting" active={location === 'addlisting'} />
       <DynamicLinks token={token} logout={logout} />
     </Menu>
   </Segment>;

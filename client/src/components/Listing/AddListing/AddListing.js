@@ -8,6 +8,7 @@ import { ListingJobTypes } from './AddListingComponents/ListingJobTypes';
 import { ListingBody } from './AddListingComponents/ListingBody';
 import ListingDisplayImages from './AddListingComponents/ListingDisplayImages';
 
+
 class AddListing extends Component {
   constructor(props) {
     super(props);
@@ -61,7 +62,10 @@ class AddListing extends Component {
 
 const mapStateToProps = (state) => {
   const { listingForm } = state.listing;
+  const { auth } = state.auth;
+  console.log('id', state.auth.loggedInUser);
   return {
+    auth,
     listingForm,
   };
 };

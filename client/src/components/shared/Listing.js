@@ -1,9 +1,10 @@
 import React from 'react';
-import { Card, Image, Icon } from 'semantic-ui-react';
+import { Card, Image, Icon, Label } from 'semantic-ui-react';
 
 const Listing = ({ id, title, createdAt, body }) =>
   <Card centered raised>
     <Card.Content>
+      <Label icon="remove" float />
       <Image floated="right">
         <Icon name="home" size="big" />
       </Image>

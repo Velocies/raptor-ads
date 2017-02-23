@@ -7,13 +7,23 @@ import { capitalize } from '../../helpers/capitalize';
 class CustomerDashboard extends Component {
   constructor(props) {
     super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  componentWillMount() {
+    const { userId } = this.props;
+    //this.dispatch(fetchUserPosts());
+  }
+
+  handleDelete(id) {
+    
   }
 
   render() {
     const { firstName } = this.props;
     return (
       <Container textAlign="center">
-        <Header as="h1" className="center">{`${capitalize(firstName)}'s Dashboard`}</Header>
+        <Header as="h1" className="center">{`s Dashboard`}</Header>
         <h3>Recent Listings</h3>
         <Divider />
         <Card.Group itemsPerRow={4} stackable>
@@ -76,9 +86,9 @@ CustomerDashboard.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { first_name: firstName } = state.auth.loggedInUser;
+  const { first_name: firstName, userId } = state.auth.loggedInUser;
 
-  return { firstName };
+  return { firstName, userId };
 };
 
 export default connect(mapStateToProps)(CustomerDashboard);

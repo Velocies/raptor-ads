@@ -12,7 +12,7 @@ const ListingDisplayImage = ({ image, handleDelete, index }) => {
         <Button color='red' inverted>
           <Icon name='remove' /> No
         </Button>
-        <Button onClick={() => handleDelete(index)} color='green' inverted>
+        <Button onClick={() => handleDelete(index)} color="green" inverted>
           <Icon name='checkmark' /> Yes
         </Button>
       </Modal.Actions>
@@ -20,5 +20,10 @@ const ListingDisplayImage = ({ image, handleDelete, index }) => {
   );
 };
 
+ListingDisplayImage.propTypes = {
+  handleDelete: React.PropTypes.func.isRequired,
+  image: React.PropTypes.string.isRequired,
+  index: React.PropTypes.number.isRequired,
+};
 
 export default ListingDisplayImage;

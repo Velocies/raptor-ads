@@ -2,48 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 import { push } from 'react-router-redux';
 import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT, CHANGE_LOGIN_FIELD, LOGIN_FAILURE, LOGIN_SUCCESS, ADD_LISTING_FAILURE, ADD_LISTING_SUCCESS, GET_LISTING_SUCCESS, GET_LISTING_FAILURE, DELETE_IMAGE } from '../constants';
 import { validateSignup } from '../components/helpers/validateSignup';
-
-const fetchPostUser = customer =>
-  fetch('/api/users', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(customer),
-  });
-
-const attemptLogin = data =>
-  fetch('api/login', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
-
-const fetchPostListing = payload => {
-  return fetch(`api/users/${payload.id}/listings`, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload.data),
-  });
-};
-
-const fetchPostDeleteListing = listingId =>
-  fetch(`api/listings/${listingId}`, {
-    method: 'DELETE',
-  });
-
-
-const fetchUserListings = id =>
-  fetch(`api/users/${id}/listings`, {
-    method: 'GET',
-  });
+import { postUser, postLogin, postListing, deleteListing, getUserListings } from './api';
 
 export const toggleSignupLink = link =>
   ({
@@ -88,10 +47,15 @@ const signupFailure = error =>
     error,
   });
 
+const logoutSuccess = () =>
+  ({
+    type: LOGOUT,
+  });
 
 export const logout = () =>
   (dispatch) => {
-    dispatch({ type: LOGOUT });
+    dispatch(logoutSuccess());
+    localStorage.removeItem('raptor_token');
     dispatch(push('/'));
   };
 
@@ -111,7 +75,7 @@ export const customerSignup = customer =>
   (dispatch, getState) => {
     validateSignup(customer, dispatch);
     if (isEmpty(getState().auth.formErrors)) {
-      fetchPostUser(customer)
+      postUser(customer)
         .then((res) => {
           res.json()
             .then((data) => {
@@ -119,17 +83,16 @@ export const customerSignup = customer =>
                 dispatch(signupFailure(data.error));
               }
               dispatch(signupSuccess(data));
+              localStorage.setItem('raptor_token', data.token);
               dispatch(push('dashboard'));
             });
         });
-    } else {
-      console.log('did nothing');
     }
   };
 
 export const loginUser = data =>
   (dispatch) => {
-    attemptLogin(data)
+    postLogin(data)
       .then((res) => {
         res.json()
           .then((payload) => {
@@ -137,6 +100,7 @@ export const loginUser = data =>
               dispatch(loginError());
             } else {
               dispatch(loginSuccess(payload));
+              localStorage.setItem('raptor_token', payload.token);
               dispatch(push('dashboard'));
             }
           });
@@ -174,9 +138,9 @@ const getListingSuccess = payload =>
     payload,
   });
 
-export const getUserListings = id =>
+export const fetchUserListings = id =>
   (dispatch) => {
-    fetchUserListings(id)
+    getUserListings(id)
       .then((res) => {
         res.json()
           .then((data) => {
@@ -188,32 +152,36 @@ export const getUserListings = id =>
 
 export const uploadListing = data =>
   (dispatch) => {
-    fetchPostListing(data)
+    postListing(data)
       .then((res) => {
         res.json()
           .then((payload) => {
             if (payload.error) {
               dispatch(addListingError(payload.error));
             } else {
-              console.log('here in upload', payload)
               dispatch(push('/dashboard'));
             }
           });
       });
   };
 
-export const deleteListing = (userId, listingId) =>
+export const removeListing = (userId, listingId) =>
   (dispatch) => {
-    fetchPostDeleteListing(listingId)
-      .then((res) => {
-        console.log('SUCCESS IN DELETING');
-        dispatch(getUserListings(userId));
+    deleteListing(listingId)
+      .then(() => {
+        dispatch(fetchUserListings(userId));
       });
-  }
+  };
 
 export const deleteImage = index =>
   ({
     type: DELETE_IMAGE,
-    index
+    index,
   });
+
+export const pullUserFromToken = token =>
+  (dispatch) => {
+    // get user info from db
+    // dispatch with info
+  }
 

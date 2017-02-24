@@ -13,7 +13,7 @@ module.exports = {
       if (user) {
         res.send(user);
       } else {
-        res.send('User not found!');
+        res.status(400).send('User not found!');
       }
     });
   },

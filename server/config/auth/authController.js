@@ -2,8 +2,6 @@ const db = require('../../../database/schemas.js');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('jsonwebtoken');
 
-
-
 module.exports = {
   logIn: (req, res) => {
     db.User.findOne({ where: { email: req.body.email } })

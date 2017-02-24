@@ -87,8 +87,6 @@ export const customerSignup = customer =>
               dispatch(push('dashboard'));
             });
         });
-    } else {
-      console.log('did nothing');
     }
   };
 
@@ -140,7 +138,7 @@ const getListingSuccess = payload =>
     payload,
   });
 
-export const getUserListings = id =>
+export const fetchUserListings = id =>
   (dispatch) => {
     getUserListings(id)
       .then((res) => {
@@ -161,7 +159,6 @@ export const uploadListing = data =>
             if (payload.error) {
               dispatch(addListingError(payload.error));
             } else {
-              console.log('here in upload', payload)
               dispatch(push('/dashboard'));
             }
           });
@@ -172,7 +169,7 @@ export const removeListing = (userId, listingId) =>
   (dispatch) => {
     deleteListing(listingId)
       .then(() => {
-        dispatch(getUserListings(userId));
+        dispatch(fetchUserListings(userId));
       });
   };
 

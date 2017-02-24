@@ -28,5 +28,11 @@ module.exports = {
         return o;
       }, {})
     })
-  ]
+  ],
+
+  node: {
+    net: 'empty',
+    tls: 'empty',
+    dns: 'empty'
+  }
 };

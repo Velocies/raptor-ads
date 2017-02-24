@@ -5,7 +5,7 @@ import { changeListingField, uploadListingImage, uploadListing, deleteImage } fr
 import { ListingTitle } from './AddListingComponents/ListingTitle';
 import ListingImage from './AddListingComponents/ListingImage';
 import ListingJobTypes from './AddListingComponents/ListingJobTypes';
-import { ListingBody } from './AddListingComponents/ListingBody';
+import ListingBody from './AddListingComponents/ListingBody';
 import ListingDisplayImages from './AddListingComponents/ListingDisplayImages';
 
 

@@ -34,6 +34,12 @@ const fetchPostListing = payload => {
   });
 };
 
+const fetchPostDeleteListing = listingId =>
+  fetch(`api/listings/${listingId}`, {
+    method: 'DELETE',
+  });
+
+
 const fetchUserListings = id =>
   fetch(`api/users/${id}/listings`, {
     method: 'GET',
@@ -195,4 +201,13 @@ export const uploadListing = data =>
           });
       });
   };
+
+export const deleteListing = data =>
+  (dispatch) => {
+    fetchPostDeleteListing(data.listingId)
+      .then((res) => {
+        dispatch(fetchUserListings);
+        console.log('SUCCESS IN DELETING');
+      });
+  }
 

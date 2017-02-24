@@ -27,7 +27,6 @@ describe('auth reducer', () => {
       },
       loggedInUser: {
       },
-      token: '',
     };
 
     const newState =
@@ -60,7 +59,6 @@ describe('auth reducer', () => {
       },
       loggedInUser: {
       },
-      token: '',
     };
 
     const newState =
@@ -87,7 +85,6 @@ describe('auth reducer', () => {
       },
       loggedInUser: {
       },
-      token: '',
     };
 
     const newState =
@@ -114,7 +111,6 @@ describe('auth reducer', () => {
       },
       loggedInUser: {
       },
-      token: '',
     };
 
     const newState =

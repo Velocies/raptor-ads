@@ -11,6 +11,8 @@ import FullListing from './Listing/FullListing';
 import NotFound from './NotFound';
 import configureStore from '../configureStore';
 import AddListing from './Listing/AddListing/AddListing';
+import AllListings from './Listing/AllListings/AllListings';
+
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
@@ -26,6 +28,7 @@ const Root = () =>
         <Route path="dashboard" component={CustomerDashboard} />
         <Route path="/listing/:id" component={FullListing} />
         <Route path="addlisting" component={AddListing} />
+        <Route path="listings" component={AllListings} />
         <Route path="*" component={NotFound} />
       </Route>
     </Router>

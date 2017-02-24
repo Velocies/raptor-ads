@@ -5,10 +5,10 @@ import ListingDeleteModal from './ListingDeleteModal';
 const getIconString = (str) =>
   str === "home improvement" ? "home" : "laptop";
 
-const Listing = ({ id, title, createdAt, body, type }) =>
+const Listing = ({ id, title, createdAt, body, type, handleDelete }) =>
   <Card centered raised>
     <Card.Content>
-      <ListingDeleteModal />
+      <ListingDeleteModal handleDelete={handleDelete} id={id}/>
       <Image floated="right">
         <Icon name={getIconString(type)} size="big" />
       </Image>

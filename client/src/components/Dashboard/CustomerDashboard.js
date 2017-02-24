@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { Container, Header, Card, Button, Divider } from 'semantic-ui-react';
 import Listing from '../shared/Listing';
-import { getUserListings } from '../../actions';
+import { getUserListings, deleteListing } from '../../actions';
 import { capitalize } from '../../helpers/capitalize';
 
 class CustomerDashboard extends Component {
@@ -17,7 +17,8 @@ class CustomerDashboard extends Component {
     this.props.dispatch(getUserListings(userId));
   }
 
-  handleDelete() {
+  handleDelete(listingId) {
+    this.props.dispatch(deleteListing(this.props.userId, listingId));
   }
 
   convertTime(time) {
@@ -25,7 +26,7 @@ class CustomerDashboard extends Component {
   }
 
   render() {
-    const { firstName, userListings } = this.props;
+    const { firstName, userListings, userId } = this.props;
     return (
       <Container textAlign="center">
         <Header as="h1" className="center">{`${capitalize(firstName)}'s Dashboard`}</Header>
@@ -40,6 +41,8 @@ class CustomerDashboard extends Component {
               createdAt={this.convertTime(listing.createdAt)}
               body={listing.body}
               type={listing.type}
+              onClick={this.onClick}
+              handleDelete={this.handleDelete}
             />
           )}
         </Card.Group>

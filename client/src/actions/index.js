@@ -202,12 +202,12 @@ export const uploadListing = data =>
       });
   };
 
-export const deleteListing = data =>
+export const deleteListing = (userId, listingId) =>
   (dispatch) => {
-    fetchPostDeleteListing(data.listingId)
+    fetchPostDeleteListing(listingId)
       .then((res) => {
-        dispatch(fetchUserListings);
         console.log('SUCCESS IN DELETING');
+        dispatch(getUserListings(userId));
       });
   }
 

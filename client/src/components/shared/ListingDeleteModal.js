@@ -1,7 +1,8 @@
 import React from 'react';
 import { Image, Icon, Label, Header, Modal, Button } from 'semantic-ui-react';
 
-const ListingDeleteModal = () => {
+const ListingDeleteModal = ({ handleDelete, listingId, id }) => {
+  console.log('listing id', listingId);
   return (
     <Modal trigger={<Label
       className="deleteIcon"
@@ -19,7 +20,7 @@ const ListingDeleteModal = () => {
         <Button color='red' inverted>
           <Icon name='remove' /> No
         </Button>
-        <Button color='green' inverted>
+        <Button onClick={() => handleDelete(id)} color='green' inverted>
           <Icon name='checkmark' /> Yes
         </Button>
       </Modal.Actions>

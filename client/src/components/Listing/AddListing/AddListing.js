@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Grid, Icon, Header } from 'semantic-ui-react';
-import { changeListingField, uploadListingImage, uploadListing } from '../../../actions';
+import { changeListingField, uploadListingImage, uploadListing, deleteImage } from '../../../actions';
 import { ListingTitle } from './AddListingComponents/ListingTitle';
 import ListingImage from './AddListingComponents/ListingImage';
 import ListingJobTypes from './AddListingComponents/ListingJobTypes';
@@ -13,6 +13,7 @@ class AddListing extends Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   onSubmit(e) {
@@ -21,6 +22,10 @@ class AddListing extends Component {
     const id = this.props.id;
     const payload = { data, id };
     this.props.dispatch(uploadListing(payload));
+  }
+
+  handleDelete(index) {
+    this.props.dispatch(deleteImage(index));
   }
 
   render() {
@@ -46,7 +51,7 @@ class AddListing extends Component {
             </Form>
           </Grid.Column>
         </Grid>
-        <ListingDisplayImages images={images} />
+        <ListingDisplayImages images={images} handleDelete={this.handleDelete}/>
       </div>
     );
   }

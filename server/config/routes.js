@@ -16,9 +16,13 @@ module.exports = (app, db, path, rootPath) => {
   app.patch('/api/users/:id', userController.patchOne);
   app.delete('/api/users/:id', userController.deleteOne);
 
+
   // Routes for all listings belonging to a specific user
-  app.get('/api/users/:id/listings', listingController.getAll);
+  app.get('/api/users/:id/listings', listingController.getAllFromUser);
   app.post('/api/users/:id/listings', listingController.createOne);
+
+  // Route to get all listings regardless of user
+  app.get('/api/listings', listingController.getAll);
 
   // Routes for a specific listing
   app.get('/api/listings/:listId', listingController.getOne);

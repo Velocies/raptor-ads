@@ -12,7 +12,14 @@ module.exports = {
     });
   },
 
-  getAll: (req, res) => {
+  getAll: (err, res) => {
+    db.Post.findAll({})
+    .then((posts) => {
+      res.send(posts);
+    });
+  },
+
+  getAllFromUser: (req, res) => {
     db.Post.findAll({
       where: {
         user_id: req.params.id,

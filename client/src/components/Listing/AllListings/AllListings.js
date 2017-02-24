@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { Container, Header, Card, Button, Divider } from 'semantic-ui-react';
+import { getAllListings } from '../../../actions/allListingActions';
 
 class AllListings extends Component {
   constructor(props) {
@@ -9,9 +10,12 @@ class AllListings extends Component {
   }
 
   render() {
-    console.log('props', this.props);
+    getAllListings();
     return (
-      <h2>AllListings</h2>
+      <Container textAlign="center">
+        <h3>Listings</h3>
+        <Divider />
+      </Container>
     );
   }
 }

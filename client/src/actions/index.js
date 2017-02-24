@@ -137,6 +137,7 @@ export const loginUser = data =>
               dispatch(loginError());
             } else {
               dispatch(loginSuccess(payload));
+              localStorage.setItem('raptor_token', payload.token);
               dispatch(push('dashboard'));
             }
           });

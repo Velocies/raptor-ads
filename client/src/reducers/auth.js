@@ -18,7 +18,6 @@ export const initialState = {
   },
   loggedInUser: {
   },
-  token: '',
 };
 
 export const auth = (state = initialState, action) => {

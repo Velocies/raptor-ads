@@ -165,6 +165,7 @@ export const uploadListing = data =>
             if (payload.error) {
               dispatch(addListingError(payload.error));
             } else {
+              dispatch(fetchUserListings(payload.user_id));
               dispatch(push('/dashboard'));
             }
           });

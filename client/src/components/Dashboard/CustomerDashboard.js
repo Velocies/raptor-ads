@@ -26,7 +26,7 @@ class CustomerDashboard extends Component {
   }
 
   render() {
-    const { firstName, userListings, userId } = this.props;
+    const { firstName, userListings } = this.props;
     return (
       <Container textAlign="center">
         <Header as="h1" className="center">{`${capitalize(firstName)}'s Dashboard`}</Header>
@@ -53,6 +53,8 @@ class CustomerDashboard extends Component {
 
 CustomerDashboard.propTypes = {
   firstName: React.PropTypes.string.isRequired,
+  userListings: React.PropTypes.array.isRequired,
+  userId: React.PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {

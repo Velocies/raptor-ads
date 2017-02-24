@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Image } from 'semantic-ui-react';
+import ListingDisplayImage from './ListingDisplayImage';
 
 const ListingDisplayImages = ({ images }) => {
   return (
@@ -8,7 +9,7 @@ const ListingDisplayImages = ({ images }) => {
       <Grid.Column width={6}>
         <div>
           {images.map((currentImage, index) =>
-            <Image src={currentImage} size="small" key={index} wrapped />)}
+            <ListingDisplayImage image={currentImage} key={index} />)}
         </div>
       </Grid.Column>
     </Grid>

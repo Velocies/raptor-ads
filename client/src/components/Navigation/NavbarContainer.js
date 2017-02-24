@@ -4,9 +4,9 @@ import { logout } from '../../actions';
 
 const mapStateToProps = (state) => {
   const location = state.routing.locationBeforeTransitions.pathname;
-  const { token } = state.auth;
+  const { id  } = state.auth.loggedInUser;
 
-  return { location, token };
+  return { location, id };
 };
 
 const mapDispatchToProps = dispatch => ({

@@ -17,7 +17,6 @@ export const initialState = {
   formErrors: {
   },
   loggedInUser: {
-    first_name: '',
   },
   token: '',
 };
@@ -49,7 +48,7 @@ export const auth = (state = initialState, action) => {
     case LOGIN_FAILURE:
       return ({ ...state, formErrors: { ...state.formErrors, invalidPass: 'Invalid credentials' } });
     case LOGOUT:
-      return ({ ...state, token: '', loggedInUser: {} });
+      return ({ ...state, loggedInUser: {} });
     default:
       return state;
   }

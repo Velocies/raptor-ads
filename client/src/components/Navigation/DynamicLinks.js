@@ -2,8 +2,8 @@ import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router';
 
-const DynamicLinks = ({ token, logout }) => {
-  if (token === '') {
+const DynamicLinks = ({ id, logout }) => {
+  if (!id) {
     return (
       <Menu.Menu position="right">
         <Menu.Item as={Link} to="signup">

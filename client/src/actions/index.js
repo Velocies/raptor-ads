@@ -88,10 +88,15 @@ const signupFailure = error =>
     error,
   });
 
+const logoutSuccess = () =>
+  ({
+    type: LOGOUT,
+  });
 
 export const logout = () =>
   (dispatch) => {
-    dispatch({ type: LOGOUT });
+    dispatch(logoutSuccess());
+    localStorage.removeItem('raptor_token');
     dispatch(push('/'));
   };
 

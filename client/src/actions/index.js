@@ -119,6 +119,7 @@ export const customerSignup = customer =>
                 dispatch(signupFailure(data.error));
               }
               dispatch(signupSuccess(data));
+              localStorage.setItem('raptor_token', data.token);
               dispatch(push('dashboard'));
             });
         });

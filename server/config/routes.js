@@ -5,7 +5,7 @@ const authController = require('./auth/authController.js');
 module.exports = (app, db, path, rootPath) => {
   // Route for logging in
   app.post('/api/login', authController.logIn);
-  app.post('/api/token/:token', authController.getUserFromToken);
+  app.get('/api/token/:token', authController.getUserFromToken);
 
   // Routes for all users
   app.get('/api/users', userController.getAll);

@@ -14,6 +14,7 @@ const Navbar = ({ token, location, logout }) =>
         <img alt="raptor" src="/client/src/assets/half-raptor.png" />
       </Menu.Item>
       <Menu.Item as={Link} to="landing" name="About" active={location === 'landing'} />
+      <Menu.Item as={Link} to="listings" name="Listings" active={location === 'listings'} />
       <Menu.Item as={Link} to="dashboard" name="customer dashboard" active={location === 'dashboard'} />
       <Menu.Item as={Link} to="addlisting" name="addlisting" active={location === 'addlisting'} />
       <DynamicLinks token={token} logout={logout} />

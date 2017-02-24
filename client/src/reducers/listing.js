@@ -10,6 +10,7 @@ export const initialState = {
     type: 'Home Improvement',
   },
   userListings: [],
+  allListings: [],
 };
 
 export const listing = (state = initialState, action) => {

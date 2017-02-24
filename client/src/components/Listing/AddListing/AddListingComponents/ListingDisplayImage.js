@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, Icon, Label, Header, Modal, Button } from 'semantic-ui-react';
 
-const ListingDisplayImage = ({ image }) => {
+const ListingDisplayImage = ({ image, handleDelete, index }) => {
   return (
     <Modal trigger={<Image src={image} size="small" wrapped />} basic size='small'>
       <Header icon='trash outline' content='Delete Listing' />
@@ -12,7 +12,7 @@ const ListingDisplayImage = ({ image }) => {
         <Button color='red' inverted>
           <Icon name='remove' /> No
         </Button>
-        <Button color='green' inverted>
+        <Button onClick={() => handleDelete(index)} color='green' inverted>
           <Icon name='checkmark' /> Yes
         </Button>
       </Modal.Actions>

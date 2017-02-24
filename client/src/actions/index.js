@@ -1,6 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import { push } from 'react-router-redux';
-import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT, CHANGE_LOGIN_FIELD, LOGIN_FAILURE, LOGIN_SUCCESS, ADD_LISTING_FAILURE, ADD_LISTING_SUCCESS, GET_LISTING_SUCCESS, GET_LISTING_FAILURE } from '../constants';
+import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT, CHANGE_LOGIN_FIELD, LOGIN_FAILURE, LOGIN_SUCCESS, ADD_LISTING_FAILURE, ADD_LISTING_SUCCESS, GET_LISTING_SUCCESS, GET_LISTING_FAILURE, DELETE_IMAGE } from '../constants';
 import { validateSignup } from '../components/helpers/validateSignup';
 
 const fetchPostUser = customer =>
@@ -210,4 +210,10 @@ export const deleteListing = (userId, listingId) =>
         dispatch(getUserListings(userId));
       });
   }
+
+export const deleteImage = index =>
+  ({
+    type: DELETE_IMAGE,
+    index
+  });
 

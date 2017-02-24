@@ -21,6 +21,7 @@ class AddListing extends Component {
     const data = this.props.listingForm;
     const id = this.props.id;
     const payload = { data, id };
+    console.log('here', payload)
     this.props.dispatch(uploadListing(payload));
   }
 

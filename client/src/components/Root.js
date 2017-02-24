@@ -17,18 +17,24 @@ import AllListings from './Listing/AllListings/AllListings';
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
+const requireAuth = (nextState, replace) => {
+  if (!localStorage.getItem('raptor_token')) {
+    replace('/login');
+  }
+};
+
 const Root = () =>
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={LandingPage} />
-        <Route path="landing" component={LandingPage} />
-        <Route path="signup" component={Signup} />
-        <Route path="login" component={Login} />
-        <Route path="dashboard" component={CustomerDashboard} />
-        <Route path="/listing/:id" component={FullListing} />
-        <Route path="addlisting" component={AddListing} />
-        <Route path="listings" component={AllListings} />
+        <Route path="/landing" component={LandingPage} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/login" component={Login} />
+        <Route path="/dashboard" component={CustomerDashboard} onEnter={requireAuth} />
+        <Route path="/listing/:id" component={FullListing} onEnter={requireAuth} />
+        <Route path="/addlisting" component={AddListing} onEnter={requireAuth} />
+        <Route path="/listings" component={AllListings} />
         <Route path="*" component={NotFound} />
       </Route>
     </Router>

@@ -36,21 +36,19 @@ export const auth = (state = initialState, action) => {
     case SIGNUP_SUCCESS:
       return ({
         ...state,
-        loggedInUser: action.data.user,
-        token: action.data.token,
+        loggedInUser: { ...state.loggedInUser, ...action.data.user },
       });
     case LOGIN_SUCCESS:
       return ({
         ...state,
-        loggedInUser: action.data.user,
-        token: action.data.token,
+        loggedInUser: { ...state.loggedInUser, ...action.data.user },
       });
     case SIGNUP_FAILURE:
       return ({ ...state, formErrors: { ...state.formErrors, userExists: 'A user with that email exists' } });
     case LOGIN_FAILURE:
       return ({ ...state, formErrors: { ...state.formErrors, invalidPass: 'Invalid credentials' } });
     case LOGOUT:
-      return ({ ...state, token: '', loggedInUser: {} });
+      return ({ ...state, loggedInUser: {} });
     default:
       return state;
   }

@@ -11,6 +11,7 @@ class App extends Component {
   componentWillMount() {
     const token = localStorage.getItem('raptor_token');
     if (token) {
+      this.props.dispatch(pullUserFromToken(token));
     }
   }
 

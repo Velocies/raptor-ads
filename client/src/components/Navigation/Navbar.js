@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { Menu, Segment } from 'semantic-ui-react';
 import DynamicLinks from './DynamicLinks';
 
-const Navbar = ({ token, location, logout }) =>
+const Navbar = ({ id, location, logout }) =>
   <Segment inverted>
     <Menu inverted pointing secondary>
       <Menu.Item
@@ -17,7 +17,7 @@ const Navbar = ({ token, location, logout }) =>
       <Menu.Item as={Link} to="listings" name="Listings" active={location === 'listings'} />
       <Menu.Item as={Link} to="dashboard" name="customer dashboard" active={location === 'dashboard'} />
       <Menu.Item as={Link} to="addlisting" name="addlisting" active={location === 'addlisting'} />
-      <DynamicLinks token={token} logout={logout} />
+      <DynamicLinks id={id} logout={logout} />
     </Menu>
   </Segment>;
 

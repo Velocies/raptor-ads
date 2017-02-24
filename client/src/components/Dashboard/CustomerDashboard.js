@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { Container, Header, Card, Button, Divider } from 'semantic-ui-react';
+import { Container, Header, Card, Button, Divider, Loader } from 'semantic-ui-react';
 import Listing from '../shared/Listing';
 import { fetchUserListings, removeListing } from '../../actions';
-import { capitalize } from '../../helpers/capitalize';
 
 class CustomerDashboard extends Component {
   constructor(props) {
@@ -12,13 +11,8 @@ class CustomerDashboard extends Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
 
-  componentDidMount() {
-    const { userId } = this.props;
-    this.props.dispatch(fetchUserListings(userId));
-  }
-
   handleDelete(listingId) {
-    this.props.dispatch(removeListing(this.props.userId, listingId));
+    this.props.dispatch(removeListing(this.props.id, listingId));
   }
 
   convertTime(time) {
@@ -26,42 +20,48 @@ class CustomerDashboard extends Component {
   }
 
   render() {
-    const { firstName, userListings } = this.props;
-    return (
-      <Container textAlign="center">
-        <Header as="h1" className="center">{`${capitalize(firstName)}'s Dashboard`}</Header>
-        <h3>Recent Listings</h3>
-        <Divider />
-        <Card.Group itemsPerRow={4} stackable>
-          {userListings && userListings.map(listing =>
-            <Listing
-              key={listing.id}
-              id={listing.id}
-              title={listing.title}
-              createdAt={this.convertTime(listing.createdAt)}
-              body={listing.body}
-              type={listing.type}
-              onClick={this.onClick}
-              handleDelete={this.handleDelete}
-            />
-          )}
-        </Card.Group>
-      </Container>
-    );
+    const { first_name, userListings, id, isFetching } = this.props;
+
+    if (isFetching) {
+      return <Loader active inline='centered' />;
+    } else {
+      return (
+        <Container textAlign="center">
+          <Header as="h1" className="center">Dashboard</Header>
+          <h3>Recent Listings</h3>
+          <Divider />
+          <Card.Group itemsPerRow={4} stackable>
+            {userListings && userListings.map(listing =>
+              <Listing
+                key={listing.id}
+                id={listing.id}
+                title={listing.title}
+                createdAt={this.convertTime(listing.createdAt)}
+                body={listing.body}
+                type={listing.type}
+                onClick={this.onClick}
+                handleDelete={this.handleDelete}
+              />
+            )}
+          </Card.Group>
+        </Container>
+      );
+    }
   }
 }
 
 CustomerDashboard.propTypes = {
-  firstName: React.PropTypes.string.isRequired,
+  first_name: React.PropTypes.string.isRequired,
   userListings: React.PropTypes.array.isRequired,
-  userId: React.PropTypes.string.isRequired,
+  id: React.PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => {
-  const { first_name: firstName, id: userId } = state.auth.loggedInUser;
-  const { userListings } = state.listing;
+  const { first_name, id } = state.auth.loggedInUser;
+  const { userListings, isFetching } = state.listing;
+  console.log('id', id);
 
-  return { firstName, userId, userListings };
+  return { first_name, id, userListings, isFetching };
 };
 
 export default connect(mapStateToProps)(CustomerDashboard);

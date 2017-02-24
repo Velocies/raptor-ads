@@ -38,3 +38,7 @@ export const getUserListings = id =>
     method: 'GET',
   });
 
+export const getUserFromToken = token =>
+  fetch(`api/token/${token}`, {
+    method: 'GET',
+  });

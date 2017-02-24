@@ -17,6 +17,7 @@ export const initialState = {
   formErrors: {
   },
   loggedInUser: {
+    first_name: '',
   },
   token: '',
 };
@@ -36,14 +37,12 @@ export const auth = (state = initialState, action) => {
     case SIGNUP_SUCCESS:
       return ({
         ...state,
-        loggedInUser: action.data.user,
-        token: action.data.token,
+        loggedInUser: { ...state.loggedInUser, ...action.data.user },
       });
     case LOGIN_SUCCESS:
       return ({
         ...state,
-        loggedInUser: action.data.user,
-        token: action.data.token,
+        loggedInUser: { ...state.loggedInUser, ...action.data.user },
       });
     case SIGNUP_FAILURE:
       return ({ ...state, formErrors: { ...state.formErrors, userExists: 'A user with that email exists' } });

@@ -1,8 +1,8 @@
 import isEmpty from 'lodash/isEmpty';
 import { push } from 'react-router-redux';
-import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT, CHANGE_LOGIN_FIELD, LOGIN_FAILURE, LOGIN_SUCCESS, ADD_LISTING_FAILURE, ADD_LISTING_SUCCESS, GET_LISTING_SUCCESS, GET_LISTING_FAILURE, DELETE_IMAGE } from '../constants';
+import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT, CHANGE_LOGIN_FIELD, LOGIN_FAILURE, LOGIN_SUCCESS, ADD_LISTING_FAILURE, ADD_LISTING_SUCCESS, GET_LISTING_SUCCESS, GET_LISTING_FAILURE, DELETE_IMAGE, TOKEN_ERROR, FETCHING_LISTINGS, FETCHING_LISTINGS_SUCCESS } from '../constants';
 import { validateSignup } from '../components/helpers/validateSignup';
-import { postUser, postLogin, postListing, deleteListing, getUserListings } from './api';
+import { postUser, postLogin, postListing, deleteListing, getUserListings, getUserFromToken } from './api';
 
 export const toggleSignupLink = link =>
   ({
@@ -138,8 +138,14 @@ const getListingSuccess = payload =>
     payload,
   });
 
+const startFetchUserListings = () =>
+  ({
+    type: FETCHING_LISTINGS,
+  });
+
 export const fetchUserListings = id =>
   (dispatch) => {
+    dispatch(startFetchUserListings());
     getUserListings(id)
       .then((res) => {
         res.json()
@@ -179,9 +185,26 @@ export const deleteImage = index =>
     index,
   });
 
+export const tokenError = () =>
+  ({
+    type: TOKEN_ERROR,
+  });
+
 export const pullUserFromToken = token =>
   (dispatch) => {
-    // get user info from db
-    // dispatch with info
-  }
+    getUserFromToken(token)
+      .then((res) => {
+        if (res.status !== 200) {
+          localStorage.removeItem('raptor_token');
+          dispatch(tokenError());
+          dispatch(push('/login'));
+        } else {
+          res.json()
+            .then((user) => {
+              dispatch(loginSuccess({user}));
+              dispatch(fetchUserListings(user.id));
+            });
+        }
+      });
+  };
 

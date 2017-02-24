@@ -7,5 +7,5 @@ export default combineReducers({
   auth,
   listing,
   routing: routerReducer,
-})
+});
 

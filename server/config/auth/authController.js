@@ -25,12 +25,14 @@ module.exports = {
 
   getUserFromToken: (req, res) => {
     const token = req.params.token;
+    console.log('in route for token', token)
     jwt.verify(token, 'bobbyisbadatstarcraft', (err, decoded) => {
       if (err || !decoded) {
         res.status(400).send('Bad Token');
       } else {
         db.User.findOne({ where: { id: decoded.id } })
           .then((user) => {
+            console.log('wtf', user)
             res.json(user);
           });
       }

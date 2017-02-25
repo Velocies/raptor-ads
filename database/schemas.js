@@ -1,36 +1,39 @@
 const db = require('./database.js');
+const sequelize = require('sequelize');
 
-const user = require('./schemas/user.js')(db.database, db.Sequelize);
-const post = require('./schemas/post.js')(db.database, db.Sequelize);
-const picture = require('./schemas/picture.js')(db.database, db.Sequelize);
-const message = require('./schemas/message.js')(db.database, db.Sequelize);
-const rating = require('./schemas/rating.js')(db.database, db.Sequelize);
-const business = require('./schemas/business.js')(db.database, db.Sequelize);
+const User = require('./schemas/user.js')(db.database, db.Sequelize);
+const Post = require('./schemas/post.js')(db.database, db.Sequelize);
+const Picture = require('./schemas/picture.js')(db.database, db.Sequelize);
+const Message = require('./schemas/message.js')(db.database, db.Sequelize);
+const Rating = require('./schemas/rating.js')(db.database, db.Sequelize);
+const Business = require('./schemas/business.js')(db.database, db.Sequelize);
 
-user.sync({force: true})
-  .then(() => post.belongsTo(user, { foreignKey: 'user_id' }))
-  .then(() => post.hasMany(picture, { foreignKey: 'user_id' }))
-  .then(() => post.sync({}))
-  .then(() => picture.belongsTo(post, { foreignKey: 'post_id' }))
-  .then(() => picture.sync({}))
-  .then(() => message.belongsTo(post, { foreignKey: 'post_id' }))
-  .then(() => message.belongsTo(user, { foreignKey: 'user_id' }))
-  .then(() => message.sync({}))
-  .then(() => rating.belongsTo(user, { foreignKey: 'user_id' }))
-  .then(() => rating.belongsTo(user, { foreignKey: 'rater_id' }))
-  .then(() => rating.sync({}))
-  .then(() => business.belongsTo(user, { foreignKey: 'user_id' }))
-  .then(() => business.sync({}))
-  .then(() => user.hasMany(post))
-  .then(() => user.hasMany(rating))
-  .then(() => user.hasMany(business))
-  .then(() => user.sync({}));
+User.sync({})
+  .then(() => User.hasMany(Post))
+  .then(() => Post.belongsTo(User))
+  .then(() => Post.hasMany(Picture))
+  .then(() => Picture.belongsTo(Post))
+  .then(() => Post.hasMany(Message))
+  .then(() => Message.belongsTo(Post))
+  .then(() => User.hasMany(Message))
+  .then(() => Message.belongsTo(User))
+  .then(() => User.hasMany(Rating))
+  .then(() => Rating.belongsTo(User, { foreignKey: 'user_id' }))
+  .then(() => Rating.belongsTo(User, { foreignKey: 'rater_id' }))
+  .then(() => User.hasOne(Business))
+  .then(() => Business.belongsTo(User))
+  .then(() => User.sync({}))
+  .then(() => Post.sync({}))
+  .then(() => Picture.sync({}))
+  .then(() => Message.sync({}))
+  .then(() => Rating.sync({}))
+  .then(() => Business.sync({}));
 
 module.exports = {
-  User: user,
-  Post: post,
-  Picture: picture,
-  Message: message,
-  Rating: rating,
-  Business: business,
+  User,
+  Post,
+  Picture,
+  Message,
+  Rating,
+  Business,
 };

@@ -21,7 +21,7 @@ class AddListing extends Component {
     const data = this.props.listingForm;
     const id = this.props.id;
     const payload = { data, id };
-    console.log('here', payload)
+    console.log('here', payload);
     this.props.dispatch(uploadListing(payload));
   }
 
@@ -77,7 +77,8 @@ const mapDispatchToProps = dispatch =>
       }
     },
     onClick: (image) => {
-      dispatch(uploadListingImage(image));
+      const imageObj = { img_path: image };
+      dispatch(uploadListingImage(imageObj));
       dispatch(changeListingField('image', ''));
     },
     dispatch,

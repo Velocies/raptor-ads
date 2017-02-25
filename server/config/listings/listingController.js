@@ -20,27 +20,44 @@ module.exports = {
   },
 
   getAllForUser: (req, res) => {
-    db.Post.findAll({
-      where: {
-        user_id: req.params.id,
-      },
-    })
-    .then((listings) => {
-      res.send(listings);
-    });
+    //console.log('req', req.params.id)
+    //db.Post.findAll({
+      //where: {
+        //user_id: req.params.id,
+      //},
+    //})
+    //.then((listings) => {
+      //console.log('sending listings', listings)
+      //res.send(listings);
+    //});
+    db.User.find({ where: {id: req.params.id} })
+      .then((user) => {
+        console.log('user', user)
+        user.getPosts({}).then((posts) => {
+          console.log('posts', posts);
+          res.json(posts);
+        });
+      });
   },
 
   createOne: (req, res) => {
-    db.Post.create({
-      body: req.body.body,
-      tags: req.body.tags,
-      title: req.body.title,
-      type: req.body.type,
-      user_id: req.params.id,
-    })
-    .then((listing) => {
-      res.send(listing);
-    });
+    db.User.find({ where: {id: req.params.id} })
+      .then((user) => {
+        console.log('user', user)
+        user.setPost(req.body).then((post) => {
+          console.log('created post', post);
+          res.json(post);
+        });
+      });
+    //db.Post.create({
+      //body: req.body.body,
+      //tags: req.body.tags,
+      //title: req.body.title,
+      //type: req.body.type,
+    //})
+    //.then((listing) => {
+      //res.send(listing);
+    //});
   },
 
   patchOne: (req, res) => {

@@ -36,12 +36,11 @@ module.exports = {
           body: req.body.body,
           type: req.body.type,
           pictures: req.body.images,
+          userId: user.id,
         };
         db.Post.create(newPost, { include: [db.Picture] })
           .then((post) => {
-            user.setPosts(post).then(() => {
-              res.json(post);
-            });
+            res.json(post);
           });
       })
       .catch((err) => {

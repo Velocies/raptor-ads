@@ -1,6 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import { push } from 'react-router-redux';
-import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT, CHANGE_LOGIN_FIELD, LOGIN_FAILURE, LOGIN_SUCCESS, ADD_LISTING_FAILURE, ADD_LISTING_SUCCESS, GET_LISTINGS_SUCCESS, GET_LISTINGS_FAILURE, DELETE_IMAGE, TOKEN_ERROR, FETCHING_LISTINGS, FETCHING_LISTINGS_SUCCESS } from '../constants';
+import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT, CHANGE_LOGIN_FIELD, LOGIN_FAILURE, LOGIN_SUCCESS, ADD_LISTING_FAILURE, ADD_LISTING_SUCCESS, GET_LISTINGS_SUCCESS, GET_LISTINGS_FAILURE, DELETE_IMAGE, TOKEN_ERROR, FETCHING_LISTINGS, FETCHING_LISTINGS_SUCCESS, POST_LISTING_SUCCESS } from '../constants';
 import { validateSignup } from '../components/helpers/validateSignup';
 import { postUser, postLogin, postListing, deleteListing, getUserListings, getUserFromToken } from './api';
 
@@ -143,6 +143,11 @@ const startFetchUserListings = () =>
     type: FETCHING_LISTINGS,
   });
 
+const postListingSuccess = () =>
+  ({
+    type: POST_LISTING_SUCCESS,
+  });
+
 export const fetchUserListings = id =>
   (dispatch) => {
     dispatch(startFetchUserListings());
@@ -165,7 +170,7 @@ export const uploadListing = data =>
             if (payload.error) {
               dispatch(addListingError(payload.error));
             } else {
-              console.log('payload', payload);
+              dispatch(postListingSuccess());
               dispatch(fetchUserListings(data.id));
               dispatch(push('/dashboard'));
             }

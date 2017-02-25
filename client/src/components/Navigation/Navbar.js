@@ -25,5 +25,4 @@ export default Navbar;
 
 Navbar.propTypes = {
   location: React.PropTypes.string.isRequired,
-  token: React.PropTypes.string.isRequired,
 };

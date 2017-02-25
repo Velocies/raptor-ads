@@ -7,7 +7,7 @@ module.exports = (db, Sequelize) => {
     },
     body: Sequelize.STRING,
     post_id: Sequelize.INTEGER,
-    user_id: Sequelize.INTEGER,
+    sender_id: Sequelize.INTEGER,
   });
 
   return Message;

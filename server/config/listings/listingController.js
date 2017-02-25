@@ -7,40 +7,45 @@ module.exports = {
         id: req.params.listId,
       },
     })
-    .then((listing) => {
-      res.send(listing);
-    });
+      .then((listing) => {
+        res.send(listing);
+      });
   },
 
   getAll: (err, res) => {
     db.Post.findAll({})
-    .then((posts) => {
-      res.send(posts);
-    });
+      .then((posts) => {
+        res.send(posts);
+      });
   },
 
   getAllForUser: (req, res) => {
-    db.Post.findAll({
-      where: {
-        user_id: req.params.id,
-      },
-    })
-    .then((listings) => {
-      res.send(listings);
-    });
+    db.User.find({ where: {id: req.params.id} })
+      .then((user) => {
+        user.getPosts({}).then((posts) => {
+          res.json(posts);
+        });
+      });
   },
 
   createOne: (req, res) => {
-    db.Post.create({
-      body: req.body.body,
-      tags: req.body.tags,
-      title: req.body.title,
-      type: req.body.type,
-      user_id: req.params.id,
-    })
-    .then((listing) => {
-      res.send(listing);
-    });
+    db.User.find({ where: { id: req.params.id } })
+      .then((user) => {
+        const newPost = {
+          title: req.body.title,
+          body: req.body.body,
+          type: req.body.type,
+          pictures: req.body.images,
+          userId: user.id,
+        };
+        db.Post.create(newPost, { include: [db.Picture] })
+          .then((post) => {
+            res.json(post);
+          });
+      })
+      .catch((err) => {
+        res.status(400).json({ error: err });
+      });
   },
 
   patchOne: (req, res) => {
@@ -49,9 +54,9 @@ module.exports = {
         id: req.params.listId,
       },
     })
-    .then((status) => {
-      res.send(status);
-    });
+      .then((status) => {
+        res.send(status);
+      });
   },
 
   deleteOne: (req, res) => {
@@ -60,13 +65,13 @@ module.exports = {
         id: req.params.listId,
       },
     })
-    .then((status) => {
-      if (status === 1) {
-        res.send('listing deleted!');
-      } else {
-        res.send('listing wasn\'t found');
-      }
-    });
+      .then((status) => {
+        if (status === 1) {
+          res.send('listing deleted!');
+        } else {
+          res.send('listing wasn\'t found');
+        }
+      });
   },
 
   getAllPhotos: (req, res) => {
@@ -75,9 +80,9 @@ module.exports = {
         post_id: req.params.listId,
       },
     })
-    .then((photos) => {
-      res.send(photos);
-    });
+      .then((photos) => {
+        res.send(photos);
+      });
   },
 
   createOnePhoto: (req, res) => {
@@ -86,9 +91,9 @@ module.exports = {
       img_path: req.body.img_path,
       post_id: req.params.listId,
     })
-    .then((photoData) => {
-      res.send(photoData);
-    });
+      .then((photoData) => {
+        res.send(photoData);
+      });
   },
 
   patchOnePhoto: (req, res) => {
@@ -102,9 +107,9 @@ module.exports = {
           id: req.params.id,
         },
       })
-    .then((status) => {
-      res.send(status);
-    });
+      .then((status) => {
+        res.send(status);
+      });
   },
 
   deleteOnePhoto: (req, res) => {
@@ -113,12 +118,12 @@ module.exports = {
         id: req.params.id,
       },
     })
-    .then((status) => {
-      if (status === 1) {
-        res.send('photo deleted!');
-      } else {
-        res.send('photo wasn\'t found');
-      }
-    });
+      .then((status) => {
+        if (status === 1) {
+          res.send('photo deleted!');
+        } else {
+          res.send('photo wasn\'t found');
+        }
+      });
   },
 };

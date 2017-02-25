@@ -26,7 +26,6 @@ const DynamicLinks = ({ id, logout }) => {
 };
 
 DynamicLinks.propTypes = {
-  token: React.PropTypes.string.isRequired,
   logout: React.PropTypes.func.isRequired,
 };
 

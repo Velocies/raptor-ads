@@ -36,4 +36,9 @@
 
 .deleteIcon {
   background-color: white !important;
+  z-index: 2 !important;
+}
+
+.listingCard {
+  z-index: 1 !important;
 }

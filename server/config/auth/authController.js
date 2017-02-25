@@ -31,7 +31,6 @@ module.exports = {
       } else {
         db.User.findOne({ where: { id: decoded.id } })
           .then((user) => {
-            console.log('wtf', user)
             res.json(user);
           });
       }

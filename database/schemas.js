@@ -7,8 +7,9 @@ const message = require('./schemas/message.js')(db.database, db.Sequelize);
 const rating = require('./schemas/rating.js')(db.database, db.Sequelize);
 const business = require('./schemas/business.js')(db.database, db.Sequelize);
 
-user.sync({})
+user.sync({force: true})
   .then(() => post.belongsTo(user, { foreignKey: 'user_id' }))
+  .then(() => post.hasMany(picture, { foreignKey: 'user_id' }))
   .then(() => post.sync({}))
   .then(() => picture.belongsTo(post, { foreignKey: 'post_id' }))
   .then(() => picture.sync({}))
@@ -19,7 +20,11 @@ user.sync({})
   .then(() => rating.belongsTo(user, { foreignKey: 'rater_id' }))
   .then(() => rating.sync({}))
   .then(() => business.belongsTo(user, { foreignKey: 'user_id' }))
-  .then(() => business.sync({}));
+  .then(() => business.sync({}))
+  .then(() => user.hasMany(post))
+  .then(() => user.hasMany(rating))
+  .then(() => user.hasMany(business))
+  .then(() => user.sync({}));
 
 module.exports = {
   User: user,

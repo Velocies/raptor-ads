@@ -9,7 +9,6 @@ module.exports = (db, Sequelize) => {
     tags: Sequelize.STRING,
     title: Sequelize.STRING,
     type: Sequelize.STRING,
-    user_id: Sequelize.INTEGER,
   });
 
   return Post;

@@ -7,7 +7,6 @@ module.exports = (db, Sequelize) => {
     },
     img_name: Sequelize.STRING,
     img_path: Sequelize.STRING,
-    post_id: Sequelize.INTEGER,
   });
 
   return Picture;

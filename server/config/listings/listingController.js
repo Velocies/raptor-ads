@@ -7,29 +7,30 @@ module.exports = {
         id: req.params.listId,
       },
     })
-    .then((listing) => {
-      res.send(listing);
-    });
+      .then((listing) => {
+        res.send(listing);
+      });
   },
 
   getAll: (err, res) => {
     db.Post.findAll({})
-    .then((posts) => {
-      res.send(posts);
-    });
+      .then((posts) => {
+        res.send(posts);
+      });
   },
 
   getAllForUser: (req, res) => {
     //console.log('req', req.params.id)
     //db.Post.findAll({
-      //where: {
-        //user_id: req.params.id,
-      //},
+    //where: {
+    //user_id: req.params.id,
+    //},
     //})
     //.then((listings) => {
-      //console.log('sending listings', listings)
-      //res.send(listings);
+    //console.log('sending listings', listings)
+    //res.send(listings);
     //});
+    console.log('here', req.params.id);
     db.User.find({ where: {id: req.params.id} })
       .then((user) => {
         console.log('user', user)
@@ -43,20 +44,32 @@ module.exports = {
   createOne: (req, res) => {
     db.User.find({ where: {id: req.params.id} })
       .then((user) => {
-        console.log('user', user)
-        user.setPost(req.body).then((post) => {
-          console.log('created post', post);
-          res.json(post);
-        });
+        const newPost = {
+          title: req.body.title,
+          body: req.body.body,
+          type: req.body.type,
+          pictures: req.body.images,
+        };
+        db.Post.create(newPost, { include: [db.Picture] })
+          .then((post) => {
+            console.log('post', post);
+            user.setPosts(post).then((post) => {
+              console.log('created post', post);
+              res.json(post);
+            });
+          });
+      })
+      .catch((err) => {
+        res.status(400).json({error: err});
       });
     //db.Post.create({
-      //body: req.body.body,
-      //tags: req.body.tags,
-      //title: req.body.title,
-      //type: req.body.type,
+    //body: req.body.body,
+    //tags: req.body.tags,
+    //title: req.body.title,
+    //type: req.body.type,
     //})
     //.then((listing) => {
-      //res.send(listing);
+    //res.send(listing);
     //});
   },
 
@@ -66,9 +79,9 @@ module.exports = {
         id: req.params.listId,
       },
     })
-    .then((status) => {
-      res.send(status);
-    });
+      .then((status) => {
+        res.send(status);
+      });
   },
 
   deleteOne: (req, res) => {
@@ -77,13 +90,13 @@ module.exports = {
         id: req.params.listId,
       },
     })
-    .then((status) => {
-      if (status === 1) {
-        res.send('listing deleted!');
-      } else {
-        res.send('listing wasn\'t found');
-      }
-    });
+      .then((status) => {
+        if (status === 1) {
+          res.send('listing deleted!');
+        } else {
+          res.send('listing wasn\'t found');
+        }
+      });
   },
 
   getAllPhotos: (req, res) => {
@@ -92,9 +105,9 @@ module.exports = {
         post_id: req.params.listId,
       },
     })
-    .then((photos) => {
-      res.send(photos);
-    });
+      .then((photos) => {
+        res.send(photos);
+      });
   },
 
   createOnePhoto: (req, res) => {
@@ -103,9 +116,9 @@ module.exports = {
       img_path: req.body.img_path,
       post_id: req.params.listId,
     })
-    .then((photoData) => {
-      res.send(photoData);
-    });
+      .then((photoData) => {
+        res.send(photoData);
+      });
   },
 
   patchOnePhoto: (req, res) => {
@@ -119,9 +132,9 @@ module.exports = {
           id: req.params.id,
         },
       })
-    .then((status) => {
-      res.send(status);
-    });
+      .then((status) => {
+        res.send(status);
+      });
   },
 
   deleteOnePhoto: (req, res) => {
@@ -130,12 +143,12 @@ module.exports = {
         id: req.params.id,
       },
     })
-    .then((status) => {
-      if (status === 1) {
-        res.send('photo deleted!');
-      } else {
-        res.send('photo wasn\'t found');
-      }
-    });
+      .then((status) => {
+        if (status === 1) {
+          res.send('photo deleted!');
+        } else {
+          res.send('photo wasn\'t found');
+        }
+      });
   },
 };

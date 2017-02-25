@@ -1,4 +1,4 @@
-import { CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, GET_LISTING_SUCCESS, DELETE_IMAGE } from '../constants';
+import { CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, GET_LISTINGS_SUCCESS, DELETE_IMAGE, FETCHING_LISTINGS } from '../constants';
 
 
 export const initialState = {
@@ -19,8 +19,8 @@ export const listing = (state = initialState, action) => {
       return ({ ...state, listingForm: { ...state.listingForm, [action.field]: action.value } });
     case UPLOAD_LISTING_IMAGE:
       return ({ ...state, listingForm: { ...state.listingForm, images: [...state.listingForm.images, action.value] } });
-    case GET_LISTING_SUCCESS:
-      return ({ ...state, userListings: action.payload });
+    case GET_LISTINGS_SUCCESS:
+      return ({ ...state, userListings: action.payload, isFetching: false });
     case DELETE_IMAGE:
       const spliced = [...state.listingForm.images];
       spliced.splice(action.index, 1);

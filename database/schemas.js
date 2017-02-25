@@ -1,5 +1,4 @@
 const db = require('./database.js');
-const sequelize = require('sequelize');
 
 const User = require('./schemas/user.js')(db.database, db.Sequelize);
 const Post = require('./schemas/post.js')(db.database, db.Sequelize);

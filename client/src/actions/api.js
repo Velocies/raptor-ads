@@ -42,3 +42,8 @@ export const getUserFromToken = token =>
   fetch(`api/token/${token}`, {
     method: 'GET',
   });
+
+export const fetchAllListings = () =>
+  fetch('/api/listings', {
+    method: 'GET',
+  });

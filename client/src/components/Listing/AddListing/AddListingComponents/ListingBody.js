@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form } from 'semantic-ui-react';
 
-export const ListingBody = ({ body, onChange }) => {
+const ListingBody = ({ body, onChange }) => {
   return (
     <Form.TextArea
       rows="5"
@@ -15,3 +15,9 @@ export const ListingBody = ({ body, onChange }) => {
   );
 };
 
+ListingBody.propTypes = {
+  body: React.PropTypes.string.isRequired,
+  onChange: React.PropTypes.func.isRequired,
+};
+
+export default ListingBody;

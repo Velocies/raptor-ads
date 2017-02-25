@@ -5,7 +5,7 @@ import { changeListingField, uploadListingImage, uploadListing, deleteImage } fr
 import { ListingTitle } from './AddListingComponents/ListingTitle';
 import ListingImage from './AddListingComponents/ListingImage';
 import ListingJobTypes from './AddListingComponents/ListingJobTypes';
-import { ListingBody } from './AddListingComponents/ListingBody';
+import ListingBody from './AddListingComponents/ListingBody';
 import ListingDisplayImages from './AddListingComponents/ListingDisplayImages';
 
 
@@ -52,7 +52,7 @@ class AddListing extends Component {
             </Form>
           </Grid.Column>
         </Grid>
-        <ListingDisplayImages images={images} handleDelete={this.handleDelete}/>
+        <ListingDisplayImages images={images} handleDelete={this.handleDelete} />
       </div>
     );
   }
@@ -89,6 +89,7 @@ AddListing.propTypes = {
     body: React.PropTypes.string.isRequired,
     image: React.PropTypes.string.isRequired,
     images: React.PropTypes.array.isRequired,
+    type: React.PropTypes.string.isRequired,
   }).isRequired,
   onChange: React.PropTypes.func.isRequired,
   onClick: React.PropTypes.func.isRequired,

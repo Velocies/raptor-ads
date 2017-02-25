@@ -18,7 +18,7 @@ module.exports = (app, db, path, rootPath) => {
 
 
   // Routes for all listings belonging to a specific user
-  app.get('/api/users/:id/listings', listingController.getAllFromUser);
+  app.get('/api/users/:id/listings', listingController.getAllForUser);
   app.post('/api/users/:id/listings', listingController.createOne);
 
   // Route to get all listings regardless of user

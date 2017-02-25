@@ -19,7 +19,7 @@ module.exports = {
     });
   },
 
-  getAllFromUser: (req, res) => {
+  getAllForUser: (req, res) => {
     db.Post.findAll({
       where: {
         user_id: req.params.id,

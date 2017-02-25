@@ -1,17 +1,20 @@
 import React from 'react';
 import { Form } from 'semantic-ui-react';
 
-export const ListingTitle = ({ title, onChange }) => {
-  return (
-    <Form.Field className="ui center aligned grid">
-      <label>Title</label>
-      <input
-        placeholder="Insert title of job here"
-        name="title"
-        value={title}
-        onChange={e => onChange(e)}
-      />
-    </Form.Field>
-  );
+const ListingTitle = ({ title, onChange }) =>
+  <Form.Field className="ui center aligned grid">
+    <label>Title</label>
+    <input
+      placeholder="Insert title of job here"
+      name="title"
+      value={title}
+      onChange={e => onChange(e)}
+    />
+  </Form.Field>;
+
+ListingTitle.propTypes = {
+  title: React.PropTypes.string.isRequired,
+  onChange: React.PropTypes.func.isRequired,
 };
 
+export default ListingTitle;

@@ -6,14 +6,17 @@ const getIconString = str => (
   str === 'home improvement' ? 'home' : 'laptop'
 );
 
-const Listing = ({ userId, listingId, title, createdAt, body, type, handleDelete }) =>
+const Listing = ({ userId, listingId, title, createdAt, body, type, handleDelete, pathname }) =>
   <Card centered raised>
     <Card.Content>
-      <ListingDeleteModal
-        handleDelete={handleDelete}
-        userId={userId}
-        listingId={listingId}
-      />
+      {
+        pathname === '/dashboard' ?
+          <ListingDeleteModal
+            handleDelete={handleDelete}
+            userId={userId}
+            listingId={listingId}
+          /> : null
+      }
       <Image floated="right">
         <Icon name={getIconString(type)} size="big" />
       </Image>
@@ -37,6 +40,7 @@ Listing.propTypes = {
   userId: React.PropTypes.number.isRequired,
   listingId: React.PropTypes.number.isRequired,
   handleDelete: React.PropTypes.func.isRequired,
+  pathname: React.PropTypes.string.isRequired,
 };
 
 export default Listing;

@@ -55,6 +55,7 @@ describe('Begin', () => {
     });
 
     it('should have a title property', (done) => {
+      console.log('result', result)
       expect(result.body.title).to.exist;
       done();
     });
@@ -64,10 +65,6 @@ describe('Begin', () => {
       done();
     });
 
-    it('should have a type property', (done) => {
-      expect(result.body.tags).to.exist;
-      done();
-    });
   });
 
   xdescribe('Listing Retrieving', () => {

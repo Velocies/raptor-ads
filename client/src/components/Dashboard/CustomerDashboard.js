@@ -7,7 +7,7 @@ import { capitalize } from '../helpers/capitalize';
 import convertTime from '../helpers/convertTime';
 
 const CustomerDashboard =
-  ({ first_name, userListings, id, isFetching, handleDelete }) => {
+  ({ first_name, userListings, id, isFetching, handleDelete, pathname }) => {
     if (isFetching) { return <Loader active inline="centered" />; }
     return (
       <Container textAlign="center">
@@ -27,6 +27,7 @@ const CustomerDashboard =
               type={listing.type}
               userId={id}
               handleDelete={handleDelete}
+              pathname={pathname}
             />,
           )}
         </Card.Group>
@@ -41,13 +42,15 @@ CustomerDashboard.propTypes = {
   id: React.PropTypes.number.isRequired,
   isFetching: React.PropTypes.bool.isRequired,
   handleDelete: React.PropTypes.func.isRequired,
+  pathname: React.PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {
   const { first_name, id } = state.auth.loggedInUser;
   const { userListings, isFetching } = state.listing;
+  const { pathname } = state.routing.locationBeforeTransitions;
 
-  return { first_name, id, userListings, isFetching };
+  return { first_name, id, userListings, isFetching, pathname };
 };
 
 const mapDispatchToProps = dispatch =>

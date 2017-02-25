@@ -67,6 +67,7 @@ describe('Begin', () => {
         .post('/api/users')
         .send(data)
         .end((postErr, postRes) => {
+          console.log('postRes', postRes);
           request(app)
             .delete(`/api/users/${postRes.body.id}`)
             .end(() => {

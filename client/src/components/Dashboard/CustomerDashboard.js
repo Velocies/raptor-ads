@@ -4,7 +4,7 @@ import moment from 'moment';
 import { Container, Header, Card, Button, Divider, Loader } from 'semantic-ui-react';
 import Listing from '../shared/Listing';
 import { fetchUserListings, removeListing } from '../../actions';
-import { capitalize } from '../../helpers/capitalize';
+import { capitalize } from '../helpers/capitalize';
 
 class CustomerDashboard extends Component {
   constructor(props) {
@@ -25,7 +25,9 @@ class CustomerDashboard extends Component {
     if (isFetching) { return <Loader active inline="centered" />; }
     return (
       <Container textAlign="center">
-        <Header as="h1" className="center">Dashboard</Header>
+        <Header as="h1" className="center">
+          {`${capitalize(first_name)}'s Dashboard`}
+        </Header>
         <h3>Recent Listings</h3>
         <Divider />
         <Card.Group itemsPerRow={4} stackable>

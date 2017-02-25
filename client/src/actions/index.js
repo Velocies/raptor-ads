@@ -150,7 +150,6 @@ export const fetchUserListings = id =>
       .then((res) => {
         res.json()
           .then((data) => {
-            console.log('inside get listing success', data)
             dispatch(getListingSuccess(data));
           });
       });

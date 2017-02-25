@@ -28,7 +28,7 @@ class AllListings extends Component {
   }
 
   render() {
-    const { isFetching, allListings } = this.props;
+    const { isFetching, allListings, pathname } = this.props;
     console.log('STATE OF ARRAY', allListings);
     if (isFetching) {
       return <Loader active inline='centered' />;
@@ -49,6 +49,7 @@ class AllListings extends Component {
                 type={listing.type}
                 onClick={this.onClick}
                 handleDelete={this.handleDelete}
+                pathname={pathname}
               />
             )}
           </Card.Group>
@@ -60,7 +61,8 @@ class AllListings extends Component {
 
 const mapStateToProps = (state) => {
   const { allListings, isFetching } = state.listings;
-  return { allListings, isFetching };
-}
+  const { pathname } = state.routing.locationBeforeTransitions;
+  return { allListings, isFetching, pathname };
+};
 
 export default connect(mapStateToProps)(AllListings);

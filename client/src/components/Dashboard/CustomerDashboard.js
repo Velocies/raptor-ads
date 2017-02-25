@@ -1,26 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
-import { Container, Header, Card, Button, Divider, Loader } from 'semantic-ui-react';
+import { Container, Header, Card, Divider, Loader } from 'semantic-ui-react';
 import Listing from '../shared/Listing';
 import { removeListing } from '../../actions';
 import { capitalize } from '../helpers/capitalize';
+import convertTime from '../helpers/convertTime';
 
-class CustomerDashboard extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  handleDelete(listingId) {
-    this.props.dispatch(removeListing(this.props.id, listingId));
-  }
-
-  convertTime(time) {
-    return moment(time).fromNow();
-  }
-
-  render() {
-    const { first_name, userListings, id, isFetching } = this.props;
+const CustomerDashboard =
+  ({ first_name, userListings, id, isFetching, handleDelete }) => {
     if (isFetching) { return <Loader active inline="centered" />; }
     return (
       <Container textAlign="center">
@@ -35,18 +22,17 @@ class CustomerDashboard extends Component {
               key={listing.id}
               listingId={listing.id}
               title={listing.title}
-              createdAt={this.convertTime(listing.createdAt)}
+              createdAt={convertTime(listing.createdAt)}
               body={listing.body}
               type={listing.type}
               userId={id}
-              handleDelete={this.handleDelete}
+              handleDelete={handleDelete}
             />,
           )}
         </Card.Group>
       </Container>
     );
-  }
-}
+  };
 
 CustomerDashboard.propTypes = {
   first_name: React.PropTypes.string.isRequired,
@@ -54,6 +40,7 @@ CustomerDashboard.propTypes = {
   React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   id: React.PropTypes.number.isRequired,
   isFetching: React.PropTypes.bool.isRequired,
+  handleDelete: React.PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {

@@ -21,7 +21,7 @@ class CustomerDashboard extends Component {
 
   render() {
     const { first_name, userListings, id, isFetching } = this.props;
-
+    console.log('props', this.props)
     if (isFetching) {
       return <Loader active inline='centered' />;
     } else {

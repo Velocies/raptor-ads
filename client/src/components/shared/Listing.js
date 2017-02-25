@@ -6,7 +6,7 @@ const getIconString = (str) =>
   str === "home improvement" ? "home" : "laptop";
 
 const Listing = ({ id, title, createdAt, body, type, handleDelete }) =>
-  <Card centered raised>
+  <Card className="listingCard" centered raised>
     <Card.Content>
       <ListingDeleteModal handleDelete={handleDelete} id={id}/>
       <Image floated="right">

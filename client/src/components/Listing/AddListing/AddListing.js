@@ -21,7 +21,6 @@ class AddListing extends Component {
     const data = this.props.listingForm;
     const id = this.props.id;
     const payload = { data, id };
-    console.log('here', payload);
     this.props.dispatch(uploadListing(payload));
   }
 
@@ -31,7 +30,7 @@ class AddListing extends Component {
 
   render() {
     const { title, body, images, image, type } = this.props.listingForm;
-    const { onChange, onClick } = this.props;
+    const { onChange, onClick, formErrors } = this.props;
     return (
       <div>
         <Header textAlign="center"><Icon name="file text" />Add Listing</Header>
@@ -59,11 +58,12 @@ class AddListing extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { listingForm } = state.listing;
+  const { listingForm, formErrors } = state.listing;
   const { id } = state.auth.loggedInUser;
   return {
     id,
     listingForm,
+    formErrors,
   };
 };
 

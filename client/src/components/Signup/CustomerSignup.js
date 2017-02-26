@@ -37,6 +37,7 @@ class CustomerSignup extends Component {
       passwordConfirmation,
     } = this.props.signupForm;
     const { formErrors } = this.props;
+
     return (
       <div>
         <div className="signup-buttons">

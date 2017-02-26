@@ -43,7 +43,7 @@ describe('Begin', () => {
         .post('/api/users')
         .send(data)
         .end((err, res) => {
-          expect(res.body.email).to.equal(data.email);
+          expect(res.body.user.email).to.equal(data.email);
           done();
         });
     });
@@ -66,10 +66,9 @@ describe('Begin', () => {
       request(app)
         .post('/api/users')
         .send(data)
-        .end((postErr, postRes) => {
-          console.log('postRes', postRes);
+        .end((err, res) => {
           request(app)
-            .delete(`/api/users/${postRes.body.id}`)
+            .delete(`/api/users/${res.body.user.id}`)
             .end(() => {
               db.User.findOne({ where: { email: data.email } })
               .then((user) => {
@@ -115,7 +114,7 @@ describe('Begin', () => {
           .send(data2)
           .end((err, res) => {
             request(app) // delete the second user
-              .delete(`/api/users/${res.body.id}`)
+              .delete(`/api/users/${res.body.user.id}`)
               .end(() => {
                 db.User.findOne({ where: { id: res.body.id } })
                   .then((user) => {
@@ -155,10 +154,10 @@ describe('Begin', () => {
         .send(data)
         .end((err, res) => {
           request(app) // patch the user with a new email
-          .patch(`/api/users/${res.body.id}`)
+          .patch(`/api/users/${res.body.user.id}`)
           .send({ email: 'cwol29@tinydude.com' })
           .end(() => {
-            db.User.findOne({ where: { id: res.body.id } })
+            db.User.findOne({ where: { id: res.body.user.id } })
             .then((user) => {
               expect(user.email).to.equal('cwol29@tinydude.com');
               done();
@@ -221,9 +220,9 @@ describe('Begin', () => {
 
       request(app).post('/api/users').send(data)
       .end((err, res) => {
-        request(app).get(`/api/users/${res.body.id}`)
+        request(app).get(`/api/users/${res.body.user.id}`)
         .end((err2, res2) => {
-          expect(res2.body.id).to.equal(res.body.id);
+          expect(res2.body.id).to.equal(res.body.user.id);
           done();
         });
       });

@@ -55,7 +55,6 @@ describe('Begin', () => {
     });
 
     it('should have a title property', (done) => {
-      console.log('result', result)
       expect(result.body.title).to.exist;
       done();
     });

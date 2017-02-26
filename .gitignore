@@ -4,6 +4,7 @@ bower_components/
 .eslintrc
 .eslintrc.json
 
+.git/
 build/
 dist/
 coverage/

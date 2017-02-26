@@ -38,22 +38,21 @@ class AddListing extends Component {
   render() {
     const { title, body, images, image, type } = this.props.listingForm;
     const { onChange, onClick, formErrors } = this.props;
-    console.log('formErrors type', formErrors.type);
     return (
       <div>
         <Header textAlign="center"><Icon name="file text" />Add Listing</Header>
         <Grid width={16}>
           <Grid.Column width={5} />
           <Grid.Column width={6}>
-            {formErrors.title && <span className="formError">HELLO WORLD</span>}
-            {formErrors.type && <span className="formError">{formErrors.body}</span>}
+            {formErrors.title && <span className="formError">{formErrors.title}</span>}
             <Form onSubmit={e => this.onSubmit(e)}>
               <ListingTitle
                 title={title}
                 onChange={onChange}
                 getFormClass={this.getFormClass}
               />
-              <ListingJobTypes type={type} onChange={onChange} />
+              {formErrors.type && <span className="formError">{formErrors.type}</span>}
+              <ListingJobTypes type={type} onChange={onChange} getFormClass={this.getFormClass} />
               {formErrors.body && <span className="formError">{formErrors.body}</span>}
               <ListingBody
                 body={body}

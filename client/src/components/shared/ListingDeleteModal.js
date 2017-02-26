@@ -24,7 +24,7 @@ const ListingDeleteModal = ({ handleDelete, listingId, userId }) =>
         <Icon name="remove" /> No
       </Button>
       <Button
-        onClick={() => handleDelete(listingId)}
+        onClick={() => handleDelete(userId, listingId)}
         color="green"
         inverted
       >

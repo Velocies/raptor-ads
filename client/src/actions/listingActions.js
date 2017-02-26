@@ -1,6 +1,11 @@
-import { CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, ADD_LISTING_FAILURE, ADD_LISTING_SUCCESS, GET_LISTINGS_SUCCESS, DELETE_IMAGE, FETCHING_LISTINGS, POST_LISTING_SUCCESS, ADD_LISTING_FORM_ERROR } from '../constants';
+import { CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, ADD_LISTING_FAILURE, ADD_LISTING_SUCCESS, GET_LISTINGS_SUCCESS, DELETE_IMAGE, FETCHING_LISTINGS, POST_LISTING_SUCCESS, ADD_LISTING_FORM_ERROR, CLEAR_ERRORS } from '../constants';
 import { postListing, deleteListing, getUserListings } from './api';
 import validateListing from '../components/helpers/validateListing';
+import { push } from 'react-router-redux';
+import isEmpty from 'lodash/isEmpty';
+
+const urlRegex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+
 
 export const changeListingField = (field, value) =>
   ({
@@ -10,6 +15,7 @@ export const changeListingField = (field, value) =>
   });
 
 export const uploadListingImage = value => {
+  console.log('HELLO', value)
   if (urlRegex.test(value.img_path)) {
     return ({
       type: UPLOAD_LISTING_IMAGE,
@@ -23,6 +29,11 @@ export const uploadListingImage = value => {
     });
   }
 }
+
+export const clearErrors = () =>
+  ({
+    type: CLEAR_ERRORS,
+  });
 
 const addListingError = err =>
   ({

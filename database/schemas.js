@@ -7,7 +7,7 @@ const Message = require('./schemas/message.js')(db.database, db.Sequelize);
 const Rating = require('./schemas/rating.js')(db.database, db.Sequelize);
 const Business = require('./schemas/business.js')(db.database, db.Sequelize);
 
-User.sync({})
+User.sync()
   .then(() => User.hasMany(Post))
   .then(() => Post.belongsTo(User))
   .then(() => Post.hasMany(Picture))

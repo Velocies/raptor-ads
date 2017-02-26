@@ -6,7 +6,7 @@ const getIconString = str => (
   str === 'home improvement' ? 'home' : 'laptop'
 );
 
-const Listing = ({ userId, listingId, title, createdAt, body, type, handleDelete, pathname }) =>
+const Listing = ({ userId, listingId, title, createdAt, body, type, handleDelete, pathname, cutBody }) =>
   <Card centered raised>
     <Card.Content>
       {
@@ -27,7 +27,7 @@ const Listing = ({ userId, listingId, title, createdAt, body, type, handleDelete
         { createdAt }
       </Card.Meta>
       <Card.Description>
-        { body }
+        { cutBody(body) }
       </Card.Description>
     </Card.Content>
   </Card>;

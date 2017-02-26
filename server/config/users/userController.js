@@ -11,7 +11,7 @@ module.exports = {
     })
     .then((user) => {
       if (user) {
-        res.send(user);
+        res.json(user);
       } else {
         res.status(400).send('User not found!');
       }
@@ -56,7 +56,7 @@ module.exports = {
             id: createdUser.id,
           }, 'bobbyisbadatstarcraft', { expiresIn: '1h' });
 
-          res.send({ token, user: createdUser });
+          res.json({ token, user: createdUser });
         });
       } else {
         res.send({ error: 'User already exists!' });

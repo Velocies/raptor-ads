@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Container, Header, Card, Divider, Loader } from 'semantic-ui-react';
 import Listing from '../shared/Listing';
-import { removeListing } from '../../actions';
+import { removeListing } from '../../actions/listingActions';
 import { capitalize } from '../helpers/capitalize';
 import convertTime from '../helpers/convertTime';
 

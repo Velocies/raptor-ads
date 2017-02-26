@@ -1,8 +1,8 @@
+import { push } from 'react-router-redux';
+import isEmpty from 'lodash/isEmpty';
 import { CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, ADD_LISTING_FAILURE, ADD_LISTING_SUCCESS, GET_LISTINGS_SUCCESS, DELETE_IMAGE, FETCHING_LISTINGS, POST_LISTING_SUCCESS, ADD_LISTING_FORM_ERROR, CLEAR_ERRORS } from '../constants';
 import { postListing, deleteListing, getUserListings } from './api';
 import validateListing from '../components/helpers/validateListing';
-import { push } from 'react-router-redux';
-import isEmpty from 'lodash/isEmpty';
 
 const urlRegex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
 
@@ -14,21 +14,19 @@ export const changeListingField = (field, value) =>
     value,
   });
 
-export const uploadListingImage = value => {
-  console.log('HELLO', value)
+export const uploadListingImage = (value) => {
   if (urlRegex.test(value.img_path)) {
     return ({
       type: UPLOAD_LISTING_IMAGE,
       value,
     });
-  } else {
-    return ({
-      type: ADD_LISTING_FORM_ERROR,
-      error: 'image',
-      message: 'Image URL is invalid',
-    });
   }
-}
+  return ({
+    type: ADD_LISTING_FORM_ERROR,
+    error: 'image',
+    message: 'Image URL is invalid',
+  });
+};
 
 export const clearErrors = () =>
   ({
@@ -41,11 +39,6 @@ const addListingError = err =>
     err,
   });
 
-const addListingSuccess = payload =>
-  ({
-    type: ADD_LISTING_SUCCESS,
-    payload,
-  });
 
 const getListingSuccess = payload =>
   ({
@@ -115,5 +108,3 @@ export const addListingFormError = (error, message) =>
     error,
     message,
   });
-
-

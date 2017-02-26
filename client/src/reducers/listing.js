@@ -1,4 +1,4 @@
-import { CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, GET_LISTINGS_SUCCESS, DELETE_IMAGE, FETCHING_LISTINGS, POST_LISTING_SUCCESS } from '../constants';
+import { CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, GET_LISTINGS_SUCCESS, DELETE_IMAGE, FETCHING_LISTINGS, POST_LISTING_SUCCESS, ADD_LISTING_FORM_ERROR, CLEAR_ERRORS, UPLOAD_LISTING_IMAGE_ERROR } from '../constants';
 
 
 export const initialState = {
@@ -7,7 +7,7 @@ export const initialState = {
     body: '',
     images: [],
     image: '',
-    type: 'Home Improvement',
+    type: '',
   },
   userListings: [],
   formErrors: {
@@ -21,6 +21,7 @@ export const listing = (state = initialState, action) => {
     case UPLOAD_LISTING_IMAGE:
       return ({
         ...state,
+        formErrors: { ...state.formErrors, image: null },
         listingForm: { ...state.listingForm, images: [...state.listingForm.images, action.value] },
       });
     case GET_LISTINGS_SUCCESS:
@@ -31,6 +32,10 @@ export const listing = (state = initialState, action) => {
       const spliced = [...state.listingForm.images];
       spliced.splice(action.index, 1);
       return ({ ...state, listingForm: { ...state.listingForm, images: spliced } });
+    case ADD_LISTING_FORM_ERROR:
+      return ({ ...state, formErrors: { ...state.formErrors, [action.error]: action.message}});
+    case CLEAR_ERRORS:
+      return ({ ...state, formErrors: {} });
     default:
       return state;
   }

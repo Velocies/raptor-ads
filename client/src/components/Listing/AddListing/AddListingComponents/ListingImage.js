@@ -1,7 +1,8 @@
 import React from 'react';
 import { Form, Input, Icon } from 'semantic-ui-react';
 
-const ListingImage = ({ onClick, onChange, image }) => {
+const ListingImage = ({ onClick, onChange, image, getFormClass }) => {
+  console.log('getFormClass', getFormClass)
   return (
     <Form.Field>
       <Input
@@ -10,6 +11,7 @@ const ListingImage = ({ onClick, onChange, image }) => {
         value={image}
         name="image"
         onChange={e => onChange(e)}
+        className={getFormClass('image')}
       />
     </Form.Field>
   );

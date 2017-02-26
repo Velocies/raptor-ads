@@ -1,8 +1,13 @@
 import isEmpty from 'lodash/isEmpty';
 import { push } from 'react-router-redux';
-import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT, CHANGE_LOGIN_FIELD, LOGIN_FAILURE, LOGIN_SUCCESS, ADD_LISTING_FAILURE, ADD_LISTING_SUCCESS, GET_LISTINGS_SUCCESS, GET_LISTINGS_FAILURE, DELETE_IMAGE, TOKEN_ERROR, FETCHING_LISTINGS, FETCHING_LISTINGS_SUCCESS, POST_LISTING_SUCCESS } from '../constants';
+import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT, CHANGE_LOGIN_FIELD, LOGIN_FAILURE, LOGIN_SUCCESS, ADD_LISTING_FAILURE, ADD_LISTING_SUCCESS, GET_LISTINGS_SUCCESS, GET_LISTINGS_FAILURE, DELETE_IMAGE, TOKEN_ERROR, FETCHING_LISTINGS, FETCHING_LISTINGS_SUCCESS, POST_LISTING_SUCCESS, ADD_LISTING_FORM_ERROR, UPLOAD_LISTING_IMAGE_ERROR } from '../constants';
 import { validateSignup } from '../components/helpers/validateSignup';
 import { postUser, postLogin, postListing, deleteListing, getUserListings, getUserFromToken } from './api';
+import validateListing from '../components/helpers/validateListing';
+
+
+const urlRegex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+
 
 export const toggleSignupLink = link =>
   ({
@@ -114,11 +119,20 @@ export const changeListingField = (field, value) =>
     value,
   });
 
-export const uploadListingImage = value =>
-  ({
-    type: UPLOAD_LISTING_IMAGE,
-    value,
-  });
+export const uploadListingImage = value => {
+  if (urlRegex.test(value.img_path)) {
+    return ({
+      type: UPLOAD_LISTING_IMAGE,
+      value,
+    });
+  } else {
+    return ({
+      type: ADD_LISTING_FORM_ERROR,
+      error: 'image',
+      message: 'Image URL is invalid',
+    });
+  }
+}
 
 const addListingError = err =>
   ({
@@ -162,20 +176,23 @@ export const fetchUserListings = id =>
 
 
 export const uploadListing = data =>
-  (dispatch) => {
-    postListing(data)
-      .then((res) => {
-        res.json()
-          .then((payload) => {
-            if (payload.error) {
-              dispatch(addListingError(payload.error));
-            } else {
-              dispatch(postListingSuccess());
-              dispatch(fetchUserListings(data.id));
-              dispatch(push('/dashboard'));
-            }
-          });
-      });
+  (dispatch, getState) => {
+    validateListing(data.data, dispatch);
+    if (isEmpty(getState().listing.formErrors)) {
+      postListing(data)
+        .then((res) => {
+          res.json()
+            .then((payload) => {
+              if (payload.error) {
+                dispatch(addListingError(payload.error));
+              } else {
+                dispatch(postListingSuccess());
+                dispatch(fetchUserListings(data.id));
+                dispatch(push('/dashboard'));
+              }
+            });
+        });
+    }
   };
 
 export const removeListing = (userId, listingId) =>
@@ -214,4 +231,11 @@ export const pullUserFromToken = token =>
         }
       });
   };
+
+export const addListingFormError = (error, message) =>
+  ({
+    type: ADD_LISTING_FORM_ERROR,
+    error,
+    message,
+  });
 

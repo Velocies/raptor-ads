@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import classnames from 'classnames';
 import { Form, Grid, Icon, Header } from 'semantic-ui-react';
-import { changeListingField, uploadListingImage, uploadListing, deleteImage } from '../../../actions';
+import { changeListingField, uploadListingImage, uploadListing, deleteImage, clearErrors } from '../../../actions';
 import ListingTitle from './AddListingComponents/ListingTitle';
 import ListingImage from './AddListingComponents/ListingImage';
 import ListingJobTypes from './AddListingComponents/ListingJobTypes';
@@ -14,6 +15,7 @@ class AddListing extends Component {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.getFormClass = this.getFormClass.bind(this);
   }
 
   onSubmit(e) {
@@ -21,11 +23,16 @@ class AddListing extends Component {
     const data = this.props.listingForm;
     const id = this.props.id;
     const payload = { data, id };
+    this.props.dispatch(clearErrors());
     this.props.dispatch(uploadListing(payload));
   }
 
   handleDelete(index) {
     this.props.dispatch(deleteImage(index));
+  }
+
+  getFormClass(name) {
+    return classnames({ fieldInvalid: this.props.formErrors[name] });
   }
 
   render() {
@@ -37,15 +44,28 @@ class AddListing extends Component {
         <Grid width={16}>
           <Grid.Column width={5} />
           <Grid.Column width={6}>
+            {formErrors.title && <span className="formError">{formErrors.title}</span>}
             <Form onSubmit={e => this.onSubmit(e)}>
-              <ListingTitle title={title} onChange={onChange} />
-              <ListingJobTypes type={type} onChange={onChange} />
-              <ListingBody body={body} onChange={onChange} />
+              <ListingTitle
+                title={title}
+                onChange={onChange}
+                getFormClass={this.getFormClass}
+              />
+              {formErrors.type && <span className="formError">{formErrors.type}</span>}
+              <ListingJobTypes type={type} onChange={onChange} getFormClass={this.getFormClass} />
+              {formErrors.body && <span className="formError">{formErrors.body}</span>}
+              <ListingBody
+                body={body}
+                onChange={onChange}
+                getFormClass={this.getFormClass}
+              />
+              {formErrors.image && <span className="formError">{formErrors.image}</span>}
               <ListingImage
                 images={images}
                 onClick={onClick}
                 onChange={onChange}
                 image={image}
+                getFormClass={this.getFormClass}
               />
               <Form.Button className="ui center aligned grid" >Submit</Form.Button>
             </Form>

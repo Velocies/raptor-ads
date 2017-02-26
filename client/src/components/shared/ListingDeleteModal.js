@@ -1,7 +1,9 @@
 import React from 'react';
 import { Icon, Label, Header, Modal, Button } from 'semantic-ui-react';
 
-const ListingDeleteModal = ({ handleDelete, listingId, userId }) =>
+const ListingDeleteModal = ({ handleDelete, listingId, userId }) => {
+  console.log('listing id', listingId);
+return (
   <Modal
     trigger={
       <Label
@@ -24,14 +26,16 @@ const ListingDeleteModal = ({ handleDelete, listingId, userId }) =>
         <Icon name="remove" /> No
       </Button>
       <Button
-        onClick={() => handleDelete(listingId)}
+        onClick={() => handleDelete(userId, listingId)}
         color="green"
         inverted
       >
         <Icon name="checkmark" /> Yes
       </Button>
     </Modal.Actions>
-  </Modal>;
+  </Modal>
+  );
+}
 
 ListingDeleteModal.propTypes = {
   listingId: React.PropTypes.number.isRequired,

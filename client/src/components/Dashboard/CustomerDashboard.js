@@ -56,6 +56,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch =>
   ({
     handleDelete: (userId, listingId) => {
+      console.log('listing id', userId)
       dispatch(removeListing(userId, listingId));
     },
   });

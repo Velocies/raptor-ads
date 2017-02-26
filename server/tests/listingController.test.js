@@ -1,26 +1,18 @@
 const app = require('../server');
 const chai = require('chai');
 const request = require('supertest');
-const db = require('../../database/schemas.js');
+const models = require('../../database/schemas.js');
+const db = require('../../database/database');
 
 const expect = chai.expect;
 let result = null;
 
 describe('Begin', () => {
-  afterEach((done) => {
-    // Destroy any users in the database after every 'it' block
-    db.Post.destroy({
-      where: {
-      },
-    })
-    .then(() => {
-      // Destroy all listings in the database after every 'it' block
-      db.User.destroy({
-        where: {
-        },
+  beforeEach((done) => {
+    db.database.sync({ force: true })
+      .then(() => {
+        done();
       });
-      done();
-    });
   });
 
   describe('Listing Creation', () => {
@@ -43,7 +35,7 @@ describe('Begin', () => {
         type: 'Computer Repair',
       };
 
-      db.User.create(data)
+      models.User.create(data)
       .then((user) => {
         request(app).post(`/api/users/${user.dataValues.id}/listings`).send(post)
         .end((err, res) => {

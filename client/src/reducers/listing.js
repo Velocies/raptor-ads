@@ -1,4 +1,4 @@
-import { CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, GET_LISTINGS_SUCCESS, DELETE_IMAGE, FETCHING_LISTINGS, POST_LISTING_SUCCESS, ADD_LISTING_FORM_ERROR, CLEAR_ERRORS } from '../constants';
+import { CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, GET_LISTINGS_SUCCESS, DELETE_IMAGE, FETCHING_LISTINGS, POST_LISTING_SUCCESS, ADD_LISTING_FORM_ERROR, CLEAR_ERRORS, UPLOAD_LISTING_IMAGE_ERROR } from '../constants';
 
 
 export const initialState = {
@@ -21,6 +21,7 @@ export const listing = (state = initialState, action) => {
     case UPLOAD_LISTING_IMAGE:
       return ({
         ...state,
+        formErrors: { ...state.formErrors, image: null },
         listingForm: { ...state.listingForm, images: [...state.listingForm.images, action.value] },
       });
     case GET_LISTINGS_SUCCESS:

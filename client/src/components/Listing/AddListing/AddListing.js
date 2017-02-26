@@ -59,11 +59,13 @@ class AddListing extends Component {
                 onChange={onChange}
                 getFormClass={this.getFormClass}
               />
+              {formErrors.image && <span className="formError">{formErrors.image}</span>}
               <ListingImage
                 images={images}
                 onClick={onClick}
                 onChange={onChange}
                 image={image}
+                getFormClass={this.getFormClass}
               />
               <Form.Button className="ui center aligned grid" >Submit</Form.Button>
             </Form>

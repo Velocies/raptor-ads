@@ -34,16 +34,22 @@ class AllListings extends Component {
     console.log('clicked', e.target.innerHTML);
   }
 
+  cutBody(body) {
+    if (body.length > 20) {
+      body = body.slice(0, 20) + '...';
+    }
+    return body;
+  }
+
   render() {
-    const { isFetching, allListings } = this.props;
-    console.log('STATE OF ARRAY', allListings);
+    const { isFetching, allListings, cutBody } = this.props;
     if (isFetching) {
       return <Loader active inline='centered' />;
     } else {
       return (
         <Container textAlign="center">
           <AllListingsFilter onClick={this.onClick} />
-          <h3 onClick={() => this.onClick()}>Listings</h3>
+          <h3>Listings</h3>
           <Divider />
           <Card.Group itemsPerRow={4} stackable>
             {allListings && allListings.map(listing =>
@@ -56,6 +62,7 @@ class AllListings extends Component {
                 type={listing.type}
                 onClick={this.onClick}
                 handleDelete={this.handleDelete}
+                cutBody={this.cutBody}
               />
             )}
           </Card.Group>
@@ -68,7 +75,7 @@ class AllListings extends Component {
 const mapStateToProps = (state) => {
   const { allListings, isFetching } = state.listings;
   const { id } = state.auth.loggedInUser;
-  return { allListings, isFetching };
-}
+  return { allListings, isFetching, id };
+};
 
 export default connect(mapStateToProps)(AllListings);

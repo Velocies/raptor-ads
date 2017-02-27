@@ -18,6 +18,10 @@
   border-color: red !important;
 }
 
+.fieldInvalid input {
+  border-color: red !important;
+}
+
 .icon-bar {
   margin: 10px 0;
 }

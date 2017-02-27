@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { Container, Header, Card, Button, Divider, Loader } from 'semantic-ui-react';
+import { Container, Header, Card, Button, Divider, Loader, Grid } from 'semantic-ui-react';
 import { getAllListings } from '../../../actions/allListingActions';
 import Listing from '../../shared/Listing';
 import AllListingsFilter from './AllListingsComponents/AllListingsFilter';
+import GettingStartedExample from './AllListingsComponents/GoogleMap/GoogleMapContainer';
 // import InitialMap from './GoogleMap/GoogleMap';
 
 
@@ -48,7 +49,14 @@ class AllListings extends Component {
     } else {
       return (
         <Container textAlign="center">
-          <AllListingsFilter onClick={this.onClick} />
+          <Grid width={16}>
+            <Grid.Column width={8}>
+              <GettingStartedExample />
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <AllListingsFilter onClick={this.onClick} />
+            </Grid.Column>
+          </Grid>
           <h3>Listings</h3>
           <Divider />
           <Card.Group itemsPerRow={4} stackable>

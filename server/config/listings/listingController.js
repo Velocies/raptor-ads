@@ -6,6 +6,9 @@ module.exports = {
       where: {
         id: req.params.listId,
       },
+      include: [{
+        model: db.Picture,
+      }],
     })
       .then((listing) => {
         res.send(listing);
@@ -13,18 +16,26 @@ module.exports = {
   },
 
   getAll: (err, res) => {
-    db.Post.findAll({})
+    db.Post.findAll({
+      where: {},
+      include: [{ model: db.Picture }],
+    })
       .then((posts) => {
         res.send(posts);
       });
   },
 
   getAllForUser: (req, res) => {
-    db.User.find({ where: {id: req.params.id} })
+    db.User.find({
+      where: { id: req.params.id },
+    })
       .then((user) => {
-        user.getPosts({}).then((posts) => {
-          res.json(posts);
-        });
+        user.getPosts({
+          include: [{ model: db.Picture }],
+        })
+          .then((posts) => {
+            res.json(posts);
+          });
       });
   },
 

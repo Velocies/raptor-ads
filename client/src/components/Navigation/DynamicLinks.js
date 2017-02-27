@@ -17,6 +17,9 @@ const DynamicLinks = ({ id, logout }) => {
   } else {
     return (
       <Menu.Menu position="right">
+        <Menu.Item as={Link} to="profile">
+          Profile
+        </Menu.Item>
         <Menu.Item onClick={() => logout()}>
           Logout
         </Menu.Item>

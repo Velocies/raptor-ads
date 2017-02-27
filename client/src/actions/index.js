@@ -104,7 +104,9 @@ export const loginUser = data =>
             if (payload.error) {
               dispatch(loginError());
             } else {
+              console.log('payload', payload);
               dispatch(loginSuccess(payload));
+              dispatch(fetchUserListings(payload.user.id));
               localStorage.setItem('raptor_token', payload.token);
               dispatch(push('/dashboard'));
             }

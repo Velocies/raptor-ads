@@ -12,6 +12,7 @@ export const initialState = {
   userListings: [],
   formErrors: {
   },
+  isFetching: false,
 };
 
 export const listing = (state = initialState, action) => {
@@ -33,7 +34,7 @@ export const listing = (state = initialState, action) => {
       spliced.splice(action.index, 1);
       return ({ ...state, listingForm: { ...state.listingForm, images: spliced } });
     case ADD_LISTING_FORM_ERROR:
-      return ({ ...state, formErrors: { ...state.formErrors, [action.error]: action.message}});
+      return ({ ...state, formErrors: { ...state.formErrors, [action.error]: action.message } });
     case CLEAR_ERRORS:
       return ({ ...state, formErrors: {} });
     default:

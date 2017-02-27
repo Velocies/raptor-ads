@@ -47,3 +47,8 @@ export const fetchAllListings = () =>
   fetch('/api/listings', {
     method: 'GET',
   });
+
+export const fetchCurrentListing = listingId =>
+  fetch(`/api/listings/${listingId}`, {
+    method: 'GET',
+  });

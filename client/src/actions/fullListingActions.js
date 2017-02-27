@@ -1,0 +1,25 @@
+import { GET_CURRENT_LISTING_SUCCESS, FETCHING_LISTING } from '../constants';
+import { fetchCurrentListing } from './api';
+
+const startFetchListing = () =>
+  ({
+    type: FETCHING_LISTING,
+  });
+
+const getCurrentListingsSuccess = payload =>
+  ({
+    type: GET_CURRENT_LISTING_SUCCESS,
+    payload,
+  });
+
+export const getCurrentListing = listingId =>
+  (dispatch) => {
+    dispatch(startFetchListing());
+    fetchCurrentListing(2)
+    .then((res) => {
+      res.json()
+      .then((data) => {
+        dispatch(getCurrentListingsSuccess(data));
+      });
+    });
+  };

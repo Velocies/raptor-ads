@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Grid, Image, Header, Divider, Message, List } from 'semantic-ui-react';
 import Carousel from 'nuka-carousel';
+import { Container, Grid, Image, Header, Divider, Message, List, Loader } from 'semantic-ui-react';
+import { getCurrentListing } from '../../actions/fullListingActions';
 
 class FullListing extends Component {
   constructor(props) {
     super(props);
+    this.listingId = this.props.params.id;
+  }
+
+  componentDidMount() {
+    this.props.dispatch(getCurrentListing(this.listingId));
   }
 
   render() {
-    const { title, body, images, createdAt } = this.props;
+    const { isFetching, currentListing } = this.props;
     console.log('FullListing props: ', this.props);
+
+    if (isFetching) {
+      return <Loader active inline="centered" />;
+    }
+
     return (
       <Container textAlign="center">
-        <Header as="h1" className="center">-- {title || 'Current Listing'} -- <br /></Header>
-        <Header as="h4" className="center" color="grey">{createdAt || 'Time Created'}</Header>
+        <Header as="h1" className="center">-- {currentListing.title || 'Current Listing'} -- <br /></Header>
+        <Header as="h4" className="center" color="grey">{currentListing.createdAt || 'Time Created'}</Header>
 
         <Divider />
 
@@ -102,11 +113,17 @@ class FullListing extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { listingForm } = state.listing;
+  const { currentListing, isFetching } = state.listing;
   const { id } = state.auth.loggedInUser;
   return {
     id,
-    listingForm,
+    currentListing,
+    isFetching,
   };
 };
+
+FullListing.propTypes = {
+  isFetching: React.PropTypes.bool.isRequired,
+};
+
 export default connect(mapStateToProps)(FullListing);

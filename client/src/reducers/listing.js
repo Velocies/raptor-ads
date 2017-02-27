@@ -1,7 +1,8 @@
-import { CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, GET_LISTINGS_SUCCESS, DELETE_IMAGE, FETCHING_LISTINGS, POST_LISTING_SUCCESS, ADD_LISTING_FORM_ERROR, CLEAR_ERRORS } from '../constants';
+import { FETCHING_LISTING, GET_CURRENT_LISTING_SUCCESS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, GET_LISTINGS_SUCCESS, DELETE_IMAGE, FETCHING_LISTINGS, POST_LISTING_SUCCESS, ADD_LISTING_FORM_ERROR, CLEAR_ERRORS } from '../constants';
 
 
 export const initialState = {
+  currentListing: {},
   listingForm: {
     title: '',
     body: '',
@@ -37,6 +38,10 @@ export const listing = (state = initialState, action) => {
       return ({ ...state, formErrors: { ...state.formErrors, [action.error]: action.message } });
     case CLEAR_ERRORS:
       return ({ ...state, formErrors: {} });
+    case GET_CURRENT_LISTING_SUCCESS:
+      return ({ ...state, listing: { ...state.listing, currentListing: {yolo: 'Hi there'}, isFetching: false } });
+    case FETCHING_LISTING:
+      return ({ ...state, listing: { ...state.listing, isFetching: true } });
     default:
       return state;
   }

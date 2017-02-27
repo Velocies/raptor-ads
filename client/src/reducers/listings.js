@@ -2,7 +2,6 @@ import { FETCHING_LISTINGS, GET_ALL_LISTINGS_SUCCESS } from '../constants';
 
 
 export const initialState = {
-  userListings: [],
   allListings: [],
   isFetching: false,
 };

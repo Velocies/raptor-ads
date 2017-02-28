@@ -35,6 +35,7 @@
     "lodash": "^4.17.4",
     "moment": "^2.17.1",
     "nodemon": "^1.11.0",
+    "nuka-carousel": "^2.0.4",
     "passport": "^0.3.2",
     "pg": "^6.1.2",
     "pg-hstore": "^2.3.2",

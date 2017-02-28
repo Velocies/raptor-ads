@@ -17,6 +17,8 @@ export const initialState = {
   formErrors: {
   },
   loggedInUser: {
+    firstName: '',
+    id: '',
   },
 };
 

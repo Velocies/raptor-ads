@@ -6,20 +6,9 @@ const db = require('../../database/database');
 
 const expect = chai.expect;
 describe('Begin', () => {
-  beforeEach((done) => {
-    db.database.sync({ force: true })
-      .then(() => {
-        done();
-      });
-  });
+  beforeEach(() => db.database.sync({ force: true }));
 
   describe('User Creation', () => {
-  beforeEach((done) => {
-    db.database.sync({ force: true })
-      .then(() => {
-        done();
-      });
-  });
     it('should respond with a statusCode of 200 for /users/api', (done) => {
       request(app)
         .post('/api/users')
@@ -46,7 +35,6 @@ describe('Begin', () => {
         .post('/api/users')
         .send(data)
         .end((err, res) => {
-          console.log('res', res.body)
           expect(res.body.user.email).to.equal(data.email);
           done();
         });
@@ -56,8 +44,8 @@ describe('Begin', () => {
   describe('User Deletion', () => {
     it('should delete a user from the database', (done) => {
       const data = {
-        firstName: 'Cory Wolnewitz',
-        lastName: 'Wolnewitz',
+        first_name: 'Cory Wolnewitz',
+        last_name: 'Wolnewitz',
         password: 'trololol',
         email: 'cwol@gmail.com',
         address: '1337 Sure Ln',

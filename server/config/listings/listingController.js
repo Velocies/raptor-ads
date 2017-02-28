@@ -51,6 +51,7 @@ module.exports = {
         };
         db.Post.create(newPost, { include: [db.Picture] })
           .then((post) => {
+            console.log('post', post)
             res.json(post);
           });
       })

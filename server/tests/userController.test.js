@@ -6,12 +6,7 @@ const db = require('../../database/database');
 
 const expect = chai.expect;
 describe('Begin', () => {
-  beforeEach((done) => {
-    db.database.sync({ force: true })
-      .then(() => {
-        done();
-      });
-  });
+  beforeEach(() => db.database.sync({ force: true }));
 
   describe('User Creation', () => {
     it('should respond with a statusCode of 200 for /users/api', (done) => {
@@ -28,8 +23,8 @@ describe('Begin', () => {
         firstName: 'Cory Wolnewitz',
         lastName: 'Wolnewitz',
         password: 'trololol',
-        email: 'cwol@bigusdickus.com',
-        address: '1337 Cocksure Ln',
+        email: 'cwol@gmail.com',
+        address: '1337 Sure Ln',
         city: 'Jupiter',
         state: 'FL',
         zip: '70542',
@@ -49,11 +44,11 @@ describe('Begin', () => {
   describe('User Deletion', () => {
     it('should delete a user from the database', (done) => {
       const data = {
-        firstName: 'Cory Wolnewitz',
-        lastName: 'Wolnewitz',
+        first_name: 'Cory Wolnewitz',
+        last_name: 'Wolnewitz',
         password: 'trololol',
-        email: 'cwol@bigusdickus.com',
-        address: '1337 Cocksure Ln',
+        email: 'cwol@gmail.com',
+        address: '1337 Sure Ln',
         city: 'Jupiter',
         state: 'FL',
         zip: '70542',
@@ -81,8 +76,8 @@ describe('Begin', () => {
         firstName: 'Cory Wolnewitz',
         lastName: 'Wolnewitz',
         password: 'trololol',
-        email: 'cwol@bigusdickus.com',
-        address: '1337 Cocksure Ln',
+        email: 'cwol@gmail.com',
+        address: '1337 Sure Ln',
         city: 'Jupiter',
         state: 'FL',
         zip: '70542',
@@ -138,8 +133,8 @@ describe('Begin', () => {
         firstName: 'Cory Wolnewitz',
         lastName: 'Wolnewitz',
         password: 'trololol',
-        email: 'cwol@bigusdickus.com',
-        address: '1337 Cocksure Ln',
+        email: 'cwol@gmail.com',
+        address: '1337 Sure Ln',
         city: 'Jupiter',
         state: 'FL',
         zip: '70542',
@@ -170,8 +165,8 @@ describe('Begin', () => {
         firstName: 'Cory Wolnewitz',
         lastName: 'Wolnewitz',
         password: 'trololol',
-        email: 'cwol@bigusdickus.com',
-        address: '1337 Cocksure Ln',
+        email: 'cwol@gmail.com',
+        address: '1337 Sure Ln',
         city: 'Jupiter',
         state: 'FL',
         zip: '70542',
@@ -207,8 +202,8 @@ describe('Begin', () => {
         firstName: 'Cory Wolnewitz',
         lastName: 'Wolnewitz',
         password: 'trololol',
-        email: 'cwol@bigusdickus.com',
-        address: '1337 Cocksure Ln',
+        email: 'cwol@gmail.com',
+        address: '1337 Sure Ln',
         city: 'Jupiter',
         state: 'FL',
         zip: '70542',

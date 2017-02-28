@@ -227,7 +227,7 @@ export const pullUserFromToken = token =>
         } else {
           res.json()
             .then((user) => {
-              dispatch(loginSuccess({user}));
+              dispatch(loginSuccess({ user }));
               dispatch(fetchUserListings(user.id));
             });
         }

@@ -12,7 +12,7 @@ describe('auth reducer', () => {
     const expectedState = {
       signupForm: {
         activeLink: 'customer',
-        first_name: '',
+        firstName: '',
         email: '',
         lastName: '',
         businessName: '',
@@ -26,7 +26,7 @@ describe('auth reducer', () => {
       formErrors: {
       },
       loggedInUser: {
-        first_name: '',
+        firstName: '',
         id: 0,
       },
     };
@@ -46,7 +46,7 @@ describe('auth reducer', () => {
     const expectedState = {
       signupForm: {
         activeLink: 'customer',
-        first_name: 'cory',
+        firstName: 'cory',
         email: '',
         lastName: '',
         businessName: '',
@@ -60,13 +60,13 @@ describe('auth reducer', () => {
       formErrors: {
       },
       loggedInUser: {
-        first_name: '',
+        firstName: '',
         id: 0,
       },
     };
 
     const newState =
-      auth(initialState, actions.changeSignupField('first_name', 'cory'));
+      auth(initialState, actions.changeSignupField('firstName', 'cory'));
 
     expect(newState).toEqual(expectedState);
   });
@@ -75,7 +75,7 @@ describe('auth reducer', () => {
     const expectedState = {
       signupForm: {
         activeLink: 'customer',
-        first_name: '',
+        firstName: '',
         email: '',
         lastName: '',
         businessName: '',
@@ -88,7 +88,7 @@ describe('auth reducer', () => {
         password: '',
       },
       loggedInUser: {
-        first_name: '',
+        firstName: '',
         id: 0,
       },
     };
@@ -103,7 +103,7 @@ describe('auth reducer', () => {
     const startingState = {
       signupForm: {
         activeLink: 'customer',
-        first_name: '',
+        firstName: '',
         email: '',
         lastName: '',
         businessName: '',
@@ -116,7 +116,7 @@ describe('auth reducer', () => {
         password: '',
       },
       loggedInUser: {
-        first_name: '',
+        firstName: '',
         id: 0,
       },
     };

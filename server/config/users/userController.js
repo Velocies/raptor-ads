@@ -37,8 +37,8 @@ module.exports = {
         const passwordToSave = bcrypt.hashSync(req.body.password, salt);
 
         db.User.create({
-          first_name: req.body.firstName,
-          last_name: req.body.lastName,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
           password: passwordToSave,
           email: req.body.email,
           address: req.body.address,
@@ -52,7 +52,7 @@ module.exports = {
         .then((createdUser) => {
           const token = jwt.sign({
             email: createdUser.email,
-            first_name: createdUser.first_name,
+            firstName: createdUser.firstName,
             id: createdUser.id,
           }, 'bobbyisbadatstarcraft', { expiresIn: '1h' });
 

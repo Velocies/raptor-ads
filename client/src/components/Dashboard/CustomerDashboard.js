@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import { Container, Header, Card, Divider, Loader } from 'semantic-ui-react';
 import Listing from '../shared/Listing';
 import { removeListing } from '../../actions/listingActions';
-import { capitalize } from '../helpers/capitalize';
+import capitalize from '../helpers/capitalize';
 import convertTime from '../helpers/convertTime';
 
 const CustomerDashboard =
-  ({ first_name, userListings, id, isFetching, handleDelete, pathname }) => {
+  ({ firstName, userListings, id, isFetching, handleDelete, pathname }) => {
     if (isFetching) { return <Loader active inline="centered" />; }
     return (
       <Container textAlign="center">
         <Header as="h1" className="center">
-          {`${capitalize(first_name)}'s Dashboard`}
+          {`${capitalize(firstName)}'s Dashboard`}
         </Header>
         <h3>Recent Listings</h3>
         <Divider />
@@ -36,7 +36,7 @@ const CustomerDashboard =
   };
 
 CustomerDashboard.propTypes = {
-  first_name: React.PropTypes.string.isRequired,
+  firstName: React.PropTypes.string.isRequired,
   userListings:
   React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   id: React.PropTypes.number.isRequired,
@@ -46,11 +46,11 @@ CustomerDashboard.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { first_name, id } = state.auth.loggedInUser;
+  const { firstName, id } = state.auth.loggedInUser;
   const { userListings, isFetching } = state.listing;
   const { pathname } = state.routing.locationBeforeTransitions;
 
-  return { first_name, id, userListings, isFetching, pathname };
+  return { firstName, id, userListings, isFetching, pathname };
 };
 
 const mapDispatchToProps = dispatch =>

@@ -4,6 +4,7 @@ import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS
 import { validateSignup } from '../components/helpers/validateSignup';
 import { postUser, postLogin, postListing, deleteListing, getUserListings, getUserFromToken } from './api';
 import validateListing from '../components/helpers/validateListing';
+import buildBusinessObj from '../components/helpers/buildBusinessObj';
 
 
 const urlRegex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
@@ -80,7 +81,9 @@ export const customerSignup = customer =>
   (dispatch, getState) => {
     validateSignup(customer, dispatch);
     if (isEmpty(getState().auth.formErrors)) {
-      postUser(customer)
+      const newCustomer = buildBusinessObj(customer);
+      console.log('CUSTOMER', newCustomer);
+      postUser(newCustomer)
         .then((res) => {
           res.json()
             .then((data) => {

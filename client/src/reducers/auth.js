@@ -38,6 +38,7 @@ export const auth = (state = initialState, action) => {
       return ({
         ...state,
         loggedInUser: { ...state.loggedInUser, ...action.data.user },
+        signupForm: { ...state.signupForm, ...initialState.signupForm },
       });
     case LOGIN_SUCCESS:
       return ({

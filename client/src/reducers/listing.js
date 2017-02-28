@@ -2,7 +2,9 @@ import { FETCHING_LISTING, GET_CURRENT_LISTING_SUCCESS, CHANGE_LISTING_FIELD, UP
 
 
 export const initialState = {
-  currentListing: {},
+  currentListing: {
+    pictures: [],
+  },
   listingForm: {
     title: '',
     body: '',
@@ -39,7 +41,7 @@ export const listing = (state = initialState, action) => {
     case CLEAR_ERRORS:
       return ({ ...state, formErrors: {} });
     case GET_CURRENT_LISTING_SUCCESS:
-      return ({ ...state, listing: { ...state.listing, currentListing: {yolo: 'Hi there'}, isFetching: false } });
+      return ({ ...state, currentListing: action.payload, listing: { ...state.listing, isFetching: false } });
     case FETCHING_LISTING:
       return ({ ...state, listing: { ...state.listing, isFetching: true } });
     default:

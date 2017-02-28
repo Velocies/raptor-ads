@@ -18,7 +18,7 @@ export const initialState = {
   },
   loggedInUser: {
     firstName: '',
-    id: '',
+    id: 0,
   },
 };
 

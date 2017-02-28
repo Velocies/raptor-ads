@@ -7,7 +7,7 @@ import { capitalize } from '../helpers/capitalize';
 import convertTime from '../helpers/convertTime';
 
 const CustomerDashboard =
-  ({ first_name, userListings, id, isFetching, handleDelete, pathname, cutBody }) => {
+  ({ first_name, userListings, id, isFetching, handleDelete, pathname }) => {
     if (isFetching) { return <Loader active inline="centered" />; }
     return (
       <Container textAlign="center">
@@ -28,7 +28,6 @@ const CustomerDashboard =
               userId={id}
               handleDelete={handleDelete}
               pathname={pathname}
-              cutBody={cutBody}
             />,
           )}
         </Card.Group>
@@ -58,12 +57,6 @@ const mapDispatchToProps = dispatch =>
   ({
     handleDelete: (userId, listingId) => {
       dispatch(removeListing(userId, listingId));
-    },
-    cutBody: (body) => {
-      if (body.length > 20) {
-        body = body.slice(0, 20) + '...';
-      }
-      return body;
     },
   });
 

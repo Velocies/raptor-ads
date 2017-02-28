@@ -2,12 +2,13 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Card, Image, Icon } from 'semantic-ui-react';
 import ListingDeleteModal from './ListingDeleteModal';
+import truncate from '../helpers/truncate';
 
 const getIconString = str => (
   str === 'home improvement' ? 'home' : 'laptop'
 );
 
-const Listing = ({ userId, listingId, title, createdAt, body, type, handleDelete, pathname, cutBody }) =>
+const Listing = ({ userId, listingId, title, createdAt, body, type, handleDelete, pathname }) =>
   <Card centered raised>
     <Link to={`/listings/${listingId}`} >
       <Card centered raised>
@@ -30,7 +31,7 @@ const Listing = ({ userId, listingId, title, createdAt, body, type, handleDelete
             { createdAt }
           </Card.Meta>
           <Card.Description>
-            { cutBody(body) }
+            { truncate(body) }
           </Card.Description>
         </Card.Content>
       </Card>
@@ -45,7 +46,7 @@ Listing.propTypes = {
   type: React.PropTypes.string.isRequired,
   userId: React.PropTypes.number,
   listingId: React.PropTypes.number.isRequired,
-  handleDelete: React.PropTypes.func,
+  handleDelete: React.PropTypes.func.isRequired,
   pathname: React.PropTypes.string.isRequired,
 };
 

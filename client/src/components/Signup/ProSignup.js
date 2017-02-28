@@ -35,8 +35,17 @@ class ProSignup extends Component {
       email,
       password,
       passwordConfirmation,
-      businessName,
     } = this.props.signupForm;
+
+    const {
+      companyName,
+      address,
+      city,
+      state,
+      zip,
+      license,
+    } = this.props.business;
+
     const { formErrors } = this.props;
     return (
       <div>
@@ -81,7 +90,55 @@ class ProSignup extends Component {
                   className={this.getFormClass('email')}
                 />
               </Form.Field>
-              { formErrors.businessName && <span className='formError'>{formErrors.businessName}</span> }
+              <Form.Field width="8">
+                <label htmlFor="businessName">Business Name</label>
+                <input
+                  placeholder="Company Name"
+                  name="companyName"
+                  value={companyName}
+                  onChange={e => this.onChange(e)}
+                />
+              </Form.Field>
+              <Form.Field width="8">
+                <label htmlFor="Address">Business Street Address</label>
+                <input
+                  placeholder="Business Name"
+                  name="companyAddress"
+                  value={businessName}
+                  onChange={e => this.onChange(e)}
+                  className={this.getFormClass('businessName')}
+                />
+              </Form.Field>
+              <Form.Field width="8">
+                <label htmlFor="businessName">Business Name</label>
+                <input
+                  placeholder="Business Name"
+                  name="businessName"
+                  value={businessName}
+                  onChange={e => this.onChange(e)}
+                  className={this.getFormClass('businessName')}
+                />
+              </Form.Field>
+              <Form.Field width="8">
+                <label htmlFor="businessName">Business Name</label>
+                <input
+                  placeholder="Business Name"
+                  name="businessName"
+                  value={businessName}
+                  onChange={e => this.onChange(e)}
+                  className={this.getFormClass('businessName')}
+                />
+              </Form.Field>
+              <Form.Field width="8">
+                <label htmlFor="businessName">Business Name</label>
+                <input
+                  placeholder="Business Name"
+                  name="businessName"
+                  value={businessName}
+                  onChange={e => this.onChange(e)}
+                  className={this.getFormClass('businessName')}
+                />
+              </Form.Field>
               <Form.Field width="8">
                 <label htmlFor="businessName">Business Name</label>
                 <input
@@ -132,7 +189,6 @@ ProSignup.propTypes = {
     email: React.PropTypes.string.isRequired,
     firstName: React.PropTypes.string.isRequired,
     lastName: React.PropTypes.string.isRequired,
-    businessName: React.PropTypes.string.isRequired,
     password: React.PropTypes.string.isRequired,
     passwordConfirmation: React.PropTypes.string.isRequired,
   }).isRequired,
@@ -141,9 +197,11 @@ ProSignup.propTypes = {
 
 const mapStateToProps = (state) => {
   const { signupForm, formErrors } = state.auth;
+  const { business } = state.auth.signupForm;
   return {
     signupForm,
     formErrors,
+    business,
   };
 };
 

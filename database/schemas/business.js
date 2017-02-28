@@ -5,11 +5,11 @@ module.exports = (db, Sequelize) => {
       autoIncrement: true,
       primaryKey: true,
     },
-    name: Sequelize.STRING,
-    address: Sequelize.STRING,
-    city: Sequelize.STRING,
-    state: Sequelize.STRING,
-    zip: Sequelize.STRING,
+    companyName: Sequelize.STRING,
+    companyAddress: Sequelize.STRING,
+    companyCity: Sequelize.STRING,
+    companyState: Sequelize.STRING,
+    companyZip: Sequelize.STRING,
     license: Sequelize.STRING,
   });
 

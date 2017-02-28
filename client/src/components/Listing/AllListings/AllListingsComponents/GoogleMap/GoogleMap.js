@@ -21,9 +21,8 @@ const GoogleMapRender = withGoogleMap(props => {
   <GoogleMap
     ref={props.onMapLoad}
     defaultZoom={3}
-    defaultCenter={props.defaultCenter}
     onClick={props.onMapClick}
-    center={{lat: -30, lng: 100}}
+    center={props.defaultCenter}
   >
     {props.markers.map(marker => (
       <Marker

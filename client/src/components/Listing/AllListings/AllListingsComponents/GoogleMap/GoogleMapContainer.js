@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Helmet from "react-helmet";
 import GoogleMapRender from './GoogleMap';
-import { addMapMarker } from '../../../../../actions/googleMapActions';
+import { addMapMarker, changeCenter } from '../../../../../actions/googleMapActions';
 import { tokenError } from '../../../../../actions/index.js';
 
 import {
@@ -45,6 +45,8 @@ class GoogleMapContainer extends Component {
       key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
     };
     this.props.dispatch(addMapMarker(nextMarkers));
+    this.props.dispatch(changeCenter({ lat: 20, lng: -30.044922 }))
+
     // this.setState({
     //   markers: nextMarkers,
     // });
@@ -67,7 +69,6 @@ class GoogleMapContainer extends Component {
      * web front end and even with google maps API.)
      */
     this.geocoder = new google.maps.Geocoder();
-    console.log('geocoder', this.geocoder)
     this.geocoder.geocode({ 'address': '1012 docday court, Folsom, Ca, United States' }, function handleResults(results, status) {
 
       const nextMarkers = this.state.markers.filter(marker => marker !== targetMarker);
@@ -84,7 +85,6 @@ class GoogleMapContainer extends Component {
       console.log('markers', this.state.markers);
       console.log('results', results, status);
     }.bind(this));
-
   }
 
   render() {

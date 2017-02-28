@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Grid, Icon, Header } from 'semantic-ui-react';
-import {  } from '../../actions';
+import { updateFormField } from '../../actions';
 
 class Profile extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class Profile extends Component {
   }
 
   onChange(e) {
-    this.props.dispatch()
+    this.props.dispatch(updateFormField(e.target.name, e.target.value));
   }
 
   render() {

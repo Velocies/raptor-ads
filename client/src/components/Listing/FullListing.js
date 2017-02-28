@@ -21,18 +21,8 @@ class FullListing extends Component {
     return moment(time).fromNow();
   }
 
-  cutBody(body) {
-    let newBody;
-    if (body.length > 20) {
-      newBody = `${body.slice(0, 20)}...`;
-      return newBody;
-    }
-    return body;
-  }
-
   render() {
     const { isFetching, currentListing, userListings } = this.props;
-    console.log('Listing ID: ', this.listingId);
 
     if (isFetching) {
       return <Loader active inline="centered" />;
@@ -97,63 +87,8 @@ class FullListing extends Component {
           <Divider hidden />
 
           <Grid textAlign="center">
-            <Header as="h3" className="center">Related Listings</Header>
-            <Grid.Row columns={3}>
-              <Grid.Column>
-                {
-                  (() => {
-                    if (userListings[0]) {
-                      return (<Listing
-                        key={userListings[0].id}
-                        listingId={userListings[0].id}
-                        title={userListings[0].title}
-                        createdAt={this.convertTime(userListings[0].createdAt)}
-                        body={userListings[0].body}
-                        type={userListings[0].type}
-                        cutBody={this.cutBody}
-                      />);
-                    }
-                    return <Image src="http://semantic-ui.com/images/wireframe/media-paragraph.png" />;
-                  })()
-                }
-              </Grid.Column>
-              <Grid.Column>
-                {
-                  (() => {
-                    if (userListings[1]) {
-                      return (<Listing
-                        key={userListings[1].id}
-                        listingId={userListings[1].id}
-                        title={userListings[1].title}
-                        createdAt={this.convertTime(userListings[1].createdAt)}
-                        body={userListings[1].body}
-                        type={userListings[1].type}
-                        cutBody={this.cutBody}
-                      />);
-                    }
-                    return <Image src="http://semantic-ui.com/images/wireframe/media-paragraph.png" />;
-                  })()
-                }
-              </Grid.Column>
-              <Grid.Column>
-                {
-                  (() => {
-                    if (userListings[2]) {
-                      return (<Listing
-                        key={userListings[2].id}
-                        listingId={userListings[2].id}
-                        title={userListings[2].title}
-                        createdAt={this.convertTime(userListings[2].createdAt)}
-                        body={userListings[2].body}
-                        type={userListings[2].type}
-                        cutBody={this.cutBody}
-                      />);
-                    }
-                    return <Image src="http://semantic-ui.com/images/wireframe/media-paragraph.png" />;
-                  })()
-                }
-              </Grid.Column>
-            </Grid.Row>
+            <Header as="h3" className="center">Consumer Ratings</Header>
+
           </Grid>
 
         </Message>

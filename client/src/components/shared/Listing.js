@@ -48,6 +48,7 @@ Listing.propTypes = {
   listingId: React.PropTypes.number.isRequired,
   handleDelete: React.PropTypes.func.isRequired,
   pathname: React.PropTypes.string.isRequired,
+
 };
 
 export default Listing;

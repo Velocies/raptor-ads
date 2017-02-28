@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Form, Grid, Icon, Header } from 'semantic-ui-react';
-import { updateFormField } from '../../actions';
+import { Form, Grid, Header } from 'semantic-ui-react';
+import { updateFormField } from '../../actions/profileActions';
 
 class Profile extends Component {
   constructor(props) {
@@ -13,9 +13,14 @@ class Profile extends Component {
     this.props.dispatch(updateFormField(e.target.name, e.target.value));
   }
 
+  componentDidMount() {
+    this.props,dispatch(getCurrentProfile(loggedInUser));
+  }
+
   render() {
-    const user = this.props.user;
-    console.log(user)
+    const {
+      firstName,
+    } = this.props.profileForm;
     return (
       <div>
         <div>
@@ -30,7 +35,7 @@ class Profile extends Component {
               <input
                 id="firstName"
                 name="firstName"
-                value={user.first_name}
+                value={firstName}
                 onChange={e => this.onChange(e)}
               />
             </Form.Field>
@@ -38,16 +43,17 @@ class Profile extends Component {
           </Grid.Column>
         </Grid>
         <h1>PROFILE COMPONENT HERE</h1>
-        <h2>{user.email}</h2>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  const user = state.auth.loggedInUser;
+  const { profileForm } = state.profile;
+  const { loggedInUser} = state.auth;
   return {
-    user,
+    profileForm,
+    loggedInUser,
   };
 };
 

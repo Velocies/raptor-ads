@@ -1,13 +1,14 @@
-const db = require('../../../database/schemas.js');
+const models = require('../../../database/schemas.js');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('jsonwebtoken');
 
 module.exports = {
   getOne: (req, res) => {
-    db.User.findOne({
+    models.User.findOne({
       where: {
         id: req.params.id,
       },
+      include: { [models.Business] },
     })
     .then((user) => {
       if (user) {
@@ -19,14 +20,14 @@ module.exports = {
   },
 
   getAll: (req, res) => {
-    db.User.findAll({})
+    models.User.findAll({})
     .then((users) => {
       res.send(users);
     });
   },
 
   createOne: (req, res) => {
-    db.User.findOne({
+    models.User.findOne({
       where: {
         email: req.body.email,
       },
@@ -36,7 +37,7 @@ module.exports = {
         const salt = bcrypt.genSaltSync(10);
         const passwordToSave = bcrypt.hashSync(req.body.password, salt);
 
-        db.User.create({
+        models.User.create({
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           password: passwordToSave,
@@ -65,7 +66,7 @@ module.exports = {
   },
 
   patchOne: (req, res) => {
-    db.User.update(req.body, {
+    models.User.update(req.body, {
       where: {
         id: req.params.id,
       },
@@ -76,7 +77,7 @@ module.exports = {
   },
 
   deleteOne: (req, res) => {
-    db.User.destroy({
+    models.User.destroy({
       where: {
         id: req.params.id,
       },

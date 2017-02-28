@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Grid, Header } from 'semantic-ui-react';
-import { updateFormField } from '../../actions/profileActions';
+import { updateFormField, getCurrentProfile } from '../../actions/profileActions';
 
 class Profile extends Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   onChange(e) {
@@ -14,8 +15,10 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    this.props,dispatch(getCurrentProfile(loggedInUser));
+    this.props.dispatch(getCurrentProfile(this.props.loggedInUser));
+    console.log(this.props);
   }
+
 
   render() {
     const {
@@ -50,7 +53,7 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
   const { profileForm } = state.profile;
-  const { loggedInUser} = state.auth;
+  const { loggedInUser } = state.auth;
   return {
     profileForm,
     loggedInUser,

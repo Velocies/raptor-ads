@@ -4,3 +4,9 @@ export const updateFormField = (field, value) =>
     field,
     value,
   });
+
+export const getCurrentProfile = user =>
+  ({
+    type: "GET_CURRENT_PROFILE",
+    user,
+  });

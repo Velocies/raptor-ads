@@ -40,8 +40,8 @@ module.exports = (app, db, path, rootPath) => {
 
 
   // Routes for ratings
-  app.get('api/users/:id/ratings', ratingsController.getAllForUser);
-  app.post('api/users/ratings', ratingsController.createRating);
+  app.get('/api/users/:id/ratings', ratingsController.getAllForUser);
+  app.post('/api/users/ratings', ratingsController.createRating);
 
   // Catch-all route to allow reloading
   app.get('*', (req, res) => {

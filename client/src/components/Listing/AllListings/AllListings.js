@@ -5,21 +5,13 @@ import { Container, Header, Card, Button, Divider, Loader, Grid } from 'semantic
 import { getAllListings } from '../../../actions/allListingActions';
 import Listing from '../../shared/Listing';
 import AllListingsFilter from './AllListingsComponents/AllListingsFilter';
-import GettingStartedExample from './AllListingsComponents/GoogleMap/GoogleMapContainer';
+import GoogleMapContainer from './AllListingsComponents/GoogleMap/GoogleMapContainer';
 // import InitialMap from './GoogleMap/GoogleMap';
 
 
 class AllListings extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      markers: [{
-        position: {
-          lat: 15,
-          lng: 121,
-        },
-      }],
-    };
     this.onClick = this.onClick.bind(this);
   }
 
@@ -29,10 +21,6 @@ class AllListings extends Component {
 
   convertTime(time) {
     return moment(time).fromNow();
-  }
-
-  onClick(e) {
-    console.log('clicked', e.target.innerHTML);
   }
 
   cutBody(body) {
@@ -51,7 +39,7 @@ class AllListings extends Component {
         <Container textAlign="center">
           <Grid width={16}>
             <Grid.Column width={8}>
-              <GettingStartedExample />
+              <GoogleMapContainer />
             </Grid.Column>
             <Grid.Column width={8}>
               <AllListingsFilter onClick={this.onClick} />

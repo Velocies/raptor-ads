@@ -4,10 +4,6 @@ import NavbarContainer from './Navigation/NavbarContainer';
 import { pullUserFromToken } from '../actions';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentWillMount() {
     const token = localStorage.getItem('raptor_token');
     if (token) {
@@ -27,7 +23,8 @@ class App extends Component {
 }
 
 App.propTypes = {
-  children: React.PropTypes.element,
+  children: React.PropTypes.element.isRequired,
+  dispatch: React.PropTypes.func.isRequired,
 };
 
-export default connect(state=>state)(App);
+export default connect(state => state)(App);

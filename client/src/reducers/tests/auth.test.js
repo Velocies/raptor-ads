@@ -26,6 +26,8 @@ describe('auth reducer', () => {
       formErrors: {
       },
       loggedInUser: {
+        firstName: '',
+        id: 0,
       },
     };
 
@@ -58,6 +60,8 @@ describe('auth reducer', () => {
       formErrors: {
       },
       loggedInUser: {
+        firstName: '',
+        id: 0,
       },
     };
 
@@ -84,6 +88,8 @@ describe('auth reducer', () => {
         password: '',
       },
       loggedInUser: {
+        firstName: '',
+        id: 0,
       },
     };
 
@@ -110,6 +116,8 @@ describe('auth reducer', () => {
         password: '',
       },
       loggedInUser: {
+        firstName: '',
+        id: 0,
       },
     };
 

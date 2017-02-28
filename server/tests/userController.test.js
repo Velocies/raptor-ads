@@ -44,8 +44,8 @@ describe('Begin', () => {
   describe('User Deletion', () => {
     it('should delete a user from the database', (done) => {
       const data = {
-        first_name: 'Cory Wolnewitz',
-        last_name: 'Wolnewitz',
+        firstName: 'Cory Wolnewitz',
+        lastName: 'Wolnewitz',
         password: 'trololol',
         email: 'cwol@gmail.com',
         address: '1337 Sure Ln',

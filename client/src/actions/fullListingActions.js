@@ -15,7 +15,7 @@ const getCurrentListingsSuccess = payload =>
 export const getCurrentListing = listingId =>
   (dispatch) => {
     dispatch(startFetchListing());
-    fetchCurrentListing(2)
+    fetchCurrentListing(listingId)
     .then((res) => {
       res.json()
       .then((data) => {

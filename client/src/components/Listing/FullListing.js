@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Carousel from 'nuka-carousel';
 import { Container, Grid, Image, Header, Divider, Message, List, Loader } from 'semantic-ui-react';
 import { getCurrentListing } from '../../actions/fullListingActions';
+import GoogleMapContainer from './AllListings/AllListingsComponents/GoogleMap/GoogleMapContainer';
 
 class FullListing extends Component {
   constructor(props) {
@@ -34,31 +35,22 @@ class FullListing extends Component {
             <Grid.Column>
               <Header as="h2" className="center">Job Description</Header>
               <Grid.Row>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.
-                  Duis vulputate commodo lectus, ac blandit elit tincidunt id.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nulla quam velit, vulputate eu pharetra nec,
-                  mattis ac neque. Duis vulputate commodo lectus,
-                  ac blandit elit tincidunt id.
-                </p>
+                <p>{currentListing.body}</p>
               </Grid.Row>
               <Grid.Row verticalAlign="bottom">
                 <Divider hidden section />
                 <Carousel>
-                  <img src="http://placehold.it/1000x400/ffffff/c0392b/&text=slide1" alt="" />
-                  <img src="http://placehold.it/1000x400/ffffff/c0392b/&text=slide2" alt="" />
-                  <img src="http://placehold.it/1000x400/ffffff/c0392b/&text=slide3" alt="" />
-                  <img src="http://placehold.it/1000x400/ffffff/c0392b/&text=slide4" alt="" />
-                  <img src="http://placehold.it/1000x400/ffffff/c0392b/&text=slide5" alt="" />
-                  <img src="http://placehold.it/1000x400/ffffff/c0392b/&text=slide6" alt="" />
+                  {
+                    currentListing.pictures.map((p, index) => {
+                      return <Image key={index} src={p.img_path} />;
+                    })
+                  }
                 </Carousel>
               </Grid.Row>
             </Grid.Column>
             <Grid.Column>
               <Grid.Row>
-                <Image src="http://cdn.newsapi.com.au/image/v1/0a0ceda4bda18e664ffac1a8fa86a7d1" />
+                <GoogleMapContainer />
               </Grid.Row>
               <Divider hidden />
               <Grid.Row>

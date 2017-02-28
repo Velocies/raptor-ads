@@ -7,6 +7,9 @@ module.exports = (db, Sequelize) => {
     },
     name: Sequelize.STRING,
     address: Sequelize.STRING,
+    city: Sequelize.STRING,
+    state: Sequelize.STRING,
+    zip: Sequelize.STRING,
     license: Sequelize.STRING,
   });
 

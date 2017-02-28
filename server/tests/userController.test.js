@@ -14,6 +14,12 @@ describe('Begin', () => {
   });
 
   describe('User Creation', () => {
+  beforeEach((done) => {
+    db.database.sync({ force: true })
+      .then(() => {
+        done();
+      });
+  });
     it('should respond with a statusCode of 200 for /users/api', (done) => {
       request(app)
         .post('/api/users')
@@ -40,6 +46,7 @@ describe('Begin', () => {
         .post('/api/users')
         .send(data)
         .end((err, res) => {
+          console.log('res', res.body)
           expect(res.body.user.email).to.equal(data.email);
           done();
         });

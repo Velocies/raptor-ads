@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import Carousel from 'nuka-carousel';
 import moment from 'moment';
@@ -11,12 +10,11 @@ import Listing from '../shared/Listing';
 class FullListing extends Component {
   constructor(props) {
     super(props);
-    this.listingId = this.props.params.id;
   }
 
   componentDidMount() {
-    console.log('Listing ID: ', this.listingId);
-    this.props.dispatch(getCurrentListing(this.listingId));
+    console.log('Listing ID: ', this.props.listingId);
+    this.props.dispatch(getCurrentListing(this.props.listingId));
   }
 
   convertTime(time) {
@@ -167,11 +165,15 @@ class FullListing extends Component {
 const mapStateToProps = (state) => {
   const { currentListing, userListings, isFetching } = state.listing;
   const { id } = state.auth.loggedInUser;
+  const { pathname } = state.routing.locationBeforeTransitions;
+
+  const listingId = pathname.split('/')[2];
   return {
     id,
     currentListing,
     userListings,
     isFetching,
+    listingId,
   };
 };
 

@@ -23,6 +23,10 @@ class AllListings extends Component {
     return moment(time).fromNow();
   }
 
+  onClick(e) {
+    console.log('clicked', e.target.innerHTML);
+  }
+
   cutBody(body) {
     if (body.length > 20) {
       body = body.slice(0, 20) + '...';

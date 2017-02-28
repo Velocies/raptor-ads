@@ -14,4 +14,3 @@ export default combineReducers({
   googleMap,
   routing: routerReducer,
 });
-

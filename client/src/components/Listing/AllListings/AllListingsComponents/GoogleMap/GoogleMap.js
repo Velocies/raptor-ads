@@ -15,12 +15,15 @@ import {
  *
  * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
-const GoogleMapRender = withGoogleMap(props => (
+const GoogleMapRender = withGoogleMap(props => {
+  console.log('props', props.defaultCenter)
+  return (
   <GoogleMap
     ref={props.onMapLoad}
     defaultZoom={3}
-    defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
+    defaultCenter={props.defaultCenter}
     onClick={props.onMapClick}
+    center={{lat: -30, lng: 100}}
   >
     {props.markers.map(marker => (
       <Marker
@@ -29,7 +32,8 @@ const GoogleMapRender = withGoogleMap(props => (
       />
     ))}
   </GoogleMap>
-));
+  )
+});
 
 export default GoogleMapRender;
 

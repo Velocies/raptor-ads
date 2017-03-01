@@ -1,11 +1,25 @@
 export default (customer) => {
+  const {
+    firstName,
+    email,
+    lastName,
+    password,
+    passwordConfirmation,
+    companyName,
+    companyAddress,
+    companyCity,
+    companyZip,
+    companyState,
+    license,
+  } = customer;
+
   const result = {
     firstName,
     email,
     lastName,
     password,
     passwordConfirmation,
-  } = customer
+  };
 
   result.business = {
     companyName,
@@ -14,7 +28,7 @@ export default (customer) => {
     companyZip,
     companyState,
     license,
-  } = customer;
+  };
 
   console.log('result', result);
 

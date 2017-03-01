@@ -1,6 +1,11 @@
 const initialState = {
   isFetching: false,
-  currentUserRatings: [],
+  currentUserRatings: {
+    firstName: '',
+    lastName: '',
+    role: '',
+    ratings: [],
+  },
   ratingsForm: {
     stars: 0,
     body: '',

@@ -36,7 +36,16 @@ class AddListing extends Component {
   }
 
   render() {
-    const { title, body, images, image, type } = this.props.listingForm;
+    const { title,
+      body,
+      images,
+      image,
+      type,
+      address,
+      city,
+      state,
+      zip,
+    } = this.props.listingForm;
     const { onChange, onClick, formErrors } = this.props;
     return (
       <div>
@@ -60,6 +69,42 @@ class AddListing extends Component {
                 getFormClass={this.getFormClass}
               />
               {formErrors.image && <span className="formError">{formErrors.image}</span>}
+              <Form.Field>
+                <label htmlFor="address">Street Address</label>
+                <input
+                  name="address"
+                  placeholder="Street Address"
+                  value={address}
+                  onChange={e => onChange(e)}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label htmlFor="city">City</label>
+                <input
+                  name="city"
+                  placeholder="City"
+                  value={city}
+                  onChange={e => onChange(e)}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label htmlFor="state">State</label>
+                <input
+                  name="state"
+                  placeholder="State"
+                  value={state}
+                  onChange={e => onChange(e)}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label htmlFor="zipcode">Zipcode</label>
+                <input
+                  name="zip"
+                  placeholder="Zipcode"
+                  value={zip}
+                  onChange={e => onChange(e)}
+                />
+              </Form.Field>
               <ListingImage
                 images={images}
                 onClick={onClick}

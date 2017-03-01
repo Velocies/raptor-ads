@@ -11,6 +11,10 @@ export const initialState = {
     images: [],
     image: '',
     type: '',
+    address: '',
+    city: '',
+    state: '',
+    zip: '',
   },
   userListings: [],
   formErrors: {

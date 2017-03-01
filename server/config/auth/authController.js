@@ -1,10 +1,13 @@
-const db = require('../../../database/schemas.js');
+const models = require('../../../database/schemas.js');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('jsonwebtoken');
 
 module.exports = {
   logIn: (req, res) => {
-    db.User.findOne({ where: { email: req.body.email } })
+    models.User.findOne({
+      where: { email: req.body.email },
+      include: [models.Business],
+    })
       .then((user) => {
         if (user) {
           if (bcrypt.compareSync(req.body.password, user.password)) {
@@ -13,7 +16,7 @@ module.exports = {
               first_name: user.first_name,
               id: user.id,
             }, 'bobbyisbadatstarcraft', { expiresIn: '1h' });
-            res.send({ user, token });
+            res.json({ user, token });
           } else {
             res.send({ error: 'Incorrect password' });
           }
@@ -29,7 +32,10 @@ module.exports = {
       if (err || !decoded) {
         res.status(400).send('Bad Token');
       } else {
-        db.User.findOne({ where: { id: decoded.id } })
+        models.User.findOne({
+          where: { id: decoded.id },
+          include: [models.Business],
+        })
           .then((user) => {
             res.json(user);
           });

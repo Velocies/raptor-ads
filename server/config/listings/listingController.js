@@ -1,13 +1,13 @@
-const db = require('../../../database/schemas.js');
+const models = require('../../../database/schemas.js');
 
 module.exports = {
   getOne: (req, res) => {
-    db.Post.findOne({
+    models.Post.findOne({
       where: {
         id: req.params.listId,
       },
       include: [{
-        model: db.Picture,
+        model: models.Picture,
       }],
     })
       .then((listing) => {
@@ -16,9 +16,9 @@ module.exports = {
   },
 
   getAll: (err, res) => {
-    db.Post.findAll({
+    models.Post.findAll({
       where: {},
-      include: [{ model: db.Picture }],
+      include: [{ model: models.Picture }],
     })
       .then((posts) => {
         res.send(posts);
@@ -26,12 +26,12 @@ module.exports = {
   },
 
   getAllForUser: (req, res) => {
-    db.User.find({
+    models.User.find({
       where: { id: req.params.id },
     })
       .then((user) => {
         user.getPosts({
-          include: [{ model: db.Picture }],
+          include: [{ model: models.Picture }],
         })
           .then((posts) => {
             res.json(posts);
@@ -40,7 +40,7 @@ module.exports = {
   },
 
   createOne: (req, res) => {
-    db.User.find({ where: { id: req.params.id } })
+    models.User.find({ where: { id: req.params.id } })
       .then((user) => {
         const newPost = {
           title: req.body.title,
@@ -53,7 +53,7 @@ module.exports = {
           state: req.body.state,
           zip: req.body.zip,
         };
-        db.Post.create(newPost, { include: [db.Picture] })
+        models.Post.create(newPost, { include: [models.Picture] })
           .then((post) => {
             res.json(post);
           });
@@ -64,7 +64,7 @@ module.exports = {
   },
 
   patchOne: (req, res) => {
-    db.Post.update(req.body, {
+    models.Post.update(req.body, {
       where: {
         id: req.params.listId,
       },
@@ -75,7 +75,7 @@ module.exports = {
   },
 
   deleteOne: (req, res) => {
-    db.Post.destroy({
+    models.Post.destroy({
       where: {
         id: req.params.listId,
       },
@@ -90,7 +90,7 @@ module.exports = {
   },
 
   getAllPhotos: (req, res) => {
-    db.Picture.findAll({
+    models.Picture.findAll({
       where: {
         post_id: req.params.listId,
       },
@@ -101,7 +101,7 @@ module.exports = {
   },
 
   createOnePhoto: (req, res) => {
-    db.Picture.create({
+    models.Picture.create({
       img_name: req.body.img_name,
       img_path: req.body.img_path,
       post_id: req.params.listId,
@@ -112,7 +112,7 @@ module.exports = {
   },
 
   patchOnePhoto: (req, res) => {
-    db.Picture.update(
+    models.Picture.update(
       {
         img_name: req.body.img_name,
         img_path: req.body.img_path,
@@ -128,7 +128,7 @@ module.exports = {
   },
 
   deleteOnePhoto: (req, res) => {
-    db.Picture.destroy({
+    models.Picture.destroy({
       where: {
         id: req.params.id,
       },

@@ -82,7 +82,6 @@ export const customerSignup = customer =>
     validateSignup(customer, dispatch);
     if (isEmpty(getState().auth.formErrors)) {
       const newCustomer = buildBusinessObj(customer);
-      console.log('CUSTOMER', newCustomer);
       postUser(newCustomer)
         .then((res) => {
           res.json()

@@ -32,7 +32,6 @@ module.exports = {
       },
     })
       .then((user) => {
-        console.log('BODY', req.body);
         if (!user) {
           const salt = bcrypt.genSaltSync(10);
           const passwordToSave = bcrypt.hashSync(req.body.password, salt);

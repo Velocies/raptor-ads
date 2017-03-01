@@ -30,7 +30,5 @@ export default (customer) => {
     license,
   };
 
-  console.log('result', result);
-
   return result;
 };

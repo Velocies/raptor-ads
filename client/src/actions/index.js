@@ -3,6 +3,7 @@ import { push } from 'react-router-redux';
 import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT, CHANGE_LOGIN_FIELD, LOGIN_FAILURE, LOGIN_SUCCESS, ADD_LISTING_FAILURE, ADD_LISTING_SUCCESS, GET_LISTINGS_SUCCESS, GET_LISTINGS_FAILURE, DELETE_IMAGE, TOKEN_ERROR, FETCHING_LISTINGS, FETCHING_LISTINGS_SUCCESS, POST_LISTING_SUCCESS, ADD_LISTING_FORM_ERROR, UPLOAD_LISTING_IMAGE_ERROR} from '../constants';
 import { validateSignup } from '../components/helpers/validateSignup';
 import { postUser, postLogin, postListing, deleteListing, getUserListings, getUserFromToken } from './api';
+import { changeCenter } from './googleMapActions';
 import validateListing from '../components/helpers/validateListing';
 import buildBusinessObj from '../components/helpers/buildBusinessObj';
 
@@ -97,6 +98,11 @@ export const customerSignup = customer =>
     }
   };
 
+// export const changeCenter = data =>
+//   (dispatch) => {
+//     console.log('DATA HERE', data);
+//   };
+
 export const loginUser = data =>
   (dispatch) => {
     postLogin(data)
@@ -107,6 +113,7 @@ export const loginUser = data =>
               dispatch(loginError());
             } else {
               dispatch(loginSuccess(payload));
+              dispatch(changeCenter(payload));
               localStorage.setItem('raptor_token', payload.token);
               dispatch(push('dashboard'));
             }

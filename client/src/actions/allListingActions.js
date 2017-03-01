@@ -1,4 +1,4 @@
-import { GET_ALL_LISTINGS, GET_ALL_LISTINGS_SUCCESS, FETCHING_LISTINGS } from '../constants';
+import { GET_ALL_LISTINGS, GET_ALL_LISTINGS_SUCCESS, FETCHING_LISTINGS, CHANGE_SEARCH_FIELD } from '../constants';
 import { fetchAllListings } from './api';
 
 const startFetchListings = () =>
@@ -24,6 +24,11 @@ export const getAllListings = () =>
     });
   };
 
+export const changeSearchField = value =>
+  ({
+    type: CHANGE_SEARCH_FIELD,
+    value,
+  })
 
 
 

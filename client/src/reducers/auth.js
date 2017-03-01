@@ -28,6 +28,7 @@ export const initialState = {
   loggedInUser: {
     firstName: '',
     id: 0,
+    business: {},
   },
 };
 
@@ -44,15 +45,19 @@ export const auth = (state = initialState, action) => {
     case CLEAR_ERRORS:
       return ({ ...state, formErrors: {} });
     case SIGNUP_SUCCESS:
-      return ({
-        ...state,
-        loggedInUser: { ...state.loggedInUser, ...action.data.user },
-        signupForm: { ...state.signupForm, ...initialState.signupForm },
-      });
     case LOGIN_SUCCESS:
       return ({
         ...state,
-        loggedInUser: { ...state.loggedInUser, ...action.data.user },
+        loggedInUser: {
+          ...state.loggedInUser,
+          ...action.data.user,
+          business: {
+            ...state.loggedInUser.business,
+            ...action.data.user.business,
+          },
+        },
+        signupForm: { ...state.signupForm, ...initialState.signupForm },
+        loginForm: { ...state.loginForm, ...initialState.loginForm },
       });
     case SIGNUP_FAILURE:
       return ({ ...state, formErrors: { ...state.formErrors, userExists: 'A user with that email exists' } });

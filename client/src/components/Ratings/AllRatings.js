@@ -13,7 +13,7 @@ class AllRatings extends Component {
     if (isFetching) { return <Loader active inline="centered" />; }
 
     return (
-      <Header>{  }</Header>
+      <Header>{}</Header>
     );
   }
 }

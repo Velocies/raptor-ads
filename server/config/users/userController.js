@@ -8,7 +8,8 @@ module.exports = {
       where: {
         id: req.params.id,
       },
-    }, { include: [models.Business] })
+      include: [models.Business],
+    })
       .then((user) => {
         if (user) {
           res.json(user);
@@ -69,7 +70,8 @@ module.exports = {
       where: {
         id: req.params.id,
       },
-    }, { include: [models.Business] })
+      include: [models.Business],
+    })
       .then((status) => {
         res.send(status);
       });

@@ -5,6 +5,10 @@ export default (customer) => {
     lastName,
     password,
     passwordConfirmation,
+    address,
+    city,
+    state,
+    zip,
     companyName,
     companyAddress,
     companyCity,
@@ -12,6 +16,21 @@ export default (customer) => {
     companyState,
     license,
   } = customer;
+
+  if (customer.role === 'customer') {
+    const result = {
+      firstName,
+      email,
+      lastName,
+      address,
+      state,
+      city,
+      zip,
+      password,
+      passwordConfirmation,
+    };
+    return result;
+  }
 
   const result = {
     firstName,

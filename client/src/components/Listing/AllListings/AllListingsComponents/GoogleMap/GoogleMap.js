@@ -7,6 +7,7 @@ import {
   withGoogleMap,
   GoogleMap,
   Marker,
+  InfoWindow,
 } from 'react-google-maps';
 
 /*
@@ -24,11 +25,17 @@ const GoogleMapRender = withGoogleMap(props => {
     center={props.defaultCenter}
     zoom={15}
   >
-    {props.markers.map(marker => (
+    {props.markers.map((marker, index)=> (
       <Marker
         {...marker}
-        onMouseOver={() => props.onMarkerLeftClick(marker)}
-      />
+        onClick={() => props.onMarkerLeftClick(marker, index)}
+      >
+      {marker.showInfo && (
+        <InfoWindow onCloseClick={() => props.onMarkerClose(marker)}>
+          <div>{marker.infoContent}</div>
+        </InfoWindow>
+      )}
+      </Marker>
     ))}
   </GoogleMap>
   )

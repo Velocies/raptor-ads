@@ -57,6 +57,7 @@ class AllListings extends Component {
   }
 
   onChange(e) {
+    console.log('logged in user', this.props.loggedInUser)
     this.props.dispatch(changeSearchField(e.target.value));
   }
 
@@ -110,7 +111,8 @@ class AllListings extends Component {
 const mapStateToProps = (state) => {
   const { allListings, isFetching, searchField } = state.listings;
   const { id } = state.auth.loggedInUser;
-  return { allListings, isFetching, id, searchField };
+  const loggedInUser = state.auth.loggedInUser;
+  return { allListings, isFetching, id, searchField, loggedInUser };
 };
 
 export default connect(mapStateToProps)(AllListings);

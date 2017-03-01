@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Helmet from "react-helmet";
 import GoogleMapRender from './GoogleMap';
-import { addMapMarker, changeCenter } from '../../../../../actions/googleMapActions';
+import { addMapMarker, changeCenter, changeMarkerShowInfo } from '../../../../../actions/googleMapActions';
 import { tokenError } from '../../../../../actions/index.js';
 
 import {
@@ -45,6 +45,7 @@ class GoogleMapContainer extends Component {
       position: event.latLng,
       defaultAnimation: 2,
       key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
+      showInfo: false,
     };
     this.props.dispatch(addMapMarker(nextMarkers));
     console.log('markers', this.props.markers)
@@ -60,8 +61,9 @@ class GoogleMapContainer extends Component {
     // }
   }
 
-  handleMarkerLeftClick(targetMarker) {
-    console.log('targetMarker', targetMarker);
+  handleMarkerLeftClick(targetMarker, index) {
+    console.log('targetMarker', targetMarker, index);
+    this.props.dispatch(changeMarkerShowInfo(index));
   }
 
   handleMarkerMouseEnter(targetMarker) {
@@ -78,11 +80,11 @@ class GoogleMapContainer extends Component {
     this.geocoder.geocode({ 'address': '1012 docday court, Folsom, Ca, United States' }, function handleResults(results, status) {
 
       const nextMarkers = this.state.markers.filter(marker => marker !== targetMarker);
-      console.log('restuls', results[0])
       const newThing = {
         position: results[0].geometry.location,
         defaultAnimation: 2,
         key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
+        showInfo: false,
       };
       nextMarkers.push(newThing);
       this.setState({

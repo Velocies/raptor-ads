@@ -3,13 +3,16 @@ const models = require('../../../database/schemas.js');
 module.exports = {
   getAllForUser: (req, res) => {
     const userId = req.params.id;
-    models.Rating.findAll({
+    models.User.findAll({
       where: {
-        userId,
+        id: userId,
       },
       include: [
-        { model: models.User },
-        { model: models.User, as: 'rater' },
+        {
+          model: models.Rating,
+          include: [{ model: models.User, as: 'rater' }],
+        },
+        { model: models.Business },
       ],
     })
       .then((ratings) => {

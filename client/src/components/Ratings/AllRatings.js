@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Card, Loader } from 'semantic-ui-react';
-import ratingsHeader from ''
+import ratingsHeader from '../helpers/ratingsHeader';
 
 class AllRatings extends Component {
   constructor(props) {

@@ -37,6 +37,7 @@ describe('auth reducer', () => {
       loggedInUser: {
         firstName: '',
         id: 0,
+        business: {},
       },
     };
 
@@ -80,6 +81,7 @@ describe('auth reducer', () => {
       loggedInUser: {
         firstName: '',
         id: 0,
+        business: {},
       },
     };
 
@@ -117,6 +119,7 @@ describe('auth reducer', () => {
       loggedInUser: {
         firstName: '',
         id: 0,
+        business: {},
       },
     };
 
@@ -154,6 +157,7 @@ describe('auth reducer', () => {
       loggedInUser: {
         firstName: '',
         id: 0,
+        business: {},
       },
     };
 

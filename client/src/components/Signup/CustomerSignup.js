@@ -20,7 +20,7 @@ class CustomerSignup extends Component {
     this.props.dispatch(customerSignup(data));
   }
 
-  onChange(e, data) {
+  onChange(e) {
     this.props.dispatch(changeSignupField(e.target.name, e.target.value));
   }
 
@@ -35,7 +35,12 @@ class CustomerSignup extends Component {
       email,
       password,
       passwordConfirmation,
+      address,
+      city,
+      zip,
+      state,
     } = this.props.signupForm;
+
     const { formErrors } = this.props;
 
     return (
@@ -82,7 +87,43 @@ class CustomerSignup extends Component {
                   className={this.getFormClass('email')}
                 />
               </Form.Field>
-              {formErrors.password && <span className='formError'>{formErrors.password}</span>}
+              <Form.Field width="8">
+                <label htmlFor="address">Street Address</label>
+                <input
+                  name="address"
+                  placeholder="Street Address"
+                  value={address}
+                  onChange={e => this.onChange(e)}
+                />
+              </Form.Field>
+              <Form.Field width="8">
+                <label htmlFor="city">City</label>
+                <input
+                  name="city"
+                  placeholder="City"
+                  value={city}
+                  onChange={e => this.onChange(e)}
+                />
+              </Form.Field>
+              <Form.Field width="8">
+                <label htmlFor="state">State</label>
+                <input
+                  name="state"
+                  placeholder="State"
+                  value={state}
+                  onChange={e => this.onChange(e)}
+                />
+              </Form.Field>
+              <Form.Field width="8">
+                <label htmlFor="zipcode">Zipcode</label>
+                <input
+                  name="zip"
+                  placeholder="Zipcode"
+                  value={zip}
+                  onChange={e => this.onChange(e)}
+                />
+              </Form.Field>
+              {formErrors.password && <span className="formError">{formErrors.password}</span>}
               <Form.Field width="8">
                 <label htmlFor="password">Password</label>
                 <input
@@ -94,8 +135,8 @@ class CustomerSignup extends Component {
                   className={this.getFormClass('password')}
                 />
               </Form.Field>
-              {formErrors.passwordMatch && <span className='formError'>{formErrors.passwordMatch}</span>}
-              {formErrors.passwordConfirmation && <span className='formError'>{formErrors.passwordConfirmation}</span>}
+              {formErrors.passwordMatch && <span className="formError">{formErrors.passwordMatch}</span>}
+              {formErrors.passwordConfirmation && <span className="formError">{formErrors.passwordConfirmation}</span>}
               <Form.Field width="8">
                 <label htmlFor="confirmPassword">Confirm Password</label>
                 <input
@@ -125,6 +166,10 @@ CustomerSignup.propTypes = {
     lastName: React.PropTypes.string.isRequired,
     password: React.PropTypes.string.isRequired,
     passwordConfirmation: React.PropTypes.string.isRequired,
+    address: React.PropTypes.string.isRequired,
+    city: React.PropTypes.string.isRequired,
+    state: React.PropTypes.string.isRequired,
+    zip: React.PropTypes.string.isRequired,
   }).isRequired,
   dispatch: React.PropTypes.func.isRequired,
 };

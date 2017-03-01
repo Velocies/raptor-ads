@@ -24,11 +24,12 @@ const GoogleMapRender = withGoogleMap(props => {
     center={props.defaultCenter}
     zoom={15}
   >
-    {props.markers.map(marker => (
+    {props.markers.map((marker, index)=> (
       <Marker
         {...marker}
-        onMouseOver={() => props.onMarkerLeftClick(marker)}
-      />
+        onClick={() => props.onMarkerLeftClick(marker, index)}
+      >
+      </Marker>
     ))}
   </GoogleMap>
   )

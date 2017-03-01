@@ -1,7 +1,8 @@
 import { ADD_MAP_MARKER, CHANGE_CENTER } from '../constants';
 
 export const initialState = {
-  center: { lat: 20, lng: -30 },
+  center: { lat: 38.6536082, lng:
+-121.14818130000003 },
   markers: [],
 };
 

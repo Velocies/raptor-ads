@@ -20,14 +20,14 @@ const GoogleMapRender = withGoogleMap(props => {
   return (
   <GoogleMap
     ref={props.onMapLoad}
-    defaultZoom={3}
     onClick={props.onMapClick}
     center={props.defaultCenter}
+    zoom={15}
   >
     {props.markers.map(marker => (
       <Marker
         {...marker}
-        onRightClick={() => props.onMarkerRightClick(marker)}
+        onMouseOver={() => props.onMarkerLeftClick(marker)}
       />
     ))}
   </GoogleMap>
@@ -35,4 +35,4 @@ const GoogleMapRender = withGoogleMap(props => {
 });
 
 export default GoogleMapRender;
-
+        // onClick={() => props.onMarkerLeftClick(marker)}

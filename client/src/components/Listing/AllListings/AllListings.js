@@ -36,6 +36,7 @@ class AllListings extends Component {
       };
       console.log('newCenter', newCenter);
       this.props.dispatch(changeCenter(newCenter));
+      console.log('computeDistanceBetween', computeDistanceBetween)
     });
     // this.geocoder.geocode({ 'address': '1012 docday court, Folsom, Ca, United States' }, function handleResults(results, status) {
 

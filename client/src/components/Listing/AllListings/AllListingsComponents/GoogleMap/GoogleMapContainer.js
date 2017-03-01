@@ -20,6 +20,8 @@ class GoogleMapContainer extends Component {
     this.MapLoad = this.handleMapLoad.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
     this.handleMarkerRightClick = this.handleMarkerRightClick.bind(this);
+    this.handleMarkerLeftClick = this.handleMarkerLeftClick.bind(this);
+    this.handleMarkerMouseEnter = this.handleMarkerMouseEnter.bind(this);
   }
 
 
@@ -45,21 +47,25 @@ class GoogleMapContainer extends Component {
       key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
     };
     this.props.dispatch(addMapMarker(nextMarkers));
-    this.props.dispatch(changeCenter({ lat: 20, lng: -30.044922 }))
-
-    // this.setState({
-    //   markers: nextMarkers,
-    // });
-    // console.log('markers', this.state.markers);
-    // this.setState({center: {lat: 13, lng: 14}})
-    // console.log('state', this.state);
-
+    console.log('markers', this.props.markers)
+    console.log('google map', google.maps.geometry.spherical.computeDistanceBetween);
+    if (this.props.markers.length > 1) {
+      console.log('distance is', google.maps.geometry.spherical.computeDistanceBetween(this.props.markers[0].position, event.latLng));
+    }
     // if (nextMarkers.length === 3) {
     //   this.props.toast(
     //     `Right click on the marker to remove it`,
     //     `Also check the code!`
     //   );
     // }
+  }
+
+  handleMarkerLeftClick(targetMarker) {
+    console.log('targetMarker', targetMarker);
+  }
+
+  handleMarkerMouseEnter(targetMarker) {
+    console.log('targetMarker mouse enter', targetMarker);
   }
 
   handleMarkerRightClick(targetMarker) {
@@ -107,6 +113,8 @@ class GoogleMapContainer extends Component {
           onMapClick={this.handleMapClick}
           markers={markers}
           onMarkerRightClick={this.handleMarkerRightClick}
+          onMarkerLeftClick={this.handleMarkerLeftClick}
+          handleMarkerMouseEnter={this.handleMarkerMouseEnter}
         />
       </div>
     );

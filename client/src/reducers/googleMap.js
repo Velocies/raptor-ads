@@ -11,7 +11,7 @@ export const googleMap = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
       const geocoder = new google.maps.Geocoder();
-      geocoder.geocode({ 'address': concatAddress(action.data.user)}, (results, status) => {
+      geocoder.geocode({ 'address': concatAddress(action.data.user)}, (results) => {
         const newCenter = {
           lat: results[0].geometry.bounds.f.f,
           lng: results[0].geometry.bounds.b.b,

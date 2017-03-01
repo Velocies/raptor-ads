@@ -80,7 +80,6 @@ class GoogleMapContainer extends Component {
     this.geocoder.geocode({ 'address': '1012 docday court, Folsom, Ca, United States' }, function handleResults(results, status) {
 
       const nextMarkers = this.state.markers.filter(marker => marker !== targetMarker);
-      console.log('restuls', results[0])
       const newThing = {
         position: results[0].geometry.location,
         defaultAnimation: 2,

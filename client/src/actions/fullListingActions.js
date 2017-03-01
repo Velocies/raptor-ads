@@ -19,6 +19,7 @@ export const getCurrentListing = listingId =>
     .then((res) => {
       res.json()
       .then((data) => {
+        console.log('DATA HERRRREE', data);
         dispatch(getCurrentListingsSuccess(data));
       });
     });

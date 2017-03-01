@@ -48,10 +48,13 @@ module.exports = {
           type: req.body.type,
           pictures: req.body.images,
           userId: user.id,
+          address: req.body.address,
+          city: req.body.city,
+          state: req.body.state,
+          zip: req.body.zip,
         };
         db.Post.create(newPost, { include: [db.Picture] })
           .then((post) => {
-            console.log('post', post)
             res.json(post);
           });
       })

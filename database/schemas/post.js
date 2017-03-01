@@ -9,6 +9,10 @@ module.exports = (db, Sequelize) => {
     tags: Sequelize.STRING,
     title: Sequelize.STRING,
     type: Sequelize.STRING,
+    address: Sequelize.STRING,
+    city: Sequelize.STRING,
+    state: Sequelize.STRING,
+    zip: Sequelize.STRING,
   });
 
   return Post;

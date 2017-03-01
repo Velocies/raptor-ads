@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Card, Loader } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 import ratingsHeader from '../helpers/ratingsHeader';
 
 class AllRatings extends Component {

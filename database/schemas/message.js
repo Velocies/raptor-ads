@@ -5,9 +5,8 @@ module.exports = (db, Sequelize) => {
       autoIncrement: true,
       primaryKey: true,
     },
+    title: Sequelize.STRING,
     body: Sequelize.STRING,
-    post_id: Sequelize.INTEGER,
-    sender_id: Sequelize.INTEGER,
   });
 
   return Message;

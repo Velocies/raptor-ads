@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Carousel from 'nuka-carousel';
 import moment from 'moment';
-import { Container, Grid, Image, Header, Divider, Message, List, Loader } from 'semantic-ui-react';
+import { Container, Grid, Image, Header, Divider, Message, List, Loader, Button, Modal } from 'semantic-ui-react';
 import GoogleMapContainer from './AllListings/AllListingsComponents/GoogleMap/GoogleMapContainer';
 import { getCurrentListing } from '../../actions/fullListingActions';
 import Listing from '../shared/Listing';
@@ -56,29 +56,37 @@ class FullListing extends Component {
                 <GoogleMapContainer />
               </Grid.Row>
               <Divider hidden />
-              <Grid.Row>
-                <List>
-                  <List.Item>
-                    <List.Icon name="users" />
-                    <List.Content>Customer Name</List.Content>
-                  </List.Item>
-                  <List.Item>
-                    <List.Icon name="marker" />
-                    <List.Content>New York, NY</List.Content>
-                  </List.Item>
-                  <List.Item>
-                    <List.Icon name="mail" />
-                    <List.Content>
-                      <a href="mailto:jack@semantic-ui.com">jack@semantic-ui.com</a>
-                    </List.Content>
-                  </List.Item>
-                  <List.Item>
-                    <List.Icon name="linkify" />
-                    <List.Content>
-                      <a href="http://www.semantic-ui.com">semantic-ui.com</a>
-                    </List.Content>
-                  </List.Item>
-                </List>
+              <Grid.Row columns={2}>
+                <Grid.Column>
+                  <List>
+                    <List.Item>
+                      <List.Icon name="users" />
+                      <List.Content>Customer Name</List.Content>
+                    </List.Item>
+                    <List.Item>
+                      <List.Icon name="marker" />
+                      <List.Content>New York, NY</List.Content>
+                    </List.Item>
+                    <List.Item>
+                      <List.Icon name="mail" />
+                      <List.Content>
+                        <a href="mailto:jack@semantic-ui.com">jack@semantic-ui.com</a>
+                      </List.Content>
+                    </List.Item>
+                    <List.Item>
+                      <List.Icon name="linkify" />
+                      <List.Content>
+                        <a href="http://www.semantic-ui.com">semantic-ui.com</a>
+                      </List.Content>
+                    </List.Item>
+                  </List>
+                </Grid.Column>
+                <Divider hidden/>
+                <Grid.Column>
+                  <Modal>
+
+                  </Modal>
+                </Grid.Column>
               </Grid.Row>
             </Grid.Column>
           </Grid>
@@ -99,16 +107,13 @@ class FullListing extends Component {
 
 const mapStateToProps = (state) => {
   const { currentListing, userListings, isFetching } = state.listing;
-  const { id } = state.auth.loggedInUser;
-  const { pathname } = state.routing.locationBeforeTransitions;
+  const { loggedInUser } = state.auth;
 
-  const listingId = pathname.split('/')[2];
   return {
-    id,
+    loggedInUser,
     currentListing,
     userListings,
     isFetching,
-    listingId,
   };
 };
 

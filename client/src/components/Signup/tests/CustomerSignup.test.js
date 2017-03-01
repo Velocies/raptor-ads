@@ -16,7 +16,7 @@ describe('CustomerSignup validations', () => {
   );
 
   it('should change all classes when submitted empty', () => {
-    expect(customerSignup.find('input')).toHaveLength(5);
+    expect(customerSignup.find('input')).toHaveLength(9);
     customerSignup.find('button').toBeTruthy;
     expect(customerSignup.find('#firstName').hasClass('fieldInvalid')).toBeTruthy;
   });

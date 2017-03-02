@@ -3,13 +3,17 @@ import { Dropdown, Header, Divider, Item, Form, Icon, Input } from 'semantic-ui-
 
 const AllListingsFilter = ({ onClick, onChange }) => {
   return (
-    <Input
-      icon={<Icon onClick={() => onClick()} name="search" inverted circular link />}
-      placeholder="Enter search address"
-      name="image"
-      onChange={e => onChange(e)}
-      size="large"
-    />
+    <Form>
+      <Form.Field>
+        <Input
+          icon={<Icon onClick={() => onClick()} name="search" inverted circular link />}
+          placeholder="Enter search address"
+          name="image"
+          onChange={e => onChange(e)}
+          size="large"
+        />
+      </Form.Field>
+    </Form>
   );
 };
 

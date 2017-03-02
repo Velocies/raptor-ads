@@ -13,6 +13,7 @@ class Profile extends Component {
 
   onChange(e) {
     this.props.dispatch(updateFormField(e.target.name, e.target.value));
+    this.props.profileForm.profileUpdated = false;
   }
 
   componentDidMount() {

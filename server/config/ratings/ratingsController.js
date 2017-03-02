@@ -21,19 +21,7 @@ module.exports = {
   },
 
   createRating: (req, res) => {
-    const {
-      userId,
-      body,
-      raterId,
-      stars,
-    } = req.body;
-
-    models.Rating.create({
-      userId,
-      body,
-      raterId,
-      stars,
-    })
+    models.Rating.create(req.body)
       .then((rating) => {
         res.json(rating);
       });

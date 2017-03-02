@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Header, Card, Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import ratingsHeader from '../helpers/ratingsHeader';
+import RatingCard from './RatingCard';
 import { getUserRatings } from './actions';
 
 class AllRatings extends Component {
@@ -19,9 +20,18 @@ class AllRatings extends Component {
     if (isFetching) { return <Loader active inline="centered" />; }
 
     return (
-      <Container>
+      <Container textAlign='center'>
         <Header>{ratingsHeader(currentUserRatings)}</Header>
         <Card.Group>
+          {currentUserRatings.ratings.map(r =>
+            <RatingCard
+              key={r.id}
+              stars={r.stars}
+              editable={false}
+              content={r.content}
+              rater={r.rater}
+            />
+          )}
         </Card.Group>
       </Container>
     );
@@ -36,7 +46,7 @@ const mapStateToProps = (state) => {
   const { currentUserRatings, isFetching } = state.ratings;
   const { ratingsForm } = state.ratings;
   const { pathname } = state.routing.locationBeforeTransitions;
-  const userId = pathname.split('/')[2]
+  const userId = pathname.split('/')[2];
 
   return {
     currentUserRatings,

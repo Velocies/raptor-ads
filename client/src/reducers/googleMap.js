@@ -1,4 +1,4 @@
-import { ADD_MAP_MARKER, CHANGE_CENTER, CHANGE_MARKER_SHOW_INFO, LOGIN_SUCCESS, GET_CURRENT_LISTING_SUCCESS } from '../constants';
+import { ADD_MAP_MARKER, CHANGE_CENTER, CHANGE_MARKER_SHOW_INFO, LOGIN_SUCCESS, GET_CURRENT_LISTING_SUCCESS, CHANGE_CENTER_SUCCESS, ADD_MAP_MARKERS_SUCCESS } from '../constants';
 import concatAddress from '../components/helpers/concatAddress';
 
 export const initialState = {
@@ -13,6 +13,9 @@ export const googleMap = (state = initialState, action) => {
   switch (action.type) {
     case 'CHANGE_CENTER_SUCCESS':
       return ({ ...state, center: action.location });
+    case ADD_MAP_MARKERS_SUCCESS:
+      console.log('MARKER ARRAY', action.markerArray);
+      return ({ ...state, markers: action.markerArray });
     // case GET_CURRENT_LISTING_SUCCESS:
     //   console.log('SHOULD CHANGE HERE', concatAddress(action.payload));
     //   geocoder.geocode({ 'address': concatAddress(action.payload)}, (results) => {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import Carousel from 'nuka-carousel';
 import moment from 'moment';
 import { Container, Grid, Image, Header, Divider, Message, List, Loader, Button, Modal, Form, Input, Segment, Card } from 'semantic-ui-react';
@@ -113,17 +114,22 @@ class FullListing extends Component {
 
           <Divider clearing />
           <Divider hidden />
-          <Grid centered>
-            <Grid.Row>
+          <Grid>
+            <Grid.Row centered>
               <Header as="h3">
-                {`Ratings for ${currentListing.user.firstName}`}
+                {`Recent Ratings for ${currentListing.user.firstName}`}
               </Header>
             </Grid.Row>
-            <Grid.Row>
+            <Grid.Row centered>
               <Card.Group>
                 { this.renderRecentRatings(currentListing.user.ratings) }
               </Card.Group>
             </Grid.Row>
+            <Grid.Row>
+            <Link to={`/user/${currentListing.user.id}/ratings`}>
+              View All
+            </Link>
+          </Grid.Row>
           </Grid>
         </Message>
       </Container>

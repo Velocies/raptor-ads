@@ -20,7 +20,6 @@ class FullListing extends Component {
 
   render() {
     const { isFetching, currentListing, userListings, user } = this.props;
-    console.log(`USER THAT MADE THE POST: ${user.firstName}`);
     if (isFetching) {
       return <Loader active inline="centered" />;
     }
@@ -102,7 +101,9 @@ class FullListing extends Component {
           <Divider hidden />
 
           <Grid textAlign="center">
-            <Header as="h3" className="center">Consumer Ratings</Header>
+            <Header as="h3" className="center">
+              {`Ratings for ${currentListing.user.firstName}`}
+            </Header>
 
           </Grid>
 

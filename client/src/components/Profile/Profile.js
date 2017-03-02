@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, Grid, Header, Modal } from 'semantic-ui-react';
-import deleteProfileModal from './deleteProfileModal';
+import DeleteProfileModal from './deleteProfileModal';
 import { updateFormField, getCurrentProfile, updateProfile, deleteProfile } from '../../actions/profileActions';
 
 class Profile extends Component {
@@ -10,6 +10,7 @@ class Profile extends Component {
     this.onChange = this.onChange.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.onUpdateClick = this.onUpdateClick.bind(this);
+    this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
   onChange(e) {
@@ -139,7 +140,7 @@ class Profile extends Component {
               <Button type="button" onClick={() => this.onUpdateClick()}>
                 Update Profile
               </Button>
-              <deleteProfileModal />
+              <DeleteProfileModal onDeleteClick={this.onDeleteClick} />
               { profileUpdated ?
                 <label htmlFor="profileUpdated">Profile Updated!</label>
                 : null

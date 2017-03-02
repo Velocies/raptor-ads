@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Header, Modal } from 'semantic-ui-react';
 
-const deleteProfileModal = () =>
+const DeleteProfileModal = ({onDeleteClick}) =>
   <Modal
     trigger={
       <Button
@@ -18,7 +18,7 @@ const deleteProfileModal = () =>
     </Modal.Content>
     <Modal.Actions>
       <Button
-        onClick={() => this.onDeleteClick()}
+        onClick={() => onDeleteClick()}
         color="red"
       >
       Yes, I am sure.
@@ -26,4 +26,4 @@ const deleteProfileModal = () =>
     </Modal.Actions>
   </Modal>;
 
-export default deleteProfileModal;
+export default DeleteProfileModal;

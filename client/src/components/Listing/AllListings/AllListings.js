@@ -26,18 +26,9 @@ class AllListings extends Component {
   }
 
   onClick() {
-    console.log('clicked')
-    var geo = new google.maps.Geocoder();
-    geo.geocode({ 'address': this.props.searchField }, (results, status) => {
-      const bounds = results[0].geometry.bounds;
-      const newCenter = {
-        lat: bounds.f.f,
-        lng: bounds.b.b,
-      };
-      console.log('newCenter', newCenter);
-      this.props.dispatch(changeCenter(newCenter));
-      console.log('computeDistanceBetween', computeDistanceBetween)
-    });
+    console.log('clicked', this.props.searchField);
+    this.props.dispatch(changeCenter(this.props.searchField));
+      // console.log('computeDistanceBetween', computeDistanceBetween)
     // this.geocoder.geocode({ 'address': '1012 docday court, Folsom, Ca, United States' }, function handleResults(results, status) {
 
     //   const nextMarkers = this.state.markers.filter(marker => marker !== targetMarker);

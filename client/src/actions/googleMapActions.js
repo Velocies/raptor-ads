@@ -27,8 +27,10 @@ export const addMapMarkersSuccess = markerArray =>
 
 export const changeCenter = data =>
   (dispatch) => {
+    let addressString = '';
+    typeof data === 'string' ? addressString = data : addressString = concatAddress(data);
     const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'address': concatAddress(data)}, (results) => {
+    geocoder.geocode({ 'address': addressString}, (results) => {
       const newCenter = {
         lat: results[0].geometry.bounds.f.f,
         lng: results[0].geometry.bounds.b.b,
@@ -45,17 +47,18 @@ export const changeMarkerShowInfo = index =>
 
 export const addMapMarkers = data =>
   (dispatch) => {
+    console.log('DATA IS', data);
     const markerArray = [];
     const geocoder = new google.maps.Geocoder();
     if (Array.isArray(data)) {
-      console.log('INSIDE THE ARRAY');
       for (let i = 0; i < data.length; i++) {
         geocoder.geocode({ 'address': concatAddress(data[i])}, (results) => {
-          console.log('address', concatAddress(data[i]));
           const newCenter = {
             position: results[0].geometry.location,
             defaultAnimation: 2,
             key: data[i].id,
+            listingInfo: data[i],
+            showInfo: false,
           };
           markerArray.push(newCenter);
           if (i === data.length - 1) {
@@ -69,6 +72,8 @@ export const addMapMarkers = data =>
           position: results[0].geometry.location,
           defaultAnimation: 2,
           key: data.id,
+          listingInfo: data[i],
+          showInfo: false,
         };
         markerArray.push(newCenter);
         dispatch(addMapMarkersSuccess(markerArray));

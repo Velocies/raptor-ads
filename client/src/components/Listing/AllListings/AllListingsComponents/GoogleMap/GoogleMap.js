@@ -1,5 +1,6 @@
 /* global google */
 import _ from "lodash";
+import { Link } from 'react-router';
 import React, { Component } from 'react';
 import Helmet from "react-helmet";
 
@@ -29,7 +30,13 @@ const GoogleMapRender = withGoogleMap(props => {
       <Marker
         {...marker}
         onClick={() => props.onMarkerLeftClick(marker, index)}
-      />
+      >
+      {marker.showInfo && (
+        <InfoWindow>
+          <Link to={`/listings/${marker.key}`} ><div>{marker.listingInfo.title}</div></Link>
+        </InfoWindow>
+      )}
+      </Marker>
     ))}
   </GoogleMap>
   )

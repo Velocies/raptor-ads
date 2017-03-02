@@ -9,6 +9,7 @@ export default (customer) => {
     city,
     state,
     zip,
+    role,
     companyName,
     companyAddress,
     companyCity,
@@ -26,6 +27,7 @@ export default (customer) => {
       state,
       city,
       zip,
+      role,
       password,
       passwordConfirmation,
     };
@@ -36,6 +38,7 @@ export default (customer) => {
     firstName,
     email,
     lastName,
+    role,
     password,
     passwordConfirmation,
   };

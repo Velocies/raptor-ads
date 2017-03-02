@@ -14,6 +14,7 @@ import configureStore from '../configureStore';
 import AddListing from './Listing/AddListing/AddListing';
 import AllListings from './Listing/AllListings/AllListings';
 import AllRatings from './Ratings/AllRatings';
+import UserDetails from './UserDetails/UserDetails';
 
 
 const store = configureStore();
@@ -39,6 +40,7 @@ const Root = () =>
         <Route path="/addlisting" component={AddListing} onEnter={requireAuth} />
         <Route path="/listings" component={AllListings} />
         <Route path="/user/:id/ratings" component={AllRatings} />
+        <Route path="/user/:id/details" component={UserDetails} />
         <Route path="*" component={NotFound} />
       </Route>
     </Router>

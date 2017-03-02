@@ -91,14 +91,14 @@ class GoogleMapContainer extends Component {
       this.setState({
         markers: nextMarkers,
       });
-      console.log('markers', this.state.markers);
+      // console.log('markers', this.state.markers);
       console.log('results', results, status);
     }.bind(this));
   }
 
   render() {
-    console.log('INITIAL STATE', this.state);
     const { center, markers } = this.props;
+    console.log('MARKERS ARE HERE!!!', markers);
     return (
       <div style={{height: '100%'}}>
         <Helmet

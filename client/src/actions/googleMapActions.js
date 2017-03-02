@@ -48,17 +48,21 @@ export const addMapMarkers = data =>
     const markerArray = [];
     const geocoder = new google.maps.Geocoder();
     if (Array.isArray(data)) {
+      console.log('INSIDE THE ARRAY');
       for (let i = 0; i < data.length; i++) {
         geocoder.geocode({ 'address': concatAddress(data[i])}, (results) => {
+          console.log('address', concatAddress(data[i]));
           const newCenter = {
             position: results[0].geometry.location,
             defaultAnimation: 2,
             key: data[i].id,
           };
           markerArray.push(newCenter);
+          if (i === data.length - 1) {
+            dispatch(addMapMarkersSuccess(markerArray));
+          }
         });
       }
-      dispatch(addMapMarkersSuccess(markerArray));
     } else {
       geocoder.geocode({ 'address': concatAddress(data)}, (results) => {
         const newCenter = {

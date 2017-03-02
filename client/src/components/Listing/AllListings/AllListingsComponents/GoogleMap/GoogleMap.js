@@ -17,7 +17,7 @@ import {
  * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
 const GoogleMapRender = withGoogleMap(props => {
-  console.log('props', props.defaultCenter)
+  console.log('props', props.markers)
   return (
   <GoogleMap
     ref={props.onMapLoad}
@@ -29,8 +29,7 @@ const GoogleMapRender = withGoogleMap(props => {
       <Marker
         {...marker}
         onClick={() => props.onMarkerLeftClick(marker, index)}
-      >
-      </Marker>
+      />
     ))}
   </GoogleMap>
   )

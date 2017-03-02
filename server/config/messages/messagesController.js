@@ -22,6 +22,9 @@ module.exports = {
   },
 
   createMessage: (req, res) => {
-    res.send(200);
+    models.Message.create(req.body)
+      .then((message) => {
+        res.json(message);
+      });
   },
 };

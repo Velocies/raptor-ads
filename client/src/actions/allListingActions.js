@@ -14,13 +14,14 @@ const getAllListingsSuccess = payload =>
   });
 
 export const getAllListings = () =>
-  (dispatch) => {
+  (dispatch, getState) => {
     dispatch(startFetchListings());
     fetchAllListings()
     .then((res) => {
       res.json()
       .then((data) => {
-        dispatch(changeCenter(data[0]));
+        console.log('DATA IN GET ALL LISTINGS', getState().auth);
+        dispatch(changeCenter(getState().auth.loggedInUser));
         dispatch(getAllListingsSuccess(data));
       });
     });

@@ -6,9 +6,7 @@ module.exports = {
       where: {
         id: req.params.listId,
       },
-      include: [{
-        model: models.Picture,
-      }],
+      include: [ models.Picture, models.User ],
     })
       .then((listing) => {
         res.send(listing);

@@ -12,7 +12,6 @@ const geocoder = new google.maps.Geocoder();
 export const googleMap = (state = initialState, action) => {
   switch (action.type) {
     case 'CHANGE_CENTER_SUCCESS':
-      console.log('ACTION LOCATION', action.location);
       return ({ ...state, center: action.location });
     // case GET_CURRENT_LISTING_SUCCESS:
     //   console.log('SHOULD CHANGE HERE', concatAddress(action.payload));

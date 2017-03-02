@@ -19,7 +19,10 @@ class AllRatings extends Component {
     if (isFetching) { return <Loader active inline="centered" />; }
 
     return (
-      <Header>{ratingsHeader(currentUserRatings)}</Header>
+      <Container>
+        <Header>{ratingsHeader(currentUserRatings)}</Header>
+        <Card.Group />
+      </Container>
     );
   }
 }

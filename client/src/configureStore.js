@@ -8,6 +8,9 @@ import rootReducer from './reducers';
 const middleware = routerMiddleware(browserHistory);
 
 const configureStore = () => {
+  if (process.ENV === 'production') {
+    return createStore(rootReducer, applyMiddleware(thunk, middleware));
+  }
   const logger = createLogger();
   return createStore(rootReducer, applyMiddleware(logger, thunk, middleware));
 };

@@ -7,7 +7,7 @@ const AllListingsFilter = ({ onClick, onChange }) => {
       <Form.Field>
         <Input
           icon={<Icon onClick={() => onClick()} name="search" inverted circular link />}
-          placeholder="Enter search address"
+          placeholder="Enter search address here"
           name="image"
           onChange={e => onChange(e)}
           size="large"

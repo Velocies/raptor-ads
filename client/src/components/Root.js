@@ -5,6 +5,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { LandingPage } from './LandingPage';
 import Signup from './Signup/Signup';
 import Login from './Login';
+import Profile from './Profile/Profile';
 import CustomerDashboard from './Dashboard/CustomerDashboard';
 import App from './App';
 import FullListing from './Listing/FullListing';
@@ -32,6 +33,7 @@ const Root = () =>
         <Route path="/landing" component={LandingPage} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
+        <Route path="/profile" component={Profile} onEnter={requireAuth} />
         <Route path="/dashboard" component={CustomerDashboard} onEnter={requireAuth} />
         <Route path="/listings/:id" component={FullListing} onEnter={requireAuth} />
         <Route path="/addlisting" component={AddListing} onEnter={requireAuth} />

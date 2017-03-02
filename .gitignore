@@ -7,3 +7,4 @@ bower_components/
 build/
 dist/
 coverage/
+.DS_Store

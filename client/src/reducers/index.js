@@ -5,9 +5,11 @@ import { listing } from './listing';
 import { listings } from './listings';
 import ratings from '../components/Ratings/reducers';
 import { googleMap } from './googleMap';
+import { profile } from './profile';
 
 export default combineReducers({
   auth,
+  profile,
   listing,
   listings,
   ratings,

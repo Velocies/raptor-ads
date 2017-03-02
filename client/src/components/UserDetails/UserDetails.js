@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUserDetails } from './actions';
+import { Container } from 'semantic-ui-react';
 
 class UserDetails extends Component {
   constructor(props) {
@@ -13,7 +14,9 @@ class UserDetails extends Component {
   }
 
   render() {
-    return <h2>UserDetails</h2>;
+    <Container>
+      
+    </Container>
   }
 }
 

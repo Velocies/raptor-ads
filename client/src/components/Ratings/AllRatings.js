@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Header, Card, Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import ratingsHeader from '../helpers/ratingsHeader';
-import { getUserRatings } from './actions'
+import { getUserRatings } from './actions';
 
 class AllRatings extends Component {
   constructor(props) {
@@ -10,7 +10,8 @@ class AllRatings extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(getUserRatings());
+    const { userId } = this.props;
+    this.props.dispatch(getUserRatings(userId));
   }
 
   render() {
@@ -30,8 +31,15 @@ AllRatings.propTypes = {
 const mapStateToProps = (state) => {
   const { currentUserRatings, isFetching } = state.ratings;
   const { ratingsForm } = state.ratings;
+  const { pathname } = state.routing.locationBeforeTransitions;
+  const userId = pathname.split('/')[2]
 
-  return { currentUserRatings, ratingsForm };
+  return {
+    currentUserRatings,
+    ratingsForm,
+    isFetching,
+    userId,
+  };
 };
 
 export default connect(mapStateToProps)(AllRatings);

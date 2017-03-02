@@ -29,7 +29,7 @@ export const getUserRatings = userId =>
     dispatch(startFetchingRatings());
     fetchUserRatings(userId)
       .then((res) => {
-        if (res !== 200) {
+        if (res.status !== 200) {
           dispatch(failedRatingFetch());
           dispatch(push('/'));
         } else {

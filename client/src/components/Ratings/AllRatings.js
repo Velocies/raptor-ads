@@ -21,7 +21,8 @@ class AllRatings extends Component {
     return (
       <Container>
         <Header>{ratingsHeader(currentUserRatings)}</Header>
-        <Card.Group />
+        <Card.Group>
+        </Card.Group>
       </Container>
     );
   }

@@ -40,7 +40,6 @@ class Profile extends Component {
       city,
       zip,
       state,
-      country,
       role,
       profileUpdated,
     } = this.props.profileForm;
@@ -92,7 +91,7 @@ class Profile extends Component {
               </Form.Field>
             }
             <Form.Field width="8">
-              <label htmlFor="adress">Address</label>
+              <label htmlFor="address">Address</label>
               <input
                 id="address"
                 name="address"
@@ -124,15 +123,6 @@ class Profile extends Component {
                 id="state"
                 name="state"
                 value={state}
-                onChange={e => this.onChange(e)}
-              />
-            </Form.Field>
-            <Form.Field width="8">
-              <label htmlFor="country">Country</label>
-              <input
-                id="country"
-                name="country"
-                value={country}
                 onChange={e => this.onChange(e)}
               />
             </Form.Field>

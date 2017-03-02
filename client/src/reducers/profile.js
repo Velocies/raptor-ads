@@ -9,7 +9,6 @@ const initialState = {
     city: '',
     zip: '',
     state: '',
-    country: '',
     role: 'customer',
     profileUpdated: false,
   },

@@ -4,7 +4,7 @@ const initialState = {
     firstName: '',
     lastName: '',
     email: '',
-    businessName: '',
+    business: {},
     address: '',
     city: '',
     zip: '',

@@ -42,6 +42,7 @@ class Profile extends Component {
       state,
       role,
       profileUpdated,
+      business,
     } = this.props.profileForm;
     return (
       <div>
@@ -85,7 +86,7 @@ class Profile extends Component {
                 <input
                   id="businessName"
                   name="businessName"
-                  value={businessName}
+                  value={business.companyName}
                   onChange={e => this.onChange(e)}
                 />
               </Form.Field>
@@ -95,7 +96,7 @@ class Profile extends Component {
               <input
                 id="address"
                 name="address"
-                value={address}
+                value={!address ? business.companyAddress : address}
                 onChange={e => this.onChange(e)}
               />
             </Form.Field>
@@ -104,7 +105,7 @@ class Profile extends Component {
               <input
                 id="city"
                 name="city"
-                value={city}
+                value={!city ? business.companyCity : city}
                 onChange={e => this.onChange(e)}
               />
             </Form.Field>
@@ -113,7 +114,7 @@ class Profile extends Component {
               <input
                 id="zip"
                 name="zip"
-                value={zip}
+                value={!zip ? business.companyZip : zip}
                 onChange={e => this.onChange(e)}
               />
             </Form.Field>
@@ -122,7 +123,7 @@ class Profile extends Component {
               <input
                 id="state"
                 name="state"
-                value={state}
+                value={!state ? business.companyState : state}
                 onChange={e => this.onChange(e)}
               />
             </Form.Field>

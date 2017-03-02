@@ -72,7 +72,12 @@ class FullListing extends Component {
                   <List>
                     <List.Item>
                       <List.Icon name="users" />
-                      <List.Content>{`${currentListing.user.firstName} ${currentListing.user.lastName}` || 'Customer Name'}</List.Content>
+                      <List.Content>
+                        {`${currentListing.user.firstName} ${currentListing.user.lastName}  ` || 'Customer Name  '}
+                        <Link to={`/user/${currentListing.user.id}/details`}>
+                          User Details
+                        </Link>
+                      </List.Content>
                     </List.Item>
                     <List.Item>
                       <List.Icon name="marker" />

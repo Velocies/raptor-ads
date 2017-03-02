@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, Grid, Header, Modal } from 'semantic-ui-react';
+import deleteProfileModal from './deleteProfileModal';
 import { updateFormField, getCurrentProfile, updateProfile, deleteProfile } from '../../actions/profileActions';
 
 class Profile extends Component {
@@ -18,7 +19,6 @@ class Profile extends Component {
 
   componentDidMount() {
     this.props.dispatch(getCurrentProfile(this.props.loggedInUser));
-    console.log(this.props);
   }
 
   onUpdateClick() {
@@ -139,33 +139,11 @@ class Profile extends Component {
               <Button type="button" onClick={() => this.onUpdateClick()}>
                 Update Profile
               </Button>
+              <deleteProfileModal />
               { profileUpdated ?
                 <label htmlFor="profileUpdated">Profile Updated!</label>
                 : null
               }
-              <Modal
-                trigger={
-                  <Button
-                    className="ui red right floated button"
-                    type="button"
-                  >
-                  Delete Profile
-                  </Button>
-                }
-              >
-                <Header icon="trash outline" content="Delete Profile" />
-                <Modal.Content>
-                  <p>Are you sure you want to delete your profile?</p>
-                </Modal.Content>
-                <Modal.Actions>
-                  <Button
-                    onClick={() => this.onDeleteClick()}
-                    color="red"
-                  >
-                  Yes, I am sure.
-                  </Button>
-                </Modal.Actions>
-              </Modal>
             </Form.Field>
           </Form>
           </Grid.Column>

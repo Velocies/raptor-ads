@@ -10,6 +10,7 @@ module.exports = {
       .then((user) => {
         user.getMessages({
           include: [
+            { model: models.User },
             { model: models.User, as: 'sender' },
             { model: models.Post },
           ],

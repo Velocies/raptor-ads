@@ -12,7 +12,6 @@ import RatingCard from '../Ratings/RatingCard';
 class FullListing extends Component {
 
   componentDidMount() {
-    console.log('Listing ID: ', this.props.listingId);
     this.props.dispatch(getCurrentListing(this.props.listingId));
   }
 

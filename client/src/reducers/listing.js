@@ -4,6 +4,7 @@ import { FETCHING_LISTING, GET_CURRENT_LISTING_SUCCESS, CHANGE_LISTING_FIELD, UP
 export const initialState = {
   currentListing: {
     pictures: [],
+    user: {},
   },
   listingForm: {
     title: '',

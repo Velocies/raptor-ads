@@ -22,8 +22,8 @@ class FullListing extends Component {
   }
 
   render() {
-    const { isFetching, currentListing, userListings } = this.props;
-
+    const { isFetching, currentListing, userListings, user } = this.props;
+    console.log(`USER THAT MADE THE POST: ${user.firstName}`);
     if (isFetching) {
       return <Loader active inline="centered" />;
     }
@@ -61,16 +61,16 @@ class FullListing extends Component {
                   <List>
                     <List.Item>
                       <List.Icon name="users" />
-                      <List.Content>Customer Name</List.Content>
+                      <List.Content>{`${currentListing.user.firstName} ${currentListing.user.lastName}` || 'Customer Name'}</List.Content>
                     </List.Item>
                     <List.Item>
                       <List.Icon name="marker" />
-                      <List.Content>New York, NY</List.Content>
+                      <List.Content>{`${currentListing.user.city}, ${currentListing.user.state}`}</List.Content>
                     </List.Item>
                     <List.Item>
                       <List.Icon name="mail" />
                       <List.Content>
-                        <a href="mailto:jack@semantic-ui.com">jack@semantic-ui.com</a>
+                        <a href={`${currentListing.user.email}`}>{`${currentListing.user.email}`}</a>
                       </List.Content>
                     </List.Item>
                     <List.Item>
@@ -107,13 +107,19 @@ class FullListing extends Component {
 
 const mapStateToProps = (state) => {
   const { currentListing, userListings, isFetching } = state.listing;
+  const { user } = state.listing.currentListing;
   const { loggedInUser } = state.auth;
+  const { pathname } = state.routing.locationBeforeTransitions;
+
+  const listingId = pathname.split('/')[2];
 
   return {
     loggedInUser,
     currentListing,
     userListings,
     isFetching,
+    listingId,
+    user,
   };
 };
 

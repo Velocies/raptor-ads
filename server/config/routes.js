@@ -2,6 +2,7 @@ const userController = require('./users/userController.js');
 const listingController = require('./listings/listingController.js');
 const authController = require('./auth/authController.js');
 const ratingsController = require('./ratings/ratingsController.js');
+const messagesController = require('./messages/messagesController.js');
 
 module.exports = (app, db, path, rootPath) => {
   // Route for logging in
@@ -42,6 +43,10 @@ module.exports = (app, db, path, rootPath) => {
   // Routes for ratings
   app.get('/api/users/:id/ratings', ratingsController.getAllForUser);
   app.post('/api/ratings', ratingsController.createRating);
+
+  // Routes for messages
+  app.get('/api/users/:id/messages', messagesController.getAllForUser);
+  app.post('/api/messages', messagesController.createMessage);
 
   // Catch-all route to allow reloading
   app.get('*', (req, res) => {

@@ -10,6 +10,8 @@ const RatingCard = ({stars, editable, content, rater}) =>
           name={"rating"}
           value={+stars}
           editing={editable}
+          starColor="#31b234"
+          renderStarIcon={() => <img className="raptorStar" src="/client/src/assets/raptorStar.png" />}
         />
       </Card.Header>
       <Card.Description>{`"${content}"`}</Card.Description>

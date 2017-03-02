@@ -8,15 +8,23 @@ class AllRatings extends Component {
     super(props);
   }
 
+  componentWillMount() {
+    this.props.dispatch(getUserRatings());
+  }
+
   render() {
     const { currentUserRatings, ratingsForm, isFetching } = this.props;
     if (isFetching) { return <Loader active inline="centered" />; }
 
     return (
-      <Header>{}</Header>
+      <Header>{ratingsHeader(currentUserRatings)}</Header>
     );
   }
 }
+
+AllRatings.propTypes = {
+  dispatch: React.Proptypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => {
   const { currentUserRatings, isFetching } = state.ratings;

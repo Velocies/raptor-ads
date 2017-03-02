@@ -23,7 +23,7 @@ const GoogleMapRender = withGoogleMap(props => {
     ref={props.onMapLoad}
     onClick={props.onMapClick}
     center={props.defaultCenter}
-    zoom={15}
+    zoom={12}
   >
     {props.markers.map((marker, index)=> (
       <Marker

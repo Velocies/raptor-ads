@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { Container, Header, Card, Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import ratingsHeader from '../helpers/ratingsHeader';
+import { getUserRatings } from './actions'
 
 class AllRatings extends Component {
   constructor(props) {
     super(props);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatch(getUserRatings());
   }
 
@@ -23,12 +24,12 @@ class AllRatings extends Component {
 }
 
 AllRatings.propTypes = {
-  dispatch: React.Proptypes.func.isRequired,
+  dispatch: React.PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   const { currentUserRatings, isFetching } = state.ratings;
-  const { ratingsForm } = state.ratingsForm;
+  const { ratingsForm } = state.ratings;
 
   return { currentUserRatings, ratingsForm };
 };

@@ -5,7 +5,7 @@ const initialState = {
   currentUserRatings: {
     firstName: '',
     lastName: '',
-    role: '',
+    role: 'customer',
     ratings: [],
   },
   ratingsForm: {

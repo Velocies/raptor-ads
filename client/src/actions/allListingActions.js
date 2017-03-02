@@ -20,9 +20,14 @@ export const getAllListings = () =>
     .then((res) => {
       res.json()
       .then((data) => {
-        console.log('DATA IN GET ALL LISTINGS', data);
+        console.log('STATE IS', getState().auth.loggedInUser);
+        if (getState().auth.loggedInUser.role === 'professional') {
+          console.log('the business!!!')
+          dispatch(changeCenter(getState().auth.loggedInUser.business));
+        } else {
+          dispatch(changeCenter(getState().auth.loggedInUser));
+        }
         dispatch(addMapMarkers(data));
-        dispatch(changeCenter(getState().auth.loggedInUser));
         dispatch(getAllListingsSuccess(data));
       });
     });

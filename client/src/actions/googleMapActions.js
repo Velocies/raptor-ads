@@ -27,6 +27,8 @@ export const addMapMarkersSuccess = markerArray =>
 
 export const changeCenter = data =>
   (dispatch) => {
+    console.log('DATA IS', data);
+    console.log('CONCAT ADDRESS', concatAddress(data));
     const geocoder = new google.maps.Geocoder();
     geocoder.geocode({ 'address': concatAddress(data)}, (results) => {
       const newCenter = {

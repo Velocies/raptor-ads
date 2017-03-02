@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Carousel from 'nuka-carousel';
 import moment from 'moment';
-import { Container, Grid, Image, Header, Divider, Message, List, Loader, Button, Modal } from 'semantic-ui-react';
+import { Container, Grid, Image, Header, Divider, Message, List, Loader, Button, Modal, Form, Input } from 'semantic-ui-react';
 import GoogleMapContainer from './AllListings/AllListingsComponents/GoogleMap/GoogleMapContainer';
 import { getCurrentListing } from '../../actions/fullListingActions';
 import Listing from '../shared/Listing';
 
 class FullListing extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     console.log('Listing ID: ', this.props.listingId);
@@ -81,10 +78,20 @@ class FullListing extends Component {
                     </List.Item>
                   </List>
                 </Grid.Column>
-                <Divider hidden/>
+                <Divider hidden />
                 <Grid.Column>
-                  <Modal>
-
+                  <Modal trigger={<Button>Contact Them!</Button>}>
+                    <Modal.Header>Contact Form</Modal.Header>
+                    <Modal.Content>
+                      <Modal.Description>
+                        <Header>Send Them A Message!</Header>
+                        <Form>
+                          <Form.Input label="Subject" placeholder="Subject" />
+                          <Form.TextArea label="Message" placeholder="Tell them who you are and why you are contacting them..." />
+                          <Form.Button>Send Message</Form.Button>
+                        </Form>
+                      </Modal.Description>
+                    </Modal.Content>
                   </Modal>
                 </Grid.Column>
               </Grid.Row>

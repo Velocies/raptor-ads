@@ -45,7 +45,7 @@ class GoogleMapContainer extends Component {
       position: event.latLng,
       defaultAnimation: 2,
       key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
-      // showInfo: false,
+      showInfo: false,
     };
     console.log('nextMarkers', nextMarkers)
     this.props.dispatch(addMapMarker(nextMarkers));
@@ -64,7 +64,7 @@ class GoogleMapContainer extends Component {
 
   handleMarkerLeftClick(targetMarker, index) {
     console.log('targetMarker', targetMarker, index);
-    // this.props.dispatch(changeMarkerShowInfo(index));
+    this.props.dispatch(changeMarkerShowInfo(index));
   }
 
   handleMarkerMouseEnter(targetMarker) {
@@ -85,7 +85,7 @@ class GoogleMapContainer extends Component {
         position: results[0].geometry.location,
         defaultAnimation: 2,
         key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
-        // showInfo: false,
+        showInfo: false,
       };
       nextMarkers.push(newThing);
       this.setState({

@@ -4,6 +4,7 @@ import { FETCHING_LISTINGS, GET_ALL_LISTINGS_SUCCESS, CHANGE_SEARCH_FIELD } from
 export const initialState = {
   allListings: [],
   isFetching: false,
+  searchField: '',
 };
 
 export const listings = (state = initialState, action) => {

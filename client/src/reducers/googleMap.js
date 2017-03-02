@@ -11,10 +11,9 @@ const geocoder = new google.maps.Geocoder();
 
 export const googleMap = (state = initialState, action) => {
   switch (action.type) {
-    case 'CHANGE_CENTER_SUCCESS':
+    case CHANGE_CENTER_SUCCESS:
       return ({ ...state, center: action.location });
     case ADD_MAP_MARKERS_SUCCESS:
-      console.log('MARKER ARRAY', action.markerArray);
       return ({ ...state, markers: action.markerArray });
     // case GET_CURRENT_LISTING_SUCCESS:
     //   console.log('SHOULD CHANGE HERE', concatAddress(action.payload));
@@ -28,10 +27,10 @@ export const googleMap = (state = initialState, action) => {
     //     return ({ ...state, center: newCenter });
     //   });
     //   return ({ ...state });
-    // case CHANGE_MARKER_SHOW_INFO:
-    //   const markersClone = [...state.markers];
-    //   markersClone[action.index].showInfo = !markersClone[action.index].showInfo;
-    //   return ({ ...state, markers: markersClone });
+    case CHANGE_MARKER_SHOW_INFO:
+      const markersClone = [...state.markers];
+      markersClone[action.index].showInfo = !markersClone[action.index].showInfo;
+      return ({ ...state, markers: markersClone });
     case CHANGE_CENTER:
       return ({ ...state, center: action.location });
     case ADD_MAP_MARKER:

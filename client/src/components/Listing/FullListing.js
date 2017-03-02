@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Carousel from 'nuka-carousel';
-import { Container, Grid, Image, Header, Divider, Message, List, Loader } from 'semantic-ui-react';
-import { getCurrentListing } from '../../actions/fullListingActions';
+import moment from 'moment';
+import { Container, Grid, Image, Header, Divider, Message, List, Loader, Button, Modal, Form, Input } from 'semantic-ui-react';
 import GoogleMapContainer from './AllListings/AllListingsComponents/GoogleMap/GoogleMapContainer';
+import { getCurrentListing } from '../../actions/fullListingActions';
+import Listing from '../shared/Listing';
 
 class FullListing extends Component {
-  constructor(props) {
-    super(props);
-    this.listingId = this.props.params.id;
-  }
 
   componentDidMount() {
-    this.props.dispatch(getCurrentListing(this.listingId));
+    console.log('Listing ID: ', this.props.listingId);
+    this.props.dispatch(getCurrentListing(this.props.listingId));
+  }
+
+  convertTime(time) {
+    return moment(time).fromNow();
   }
 
   render() {
-    const { isFetching, currentListing } = this.props;
-    console.log('FullListing props: ', this.props);
-
+    const { isFetching, currentListing, userListings, user } = this.props;
+    console.log(`USER THAT MADE THE POST: ${user.firstName}`);
     if (isFetching) {
       return <Loader active inline="centered" />;
     }
@@ -26,7 +28,7 @@ class FullListing extends Component {
     return (
       <Container textAlign="center">
         <Header as="h1" className="center">-- {currentListing.title || 'Current Listing'} -- <br /></Header>
-        <Header as="h4" className="center" color="grey">{currentListing.createdAt || 'Time Created'}</Header>
+        <Header as="h4" className="center" color="grey">{`Created ${this.convertTime(currentListing.createdAt)}` || 'Time Created'}</Header>
 
         <Divider />
 
@@ -41,9 +43,7 @@ class FullListing extends Component {
                 <Divider hidden section />
                 <Carousel>
                   {
-                    currentListing.pictures.map((p, index) => {
-                      return <Image key={index} src={p.img_path} />;
-                    })
+                    currentListing.pictures.map(p => <Image key={p.id} src={p.img_path} />)
                   }
                 </Carousel>
               </Grid.Row>
@@ -53,29 +53,47 @@ class FullListing extends Component {
                 <GoogleMapContainer />
               </Grid.Row>
               <Divider hidden />
-              <Grid.Row>
-                <List>
-                  <List.Item>
-                    <List.Icon name="users" />
-                    <List.Content>Customer Name</List.Content>
-                  </List.Item>
-                  <List.Item>
-                    <List.Icon name="marker" />
-                    <List.Content>New York, NY</List.Content>
-                  </List.Item>
-                  <List.Item>
-                    <List.Icon name="mail" />
-                    <List.Content>
-                      <a href="mailto:jack@semantic-ui.com">jack@semantic-ui.com</a>
-                    </List.Content>
-                  </List.Item>
-                  <List.Item>
-                    <List.Icon name="linkify" />
-                    <List.Content>
-                      <a href="http://www.semantic-ui.com">semantic-ui.com</a>
-                    </List.Content>
-                  </List.Item>
-                </List>
+              <Grid.Row columns={2}>
+                <Grid.Column>
+                  <List>
+                    <List.Item>
+                      <List.Icon name="users" />
+                      <List.Content>{`${currentListing.user.firstName} ${currentListing.user.lastName}` || 'Customer Name'}</List.Content>
+                    </List.Item>
+                    <List.Item>
+                      <List.Icon name="marker" />
+                      <List.Content>{`${currentListing.user.city}, ${currentListing.user.state}`}</List.Content>
+                    </List.Item>
+                    <List.Item>
+                      <List.Icon name="mail" />
+                      <List.Content>
+                        <a href={`${currentListing.user.email}`}>{`${currentListing.user.email}`}</a>
+                      </List.Content>
+                    </List.Item>
+                    <List.Item>
+                      <List.Icon name="linkify" />
+                      <List.Content>
+                        <a href="http://www.semantic-ui.com">semantic-ui.com</a>
+                      </List.Content>
+                    </List.Item>
+                  </List>
+                </Grid.Column>
+                <Divider hidden />
+                <Grid.Column>
+                  <Modal trigger={<Button>Contact Them!</Button>}>
+                    <Modal.Header>Contact Form</Modal.Header>
+                    <Modal.Content>
+                      <Modal.Description>
+                        <Header>Send Them A Message!</Header>
+                        <Form>
+                          <Form.Input label="Subject" placeholder="Subject" />
+                          <Form.TextArea label="Message" placeholder="Tell them who you are and why you are contacting them..." />
+                          <Form.Button>Send Message</Form.Button>
+                        </Form>
+                      </Modal.Description>
+                    </Modal.Content>
+                  </Modal>
+                </Grid.Column>
               </Grid.Row>
             </Grid.Column>
           </Grid>
@@ -84,18 +102,8 @@ class FullListing extends Component {
           <Divider hidden />
 
           <Grid textAlign="center">
-            <Header as="h3" className="center">Related Listings</Header>
-            <Grid.Row columns={3}>
-              <Grid.Column>
-                <Image src="http://semantic-ui.com/images/wireframe/media-paragraph.png" />
-              </Grid.Column>
-              <Grid.Column>
-                <Image src="http://semantic-ui.com/images/wireframe/media-paragraph.png" />
-              </Grid.Column>
-              <Grid.Column>
-                <Image src="http://semantic-ui.com/images/wireframe/media-paragraph.png" />
-              </Grid.Column>
-            </Grid.Row>
+            <Header as="h3" className="center">Consumer Ratings</Header>
+
           </Grid>
 
         </Message>
@@ -105,12 +113,20 @@ class FullListing extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { currentListing, isFetching } = state.listing;
-  const { id } = state.auth.loggedInUser;
+  const { currentListing, userListings, isFetching } = state.listing;
+  const { user } = state.listing.currentListing;
+  const { loggedInUser } = state.auth;
+  const { pathname } = state.routing.locationBeforeTransitions;
+
+  const listingId = pathname.split('/')[2];
+
   return {
-    id,
+    loggedInUser,
     currentListing,
+    userListings,
     isFetching,
+    listingId,
+    user,
   };
 };
 

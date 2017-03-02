@@ -114,22 +114,27 @@ class FullListing extends Component {
 
           <Divider clearing />
           <Divider hidden />
-          <Grid>
-            <Grid.Row centered>
+          <Grid centered>
+            <Grid.Row>
               <Header as="h3">
                 {`Recent Ratings for ${currentListing.user.firstName}`}
               </Header>
             </Grid.Row>
-            <Grid.Row centered>
-              <Card.Group>
-                { this.renderRecentRatings(currentListing.user.ratings) }
-              </Card.Group>
-            </Grid.Row>
-            <Grid.Row>
-            <Link to={`/user/${currentListing.user.id}/ratings`}>
-              View All
-            </Link>
-          </Grid.Row>
+            { currentListing.user.ratings && !currentListing.user.ratings.length ?
+                <span>No Ratings for { currentListing.user.firstName  }</span> :
+                <Grid>
+                  <Grid.Row centered>
+                    <Card.Group>
+                      { this.renderRecentRatings(currentListing.user.ratings) }
+                    </Card.Group>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Link to={`/user/${currentListing.user.id}/ratings`}>
+                      View All
+                    </Link>
+                  </Grid.Row>
+                </Grid>
+            }
           </Grid>
         </Message>
       </Container>

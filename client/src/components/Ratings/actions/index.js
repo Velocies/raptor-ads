@@ -6,6 +6,7 @@ export const FETCH_RATINGS_SUCCESS = 'FETCH_RATINGS_SUCCESS';
 export const CHANGE_RATINGS_FORM = 'CHANGE_RATINGS_FORM';
 export const CHANGE_RATINGS_FORM_STARS = 'CHANGE_RATINGS_FORM_STARS';
 export const SUBMIT_RATINGS_FORM = 'SUBMIT_RATINGS_FORM';
+export const POST_RATINGS_SUCCESS = 'POST_RATINGS_SUCCESS';
 
 const fetchUserRatings = userId =>
   fetch(`/api/users/${userId}/ratings`);
@@ -20,6 +21,11 @@ export const changeStars = newValue =>
   ({
     type: CHANGE_RATINGS_FORM_STARS,
     newValue,
+  });
+
+const postRatingSuccess = () =>
+  ({
+    type: POST_RATINGS_SUCCESS,
   });
 
 const postRating = payload =>
@@ -39,6 +45,7 @@ export const submitRatingsForm = payload =>
         if (res.status === 200) {
           res.json()
             .then((data) => {
+              dispatch(postRatingSuccess());
               dispatch(push(`/user/${data.userId}/ratings`));
             });
         }

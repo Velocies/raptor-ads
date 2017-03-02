@@ -1,4 +1,4 @@
-import { START_FETCHING_RATINGS, FAILED_FETCH_RATINGS, FETCH_RATINGS_SUCCESS, CHANGE_RATINGS_FORM_STARS, CHANGE_RATINGS_FORM } from '../actions';
+import { START_FETCHING_RATINGS, FAILED_FETCH_RATINGS, FETCH_RATINGS_SUCCESS, CHANGE_RATINGS_FORM_STARS, CHANGE_RATINGS_FORM, POST_RATINGS_SUCCESS } from '../actions';
 
 const initialState = {
   isFetching: false,
@@ -39,6 +39,11 @@ const ratingsReducer = (state = initialState, action) => {
       return ({
         ...state,
         ratingsForm: { ...state.ratingsForm, [action.target]: action.value },
+      });
+    case POST_RATINGS_SUCCESS:
+      return ({
+        ...state,
+        ratingsForm: { ...state.ratingsForm, stars: 0, content: '' },
       });
     default:
       return state;

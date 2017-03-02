@@ -90,7 +90,6 @@ export const customerSignup = customer =>
               if (data.error) {
                 dispatch(signupFailure(data.error));
               }
-              dispatch(changeCenter(data.user));
               dispatch(signupSuccess(data));
               localStorage.setItem('raptor_token', data.token);
               dispatch(push('dashboard'));
@@ -109,7 +108,6 @@ export const loginUser = data =>
               dispatch(loginError());
             } else {
               dispatch(loginSuccess(payload));
-              dispatch(changeCenter(payload.user));
               localStorage.setItem('raptor_token', payload.token);
               dispatch(push('dashboard'));
             }

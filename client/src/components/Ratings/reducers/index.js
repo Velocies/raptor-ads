@@ -10,7 +10,7 @@ const initialState = {
   },
   ratingsForm: {
     stars: 0,
-    body: '',
+    content: '',
   },
 };
 

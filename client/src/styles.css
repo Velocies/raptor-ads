@@ -50,3 +50,12 @@
 .listingCard {
   z-index: 1 !important;
 }
+
+.raptorStar {
+  width: 20px;
+  height: 20px;
+}
+
+.allRatings {
+  float: right;
+}

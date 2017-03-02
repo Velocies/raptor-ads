@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import Carousel from 'nuka-carousel';
 import moment from 'moment';
-import { Container, Grid, Image, Header, Divider, Message, List, Loader, Button, Modal, Form, Input } from 'semantic-ui-react';
+import { Container, Grid, Image, Header, Divider, Message, List, Loader, Button, Modal, Form, Input, Segment, Card } from 'semantic-ui-react';
 import GoogleMapContainer from './AllListings/AllListingsComponents/GoogleMap/GoogleMapContainer';
 import { getCurrentListing } from '../../actions/fullListingActions';
 import Listing from '../shared/Listing';
+import RatingCard from '../Ratings/RatingCard';
 
 class FullListing extends Component {
 
@@ -18,9 +20,21 @@ class FullListing extends Component {
     return moment(time).fromNow();
   }
 
+  renderRecentRatings(ratings) {
+    if (!ratings) { return []; }
+    return ratings
+      .slice(0, 3)
+      .map(r =>
+        <RatingCard
+          stars={r.stars}
+          editable={false}
+          content={r.content}
+          rater={r.rater}
+        />);
+  }
+
   render() {
     const { isFetching, currentListing, userListings, user } = this.props;
-    console.log(`USER THAT MADE THE POST: ${user.firstName}`);
     if (isFetching) {
       return <Loader active inline="centered" />;
     }
@@ -100,12 +114,28 @@ class FullListing extends Component {
 
           <Divider clearing />
           <Divider hidden />
-
-          <Grid textAlign="center">
-            <Header as="h3" className="center">Consumer Ratings</Header>
-
+          <Grid centered>
+            <Grid.Row>
+              <Header as="h3">
+                {`Recent Ratings for ${currentListing.user.firstName}`}
+              </Header>
+            </Grid.Row>
+            { currentListing.user.ratings && !currentListing.user.ratings.length ?
+                <span>No Ratings for { currentListing.user.firstName  }</span> :
+                <Grid>
+                  <Grid.Row centered>
+                    <Card.Group>
+                      { this.renderRecentRatings(currentListing.user.ratings) }
+                    </Card.Group>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Link to={`/user/${currentListing.user.id}/ratings`}>
+                      View All
+                    </Link>
+                  </Grid.Row>
+                </Grid>
+            }
           </Grid>
-
         </Message>
       </Container>
     );

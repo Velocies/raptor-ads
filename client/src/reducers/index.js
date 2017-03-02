@@ -6,6 +6,7 @@ import { listings } from './listings';
 import ratings from '../components/Ratings/reducers';
 import { googleMap } from './googleMap';
 import { profile } from './profile';
+import userDetails from '../components/UserDetails/reducers';
 
 export default combineReducers({
   auth,
@@ -13,6 +14,7 @@ export default combineReducers({
   listing,
   listings,
   ratings,
+  userDetails,
   googleMap,
   routing: routerReducer,
 });

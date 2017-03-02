@@ -12,7 +12,6 @@ import RatingCard from '../Ratings/RatingCard';
 class FullListing extends Component {
 
   componentDidMount() {
-    console.log('Listing ID: ', this.props.listingId);
     this.props.dispatch(getCurrentListing(this.props.listingId));
   }
 
@@ -72,7 +71,11 @@ class FullListing extends Component {
                   <List>
                     <List.Item>
                       <List.Icon name="users" />
-                      <List.Content>{`${currentListing.user.firstName} ${currentListing.user.lastName}` || 'Customer Name'}</List.Content>
+                      <List.Content>
+                        <Link to={`/user/${currentListing.user.id}/details`}>
+                        {`${currentListing.user.firstName} ${currentListing.user.lastName}` || 'Customer Name'}
+                        </Link>
+                      </List.Content>
                     </List.Item>
                     <List.Item>
                       <List.Icon name="marker" />

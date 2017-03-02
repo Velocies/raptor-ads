@@ -40,13 +40,14 @@ class GoogleMapContainer extends Component {
 
 
   handleMapClick(event) {
-
+    console.log('event', event);
     const nextMarkers = {
       position: event.latLng,
       defaultAnimation: 2,
       key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
       // showInfo: false,
     };
+    console.log('nextMarkers', nextMarkers)
     this.props.dispatch(addMapMarker(nextMarkers));
     console.log('markers', this.props.markers)
     console.log('google map', google.maps.geometry.spherical.computeDistanceBetween);

@@ -1,5 +1,5 @@
 import { GET_ALL_LISTINGS, GET_ALL_LISTINGS_SUCCESS, FETCHING_LISTINGS, CHANGE_SEARCH_FIELD } from '../constants';
-import { changeCenter } from './googleMapActions';
+import { changeCenter, addMapMarkers } from './googleMapActions';
 import { fetchAllListings } from './api';
 
 const startFetchListings = () =>
@@ -20,7 +20,8 @@ export const getAllListings = () =>
     .then((res) => {
       res.json()
       .then((data) => {
-        console.log('DATA IN GET ALL LISTINGS', getState().auth);
+        console.log('DATA IN GET ALL LISTINGS', data);
+        dispatch(addMapMarkers(data));
         dispatch(changeCenter(getState().auth.loggedInUser));
         dispatch(getAllListingsSuccess(data));
       });
@@ -31,7 +32,7 @@ export const changeSearchField = value =>
   ({
     type: CHANGE_SEARCH_FIELD,
     value,
-  })
+  });
 
 
 

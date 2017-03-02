@@ -24,7 +24,7 @@ const ratingsReducer = (state = initialState, action) => {
       return ({
         ...state,
         isFetching: false,
-        currentUserRatings: { ...state.currentUserRatings, ...action.payload },
+        currentUserRatings: { ...action.payload[0] },
       });
     default:
       return state;

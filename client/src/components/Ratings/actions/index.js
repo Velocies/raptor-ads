@@ -33,8 +33,10 @@ export const getUserRatings = userId =>
           dispatch(failedRatingFetch());
           dispatch(push('/'));
         } else {
-          console.log('body', res.body);
-          dispatch(fetchRatingSuccess(res.body));
+          res.json()
+            .then((ratings) => {
+              dispatch(fetchRatingSuccess(ratings));
+            });
         }
       });
   };

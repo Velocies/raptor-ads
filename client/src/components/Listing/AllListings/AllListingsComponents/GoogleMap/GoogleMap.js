@@ -30,11 +30,6 @@ const GoogleMapRender = withGoogleMap(props => {
         {...marker}
         onClick={() => props.onMarkerLeftClick(marker, index)}
       >
-      {marker.showInfo && (
-        <InfoWindow onCloseClick={() => props.onMarkerClose(marker)}>
-          <div>{marker.infoContent}</div>
-        </InfoWindow>
-      )}
       </Marker>
     ))}
   </GoogleMap>
@@ -43,3 +38,9 @@ const GoogleMapRender = withGoogleMap(props => {
 
 export default GoogleMapRender;
         // onClick={() => props.onMarkerLeftClick(marker)}
+
+      // {marker.showInfo && (
+      //   <InfoWindow onCloseClick={() => props.onMarkerClose(marker)}>
+      //     <div>{marker.infoContent}</div>
+      //   </InfoWindow>
+      // )}

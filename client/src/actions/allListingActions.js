@@ -1,4 +1,5 @@
 import { GET_ALL_LISTINGS, GET_ALL_LISTINGS_SUCCESS, FETCHING_LISTINGS, CHANGE_SEARCH_FIELD } from '../constants';
+import { changeCenter } from './googleMapActions';
 import { fetchAllListings } from './api';
 
 const startFetchListings = () =>
@@ -19,6 +20,7 @@ export const getAllListings = () =>
     .then((res) => {
       res.json()
       .then((data) => {
+        dispatch(changeCenter(data[0]));
         dispatch(getAllListingsSuccess(data));
       });
     });

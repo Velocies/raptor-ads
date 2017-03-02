@@ -4,7 +4,7 @@ module.exports = {
   getAllForUser: (req, res) => {
     models.User.findOne({
       where: {
-        id: req.body.userId,
+        id: req.params.id,
       },
     })
       .then((user) => {

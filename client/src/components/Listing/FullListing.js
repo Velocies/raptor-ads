@@ -3,23 +3,18 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Carousel from 'nuka-carousel';
 import moment from 'moment';
-import { Container, Grid, Image, Header, Divider, Message, List, Loader, Button, Modal, Form, Input, Segment, Card } from 'semantic-ui-react';
+import { Container, Grid, Image, Header, Divider, Message, List, Loader, Button, Modal, Form, Card } from 'semantic-ui-react';
 import GoogleMapContainer from './AllListings/AllListingsComponents/GoogleMap/GoogleMapContainer';
 import { getCurrentListing } from '../../actions/fullListingActions';
-import Listing from '../shared/Listing';
 import RatingCard from '../Ratings/RatingCard';
 
 class FullListing extends Component {
 
-  componentDidMount() {
-    this.props.dispatch(getCurrentListing(this.props.listingId));
-  }
-
-  convertTime(time) {
+  static convertTime(time) {
     return moment(time).fromNow();
   }
 
-  renderRecentRatings(ratings) {
+  static renderRecentRatings(ratings) {
     if (!ratings) { return []; }
     return ratings
       .slice(0, 3)
@@ -32,8 +27,12 @@ class FullListing extends Component {
         />);
   }
 
+  componentDidMount() {
+    this.props.dispatch(getCurrentListing(this.props.listingId));
+  }
+
   render() {
-    const { isFetching, currentListing, userListings, user } = this.props;
+    const { isFetching, currentListing, userListings } = this.props;
     if (isFetching) {
       return <Loader active inline="centered" />;
     }
@@ -73,7 +72,7 @@ class FullListing extends Component {
                       <List.Icon name="users" />
                       <List.Content>
                         <Link to={`/user/${currentListing.user.id}/details`}>
-                        {`${currentListing.user.firstName} ${currentListing.user.lastName}` || 'Customer Name'}
+                          {`${currentListing.user.firstName} ${currentListing.user.lastName}` || 'Customer Name'}
                         </Link>
                       </List.Content>
                     </List.Item>
@@ -105,7 +104,7 @@ class FullListing extends Component {
                         <Form>
                           <Form.Input label="Subject" placeholder="Subject" />
                           <Form.TextArea label="Message" placeholder="Tell them who you are and why you are contacting them..." />
-                          <Form.Button>Send Message</Form.Button>
+                          <Form.Button type="submit">Send Message</Form.Button>
                         </Form>
                       </Modal.Description>
                     </Modal.Content>

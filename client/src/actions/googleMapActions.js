@@ -23,10 +23,11 @@ export const changeCenter = data =>
     let addressString = '';
     typeof data === 'string' ? addressString = data : addressString = concatAddress(data);
     const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'address': addressString}, (results) => {
+    geocoder.geocode({ address: addressString }, (results) => {
       const newCenter = {
         lat: results[0].geometry.bounds.f.f,
         lng: results[0].geometry.bounds.b.b,
+        position: results[0].geometry.location,
       };
       dispatch(changeCenterSuccess(newCenter));
     });
@@ -43,7 +44,7 @@ export const addMapMarkers = data =>
     const markerArray = [];
     const geocoder = new google.maps.Geocoder();
     for (let i = 0; i < data.length; i++) {
-      geocoder.geocode({ 'address': concatAddress(data[i])}, (results) => {
+      geocoder.geocode({ address: concatAddress(data[i])}, (results) => {
         const newCenter = {
           position: results[0].geometry.location,
           defaultAnimation: 2,
@@ -62,7 +63,7 @@ export const addMapMarkers = data =>
 export const addMapMarker = data =>
   (dispatch) => {
     const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'address': concatAddress(data)}, (results) => {
+    geocoder.geocode({ address: concatAddress(data)}, (results) => {
       const newCenter = {
         position: results[0].geometry.location,
         defaultAnimation: 2,

@@ -10,11 +10,20 @@ import RatingCard from '../Ratings/RatingCard';
 
 class FullListing extends Component {
 
-  static convertTime(time) {
+  componentDidMount() {
+    this.props.dispatch(getCurrentListing(this.props.listingId));
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    console.log('Submit occurred!');
+  }
+
+  convertTime(time) {
     return moment(time).fromNow();
   }
 
-  static renderRecentRatings(ratings) {
+  renderRecentRatings(ratings) {
     if (!ratings) { return []; }
     return ratings
       .slice(0, 3)
@@ -27,9 +36,6 @@ class FullListing extends Component {
         />);
   }
 
-  componentDidMount() {
-    this.props.dispatch(getCurrentListing(this.props.listingId));
-  }
 
   render() {
     const { isFetching, currentListing, userListings } = this.props;
@@ -88,9 +94,6 @@ class FullListing extends Component {
                     </List.Item>
                     <List.Item>
                       <List.Icon name="linkify" />
-                      <List.Content>
-                        <a href="http://www.semantic-ui.com">semantic-ui.com</a>
-                      </List.Content>
                     </List.Item>
                   </List>
                 </Grid.Column>
@@ -101,10 +104,18 @@ class FullListing extends Component {
                     <Modal.Content>
                       <Modal.Description>
                         <Header>Send Them A Message!</Header>
-                        <Form>
-                          <Form.Input label="Subject" placeholder="Subject" />
-                          <Form.TextArea label="Message" placeholder="Tell them who you are and why you are contacting them..." />
-                          <Form.Button type="submit">Send Message</Form.Button>
+                        <Form onSubmit={e => this.onSubmit(e)}>
+                          <Form.Input
+                            name="subject"
+                            label="Subject"
+                            placeholder="Subject"
+                          />
+                          <Form.TextArea
+                            name="message"
+                            label="Message"
+                            placeholder="Tell them who you are and why you are contacting them..."
+                          />
+                          <Form.Button>Send Message</Form.Button>
                         </Form>
                       </Modal.Description>
                     </Modal.Content>
@@ -123,19 +134,19 @@ class FullListing extends Component {
               </Header>
             </Grid.Row>
             { currentListing.user.ratings && !currentListing.user.ratings.length ?
-                <span>No Ratings for { currentListing.user.firstName  }</span> :
-                <Grid>
-                  <Grid.Row centered>
-                    <Card.Group>
-                      { this.renderRecentRatings(currentListing.user.ratings) }
-                    </Card.Group>
-                  </Grid.Row>
-                  <Grid.Row>
-                    <Link to={`/user/${currentListing.user.id}/ratings`}>
-                      View All
-                    </Link>
-                  </Grid.Row>
-                </Grid>
+              <span>No Ratings for { currentListing.user.firstName }</span> :
+              <Grid>
+                <Grid.Row centered>
+                  <Card.Group>
+                    { this.renderRecentRatings(currentListing.user.ratings) }
+                  </Card.Group>
+                </Grid.Row>
+                <Grid.Row>
+                  <Link to={`/user/${currentListing.user.id}/ratings`}>
+                    View All
+                  </Link>
+                </Grid.Row>
+              </Grid>
             }
           </Grid>
         </Message>

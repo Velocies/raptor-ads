@@ -7,7 +7,7 @@ const startFetchListings = () =>
     type: FETCHING_LISTINGS,
   });
 
-const getAllListingsSuccess = payload =>
+export const getAllListingsSuccess = payload =>
   ({
     type: GET_ALL_LISTINGS_SUCCESS,
     payload,
@@ -26,7 +26,6 @@ export const getAllListings = () =>
           dispatch(changeCenter(getState().auth.loggedInUser));
         }
         dispatch(addMapMarkers(data));
-        dispatch(getAllListingsSuccess(data));
       });
     });
   };
@@ -36,19 +35,3 @@ export const changeSearchField = value =>
     type: CHANGE_SEARCH_FIELD,
     value,
   });
-
-
-
-// export const getAllListings = () => {
-//   (dispatch) => {
-//     dispatch(startFetchListings());
-//     fetchAllListings()
-//     .then((res) => {
-//       console.log('HERE')
-//       res.json()
-//       .then((data) => {
-//         dispatch(getAllListingsSuccess(data));
-//       });
-//     });
-//   };
-// };

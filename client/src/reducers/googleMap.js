@@ -4,7 +4,6 @@ import concatAddress from '../components/helpers/concatAddress';
 export const initialState = {
   center: { lat: 38.6536082, lng:
 -121.14818130000003 },
-  markers: [],
 };
 
 const geocoder = new google.maps.Geocoder();

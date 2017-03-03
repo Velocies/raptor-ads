@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { Container, Header, Card, Button, Divider, Loader, Grid, Menu, Dropdown } from 'semantic-ui-react';
 import { getAllListings, changeSearchField } from '../../../actions/allListingActions';
-import { changeCenter } from '../../../actions/googleMapActions';
+import { changeCenter, sortMarkersByDistance } from '../../../actions/googleMapActions';
 import Listing from '../../shared/Listing';
 import AllListingsSearch from './AllListingsComponents/AllListingsSearch';
 import AllListingsFilter from './AllListingsComponents/AllListingsFilter';
@@ -27,7 +27,6 @@ class AllListings extends Component {
   }
 
   onClick() {
-    console.log('clicked', this.props.searchField);
     this.props.dispatch(changeCenter(this.props.searchField));
       // console.log('computeDistanceBetween', computeDistanceBetween)
     // this.geocoder.geocode({ 'address': '1012 docday court, Folsom, Ca, United States' }, function handleResults(results, status) {
@@ -49,8 +48,8 @@ class AllListings extends Component {
   }
 
   onChange(e) {
-    console.log('logged in user', this.props.loggedInUser)
     this.props.dispatch(changeSearchField(e.target.value));
+    // this.props.dispatch(sortMarkersByDistance(this.props.markers));
   }
 
 
@@ -72,7 +71,7 @@ class AllListings extends Component {
           <AllListingsFilter />
           <Grid width={16}>
             <Grid.Column width={8}>
-              <GoogleMapContainer />
+              <GoogleMapContainer markers={allListings}/>
             </Grid.Column>
             <Grid.Column width={8}>
               <AllListingsSearch onClick={this.onClick} onChange={this.onChange}/>
@@ -105,7 +104,8 @@ const mapStateToProps = (state) => {
   const { allListings, isFetching, searchField } = state.listings;
   const { id } = state.auth.loggedInUser;
   const loggedInUser = state.auth.loggedInUser;
-  return { allListings, isFetching, id, searchField, loggedInUser };
+  const { markers } = state.googleMap;
+  return { allListings, isFetching, id, searchField, loggedInUser, markers };
 };
 
 export default connect(mapStateToProps)(AllListings);

@@ -1,10 +1,18 @@
-import { GET_CURRENT_LISTING_SUCCESS, FETCHING_LISTING } from '../constants';
+import { GET_CURRENT_LISTING_SUCCESS, FETCHING_LISTING, CHANGE_CONTACT_FIELD } from '../constants';
 import { changeCenter, addMapMarker } from './googleMapActions';
 import { fetchCurrentListing } from './api';
+
 
 const startFetchListing = () =>
   ({
     type: FETCHING_LISTING,
+  });
+
+export const changeContactField = (field, value) =>
+  ({
+    type: CHANGE_CONTACT_FIELD,
+    field,
+    value,
   });
 
 export const getCurrentListingSuccess = payload =>

@@ -31,7 +31,7 @@ export const listing = (state = initialState, action) => {
       return ({
         ...state,
         formErrors: { ...state.formErrors, image: null },
-        listingForm: { ...state.listingForm, images: [...state.listingForm.images, action.value] },
+        listingForm: { ...state.listingForm, images: [...state.listingForm.images, action.value], image: '' },
       });
     case GET_LISTINGS_SUCCESS:
       return ({ ...state, userListings: action.payload, isFetching: false });

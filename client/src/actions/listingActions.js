@@ -15,7 +15,7 @@ export const changeListingField = (field, value) =>
   });
 
 export const uploadListingImage = (value) => {
-  if (urlRegex.test(value.img_path)) {
+  if (value.img_path.match(urlRegex)) {
     return ({
       type: UPLOAD_LISTING_IMAGE,
       value,

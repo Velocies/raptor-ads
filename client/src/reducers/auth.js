@@ -63,8 +63,6 @@ export const auth = (state = initialState, action) => {
       return ({ ...state, formErrors: { ...state.formErrors, userExists: 'A user with that email exists' } });
     case LOGIN_FAILURE:
       return ({ ...state, formErrors: { ...state.formErrors, invalidPass: 'Invalid credentials' } });
-    case LOGOUT:
-      return ({ ...state, loggedInUser: {} });
     default:
       return state;
   }

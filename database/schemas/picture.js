@@ -6,7 +6,7 @@ module.exports = (db, Sequelize) => {
       primaryKey: true,
     },
     img_name: Sequelize.STRING,
-    img_path: Sequelize.STRING,
+    img_path: Sequelize.TEXT,
   });
 
   return Picture;

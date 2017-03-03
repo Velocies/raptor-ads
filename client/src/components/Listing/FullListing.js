@@ -37,7 +37,7 @@ class FullListing extends Component {
     if (isFetching) {
       return <Loader active inline="centered" />;
     }
-
+    const currentListingArray = [currentListing];
     return (
       <Container textAlign="center">
         <Header as="h1" className="center">-- {currentListing.title || 'Current Listing'} -- <br /></Header>
@@ -63,7 +63,7 @@ class FullListing extends Component {
             </Grid.Column>
             <Grid.Column>
               <Grid.Row>
-                <GoogleMapContainer />
+                <GoogleMapContainer markers={currentListingArray}/>
               </Grid.Row>
               <Divider hidden />
               <Grid.Row columns={2}>

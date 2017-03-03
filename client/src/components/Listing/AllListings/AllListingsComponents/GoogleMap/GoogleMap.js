@@ -28,7 +28,7 @@ const GoogleMapRender = withGoogleMap(props => {
   >
     {props.markers.map((marker, index)=> (
       <Marker
-        {...marker}
+        {...marker.position}
         onClick={() => props.onMarkerLeftClick(marker, index)}
       >
       {marker.showInfo && (

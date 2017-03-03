@@ -7,7 +7,7 @@ const startFetchListings = () =>
     type: FETCHING_LISTINGS,
   });
 
-const getAllListingsSuccess = payload =>
+export const getAllListingsSuccess = payload =>
   ({
     type: GET_ALL_LISTINGS_SUCCESS,
     payload,
@@ -26,7 +26,6 @@ export const getAllListings = () =>
           dispatch(changeCenter(getState().auth.loggedInUser));
         }
         dispatch(addMapMarkers(data));
-        dispatch(getAllListingsSuccess(data));
       });
     });
   };

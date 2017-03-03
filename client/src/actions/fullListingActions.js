@@ -7,7 +7,7 @@ const startFetchListing = () =>
     type: FETCHING_LISTING,
   });
 
-const getCurrentListingsSuccess = payload =>
+export const getCurrentListingSuccess = payload =>
   ({
     type: GET_CURRENT_LISTING_SUCCESS,
     payload,
@@ -22,7 +22,7 @@ export const getCurrentListing = listingId =>
       .then((data) => {
         dispatch(changeCenter(data));
         dispatch(addMapMarker(data));
-        dispatch(getCurrentListingsSuccess(data));
+        dispatch(getCurrentListingSuccess(data));
       });
     });
   };

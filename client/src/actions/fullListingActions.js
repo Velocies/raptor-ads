@@ -1,5 +1,5 @@
 import { GET_CURRENT_LISTING_SUCCESS, FETCHING_LISTING } from '../constants';
-import { changeCenter, addMapMarkers } from './googleMapActions';
+import { changeCenter, addMapMarker } from './googleMapActions';
 import { fetchCurrentListing } from './api';
 
 const startFetchListing = () =>
@@ -21,7 +21,7 @@ export const getCurrentListing = listingId =>
       res.json()
       .then((data) => {
         dispatch(changeCenter(data));
-        dispatch(addMapMarkers(data));
+        dispatch(addMapMarker(data));
         dispatch(getCurrentListingsSuccess(data));
       });
     });

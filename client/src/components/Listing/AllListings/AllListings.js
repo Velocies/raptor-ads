@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { Container, Header, Card, Button, Divider, Loader, Grid } from 'semantic-ui-react';
+import { Container, Header, Card, Button, Divider, Loader, Grid, Menu, Dropdown } from 'semantic-ui-react';
 import { getAllListings, changeSearchField } from '../../../actions/allListingActions';
 import { changeCenter } from '../../../actions/googleMapActions';
 import Listing from '../../shared/Listing';
+import AllListingsSearch from './AllListingsComponents/AllListingsSearch';
 import AllListingsFilter from './AllListingsComponents/AllListingsFilter';
 import GoogleMapContainer from './AllListingsComponents/GoogleMap/GoogleMapContainer';
 // import InitialMap from './GoogleMap/GoogleMap';
@@ -68,12 +69,13 @@ class AllListings extends Component {
     } else {
       return (
         <Container textAlign="center">
+          <AllListingsFilter />
           <Grid width={16}>
             <Grid.Column width={8}>
               <GoogleMapContainer />
             </Grid.Column>
             <Grid.Column width={8}>
-              <AllListingsFilter onClick={this.onClick} onChange={this.onChange}/>
+              <AllListingsSearch onClick={this.onClick} onChange={this.onChange}/>
             </Grid.Column>
           </Grid>
           <h3>Listings</h3>

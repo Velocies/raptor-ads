@@ -106,7 +106,6 @@ class AddListing extends Component {
                 />
               </Form.Field>
               <ListingImage
-                images={images}
                 onClick={onClick}
                 onChange={onChange}
                 image={image}
@@ -144,7 +143,6 @@ const mapDispatchToProps = dispatch =>
     onClick: (image) => {
       const imageObj = { img_path: image };
       dispatch(uploadListingImage(imageObj));
-      dispatch(changeListingField('image', ''));
     },
     dispatch,
   });

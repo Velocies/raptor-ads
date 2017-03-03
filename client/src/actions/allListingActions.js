@@ -35,19 +35,3 @@ export const changeSearchField = value =>
     type: CHANGE_SEARCH_FIELD,
     value,
   });
-
-
-
-// export const getAllListings = () => {
-//   (dispatch) => {
-//     dispatch(startFetchListings());
-//     fetchAllListings()
-//     .then((res) => {
-//       console.log('HERE')
-//       res.json()
-//       .then((data) => {
-//         dispatch(getAllListingsSuccess(data));
-//       });
-//     });
-//   };
-// };

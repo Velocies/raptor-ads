@@ -98,7 +98,6 @@ class GoogleMapContainer extends Component {
 
   render() {
     const { center, markers } = this.props;
-    console.log('MARKERS ARE HERE!!!', markers);
     //if pathname is exactly listings, pull from positions in listings
     //else pull from full listings, current listing
     return (

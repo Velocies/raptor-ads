@@ -27,7 +27,6 @@ class AllListings extends Component {
   }
 
   onClick() {
-    console.log('clicked', this.props.searchField);
     this.props.dispatch(changeCenter(this.props.searchField));
       // console.log('computeDistanceBetween', computeDistanceBetween)
     // this.geocoder.geocode({ 'address': '1012 docday court, Folsom, Ca, United States' }, function handleResults(results, status) {
@@ -49,9 +48,8 @@ class AllListings extends Component {
   }
 
   onChange(e) {
-    console.log('logged in user', this.props.markers);
     this.props.dispatch(changeSearchField(e.target.value));
-    this.props.dispatch(sortMarkersByDistance(this.props.markers));
+    // this.props.dispatch(sortMarkersByDistance(this.props.markers));
   }
 
 

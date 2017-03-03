@@ -57,8 +57,6 @@ export const addMapMarkers = data =>
         markerArray.push(newCenter);
         newData[i].position = newCenter;
         if (i === data.length - 1) {
-          console.log('NEW DATA', newData);
-          console.log('get all listings!!', getAllListingsSuccess)
           dispatch(getAllListingsSuccess(newData));
           dispatch(addMapMarkersSuccess(markerArray));
         }
@@ -78,7 +76,6 @@ export const addMapMarker = data =>
         showInfo: false,
       };
       newData.position = newCenter;
-      console.log('NEW DATA SINGLE', newData);
       dispatch(getCurrentListingSuccess(newData));
       dispatch(addMapMarkersSuccess([newCenter]));
     });

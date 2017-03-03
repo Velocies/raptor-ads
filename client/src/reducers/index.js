@@ -7,8 +7,9 @@ import ratings from '../components/Ratings/reducers';
 import { googleMap } from './googleMap';
 import { profile } from './profile';
 import userDetails from '../components/UserDetails/reducers';
+import { LOGOUT } from '../constants';
 
-export default combineReducers({
+const appReducer = combineReducers({
   auth,
   profile,
   listing,
@@ -18,3 +19,11 @@ export default combineReducers({
   googleMap,
   routing: routerReducer,
 });
+
+export default (state, action) => {
+  if (action.type === LOGOUT) {
+    state = undefined;
+  }
+
+  return appReducer(state, action);
+};

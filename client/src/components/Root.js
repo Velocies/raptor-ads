@@ -40,9 +40,9 @@ const Root = () =>
         <Route path="/listings/:id" component={FullListing} onEnter={requireAuth} />
         <Route path="/addlisting" component={AddListing} onEnter={requireAuth} />
         <Route path="/listings" component={AllListings} />
-        <Route path="/user/:id/ratings" component={AllRatings} />
-        <Route path="/user/:id/ratings/new" component={NewRating} />
-        <Route path="/user/:id/details" component={UserDetails} />
+        <Route path="/user/:id/ratings" component={AllRatings} onEnter={requireAuth}/>
+        <Route path="/user/:id/ratings/new" component={NewRating} onEnter={requireAuth}/>
+        <Route path="/user/:id/details" component={UserDetails} onEnter={requireAuth}/>
         <Route path="*" component={NotFound} />
       </Route>
     </Router>

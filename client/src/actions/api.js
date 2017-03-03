@@ -28,6 +28,16 @@ export const postListing = payload =>
     body: JSON.stringify(payload.data),
   });
 
+export const postContactMessage = payload =>
+  fetch('/api/messages/', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(payload.data),
+  });
+
 export const deleteListing = listingId =>
   fetch(`/api/listings/${listingId}`, {
     method: 'DELETE',

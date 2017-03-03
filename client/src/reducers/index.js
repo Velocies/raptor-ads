@@ -3,6 +3,7 @@ import { routerReducer } from 'react-router-redux';
 import { auth } from './auth';
 import { listing } from './listing';
 import { listings } from './listings';
+import { messages } from './messages';
 import ratings from '../components/Ratings/reducers';
 import { googleMap } from './googleMap';
 import { profile } from './profile';
@@ -13,6 +14,7 @@ const appReducer = combineReducers({
   auth,
   profile,
   listing,
+  messages,
   listings,
   ratings,
   userDetails,

@@ -1,4 +1,4 @@
-import { GET_ALL_LISTINGS, GET_ALL_LISTINGS_SUCCESS, FETCHING_LISTINGS, CHANGE_SEARCH_FIELD, CHANGE_FILTER_CATEGORY, CHANGE_DISTANCE_RADIUS } from '../constants';
+import { GET_ALL_LISTINGS, GET_ALL_LISTINGS_SUCCESS, FETCHING_LISTINGS, CHANGE_SEARCH_FIELD, CHANGE_FILTER_CATEGORY, CHANGE_DISTANCE_RADIUS, CHANGE_SORT_FILTER } from '../constants';
 import { changeCenter, addMapMarkers } from './googleMapActions';
 import { fetchAllListings } from './api';
 
@@ -46,4 +46,10 @@ export const changeDistanceRadius = distance =>
   ({
     type: CHANGE_DISTANCE_RADIUS,
     distance,
+  });
+
+export const changeSortFilter = sort =>
+  ({
+    type: CHANGE_SORT_FILTER,
+    sort,
   });

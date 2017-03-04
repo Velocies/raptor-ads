@@ -2,8 +2,7 @@ import React from 'react';
 import { Dropdown, Menu } from 'semantic-ui-react';
 
 
-const AllListingsFilter = ({ onSelect, array, onSelectFilter, filters, onSelectDistance }) => {
-  console.log('ARRAY IS', array);
+const AllListingsFilter = ({ onSelect, distanceArray, onSelectFilter, filters, onSelectDistance }) => {
   return (
     <Menu>
       <Menu.Item
@@ -23,12 +22,14 @@ const AllListingsFilter = ({ onSelect, array, onSelectFilter, filters, onSelectD
       <Menu.Menu position='right'>
         <Dropdown
           item text="Distance"
-          options={array}
+          options={distanceArray}
           fluid
           selection
           onChange={(e, data) => onSelectDistance(e, data)}
         >
         </Dropdown>
+      </Menu.Menu>
+      <Menu.Menu>
       </Menu.Menu>
     </Menu>
   );

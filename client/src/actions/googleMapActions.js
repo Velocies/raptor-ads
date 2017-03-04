@@ -46,7 +46,9 @@ export const sortMarkersByDistance = data =>
     const markers = [...data];
     const centerPosition = getState().googleMap.center.position;
     for (let i = 0; i < markers.length; i++) {
+      if (markers[i].markers) {
       markers[i].distanceFromCenter = google.maps.geometry.spherical.computeDistanceBetween(centerPosition, markers[i].position.position);
+      }
     }
     // markers.sort((a, b) => a.distanceFromCenter - b.distanceFromCenter);
     dispatch(getAllListingsSuccess(markers));
@@ -59,14 +61,16 @@ export const addMapMarkers = data =>
     const geocoder = new google.maps.Geocoder();
     for (let i = 0; i < data.length; i++) {
       geocoder.geocode({ address: concatAddress(data[i]) }, (results) => {
-        const newCenter = {
-          position: results[0].geometry.location,
-          defaultAnimation: 2,
-          key: data[i].id,
-          showInfo: false,
-        };
-        markerArray.push(newCenter);
-        newData[i].position = newCenter;
+        if (results) {
+          const newCenter = {
+            position: results[0].geometry.location,
+            defaultAnimation: 2,
+            key: data[i].id,
+            showInfo: false,
+          };
+          markerArray.push(newCenter);
+          newData[i].position = newCenter;
+        }
         if (i === data.length - 1) {
           dispatch(sortMarkersByDistance(newData));
         }

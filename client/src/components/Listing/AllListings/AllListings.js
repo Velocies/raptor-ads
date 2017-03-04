@@ -72,9 +72,14 @@ class AllListings extends Component {
 
   render() {
     const { isFetching, allListings, cutBody, filters } = this.props;
-    const array = [
+    const distanceArray = [
       { key: 0, text: '10 Miles', value: 10 },
       { key: 1, text: '30 Miles', value: 30 },
+      { key: 2, text: 'All', value: 0},
+    ];
+    const sortArray = [
+      { key: 0, text: 'Distance', value: 'distance' },
+      { key: 1, text: 'Time Created', value: 'time' },
     ];
     //get all listings from state,
     //run taht thru this filter function,
@@ -88,9 +93,10 @@ class AllListings extends Component {
           <AllListingsFilter
             filters={filters}
             onSelect={this.onSelect}
-            array={array}
+            distanceArray={distanceArray}
             onSelectFilter={this.onSelectFilter}
             onSelectDistance={this.onSelectDistance}
+
           />
           <Grid width={16}>
             <Grid.Column width={8}>

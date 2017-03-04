@@ -89,7 +89,7 @@ class AddListing extends Component {
                 />
               </Form.Field>
               <StateDropdown
-                onChange={e => onChange(e)}
+                onChange={onChange}
               />
               <Form.Field>
               <label htmlFor="zipcode">Zipcode</label>
@@ -129,8 +129,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch =>
   ({
     onChange: (e, data) => {
+      console.log('e', e, data, 'data');
       if (data) {
-        dispatch(changeListingField('type', data.value));
+        if ( data.placeholder === 'State' ) {
+          dispatch(changeListingField('state', data.value));
+        } else {
+          dispatch(changeListingField('type', data.value));
+        }
       } else {
         dispatch(changeListingField(e.target.name, e.target.value));
       }

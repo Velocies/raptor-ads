@@ -33,8 +33,6 @@ export const listings = (state = initialState, action) => {
       const allListingsClone = [...state.allListings];
       allListingsClone[action.index].position = {...allListingsClone[action.index].position};
       allListingsClone[action.index].position.showInfo = !allListingsClone[action.index].position.showInfo;
-
-      console.log('HELLO FROM HERE', allListingsClone);
       return ({ ...state, allListings: allListingsClone });
     default:
       return state;

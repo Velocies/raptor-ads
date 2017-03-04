@@ -64,7 +64,7 @@ export const auth = (state = initialState, action) => {
     case LOGIN_FAILURE:
       return ({ ...state, formErrors: { ...state.formErrors, invalidPass: 'Invalid credentials' } });
     case UPDATE_PROFILE_SUCCESS:
-      return ({ ...state, loggedInUser: { ...state.loggedInUser } });
+      return ({ ...state, loggedInUser: { ...state.loggedInUser, ...action.data } });
     default:
       return state;
   }

@@ -5,6 +5,13 @@ export const initialState = {
   allListings: [],
   isFetching: false,
   searchField: '',
+  filters: {
+    categories: {
+      'Home Improvement': false,
+      Technology: false,
+    },
+    distance: false,
+  },
 };
 
 export const listings = (state = initialState, action) => {

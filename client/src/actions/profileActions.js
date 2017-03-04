@@ -24,10 +24,11 @@ export const patchUser = user =>
     body: JSON.stringify(user),
   });
 
-export const updateProfileSuccess = () =>
+export const updateProfileSuccess = user =>
   ({
     type: UPDATE_PROFILE_SUCCESS,
     text: 'Profile Updated!',
+    data: user,
   });
 
 export const updateProfile = user =>
@@ -37,7 +38,7 @@ export const updateProfile = user =>
       res.json()
       .then((data) => {
         if (res.status === 200) {
-          dispatch(updateProfileSuccess());
+          dispatch(updateProfileSuccess(data));
         }
       });
     });
@@ -65,7 +66,7 @@ export const deleteProfile = user =>
       if (res.status === 200) {
         dispatch(deleteProfileSuccess());
         localStorage.removeItem('raptor_token');
-        dispatch(push('/'));
+        dispatch(push('/landing'));
       }
     });
   };

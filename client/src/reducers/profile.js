@@ -25,7 +25,7 @@ export const profile = (state = initialState, action) => {
     case LOGIN_SUCCESS:
       return ({ ...state, profileForm: { ...state.profileForm, ...action.data.user } });
     case UPDATE_PROFILE_SUCCESS:
-      return ({ ...state, profileForm: { ...state.profileForm, profileUpdated: true } });
+      return ({ ...state, profileForm: { ...state.profileForm, ...action.data, profileUpdated: true } });
     default:
       return state;
   }

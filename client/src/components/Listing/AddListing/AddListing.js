@@ -8,6 +8,7 @@ import ListingImage from './AddListingComponents/ListingImage';
 import ListingJobTypes from './AddListingComponents/ListingJobTypes';
 import ListingBody from './AddListingComponents/ListingBody';
 import ListingDisplayImages from './AddListingComponents/ListingDisplayImages';
+import StateDropdown from '../../shared/StateDropdown';
 
 
 class AddListing extends Component {
@@ -87,36 +88,30 @@ class AddListing extends Component {
                   onChange={e => onChange(e)}
                 />
               </Form.Field>
-              <Form.Field>
-                <label htmlFor="state">State</label>
-                <input
-                  name="state"
-                  placeholder="State"
-                  value={state}
-                  onChange={e => onChange(e)}
-                />
-              </Form.Field>
-              <Form.Field>
-                <label htmlFor="zipcode">Zipcode</label>
-                <input
-                  name="zip"
-                  placeholder="Zipcode"
-                  value={zip}
-                  onChange={e => onChange(e)}
-                />
-              </Form.Field>
-              <ListingImage
-                onClick={onClick}
-                onChange={onChange}
-                image={image}
-                getFormClass={this.getFormClass}
+              <StateDropdown
+                onChange={e => onChange(e)}
               />
-              <Form.Button className="ui center aligned grid" >Submit</Form.Button>
-            </Form>
-          </Grid.Column>
-        </Grid>
-        <ListingDisplayImages images={images} handleDelete={this.handleDelete} />
-      </div>
+              <Form.Field>
+              <label htmlFor="zipcode">Zipcode</label>
+              <input
+                name="zip"
+                placeholder="Zipcode"
+                value={zip}
+                onChange={e => onChange(e)}
+              />
+            </Form.Field>
+            <ListingImage
+              onClick={onClick}
+              onChange={onChange}
+              image={image}
+              getFormClass={this.getFormClass}
+            />
+            <Form.Button className="ui center aligned grid" >Submit</Form.Button>
+          </Form>
+        </Grid.Column>
+      </Grid>
+      <ListingDisplayImages images={images} handleDelete={this.handleDelete} />
+    </div>
     );
   }
 }

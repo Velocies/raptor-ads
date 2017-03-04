@@ -1,4 +1,4 @@
-import { FETCHING_LISTINGS, GET_ALL_LISTINGS_SUCCESS, CHANGE_SEARCH_FIELD, CHANGE_FILTER_CATEGORY } from '../constants';
+import { FETCHING_LISTINGS, GET_ALL_LISTINGS_SUCCESS, CHANGE_SEARCH_FIELD, CHANGE_DISTANCE_RADIUS, CHANGE_FILTER_CATEGORY } from '../constants';
 
 
 export const initialState = {
@@ -24,6 +24,8 @@ export const listings = (state = initialState, action) => {
       return ({ ...state, searchField: action.value });
     case CHANGE_FILTER_CATEGORY:
       return ({ ...state, filters: { ...state.filters, categories: {...state.filters.categories, [action.category]: !state.filters.categories[action.category] } } });
+    case CHANGE_DISTANCE_RADIUS:
+      return ({ ...state, filters: { ...state.filters, distance: action.distance } });
     default:
       return state;
   }

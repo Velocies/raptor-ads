@@ -2,7 +2,7 @@ import React from 'react';
 import { Dropdown, Menu } from 'semantic-ui-react';
 
 
-const AllListingsFilter = ({ onSelect, array, onSelectFilter, filters }) => {
+const AllListingsFilter = ({ onSelect, array, onSelectFilter, filters, onSelectDistance }) => {
   console.log('ARRAY IS', array);
   return (
     <Menu>
@@ -21,16 +21,13 @@ const AllListingsFilter = ({ onSelect, array, onSelectFilter, filters }) => {
         Technology
       </Menu.Item>
       <Menu.Menu position='right'>
-        <Dropdown item text='Distance'>
-          <Dropdown.Menu>
-            <Dropdown.Item>10 miles</Dropdown.Item>
-            <Dropdown.Item>30 miles</Dropdown.Item>
-            <Dropdown.Item>All</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
         <Dropdown
-          item text="Sort by"
-          options={array}>
+          item text="Distance"
+          options={array}
+          fluid
+          selection
+          onChange={(e, data) => onSelectDistance(e, data)}
+        >
         </Dropdown>
       </Menu.Menu>
     </Menu>

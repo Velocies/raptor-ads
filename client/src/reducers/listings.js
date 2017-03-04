@@ -1,4 +1,4 @@
-import { FETCHING_LISTINGS, GET_ALL_LISTINGS_SUCCESS, CHANGE_SEARCH_FIELD, CHANGE_DISTANCE_RADIUS, CHANGE_FILTER_CATEGORY } from '../constants';
+import { FETCHING_LISTINGS, GET_ALL_LISTINGS_SUCCESS, CHANGE_SEARCH_FIELD, CHANGE_DISTANCE_RADIUS, CHANGE_FILTER_CATEGORY, CHANGE_SORT_FILTER } from '../constants';
 
 
 export const initialState = {
@@ -11,6 +11,7 @@ export const initialState = {
       Technology: false,
     },
     distance: false,
+    sort: false,
   },
 };
 
@@ -26,6 +27,8 @@ export const listings = (state = initialState, action) => {
       return ({ ...state, filters: { ...state.filters, categories: {...state.filters.categories, [action.category]: !state.filters.categories[action.category] } } });
     case CHANGE_DISTANCE_RADIUS:
       return ({ ...state, filters: { ...state.filters, distance: action.distance } });
+    case CHANGE_SORT_FILTER:
+      return ({ ...state, filters: { ...state.filters, sort: action.sort } });
     default:
       return state;
   }

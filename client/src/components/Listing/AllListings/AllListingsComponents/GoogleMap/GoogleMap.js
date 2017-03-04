@@ -30,15 +30,15 @@ const GoogleMapRender = withGoogleMap(props => {
         {...marker.position}
         onClick={() => props.onMarkerLeftClick(marker, index)}
       >
-      {marker.showInfo && (
-        <InfoWindow>
-          <Link to={`/listings/${marker.key}`} ><div>{marker.listingInfo.title}</div></Link>
+      {marker.position.showInfo && (
+        <InfoWindow onCloseClick={() => props.onMarkerLeftClick(marker, index)}>
+          <Link to={`/listings/${marker.id}`} ><div>HELLO</div></Link>
         </InfoWindow>
       )}
       </Marker>
     ))}
   </GoogleMap>
-  )
+  );
 });
 
 export default GoogleMapRender;
@@ -47,5 +47,12 @@ export default GoogleMapRender;
       // {marker.showInfo && (
       //   <InfoWindow onCloseClick={() => props.onMarkerClose(marker)}>
       //     <div>{marker.infoContent}</div>
+      //   </InfoWindow>
+      // )}
+
+
+      // {marker.position.showInfo && (
+      //   <InfoWindow>
+      //     <Link to={`/listings/${marker.id}`} ><div>HELLO</div></Link>
       //   </InfoWindow>
       // )}

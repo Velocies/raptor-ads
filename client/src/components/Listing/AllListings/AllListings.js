@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { Container, Header, Card, Button, Divider, Loader, Grid, Menu, Dropdown } from 'semantic-ui-react';
-import { getAllListings, changeSearchField, changeFilterCategory, changeDistanceRadius } from '../../../actions/allListingActions';
+import { getAllListings, changeSearchField, changeFilterCategory, changeDistanceRadius, changeSortFilter } from '../../../actions/allListingActions';
 import { changeCenter, sortMarkersByDistance } from '../../../actions/googleMapActions';
 import Listing from '../../shared/Listing';
 import AllListingsSearch from './AllListingsComponents/AllListingsSearch';
@@ -19,6 +19,7 @@ class AllListings extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSelectFilter = this.onSelectFilter.bind(this);
     this.onSelectDistance = this.onSelectDistance.bind(this);
+    this.onSelectSort = this.onSelectSort.bind(this);
   }
 
   componentDidMount() {
@@ -63,6 +64,10 @@ class AllListings extends Component {
     this.props.dispatch(changeDistanceRadius(data.value));
   }
 
+  onSelectSort(e, data) {
+    this.props.dispatch(changeSortFilter(data.value));
+  }
+
   cutBody(body) {
     if (body.length > 20) {
       body = body.slice(0, 20) + '...';
@@ -75,7 +80,7 @@ class AllListings extends Component {
     const distanceArray = [
       { key: 0, text: '10 Miles', value: 10 },
       { key: 1, text: '30 Miles', value: 30 },
-      { key: 2, text: 'All', value: 0},
+      { key: 2, text: 'All', value: false},
     ];
     const sortArray = [
       { key: 0, text: 'Distance', value: 'distance' },
@@ -85,6 +90,7 @@ class AllListings extends Component {
     //run taht thru this filter function,
     //then pass to google container
     const markers = filterListings(allListings, filters);
+    console.log('MARKERS HERE', markers);
     if (isFetching) {
       return <Loader active inline='centered' />;
     } else {
@@ -96,7 +102,8 @@ class AllListings extends Component {
             distanceArray={distanceArray}
             onSelectFilter={this.onSelectFilter}
             onSelectDistance={this.onSelectDistance}
-
+            onSelectSort={this.onSelectSort}
+            sortArray={sortArray}
           />
           <Grid width={16}>
             <Grid.Column width={8}>

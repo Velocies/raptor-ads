@@ -2,7 +2,7 @@ import React from 'react';
 import { Dropdown, Menu } from 'semantic-ui-react';
 
 
-const AllListingsFilter = ({ onSelect, distanceArray, onSelectFilter, filters, onSelectDistance }) => {
+const AllListingsFilter = ({ onSelect, distanceArray, onSelectFilter, filters, onSelectDistance, sortArray, onSelectSort }) => {
   return (
     <Menu>
       <Menu.Item
@@ -30,6 +30,14 @@ const AllListingsFilter = ({ onSelect, distanceArray, onSelectFilter, filters, o
         </Dropdown>
       </Menu.Menu>
       <Menu.Menu>
+        <Dropdown
+          item text="Sort By"
+          options={sortArray}
+          fluid
+          selection
+          onChange={(e, data) => onSelectSort(e, data)}
+        >
+        </Dropdown>
       </Menu.Menu>
     </Menu>
   );

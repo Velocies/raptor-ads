@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { Container, Header, Card, Button, Divider, Loader, Grid, Menu, Dropdown } from 'semantic-ui-react';
-import { getAllListings, changeSearchField } from '../../../actions/allListingActions';
+import { getAllListings, changeSearchField, changeFilterCategory, changeDistanceRadius } from '../../../actions/allListingActions';
 import { changeCenter, sortMarkersByDistance } from '../../../actions/googleMapActions';
 import Listing from '../../shared/Listing';
 import AllListingsSearch from './AllListingsComponents/AllListingsSearch';
 import AllListingsFilter from './AllListingsComponents/AllListingsFilter';
 import GoogleMapContainer from './AllListingsComponents/GoogleMap/GoogleMapContainer';
+import filterListings from '../../helpers/filterListings';
 // import InitialMap from './GoogleMap/GoogleMap';
 
 
@@ -16,6 +17,8 @@ class AllListings extends Component {
     super(props);
     this.onClick = this.onClick.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onSelectFilter = this.onSelectFilter.bind(this);
+    this.onSelectDistance = this.onSelectDistance.bind(this);
   }
 
   componentDidMount() {
@@ -49,10 +52,16 @@ class AllListings extends Component {
 
   onChange(e) {
     this.props.dispatch(changeSearchField(e.target.value));
-    // this.props.dispatch(sortMarkersByDistance(this.props.markers));
+    this.props.dispatch(sortMarkersByDistance(this.props.allListings));
   }
 
+  onSelectFilter(e) {
+    this.props.dispatch(changeFilterCategory(e));
+  }
 
+  onSelectDistance(e, data) {
+    this.props.dispatch(changeDistanceRadius(data.value));
+  }
 
   cutBody(body) {
     if (body.length > 20) {
@@ -62,16 +71,30 @@ class AllListings extends Component {
   }
 
   render() {
-    const { isFetching, allListings, cutBody } = this.props;
+    const { isFetching, allListings, cutBody, filters } = this.props;
+    const array = [
+      { key: 0, text: '10 Miles', value: 10 },
+      { key: 1, text: '30 Miles', value: 30 },
+    ];
+    //get all listings from state,
+    //run taht thru this filter function,
+    //then pass to google container
+    const markers = filterListings(allListings, filters);
     if (isFetching) {
       return <Loader active inline='centered' />;
     } else {
       return (
         <Container textAlign="center">
-          <AllListingsFilter />
+          <AllListingsFilter
+            filters={filters}
+            onSelect={this.onSelect}
+            array={array}
+            onSelectFilter={this.onSelectFilter}
+            onSelectDistance={this.onSelectDistance}
+          />
           <Grid width={16}>
             <Grid.Column width={8}>
-              <GoogleMapContainer markers={allListings}/>
+              <GoogleMapContainer markers={markers}/>
             </Grid.Column>
             <Grid.Column width={8}>
               <AllListingsSearch onClick={this.onClick} onChange={this.onChange}/>
@@ -80,7 +103,7 @@ class AllListings extends Component {
           <h3>Listings</h3>
           <Divider />
           <Card.Group itemsPerRow={4} stackable>
-            {allListings && allListings.map(listing =>
+            {markers && markers.map(listing =>
               <Listing
                 key={listing.id}
                 listingId={listing.id}
@@ -101,11 +124,11 @@ class AllListings extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { allListings, isFetching, searchField } = state.listings;
+  const { allListings, isFetching, searchField, filters } = state.listings;
   const { id } = state.auth.loggedInUser;
   const loggedInUser = state.auth.loggedInUser;
   const { markers } = state.googleMap;
-  return { allListings, isFetching, id, searchField, loggedInUser, markers };
+  return { allListings, isFetching, id, searchField, loggedInUser, markers, filters };
 };
 
 export default connect(mapStateToProps)(AllListings);

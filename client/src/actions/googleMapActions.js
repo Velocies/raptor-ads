@@ -41,6 +41,17 @@ export const changeMarkerShowInfo = index =>
     index,
   });
 
+export const sortMarkersByDistance = data =>
+  (dispatch, getState) => {
+    const markers = [...data];
+    const centerPosition = getState().googleMap.center.position;
+    for (let i = 0; i < markers.length; i++) {
+      markers[i].distanceFromCenter = google.maps.geometry.spherical.computeDistanceBetween(centerPosition, markers[i].position.position);
+    }
+    // markers.sort((a, b) => a.distanceFromCenter - b.distanceFromCenter);
+    dispatch(getAllListingsSuccess(markers));
+  };
+
 export const addMapMarkers = data =>
   (dispatch) => {
     const markerArray = [];
@@ -57,8 +68,7 @@ export const addMapMarkers = data =>
         markerArray.push(newCenter);
         newData[i].position = newCenter;
         if (i === data.length - 1) {
-          dispatch(getAllListingsSuccess(newData));
-          dispatch(addMapMarkersSuccess(markerArray));
+          dispatch(sortMarkersByDistance(newData));
         }
       });
     }
@@ -81,13 +91,3 @@ export const addMapMarker = data =>
     });
   };
 
-export const sortMarkersByDistance = data =>
-  (dispatch, getState) => {
-    const markers = [...data];
-    const centerPosition = getState().googleMap.center.position;
-    for (let i = 0; i < markers.length; i++) {
-      markers[i].distanceFromCenter = google.maps.geometry.spherical.computeDistanceBetween(centerPosition, markers[i].position);
-    }
-    markers.sort((a, b) => a.distanceFromCenter - b.distanceFromCenter);
-    dispatch(addMapMarkersSuccess(markers));
-  };

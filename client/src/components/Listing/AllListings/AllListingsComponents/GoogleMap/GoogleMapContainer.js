@@ -102,9 +102,6 @@ class GoogleMapContainer extends Component {
     //else pull from full listings, current listing
     return (
       <div style={{height: '100%'}}>
-        <Helmet
-          title="Getting Started"
-        />
         <GoogleMapRender
           containerElement={
             <div style={{ height: '300px' }} />

@@ -33,6 +33,11 @@ const filterListings = (listings, filter) => {
         }
       });
     }
+    if (filter.sort === 'distance') {
+      filteredListings.sort((a, b) => a.distanceFromCenter - b.distanceFromCenter);
+    } else if (filter.sort === 'time') {
+      filteredListings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    }
   }
   return filteredListings;
 };

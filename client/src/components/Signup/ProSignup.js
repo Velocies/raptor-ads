@@ -96,51 +96,6 @@ class ProSignup extends Component {
                   onChange={e => this.onChange(e)}
                 />
               </Form.Field>
-              <Form.Field width="8">
-                <label htmlFor="Address">Business Street Address</label>
-                <input
-                  placeholder="Business Street Address"
-                  name="companyAddress"
-                  value={companyAddress}
-                  onChange={e => this.onChange(e)}
-                />
-              </Form.Field>
-              <Form.Field width="8">
-                <label htmlFor="businessName">Business City</label>
-                <input
-                  placeholder="Business City"
-                  name="companyCity"
-                  value={companyCity}
-                  onChange={e => this.onChange(e)}
-                />
-              </Form.Field>
-              <Form.Field width="8">
-                <label htmlFor="businessName">Business State</label>
-                <input
-                  placeholder="Business State"
-                  name="companyState"
-                  value={companyState}
-                  onChange={e => this.onChange(e)}
-                />
-              </Form.Field>
-              <Form.Field width="8">
-                <label htmlFor="businessName">Business Zip</label>
-                <input
-                  placeholder="Business Zip"
-                  name="companyZip"
-                  value={companyZip}
-                  onChange={e => this.onChange(e)}
-                />
-              </Form.Field>
-              <Form.Field width="8">
-                <label htmlFor="businessName">License Number</label>
-                <input
-                  placeholder="Business License Number"
-                  name="license"
-                  value={license}
-                  onChange={e => this.onChange(e)}
-                />
-              </Form.Field>
               {formErrors.password && <span className='formError'>{formErrors.password}</span>}
               <Form.Field width="8">
                 <label htmlFor="password">Password</label>

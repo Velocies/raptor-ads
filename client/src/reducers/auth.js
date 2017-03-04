@@ -1,4 +1,4 @@
-import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT, CHANGE_LOGIN_FIELD, LOGIN_SUCCESS, LOGIN_FAILURE } from '../constants';
+import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT, CHANGE_LOGIN_FIELD, LOGIN_SUCCESS, LOGIN_FAILURE, UPDATE_PROFILE_SUCCESS  } from '../constants';
 
 export const initialState = {
   signupForm: {
@@ -63,6 +63,8 @@ export const auth = (state = initialState, action) => {
       return ({ ...state, formErrors: { ...state.formErrors, userExists: 'A user with that email exists' } });
     case LOGIN_FAILURE:
       return ({ ...state, formErrors: { ...state.formErrors, invalidPass: 'Invalid credentials' } });
+    case UPDATE_PROFILE_SUCCESS:
+      return ({ ...state, loggedInUser: { ...state.loggedInUser } });
     default:
       return state;
   }

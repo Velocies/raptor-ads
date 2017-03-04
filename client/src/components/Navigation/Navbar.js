@@ -5,7 +5,7 @@ import DynamicLinks from './DynamicLinks';
 
 const Navbar = ({ id, location, logout }) =>
   <Segment inverted>
-    <Menu inverted pointing secondary>
+    <Menu inverted borderless>
       <Menu.Item
         as={Link}
         to="dashboard"
@@ -13,11 +13,11 @@ const Navbar = ({ id, location, logout }) =>
       >
         <img alt="raptor" src="/client/src/assets/half-raptor.png" />
       </Menu.Item>
-      <Menu.Item as={Link} to="/landing" name="About" active={location === '/landing'} />
-      <Menu.Item as={Link} to="/listings" name="Listings" active={location === '/listings'} />
-      <Menu.Item as={Link} to="/dashboard" name="customer dashboard" active={location === '/dashboard'} />
-      <Menu.Item as={Link} to="/addlisting" name="addlisting" active={location === '/addlisting'} />
-      <DynamicLinks id={id} logout={logout} />
+      <Menu.Item as={Link} to="/landing" color="green" name="About" active={location === '/landing'} />
+      <Menu.Item as={Link} to="/listings" name="Listings" color="green" active={location === '/listings'} />
+      <Menu.Item as={Link} to="/dashboard" color="green" name="customer dashboard" active={location === '/dashboard'} />
+      <Menu.Item as={Link} to="/addlisting" color="green" name="addlisting" active={location === '/addlisting'} />
+      <DynamicLinks location={location} id={id} logout={logout} />
     </Menu>
   </Segment>;
 

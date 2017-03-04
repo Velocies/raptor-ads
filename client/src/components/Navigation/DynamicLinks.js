@@ -2,14 +2,14 @@ import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router';
 
-const DynamicLinks = ({ id, logout }) => {
+const DynamicLinks = ({ id, logout, location }) => {
   if (!id) {
     return (
       <Menu.Menu position="right">
-        <Menu.Item as={Link} to="signup">
+        <Menu.Item color="green" as={Link} to="signup">
           Sign Up
         </Menu.Item>
-        <Menu.Item as={Link} to="login" name="login">
+        <Menu.Item color="green" as={Link} to="login" name="login">
           Login
         </Menu.Item>
       </Menu.Menu>
@@ -17,7 +17,12 @@ const DynamicLinks = ({ id, logout }) => {
   } else {
     return (
       <Menu.Menu position="right">
-        <Menu.Item as={Link} to="profile">
+        <Menu.Item
+          color="green"
+          as={Link}
+          to="/profile"
+          active={location === '/profile'}
+        >
           Profile
         </Menu.Item>
         <Menu.Item onClick={() => logout()}>

@@ -72,8 +72,16 @@ module.exports = {
       },
       include: [models.Business],
     })
-      .then((status) => {
-        res.send(status);
+      .then(() => {
+        models.User.findOne({
+          where: {
+            id: req.params.id,
+          },
+          include: [models.Business],
+        })
+          .then((user) => {
+            res.json(user);
+          });
       });
   },
 

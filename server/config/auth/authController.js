@@ -1,6 +1,7 @@
 const models = require('../../../database/schemas.js');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('jsonwebtoken');
+const secret = process.env.TOKEN_SECRET || 'bobbyisbadatstarcraft';
 
 module.exports = {
   logIn: (req, res) => {
@@ -15,7 +16,7 @@ module.exports = {
               email: user.email,
               first_name: user.first_name,
               id: user.id,
-            }, 'bobbyisbadatstarcraft', { expiresIn: '1h' });
+            }, secret, { expiresIn: '1h' });
             res.json({ user, token });
           } else {
             res.send({ error: 'Incorrect password' });
@@ -28,7 +29,7 @@ module.exports = {
 
   getUserFromToken: (req, res) => {
     const token = req.params.token;
-    jwt.verify(token, 'bobbyisbadatstarcraft', (err, decoded) => {
+    jwt.verify(token, secret, (err, decoded) => {
       if (err || !decoded) {
         res.status(400).send('Bad Token');
       } else {

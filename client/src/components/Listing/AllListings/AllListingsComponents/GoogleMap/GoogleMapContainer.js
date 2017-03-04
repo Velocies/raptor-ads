@@ -63,7 +63,7 @@ class GoogleMapContainer extends Component {
   }
 
   handleMarkerLeftClick(targetMarker, index) {
-    console.log('targetMarker', targetMarker, index);
+    // console.log('targetMarker', targetMarker, index);
     this.props.dispatch(changeMarkerShowInfo(index));
   }
 

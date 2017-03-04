@@ -18,7 +18,6 @@ const filterListings = (listings, filter) => {
     }
     console.log('FILTER CATEGORIES', filter.categories['Home Improvement'])
     if (filter.categories.Technology === true) {
-      console.log('IN HERE IN technology')
       filteredListings = filteredListings.filter((listing) => {
         if (listing.type === 'technology') {
           return listing;

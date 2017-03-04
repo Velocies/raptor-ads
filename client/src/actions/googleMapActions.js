@@ -63,12 +63,13 @@ export const addMapMarkers = data =>
     for (let i = 0; i < data.length; i++) {
       geocoder.geocode({ address: concatAddress(data[i]) }, (results) => {
         if (results) {
-          var image = "/client/src/assets/full-raptor.png";
+          var image = '/client/src/assets/mini-raptor.png';
           const newCenter = {
             position: results[0].geometry.location,
             defaultAnimation: 2,
             key: data[i].id,
             showInfo: false,
+            icon: image,
           };
           markerArray.push(newCenter);
           newData[i].position = newCenter;

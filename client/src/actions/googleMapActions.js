@@ -86,8 +86,8 @@ export const sortMarkersByDistance = data =>
     const markers = [...data];
     const centerPosition = getState().googleMap.center.position;
     for (let i = 0; i < markers.length; i++) {
-      markers[i].distanceFromCenter = google.maps.geometry.spherical.computeDistanceBetween(centerPosition, markers[i].position);
+      markers[i].distanceFromCenter = google.maps.geometry.spherical.computeDistanceBetween(centerPosition, markers[i].position.position);
     }
     markers.sort((a, b) => a.distanceFromCenter - b.distanceFromCenter);
-    dispatch(addMapMarkersSuccess(markers));
+    dispatch(getAllListingsSuccess(markers));
   };

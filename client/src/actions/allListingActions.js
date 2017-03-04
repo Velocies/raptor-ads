@@ -35,3 +35,9 @@ export const changeSearchField = value =>
     type: CHANGE_SEARCH_FIELD,
     value,
   });
+
+export const changeFilter = category =>
+  ({
+    type: CHANGE_FILTER,
+    category,
+  });

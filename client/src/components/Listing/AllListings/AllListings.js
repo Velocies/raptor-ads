@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { Container, Header, Card, Button, Divider, Loader, Grid, Menu, Dropdown } from 'semantic-ui-react';
-import { getAllListings, changeSearchField } from '../../../actions/allListingActions';
+import { getAllListings, changeSearchField, changeFilter } from '../../../actions/allListingActions';
 import { changeCenter, sortMarkersByDistance } from '../../../actions/googleMapActions';
 import Listing from '../../shared/Listing';
 import AllListingsSearch from './AllListingsComponents/AllListingsSearch';
 import AllListingsFilter from './AllListingsComponents/AllListingsFilter';
 import GoogleMapContainer from './AllListingsComponents/GoogleMap/GoogleMapContainer';
+import jobCategories from '../jobCategories';
 // import InitialMap from './GoogleMap/GoogleMap';
 
 
@@ -16,6 +17,7 @@ class AllListings extends Component {
     super(props);
     this.onClick = this.onClick.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onSelectFilter = this.onSelectFilter.bind(this);
   }
 
   componentDidMount() {
@@ -49,7 +51,11 @@ class AllListings extends Component {
 
   onChange(e) {
     this.props.dispatch(changeSearchField(e.target.value));
-    // this.props.dispatch(sortMarkersByDistance(this.props.markers));
+    this.props.dispatch(sortMarkersByDistance(this.props.allListings));
+  }
+
+  onSelectFilter(e) {
+    console.log('ON SELECT FILTER', e);
   }
 
 
@@ -63,12 +69,24 @@ class AllListings extends Component {
 
   render() {
     const { isFetching, allListings, cutBody } = this.props;
+    const array = [
+  { key: 0, text: 'Technology', value: 'technology' },
+  { key: 1, text: 'Home Improvement', value: 'home improvement' },
+];
+    //get all listings from state,
+    //run taht thru this filter function,
+    //then pass to google container
+    console.log('JOB CATEGORIES', array);
     if (isFetching) {
       return <Loader active inline='centered' />;
     } else {
       return (
         <Container textAlign="center">
-          <AllListingsFilter />
+          <AllListingsFilter
+            onSelect={this.onSelect}
+            array={array}
+            onSelectFilter={this.onSelectFilter}
+          />
           <Grid width={16}>
             <Grid.Column width={8}>
               <GoogleMapContainer markers={allListings}/>

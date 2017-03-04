@@ -1,4 +1,4 @@
-import { GET_ALL_LISTINGS, GET_ALL_LISTINGS_SUCCESS, FETCHING_LISTINGS, CHANGE_SEARCH_FIELD } from '../constants';
+import { GET_ALL_LISTINGS, GET_ALL_LISTINGS_SUCCESS, FETCHING_LISTINGS, CHANGE_SEARCH_FIELD, CHANGE_FILTER_CATEGORY } from '../constants';
 import { changeCenter, addMapMarkers } from './googleMapActions';
 import { fetchAllListings } from './api';
 
@@ -36,8 +36,8 @@ export const changeSearchField = value =>
     value,
   });
 
-export const changeFilter = category =>
+export const changeFilterCategory = category =>
   ({
-    type: CHANGE_FILTER,
+    type: CHANGE_FILTER_CATEGORY,
     category,
   });

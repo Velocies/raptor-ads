@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { Container, Header, Card, Button, Divider, Loader, Grid, Menu, Dropdown } from 'semantic-ui-react';
-import { getAllListings, changeSearchField, changeFilter } from '../../../actions/allListingActions';
+import { getAllListings, changeSearchField, changeFilterCategory } from '../../../actions/allListingActions';
 import { changeCenter, sortMarkersByDistance } from '../../../actions/googleMapActions';
 import Listing from '../../shared/Listing';
 import AllListingsSearch from './AllListingsComponents/AllListingsSearch';
 import AllListingsFilter from './AllListingsComponents/AllListingsFilter';
 import GoogleMapContainer from './AllListingsComponents/GoogleMap/GoogleMapContainer';
-import jobCategories from '../jobCategories';
 // import InitialMap from './GoogleMap/GoogleMap';
 
 
@@ -56,6 +55,7 @@ class AllListings extends Component {
 
   onSelectFilter(e) {
     console.log('ON SELECT FILTER', e);
+    this.props.dispatch(changeFilterCategory(e));
   }
 
 
@@ -68,11 +68,11 @@ class AllListings extends Component {
   }
 
   render() {
-    const { isFetching, allListings, cutBody } = this.props;
+    const { isFetching, allListings, cutBody, filters } = this.props;
     const array = [
-  { key: 0, text: 'Technology', value: 'technology' },
-  { key: 1, text: 'Home Improvement', value: 'home improvement' },
-];
+      { key: 0, text: 'Technology', value: 'technology' },
+      { key: 1, text: 'Home Improvement', value: 'home improvement' },
+    ];
     //get all listings from state,
     //run taht thru this filter function,
     //then pass to google container
@@ -83,6 +83,7 @@ class AllListings extends Component {
       return (
         <Container textAlign="center">
           <AllListingsFilter
+            filters={filters}
             onSelect={this.onSelect}
             array={array}
             onSelectFilter={this.onSelectFilter}
@@ -119,11 +120,11 @@ class AllListings extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { allListings, isFetching, searchField } = state.listings;
+  const { allListings, isFetching, searchField, filters } = state.listings;
   const { id } = state.auth.loggedInUser;
   const loggedInUser = state.auth.loggedInUser;
   const { markers } = state.googleMap;
-  return { allListings, isFetching, id, searchField, loggedInUser, markers };
+  return { allListings, isFetching, id, searchField, loggedInUser, markers, filters };
 };
 
 export default connect(mapStateToProps)(AllListings);

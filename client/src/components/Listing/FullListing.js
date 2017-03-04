@@ -5,10 +5,16 @@ import Carousel from 'nuka-carousel';
 import moment from 'moment';
 import { Container, Grid, Image, Header, Divider, Message, List, Loader, Button, Modal, Form, Card } from 'semantic-ui-react';
 import GoogleMapContainer from './AllListings/AllListingsComponents/GoogleMap/GoogleMapContainer';
-import { getCurrentListing } from '../../actions/fullListingActions';
+import { getCurrentListing, changeContactField, sendMessage } from '../../actions/fullListingActions';
+import { clearErrors } from '../../actions/listingActions';
 import RatingCard from '../Ratings/RatingCard';
 
 class FullListing extends Component {
+  constructor(props) {
+    super(props);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
+  }
 
   componentDidMount() {
     this.props.dispatch(getCurrentListing(this.props.listingId));
@@ -17,6 +23,21 @@ class FullListing extends Component {
   onSubmit(e) {
     e.preventDefault();
     console.log('Submit occurred!');
+    const data = this.props.contactForm;
+    const postId = this.props.listingId;
+    const senderId = this.props.loggedInUser.id;
+    const userId = this.props.currentListing.user.id;
+    const payload = { title: data.title, body: data.body, postId, userId, senderId };
+    this.props.dispatch(clearErrors());
+    this.props.dispatch(sendMessage(payload));
+  }
+
+  onChange(e, data) {
+    if (data) {
+      this.props.dispatch(changeContactField('type', data.value));
+    } else {
+      this.props.dispatch(changeContactField(e.target.name, e.target.value));
+    }
   }
 
   convertTime(time) {
@@ -92,9 +113,6 @@ class FullListing extends Component {
                         <a href={`${currentListing.user.email}`}>{`${currentListing.user.email}`}</a>
                       </List.Content>
                     </List.Item>
-                    <List.Item>
-                      <List.Icon name="linkify" />
-                    </List.Item>
                   </List>
                 </Grid.Column>
                 <Divider hidden />
@@ -106,14 +124,16 @@ class FullListing extends Component {
                         <Header>Send Them A Message!</Header>
                         <Form onSubmit={e => this.onSubmit(e)}>
                           <Form.Input
-                            name="subject"
+                            name="title"
                             label="Subject"
                             placeholder="Subject"
+                            onChange={e => this.onChange(e)}
                           />
                           <Form.TextArea
-                            name="message"
+                            name="body"
                             label="Message"
                             placeholder="Tell them who you are and why you are contacting them..."
+                            onChange={e => this.onChange(e)}
                           />
                           <Form.Button>Send Message</Form.Button>
                         </Form>
@@ -157,6 +177,7 @@ class FullListing extends Component {
 
 const mapStateToProps = (state) => {
   const { currentListing, userListings, isFetching } = state.listing;
+  const { contactForm } = state.messages;
   const { user } = state.listing.currentListing;
   const { loggedInUser } = state.auth;
   const { pathname } = state.routing.locationBeforeTransitions;
@@ -166,6 +187,7 @@ const mapStateToProps = (state) => {
   return {
     loggedInUser,
     currentListing,
+    contactForm,
     userListings,
     isFetching,
     listingId,
@@ -175,6 +197,7 @@ const mapStateToProps = (state) => {
 
 FullListing.propTypes = {
   isFetching: React.PropTypes.bool.isRequired,
+  dispatch: React.PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(FullListing);

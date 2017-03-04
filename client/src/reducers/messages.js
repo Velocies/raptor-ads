@@ -3,8 +3,8 @@ import { CHANGE_CONTACT_FIELD } from '../constants';
 
 export const initialState = {
   contactForm: {
-    subject: '',
-    message: '',
+    title: '',
+    body: '',
   },
   formErrors: {
   },

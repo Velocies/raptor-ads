@@ -14,7 +14,7 @@ const CustomerDashboard =
         <Header as="h1" className="center">
           {`${capitalize(firstName)}'s Dashboard`}
         </Header>
-        <h3>Recent Listings</h3>
+        <Header as="h3" color="green">Recent Listings</Header>
         <Divider />
         <Card.Group itemsPerRow={4} stackable>
           {userListings && userListings.map(listing =>

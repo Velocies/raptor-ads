@@ -49,7 +49,7 @@ class AddListing extends Component {
     const { onChange, onClick, formErrors } = this.props;
     return (
       <div>
-        <Header textAlign="center"><Icon name="file text" />Add Listing</Header>
+        <Header color="green" textAlign="center"><Icon name="file text" />Add Listing</Header>
         <Grid width={16}>
           <Grid.Column width={5} />
           <Grid.Column width={6}>

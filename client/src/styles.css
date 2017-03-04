@@ -1,3 +1,7 @@
+body {
+  background-image: url('/client/src/assets/p6.png');
+}
+
 .signup-buttons {
   padding: 30px 0 10px 0;
 }

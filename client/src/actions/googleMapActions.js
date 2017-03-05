@@ -8,6 +8,8 @@ const geoCode = (data) => {
   return geocoder.geocode({ address: concatAddress(action.data.user) });
 };
 
+const image = '/client/src/assets/mini-raptor.png';
+
 export const changeCenterSuccess = newCenter =>
   ({
     type: CHANGE_CENTER_SUCCESS,
@@ -47,7 +49,6 @@ export const sortMarkersByDistance = data =>
     const centerPosition = getState().googleMap.center.position;
     for (let i = 0; i < markers.length; i++) {
       if (markers[i].position) {
-        console.log('HELLO')
         markers[i].distanceFromCenter = google.maps.geometry.spherical.computeDistanceBetween(centerPosition, markers[i].position.position);
       }
     }
@@ -63,7 +64,6 @@ export const addMapMarkers = data =>
     for (let i = 0; i < data.length; i++) {
       geocoder.geocode({ address: concatAddress(data[i]) }, (results) => {
         if (results) {
-          var image = '/client/src/assets/mini-raptor.png';
           const newCenter = {
             position: results[0].geometry.location,
             defaultAnimation: 2,

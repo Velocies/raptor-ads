@@ -13,6 +13,7 @@ export const initialState = {
     distance: false,
     sort: false,
   },
+  clickedListing: null,
 };
 
 export const listings = (state = initialState, action) => {

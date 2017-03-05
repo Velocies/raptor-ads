@@ -20,8 +20,7 @@ class GoogleMapContainer extends Component {
     this.MapLoad = this.handleMapLoad.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
     this.handleMarkerRightClick = this.handleMarkerRightClick.bind(this);
-    this.handleMarkerLeftClick = this.handleMarkerLeftClick.bind(this);
-    this.handleMarkerMouseEnter = this.handleMarkerMouseEnter.bind(this);
+    this.handleInfoWindow = this.handleInfoWindow.bind(this);
   }
 
 
@@ -62,14 +61,11 @@ class GoogleMapContainer extends Component {
     // }
   }
 
-  handleMarkerLeftClick(targetMarker, index) {
+  handleInfoWindow(targetMarker, index) {
     console.log('targetMarker', targetMarker, index);
     this.props.dispatch(changeMarkerShowInfo(index));
   }
 
-  handleMarkerMouseEnter(targetMarker) {
-    console.log('targetMarker mouse enter', targetMarker);
-  }
 
   handleMarkerRightClick(targetMarker) {
     /*
@@ -114,7 +110,7 @@ class GoogleMapContainer extends Component {
           onMapClick={this.handleMapClick}
           markers={markers}
           onMarkerRightClick={this.handleMarkerRightClick}
-          onMarkerLeftClick={this.handleMarkerLeftClick}
+          handleInfoWindow={this.handleInfoWindow}
           handleMarkerMouseEnter={this.handleMarkerMouseEnter}
         />
       </div>

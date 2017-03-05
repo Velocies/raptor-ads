@@ -1,8 +1,6 @@
 /* global google */
-import _ from "lodash";
 import { Link } from 'react-router';
-import React, { Component } from 'react';
-import Helmet from "react-helmet";
+import React from 'react';
 
 import {
   withGoogleMap,
@@ -10,6 +8,7 @@ import {
   Marker,
   InfoWindow,
 } from 'react-google-maps';
+import GoogleMapInfoWindow from './GoogleMapInfoWindow';
 
 /*
  * This is the modify version of:
@@ -28,11 +27,14 @@ const GoogleMapRender = withGoogleMap(props => {
     {props.markers.map((marker, index)=> (
       <Marker
         {...marker.position}
-        onClick={() => props.onMarkerLeftClick(marker, index)}
+        onClick={() => props.handleInfoWindow(marker, index)}
       >
       {marker.position.showInfo && (
-        <InfoWindow onCloseClick={() => props.onMarkerLeftClick(marker, index)}>
-          <Link to={`/listings/${marker.id}`} ><div>HELLO</div></Link>
+        <InfoWindow onCloseClick={() => props.handleInfoWindow(marker, index)}>
+          <GoogleMapInfoWindow
+            title={marker.title}
+            distance={marker.distanceFromCenter}
+          />
         </InfoWindow>
       )}
       </Marker>

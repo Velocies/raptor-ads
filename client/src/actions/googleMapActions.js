@@ -28,12 +28,15 @@ export const changeCenter = data =>
     typeof data === 'string' ? addressString = data : addressString = concatAddress(data);
     const geocoder = new google.maps.Geocoder();
     geocoder.geocode({ address: addressString }, (results) => {
-      const newCenter = {
-        lat: results[0].geometry.bounds.f.f,
-        lng: results[0].geometry.bounds.b.b,
-        position: results[0].geometry.location,
-      };
-      dispatch(changeCenterSuccess(newCenter));
+      if (results[0]) {
+        const newCenter = {
+          lat: results[0].geometry.bounds.f.f,
+          lng: results[0].geometry.bounds.b.b,
+          position: results[0].geometry.location,
+        };
+        dispatch(changeCenterSuccess(newCenter));
+
+      }
     });
   };
 
@@ -46,14 +49,16 @@ export const changeMarkerShowInfo = index =>
 export const sortMarkersByDistance = data =>
   (dispatch, getState) => {
     const markers = [...data];
-    const centerPosition = getState().googleMap.center.position;
-    for (let i = 0; i < markers.length; i++) {
-      if (markers[i].position) {
-        markers[i].distanceFromCenter = google.maps.geometry.spherical.computeDistanceBetween(centerPosition, markers[i].position.position);
+    if (getState().googleMap.center.position) {
+      const centerPosition = getState().googleMap.center.position;
+      for (let i = 0; i < markers.length; i++) {
+        if (markers[i].position) {
+          markers[i].distanceFromCenter = google.maps.geometry.spherical.computeDistanceBetween(centerPosition, markers[i].position.position);
+        }
       }
+      // markers.sort((a, b) => a.distanceFromCenter - b.distanceFromCenter);
+      dispatch(getAllListingsSuccess(markers));
     }
-    // markers.sort((a, b) => a.distanceFromCenter - b.distanceFromCenter);
-    dispatch(getAllListingsSuccess(markers));
   };
 
 export const addMapMarkers = data =>
@@ -75,6 +80,7 @@ export const addMapMarkers = data =>
           newData[i].position = newCenter;
         }
         if (i === data.length - 1) {
+          dispatch(getAllListingsSuccess(newData));
           dispatch(sortMarkersByDistance(newData));
         }
       });

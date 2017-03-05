@@ -11,30 +11,28 @@ const getIconString = str => (
 const Listing = ({ userId, listingId, title, createdAt, body, type, handleDelete, pathname }) =>
   <Card centered raised>
     <Link to={`/listings/${listingId}`} >
-      <Card centered raised>
-        <Card.Content>
-          {
-            pathname === '/dashboard' ?
-              <ListingDeleteModal
-                handleDelete={handleDelete}
-                userId={userId}
-                listingId={listingId}
-              /> : null
-          }
-          <Image floated="right">
-            <Icon name={getIconString(type)} size="big" />
-          </Image>
-          <Card.Header>
-            { title }
-          </Card.Header>
-          <Card.Meta>
-            { createdAt }
-          </Card.Meta>
-          <Card.Description>
-            { truncate(body) }
-          </Card.Description>
-        </Card.Content>
-      </Card>
+      <Card.Content>
+        {
+          pathname === '/dashboard' ?
+            <ListingDeleteModal
+              handleDelete={handleDelete}
+              userId={userId}
+              listingId={listingId}
+            /> : null
+        }
+        <Image floated="right">
+          <Icon name={getIconString(type)} size="big" />
+        </Image>
+        <Card.Header>
+          { title }
+        </Card.Header>
+        <Card.Meta>
+          { createdAt }
+        </Card.Meta>
+        <Card.Description>
+          { truncate(body) }
+        </Card.Description>
+      </Card.Content>
     </Link>
   </Card>;
 

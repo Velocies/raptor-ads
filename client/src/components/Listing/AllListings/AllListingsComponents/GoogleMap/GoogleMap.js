@@ -17,10 +17,10 @@ import GoogleMapInfoWindow from './GoogleMapInfoWindow';
  * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
 const GoogleMapRender = withGoogleMap(props => {
+  console.log('RE RENDER',props.markers);
   return (
   <GoogleMap
     ref={props.onMapLoad}
-    onClick={props.onMapClick}
     center={props.defaultCenter}
     zoom={12}
   >
@@ -29,7 +29,7 @@ const GoogleMapRender = withGoogleMap(props => {
         {...marker.position}
         onClick={() => props.handleInfoWindow(marker, index)}
       >
-      {marker.position.showInfo && (
+      {marker.position && marker.position.showInfo && (
         <InfoWindow onCloseClick={() => props.handleInfoWindow(marker, index)}>
           <GoogleMapInfoWindow
             title={marker.title}

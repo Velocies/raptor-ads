@@ -1,12 +1,12 @@
 import React from 'react';
 import { Dropdown, Header, Divider, Item, Form, Icon, Input } from 'semantic-ui-react';
 
-const AllListingsSearch = ({ onClick, onChange }) => {
+const AllListingsSearch = ({ onChange, onSubmit }) => {
   return (
-    <Form>
+    <Form onSubmit={(e) => onSubmit(e)}>
       <Form.Field>
         <Input
-          icon={<Icon onClick={() => onClick()} name="search" inverted circular link />}
+          icon={<Icon onClick={(e) => onSubmit(e)} name="search" inverted circular link />}
           placeholder="Enter search address here"
           name="image"
           onChange={e => onChange(e)}

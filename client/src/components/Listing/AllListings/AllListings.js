@@ -9,17 +9,18 @@ import AllListingsSearch from './AllListingsComponents/AllListingsSearch';
 import AllListingsFilter from './AllListingsComponents/AllListingsFilter';
 import GoogleMapContainer from './AllListingsComponents/GoogleMap/GoogleMapContainer';
 import filterListings from '../../helpers/filterListings';
+import ListingInfoCard from './AllListingsComponents/ListingInfoCard';
 // import InitialMap from './GoogleMap/GoogleMap';
 
 
 class AllListings extends Component {
   constructor(props) {
     super(props);
-    this.onClick = this.onClick.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onSelectFilter = this.onSelectFilter.bind(this);
     this.onSelectDistance = this.onSelectDistance.bind(this);
     this.onSelectSort = this.onSelectSort.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -30,28 +31,13 @@ class AllListings extends Component {
     return moment(time).fromNow();
   }
 
-  onClick() {
+  onSubmit(e) {
+    e.preventDefault();
     this.props.dispatch(changeCenter(this.props.searchField));
-      // console.log('computeDistanceBetween', computeDistanceBetween)
-    // this.geocoder.geocode({ 'address': '1012 docday court, Folsom, Ca, United States' }, function handleResults(results, status) {
-
-    //   const nextMarkers = this.state.markers.filter(marker => marker !== targetMarker);
-    //   console.log('restuls', results[0])
-    //   const newThing = {
-    //     position: results[0].geometry.location,
-    //     defaultAnimation: 2,
-    //     key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
-    //   };
-    //   nextMarkers.push(newThing);
-    //   this.setState({
-    //     markers: nextMarkers,
-    //   });
-    //   console.log('markers', this.state.markers);
-    //   console.log('results', results, status);
-    // }.bind(this));
   }
 
   onChange(e) {
+    e.preventDefault();
     this.props.dispatch(changeSearchField(e.target.value));
     this.props.dispatch(sortMarkersByDistance(this.props.allListings));
   }
@@ -110,7 +96,12 @@ class AllListings extends Component {
               <GoogleMapContainer markers={markers}/>
             </Grid.Column>
             <Grid.Column width={8}>
-              <AllListingsSearch onClick={this.onClick} onChange={this.onChange}/>
+              <AllListingsSearch
+                onClick={this.onClick}
+                onChange={this.onChange}
+                onSubmit={this.onSubmit}
+              />
+              <ListingInfoCard />
             </Grid.Column>
           </Grid>
           <h3>Listings</h3>

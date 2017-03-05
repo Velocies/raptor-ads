@@ -91,7 +91,7 @@ class AllListings extends Component {
             onSelectSort={this.onSelectSort}
             sortArray={sortArray}
           />
-          <Grid width={16}>
+          <Grid width={16} stackable>
             <Grid.Column width={8}>
               <GoogleMapContainer markers={markers}/>
             </Grid.Column>

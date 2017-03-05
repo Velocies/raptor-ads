@@ -7,8 +7,8 @@ const description =
 
 
 const ListingInfoCard = () => (
-  <Card.Group className="ui center aligned grid">
-    <Card fluid>
+  <Card.Group className="ui center aligned grid" style={{marginTop: '2px'}}>
+    <Card fluid className="ui center aligned grid" style={{marginTop: '2px'}}>
     <Card.Content header='About Amy' />
     <Card.Content>
       <Image floated='right' size='mini' src='http://semantic-ui.com/images/avatar/large/steve.jpg' />

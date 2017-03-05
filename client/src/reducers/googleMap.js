@@ -14,18 +14,6 @@ export const googleMap = (state = initialState, action) => {
       return ({ ...state, center: action.location });
     case ADD_MAP_MARKERS_SUCCESS:
       return ({ ...state, markers: action.markerArray });
-    // case GET_CURRENT_LISTING_SUCCESS:
-    //   console.log('SHOULD CHANGE HERE', concatAddress(action.payload));
-    //   geocoder.geocode({ 'address': concatAddress(action.payload)}, (results) => {
-    //     console.log('HELLLLO')
-    //     const newCenter = {
-    //       lat: results[0].geometry.bounds.f.f,
-    //       lng: results[0].geometry.bounds.b.b,
-    //     };
-    //     console.log('newCenter', newCenter)
-    //     return ({ ...state, center: newCenter });
-    //   });
-    //   return ({ ...state });
     // case CHANGE_MARKER_SHOW_INFO:
     //   const markersClone = [...state.markers];
     //   markersClone[action.index].showInfo = !markersClone[action.index].showInfo;

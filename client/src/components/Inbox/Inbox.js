@@ -13,3 +13,9 @@ class Inbox extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return ({});
+};
+
+export default connect(mapStateToProps)(Inbox);

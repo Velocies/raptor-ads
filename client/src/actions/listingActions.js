@@ -92,6 +92,7 @@ export const removeListing = (listingId) =>
   (dispatch) => {
     deleteListing(listingId)
       .then(() => {
+        dispatch(push('/dashboard'));
         // TODO handle delete success
       });
   };

@@ -13,13 +13,14 @@ export const getReceivedMessagesSuccess = payload =>
     payload,
   });
 
-export const getCurrentListing = userId =>
+export const getAllReceivedMessages = userId =>
   (dispatch) => {
     dispatch(startFetchMessages());
     getReceivedMessages(userId)
     .then((res) => {
       res.json()
       .then((data) => {
+        console.log(data);
         dispatch(getReceivedMessagesSuccess(data));
       });
     });

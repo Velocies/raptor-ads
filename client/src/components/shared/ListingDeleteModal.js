@@ -11,7 +11,7 @@ const ListingDeleteModal = ({ handleDelete, listingId, userId }) =>
       <p>Are you sure you want to delete this listing?</p>
     </Modal.Content>
     <Modal.Actions>
-      <Button onClick={() => handleDelete(userId, listingId)} color="green">
+      <Button onClick={() => handleDelete(listingId)} color="green">
         <Icon name="checkmark" /> Yes, please delete this listing.
       </Button>
     </Modal.Actions>

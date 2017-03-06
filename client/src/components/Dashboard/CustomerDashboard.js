@@ -2,12 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Container, Header, Card, Divider, Loader } from 'semantic-ui-react';
 import Listing from '../shared/Listing';
-import { removeListing } from '../../actions/listingActions';
 import capitalize from '../helpers/capitalize';
 import convertTime from '../helpers/convertTime';
 
 const CustomerDashboard =
-  ({ firstName, userListings, id, isFetching, handleDelete, pathname }) => {
+  ({ firstName, userListings, id, isFetching, pathname }) => {
     if (isFetching) { return <Loader active inline="centered" />; }
     return (
       <Container textAlign="center">
@@ -26,7 +25,6 @@ const CustomerDashboard =
               body={listing.body}
               type={listing.type}
               userId={id}
-              handleDelete={handleDelete}
               pathname={pathname}
             />,
           )}
@@ -41,7 +39,6 @@ CustomerDashboard.propTypes = {
   React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   id: React.PropTypes.number.isRequired,
   isFetching: React.PropTypes.bool.isRequired,
-  handleDelete: React.PropTypes.func.isRequired,
   pathname: React.PropTypes.string.isRequired,
 };
 
@@ -53,11 +50,4 @@ const mapStateToProps = (state) => {
   return { firstName, id, userListings, isFetching, pathname };
 };
 
-const mapDispatchToProps = dispatch =>
-  ({
-    handleDelete: (userId, listingId) => {
-      dispatch(removeListing(userId, listingId));
-    },
-  });
-
-export default connect(mapStateToProps, mapDispatchToProps)(CustomerDashboard);
+export default connect(mapStateToProps)(CustomerDashboard);

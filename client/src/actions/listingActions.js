@@ -88,11 +88,11 @@ export const uploadListing = data =>
     }
   };
 
-export const removeListing = (userId, listingId) =>
+export const removeListing = (listingId) =>
   (dispatch) => {
     deleteListing(listingId)
       .then(() => {
-        dispatch(fetchUserListings(userId));
+        // TODO handle delete success
       });
   };
 

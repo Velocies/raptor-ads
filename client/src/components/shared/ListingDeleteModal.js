@@ -8,7 +8,8 @@ const ListingDeleteModal = ({ handleDelete, listingId, userId }) =>
       circular floating
     >
       <Icon name="delete" color="red" />
-    </Label>}closeIcon="close"
+    </Label>}
+    closeIcon="close"
   >
     <Header icon="trash outline" content="Delete Image" />
     <Modal.Content>

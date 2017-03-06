@@ -1,14 +1,9 @@
 import React from 'react';
-import { Icon, Label, Header, Modal, Button } from 'semantic-ui-react';
+import { Icon, Header, Modal, Button } from 'semantic-ui-react';
 
 const ListingDeleteModal = ({ handleDelete, listingId, userId }) =>
   <Modal
-    trigger={<Label
-      className="deleteIcon"
-      circular floating
-    >
-      <Icon name="delete" color="red" />
-    </Label>}
+    trigger={<Button negative>Delete Listing</Button>}
     closeIcon="close"
   >
     <Header icon="trash outline" content="Delete Image" />

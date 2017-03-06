@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Card, Image, Icon } from 'semantic-ui-react';
-import ListingDeleteModal from './ListingDeleteModal';
 import truncate from '../helpers/truncate';
 
 const getIconString = str => (
@@ -12,14 +11,6 @@ const Listing = ({ userId, listingId, title, createdAt, body, type, handleDelete
   <Card centered raised>
     <Link to={`/listings/${listingId}`} >
       <Card.Content>
-        {
-          pathname === '/dashboard' ?
-            <ListingDeleteModal
-              handleDelete={handleDelete}
-              userId={userId}
-              listingId={listingId}
-            /> : null
-        }
         <Image floated="right">
           <Icon name={getIconString(type)} size="big" />
         </Image>

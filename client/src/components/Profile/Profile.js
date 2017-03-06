@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProfileDashboard from './profileDashboard';
-import ProfileInbox from './profileInbox';
+import Inbox from '../Inbox/Inbox';
 import ProfileSettings from './profileSettings';
 import ProfileNavbar from './profileNavbar';
 import { updateFormField, getCurrentProfile, updateProfile, deleteProfile, changeDisplay } from '../../actions/profileActions';
@@ -60,7 +60,7 @@ class Profile extends Component {
         : ''
         }
         { display === 'inbox' ?
-          <ProfileInbox />
+          <Inbox />
         : ''
         }
         { display === 'settings' ?

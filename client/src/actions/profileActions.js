@@ -1,5 +1,5 @@
 import { push } from 'react-router-redux';
-import { UPDATE_FORM_FIELD, GET_CURRENT_PROFILE, UPDATE_PROFILE_SUCCESS, LOGOUT } from '../constants';
+import { UPDATE_FORM_FIELD, GET_CURRENT_PROFILE, UPDATE_PROFILE_SUCCESS, LOGOUT, CHANGE_DISPLAY } from '../constants';
 
 export const updateFormField = (field, value) =>
   ({
@@ -70,3 +70,9 @@ export const deleteProfile = user =>
       }
     });
   };
+
+  export const changeDisplay = route =>
+  ({
+    type: CHANGE_DISPLAY,
+    route: route,
+  });

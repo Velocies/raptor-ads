@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => {
   if (state.routing.locationBeforeTransitions !== null) {
     location = state.routing.locationBeforeTransitions.pathname;
   }
-  const { id  } = state.auth.loggedInUser;
+  const { id } = state.auth.loggedInUser;
 
   return { location, id };
 };

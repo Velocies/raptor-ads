@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ProfileDashboard from './profileDashboard';
+import ProfileDashboard from './ProfileDashboard';
 import Inbox from './Inbox/Inbox';
 import ProfileSettings from './profileSettings';
 import ProfileNavbar from './profileNavbar';

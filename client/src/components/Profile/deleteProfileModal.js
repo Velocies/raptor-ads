@@ -17,6 +17,9 @@ const DeleteProfileModal = ({onDeleteClick}) =>
       <p>Are you sure you want to delete your profile?</p>
     </Modal.Content>
     <Modal.Actions>
+      <Button>
+      Cancel
+      </Button>
       <Button
         onClick={() => onDeleteClick()}
         color="red"

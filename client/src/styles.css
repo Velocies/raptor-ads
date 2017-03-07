@@ -67,3 +67,7 @@ body {
 .ratingContent textarea {
   width: 600px !important;
 }
+
+.cardBody {
+  color: black !important;
+}

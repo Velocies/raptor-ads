@@ -1,4 +1,4 @@
-import { } from '../constants';
+import { FETCHING_MESSAGES } from '../constants';
 
 
 export const initialState = {
@@ -9,7 +9,8 @@ export const initialState = {
 
 export const inbox = (state = initialState, action) => {
   switch (action.type) {
-
+    case FETCHING_MESSAGES:
+      return ({ ...state, isFetching: true });
     default:
       return state;
   }

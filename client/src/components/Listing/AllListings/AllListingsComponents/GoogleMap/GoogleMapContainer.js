@@ -8,7 +8,6 @@ import { tokenError } from '../../../../../actions/index';
 class GoogleMapContainer extends Component {
   constructor(props) {
     super(props);
-    this.MapLoad = this.handleMapLoad.bind(this);
     this.handleInfoWindow = this.handleInfoWindow.bind(this);
   }
 

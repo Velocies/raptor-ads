@@ -15,6 +15,10 @@ const ProfileDashboard = ({ loggedInUser }) =>
         starColor="#31b234"
         editing={false}
       />
+      <Header className="dateHeader">
+        Member since:
+      </Header>
+        { new Date(loggedInUser.createdAt).toLocaleDateString() }
     </Grid.Column>
   </Grid>;
 

@@ -18,7 +18,7 @@ const ProfileDashboard = ({ loggedInUser }) =>
       <Header className="dateHeader">
         Member since:
       </Header>
-        { new Date(loggedInUser.createdAt).toLocaleDateString() }
+      { new Date(loggedInUser.createdAt).toLocaleDateString() }
     </Grid.Column>
   </Grid>;
 

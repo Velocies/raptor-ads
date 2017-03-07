@@ -1,40 +1,49 @@
 import React from 'react';
-import { Link } from 'react-router';
 import { Card, Header, Image, Icon } from 'semantic-ui-react';
 import convertDistance from '../../../helpers/convertDistance';
 
 
-const ListingInfoCard = ({ card }) => {
+const ListingInfoCard = ({ card, onListingClick }) => {
   if (card) {
     let picturePath;
     if (card.pictures[0]) {
-      picturePath = card.pictures[0].img_path
+      picturePath = card.pictures[0].img_path;
     } else {
-      picturePath = 'http://www.itdesignhouse.com/wp-content/themes/TechNews/images/img_not_available.png'
+      picturePath = 'http://www.itdesignhouse.com/wp-content/themes/TechNews/images/img_not_available.png';
     }
     return (
-      <Link to={`/listings/${card.id}`}>
-      <Card.Group className="ui center aligned grid" style={{marginTop: '2px'}}>
-          <Card fluid style={{marginTop: '2px'}}>
-            <Card.Content header={card.title} />
-            <Card.Content style={{height: '160px'}}>
-              <Image floated='left' size='small' src={picturePath} /> <Card.Content description={card.body} />
+      <Card.Group className="ui center aligned grid" style={{ marginTop: '4px' }}>
+        <Card
+          fluid style={{ marginTop: '2px' }}
+          onClick={() => onListingClick(card.id)}
+        >
+          <Card.Content>
+            <Card.Header>
+              <Header as={'h3'} color="green">
+                {card.title}
+              </Header>
+            </Card.Header>
+          </Card.Content>
+          <Card.Content style={{ height: '160px' }}>
+            <Image
+              floated="left"
+              size="small"
+              src={picturePath}
+            />
+            <Card.Content>
+              <Card.Description>
+                <p className="cardBody">{card.body}</p>
+              </Card.Description>
             </Card.Content>
-            <Card.Content style={{height: '40px'}}>
-              {card.distanceFromCenter && (<Card.Content description={`${convertDistance(card.distanceFromCenter)} miles away`} />)}
-            </Card.Content>
-          </Card>
+          </Card.Content>
+          <Card.Content style={{ color: 'black', height: '40px' }}>
+            {card.distanceFromCenter && (<Card.Content description={`${convertDistance(card.distanceFromCenter)} miles away`} />)}
+          </Card.Content>
+        </Card>
       </Card.Group>
-      </Link>
-    )
-  } else {
-    return (<div></div>)
+    );
   }
+  return null;
 };
 
 export default ListingInfoCard;
-
-// to={`listings/${card.id}`}
-
-// http://127.0.0.1:3000/listings/9
-// http://127.0.0.1:3000/listings/9

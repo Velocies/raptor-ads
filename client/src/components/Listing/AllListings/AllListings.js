@@ -108,7 +108,10 @@ class AllListings extends Component {
                 onChange={this.onChange}
                 onSubmit={this.onSubmit}
               />
-              <ListingInfoCard card={clickedListing} />
+              <ListingInfoCard
+                card={clickedListing}
+                onListingClick={onListingClick}
+              />
             </Grid.Column>
           </Grid>
           <Header as={'h3'} color="black">Listings</Header>

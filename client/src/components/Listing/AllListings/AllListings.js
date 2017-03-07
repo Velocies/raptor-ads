@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { Container, Header, Card, Button, Divider, Loader, Grid, Menu, Dropdown } from 'semantic-ui-react';
-import { getAllListings, changeSearchField, changeFilterCategory, changeDistanceRadius, changeSortFilter } from '../../../actions/allListingActions';
+import { getAllListings, changeSearchField, changeFilterCategory, changeDistanceRadius, changeSortFilter, clearClickedListing } from '../../../actions/allListingActions';
 import { changeCenter, sortMarkersByDistance } from '../../../actions/googleMapActions';
 import Listing from '../../shared/Listing';
 import AllListingsSearch from './AllListingsComponents/AllListingsSearch';
@@ -61,8 +61,12 @@ class AllListings extends Component {
     return body;
   }
 
+  componentWillUnmount() {
+    this.props.dispatch(clearClickedListing());
+  }
+
   render() {
-    const { isFetching, allListings, cutBody, filters } = this.props;
+    const { isFetching, allListings, cutBody, filters, clickedListing } = this.props;
     const distanceArray = [
       { key: 0, text: '10 Miles', value: 10 },
       { key: 1, text: '30 Miles', value: 30 },
@@ -101,7 +105,7 @@ class AllListings extends Component {
                 onChange={this.onChange}
                 onSubmit={this.onSubmit}
               />
-              <ListingInfoCard />
+              <ListingInfoCard card={clickedListing}/>
             </Grid.Column>
           </Grid>
           <h3>Listings</h3>
@@ -128,11 +132,11 @@ class AllListings extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { allListings, isFetching, searchField, filters } = state.listings;
+  const { allListings, isFetching, searchField, filters, clickedListing } = state.listings;
   const { id } = state.auth.loggedInUser;
   const loggedInUser = state.auth.loggedInUser;
   const { markers } = state.googleMap;
-  return { allListings, isFetching, id, searchField, loggedInUser, markers, filters };
+  return { allListings, isFetching, id, searchField, loggedInUser, markers, filters, clickedListing };
 };
 
 export default connect(mapStateToProps)(AllListings);

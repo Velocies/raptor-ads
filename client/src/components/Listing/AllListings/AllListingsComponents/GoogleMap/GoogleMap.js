@@ -28,33 +28,20 @@ const GoogleMapRender = withGoogleMap(props => {
       <Marker
         {...marker.position}
         onClick={() => props.handleInfoWindow(marker, index)}
-      >
-      {marker.position && marker.position.showInfo && (
-        <InfoWindow onCloseClick={() => props.handleInfoWindow(marker, index)}>
-          <GoogleMapInfoWindow
-            title={marker.title}
-            distance={marker.distanceFromCenter}
-          />
-        </InfoWindow>
-      )}
-      </Marker>
+      />
     ))}
   </GoogleMap>
   );
 });
 
 export default GoogleMapRender;
-        // onClick={() => props.onMarkerLeftClick(marker)}
-
-      // {marker.showInfo && (
-      //   <InfoWindow onCloseClick={() => props.onMarkerClose(marker)}>
-      //     <div>{marker.infoContent}</div>
-      //   </InfoWindow>
-      // )}
 
 
-      // {marker.position.showInfo && (
-      //   <InfoWindow>
-      //     <Link to={`/listings/${marker.id}`} ><div>HELLO</div></Link>
+      //       {marker.position && marker.position.showInfo && (
+      //   <InfoWindow onCloseClick={() => props.handleInfoWindow(marker, index)}>
+      //     <GoogleMapInfoWindow
+      //       title={marker.title}
+      //       distance={marker.distanceFromCenter}
+      //     />
       //   </InfoWindow>
       // )}

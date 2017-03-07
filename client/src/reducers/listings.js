@@ -1,4 +1,4 @@
-import { FETCHING_LISTINGS, GET_ALL_LISTINGS_SUCCESS, CHANGE_SEARCH_FIELD, CHANGE_DISTANCE_RADIUS, CHANGE_FILTER_CATEGORY, CHANGE_SORT_FILTER, CHANGE_MARKER_SHOW_INFO } from '../constants';
+import { FETCHING_LISTINGS, GET_ALL_LISTINGS_SUCCESS, CHANGE_SEARCH_FIELD, CHANGE_DISTANCE_RADIUS, CHANGE_FILTER_CATEGORY, CHANGE_SORT_FILTER, CHANGE_MARKER_SHOW_INFO, CLEAR_CLICKED_LISTING } from '../constants';
 
 
 export const initialState = {
@@ -34,7 +34,9 @@ export const listings = (state = initialState, action) => {
       const allListingsClone = [...state.allListings];
       allListingsClone[action.index].position = {...allListingsClone[action.index].position};
       allListingsClone[action.index].position.showInfo = !allListingsClone[action.index].position.showInfo;
-      return ({ ...state, allListings: allListingsClone });
+      return ({ ...state, clickedListing: allListingsClone[action.index], allListings: allListingsClone });
+    case CLEAR_CLICKED_LISTING:
+      return ({ ...state, clickedListing: null });
     default:
       return state;
   }

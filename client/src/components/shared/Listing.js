@@ -15,12 +15,10 @@ const Listing = ({ userId, listingId, title, createdAt, body, type, handleDelete
   >
     <Card.Content>
       <Image floated="right">
-        <Icon name={getIconString(type)} size="big" />
+        <Icon name={getIconString(type)} size="big" color="green" />
       </Image>
       <Card.Header>
-        <Header as={'h3'} color="green">
           { title }
-        </Header>
       </Card.Header>
       <Card.Meta>
         { createdAt }

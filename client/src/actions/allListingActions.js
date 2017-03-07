@@ -28,7 +28,7 @@ export const getAllListings = () =>
             dispatch(changeCenter(getState().auth.loggedInUser));
           }
         }
-        dispatch(getAllListingsSuccess(data));
+        // dispatch(getAllListingsSuccess(data));
         dispatch(addMapMarkers(data));
       });
     });

@@ -6,7 +6,7 @@ import capitalize from '../helpers/capitalize';
 import convertTime from '../helpers/convertTime';
 
 const CustomerDashboard =
-  ({ firstName, userListings, id, isFetching, pathname }) => {
+  ({ firstName, serListings, id, isFetching, pathname }) => {
     if (isFetching) { return <Loader active inline="centered" />; }
     return (
       <Container textAlign="center">

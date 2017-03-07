@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProfileDashboard from './profileDashboard';
-import Inbox from '../Inbox/Inbox';
+import Inbox from './Inbox/Inbox';
 import ProfileSettings from './profileSettings';
 import ProfileNavbar from './profileNavbar';
 import { updateFormField, getCurrentProfile, updateProfile, deleteProfile, changeDisplay } from '../../actions/profileActions';

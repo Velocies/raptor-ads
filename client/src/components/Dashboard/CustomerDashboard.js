@@ -1,12 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { Container, Header, Card, Divider, Loader } from 'semantic-ui-react';
 import Listing from '../shared/Listing';
 import capitalize from '../helpers/capitalize';
 import convertTime from '../helpers/convertTime';
 
 const CustomerDashboard =
-  ({ firstName, userListings, id, isFetching, pathname }) => {
+  ({ firstName, userListings, id, isFetching, pathname, dispatch }) => {
+    const onListingClick = (listingId) => {
+      dispatch(push(`/listings/${listingId}`));
+    };
+
     if (isFetching) { return <Loader active inline="centered" />; }
     return (
       <Container textAlign="center">
@@ -26,7 +31,8 @@ const CustomerDashboard =
               type={listing.type}
               userId={id}
               pathname={pathname}
-            />,
+              onListingClick={onListingClick}
+            />
           )}
         </Card.Group>
       </Container>

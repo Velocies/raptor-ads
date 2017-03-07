@@ -1,15 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router';
-import { Card, Image, Icon } from 'semantic-ui-react';
+import { Card, Image, Icon, Container } from 'semantic-ui-react';
 import truncate from '../helpers/truncate';
 
 const getIconString = str => (
   str === 'home improvement' ? 'home' : 'laptop'
 );
 
-const Listing = ({ userId, listingId, title, createdAt, body, type, handleDelete, pathname }) =>
-  <Card centered raised>
-    <Link to={`/listings/${listingId}`} >
+const Listing = ({ userId, listingId, title, createdAt, body, type, handleDelete, pathname, onListingClick }) =>
+  <Card
+    centered
+    raised
+    color="green"
+    onClick={() => onListingClick(listingId)}
+  >
       <Card.Content>
         <Image floated="right">
           <Icon name={getIconString(type)} size="big" />
@@ -24,20 +27,19 @@ const Listing = ({ userId, listingId, title, createdAt, body, type, handleDelete
           { truncate(body) }
         </Card.Description>
       </Card.Content>
-    </Link>
-  </Card>;
+    </Card>;
 
 
-Listing.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  createdAt: React.PropTypes.string.isRequired,
-  body: React.PropTypes.string.isRequired,
-  type: React.PropTypes.string.isRequired,
-  userId: React.PropTypes.number,
-  listingId: React.PropTypes.number.isRequired,
-  handleDelete: React.PropTypes.func.isRequired,
-  pathname: React.PropTypes.string.isRequired,
+  Listing.propTypes = {
+    title: React.PropTypes.string.isRequired,
+    createdAt: React.PropTypes.string.isRequired,
+    body: React.PropTypes.string.isRequired,
+    type: React.PropTypes.string.isRequired,
+    userId: React.PropTypes.number,
+    listingId: React.PropTypes.number.isRequired,
+    handleDelete: React.PropTypes.func.isRequired,
+    pathname: React.PropTypes.string.isRequired,
 
-};
+  };
 
 export default Listing;

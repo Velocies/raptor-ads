@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import moment from 'moment';
 import { Container, Header, Card, Button, Divider, Loader, Grid, Menu, Dropdown } from 'semantic-ui-react';
 import { getAllListings, changeSearchField, changeFilterCategory, changeDistanceRadius, changeSortFilter, clearClickedListing } from '../../../actions/allListingActions';
@@ -78,10 +79,11 @@ class AllListings extends Component {
       { key: 0, text: 'Distance', value: 'distance' },
       { key: 1, text: 'Time Created', value: 'time' },
     ];
-    //get all listings from state,
-    //run taht thru this filter function,
-    //then pass to google container
+    const onListingClick = (listingId) => {
+      this.props.dispatch(push(`/listings/${listingId}`));
+    };
     const markers = filterListings(allListings, filters);
+
     if (isFetching) {
       return <Loader active inline='centered' />;
     } else {
@@ -123,6 +125,7 @@ class AllListings extends Component {
                 onClick={this.onClick}
                 handleDelete={this.handleDelete}
                 cutBody={this.cutBody}
+                onListingClick={onListingClick}
               />
             )}
           </Card.Group>

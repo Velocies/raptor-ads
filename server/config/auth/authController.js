@@ -7,7 +7,7 @@ module.exports = {
   logIn: (req, res) => {
     models.User.findOne({
       where: { email: req.body.email },
-      include: [models.Business],
+      include: [models.Business, models.Rating],
     })
       .then((user) => {
         if (user) {
@@ -35,7 +35,7 @@ module.exports = {
       } else {
         models.User.findOne({
           where: { id: decoded.id },
-          include: [models.Business],
+          include: [models.Business, models.Rating],
         })
           .then((user) => {
             res.json(user);

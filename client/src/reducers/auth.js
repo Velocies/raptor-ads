@@ -29,6 +29,7 @@ export const initialState = {
     firstName: '',
     id: 0,
     business: {},
+    ratings: [],
   },
 };
 

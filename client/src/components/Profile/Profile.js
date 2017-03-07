@@ -52,11 +52,12 @@ class Profile extends Component {
       business,
     } = this.props.profileForm;
     const display = this.props.display;
+    const loggedInUser = this.props.loggedInUser;
     return (
       <div>
         <ProfileNavbar changeDisplay={this.changeDisplay} />
         { display === 'dashboard' ?
-          <ProfileDashboard />
+          <ProfileDashboard loggedInUser={loggedInUser} />
         : ''
         }
         { display === 'inbox' ?

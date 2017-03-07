@@ -108,10 +108,10 @@ class AllListings extends Component {
                 onChange={this.onChange}
                 onSubmit={this.onSubmit}
               />
-              <ListingInfoCard card={clickedListing}/>
+              <ListingInfoCard card={clickedListing} />
             </Grid.Column>
           </Grid>
-          <h3>Listings</h3>
+          <Header as={'h3'} color="green">Listings</Header>
           <Divider />
           <Card.Group itemsPerRow={4} stackable>
             {markers && markers.map(listing =>

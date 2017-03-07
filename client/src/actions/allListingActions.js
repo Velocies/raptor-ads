@@ -20,7 +20,6 @@ export const getAllListings = () =>
     .then((res) => {
       res.json()
       .then((data) => {
-        console.log('DATA', data);
         if (getState().auth.loggedInUser.state || getState().auth.loggedInUser.business.companyState) {
           if (getState().auth.loggedInUser.role === 'professional') {
             dispatch(changeCenter(getState().auth.loggedInUser.business));
@@ -28,7 +27,7 @@ export const getAllListings = () =>
             dispatch(changeCenter(getState().auth.loggedInUser));
           }
         }
-        dispatch(getAllListingsSuccess(data));
+        // dispatch(getAllListingsSuccess(data));
         dispatch(addMapMarkers(data));
       });
     });

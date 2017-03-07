@@ -63,7 +63,6 @@ export const sortMarkersByDistance = data =>
 
 export const addMapMarkers = data =>
   (dispatch) => {
-    const markerArray = [];
     const newData = [...data];
     const geocoder = new google.maps.Geocoder();
     for (let i = 0; i < data.length; i++) {
@@ -76,7 +75,6 @@ export const addMapMarkers = data =>
             showInfo: false,
             icon: image,
           };
-          markerArray.push(newCenter);
           newData[i].position = newCenter;
         }
         if (i === data.length - 1) {

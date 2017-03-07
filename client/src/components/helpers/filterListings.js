@@ -16,7 +16,6 @@ const filterListings = (listings, filter) => {
         });
       }
     }
-    console.log('FILTER CATEGORIES', filter.categories['Home Improvement'])
     if (filter.categories.Technology === true) {
       filteredListings = filteredListings.filter((listing) => {
         if (listing.type === 'technology') {
@@ -26,7 +25,6 @@ const filterListings = (listings, filter) => {
     }
     if (filter.categories['Home Improvement'] === true) {
       filteredListings = filteredListings.filter((listing) => {
-        console.log('IN HERE IN HOME improvement')
         if (listing.type === 'home improvement') {
           return listing;
         }

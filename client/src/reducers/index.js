@@ -9,12 +9,14 @@ import { googleMap } from './googleMap';
 import { profile } from './profile';
 import userDetails from '../components/UserDetails/reducers';
 import { LOGOUT } from '../constants';
+import { inbox } from './inbox';
 
 const appReducer = combineReducers({
   auth,
   profile,
   listing,
   messages,
+  inbox,
   listings,
   ratings,
   userDetails,

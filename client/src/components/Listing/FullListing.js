@@ -16,7 +16,7 @@ class FullListing extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.dispatch(getCurrentListing(this.props.listingId));
   }
 

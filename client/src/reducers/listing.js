@@ -46,9 +46,9 @@ export const listing = (state = initialState, action) => {
     case CLEAR_ERRORS:
       return ({ ...state, formErrors: {} });
     case GET_CURRENT_LISTING_SUCCESS:
-      return ({ ...state, currentListing: action.payload, listing: { ...state.listing, isFetching: false } });
+      return ({ ...state, currentListing: action.payload, isFetching: false });
     case FETCHING_LISTING:
-      return ({ ...state, listing: { ...state.listing, isFetching: true } });
+      return ({ ...state, isFetching: true });
     default:
       return state;
   }

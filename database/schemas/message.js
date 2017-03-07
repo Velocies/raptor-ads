@@ -6,7 +6,7 @@ module.exports = (db, Sequelize) => {
       primaryKey: true,
     },
     title: Sequelize.STRING,
-    body: Sequelize.STRING,
+    body: Sequelize.TEXT,
   });
 
   return Message;

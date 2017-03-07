@@ -24,7 +24,9 @@ class AllListings extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(getAllListings());
+    if (this.props.allListings.length === 0) {
+      this.props.dispatch(getAllListings());
+    }
   }
 
   convertTime(time) {

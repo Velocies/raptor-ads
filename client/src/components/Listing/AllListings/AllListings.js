@@ -82,7 +82,6 @@ class AllListings extends Component {
     //run taht thru this filter function,
     //then pass to google container
     const markers = filterListings(allListings, filters);
-    console.log('MARKERS HERE', markers);
     if (isFetching) {
       return <Loader active inline='centered' />;
     } else {

@@ -13,7 +13,7 @@ const ListingInfoCard = ({ card }) => {
       picturePath = 'http://www.itdesignhouse.com/wp-content/themes/TechNews/images/img_not_available.png'
     }
     return (
-      <Link to={`listings/${card.id}`}>
+      <Link to={`/listings/${card.id}`}>
       <Card.Group className="ui center aligned grid" style={{marginTop: '2px'}}>
           <Card fluid style={{marginTop: '2px'}}>
             <Card.Content header={card.title} />

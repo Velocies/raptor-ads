@@ -31,9 +31,7 @@ const ListingInfoCard = ({ card, onListingClick }) => {
               src={picturePath}
             />
             <Card.Content>
-              <Card.Description>
-                <p className="cardBody">{card.body}</p>
-              </Card.Description>
+              <Card.Description style={{ color: 'black' }} content={card.body} />
             </Card.Content>
           </Card.Content>
           <Card.Content style={{ color: 'black', height: '40px' }}>

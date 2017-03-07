@@ -6,14 +6,16 @@ import moment from 'moment';
 import { Container, Grid, Image, Header, Divider, Message, List, Loader, Button, Modal, Form, Card } from 'semantic-ui-react';
 import GoogleMapContainer from './AllListings/AllListingsComponents/GoogleMap/GoogleMapContainer';
 import { getCurrentListing, changeContactField, sendMessage } from '../../actions/fullListingActions';
-import { clearErrors } from '../../actions/listingActions';
+import { clearErrors, removeListing } from '../../actions/listingActions';
 import RatingCard from '../Ratings/RatingCard';
+import ListingDeleteModal from '../shared/ListingDeleteModal';
 
 class FullListing extends Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentWillMount() {
@@ -22,7 +24,6 @@ class FullListing extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log('Submit occurred!');
     const data = this.props.contactForm;
     const postId = this.props.listingId;
     const senderId = this.props.loggedInUser.id;
@@ -57,9 +58,15 @@ class FullListing extends Component {
         />);
   }
 
+  handleDelete() {
+    const { listingId } = this.props;
+    const { id: userId } = this.props.loggedInUser;
+    this.props.dispatch(removeListing(listingId, userId));
+  }
+
 
   render() {
-    const { isFetching, currentListing, userListings } = this.props;
+    const { loggedInUser, isFetching, currentListing, userListings, dispatch } = this.props;
     if (isFetching) {
       return <Loader active inline="centered" />;
     }
@@ -69,6 +76,7 @@ class FullListing extends Component {
         <Header as="h1" className="center">-- {currentListing.title || 'Current Listing'} -- <br /></Header>
         <Header as="h4" className="center" color="grey">{`Created ${this.convertTime(currentListing.createdAt)}` || 'Time Created'}</Header>
 
+        { loggedInUser.id === currentListing.userId ? <ListingDeleteModal handleDelete={this.handleDelete} /> : null }
         <Divider />
 
         <Message color="grey">
@@ -154,19 +162,19 @@ class FullListing extends Component {
               </Header>
             </Grid.Row>
             { currentListing.user.ratings && !currentListing.user.ratings.length ?
-              <span>No Ratings for { currentListing.user.firstName }</span> :
-              <Grid>
-                <Grid.Row centered>
-                  <Card.Group>
-                    { this.renderRecentRatings(currentListing.user.ratings) }
-                  </Card.Group>
-                </Grid.Row>
-                <Grid.Row>
-                  <Link to={`/user/${currentListing.user.id}/ratings`}>
-                    View All
-                  </Link>
-                </Grid.Row>
-              </Grid>
+                <span>No Ratings for { currentListing.user.firstName }</span> :
+                <Grid>
+                  <Grid.Row centered>
+                    <Card.Group>
+                      { this.renderRecentRatings(currentListing.user.ratings) }
+                    </Card.Group>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Link to={`/user/${currentListing.user.id}/ratings`}>
+                      View All
+                    </Link>
+                  </Grid.Row>
+                </Grid>
             }
           </Grid>
         </Message>

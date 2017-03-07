@@ -1,41 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router';
-import { Card, Image, Icon } from 'semantic-ui-react';
-import ListingDeleteModal from './ListingDeleteModal';
+import { Card, Image, Icon, Container, Header } from 'semantic-ui-react';
 import truncate from '../helpers/truncate';
 
 const getIconString = str => (
   str === 'home improvement' ? 'home' : 'laptop'
 );
 
-const Listing = ({ userId, listingId, title, createdAt, body, type, handleDelete, pathname }) =>
-  <Card centered raised>
-    <Link to={`/listings/${listingId}`} >
-      <Card centered raised>
-        <Card.Content>
-          {
-            pathname === '/dashboard' ?
-              <ListingDeleteModal
-                handleDelete={handleDelete}
-                userId={userId}
-                listingId={listingId}
-              /> : null
-          }
-          <Image floated="right">
-            <Icon name={getIconString(type)} size="big" />
-          </Image>
-          <Card.Header>
-            { title }
-          </Card.Header>
-          <Card.Meta>
-            { createdAt }
-          </Card.Meta>
-          <Card.Description>
-            { truncate(body) }
-          </Card.Description>
-        </Card.Content>
-      </Card>
-    </Link>
+const Listing = ({ userId, listingId, title, createdAt, body, type, handleDelete, pathname, onListingClick }) =>
+  <Card
+    centered
+    raised
+    color="green"
+    onClick={() => onListingClick(listingId)}
+  >
+    <Card.Content>
+      <Image floated="right">
+        <Icon name={getIconString(type)} size="big" />
+      </Image>
+      <Card.Header>
+        <Header as={'h3'} color="green">
+          { title }
+        </Header>
+      </Card.Header>
+      <Card.Meta>
+        { createdAt }
+      </Card.Meta>
+      <Card.Description>
+        { truncate(body) }
+      </Card.Description>
+    </Card.Content>
   </Card>;
 
 

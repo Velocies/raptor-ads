@@ -8,7 +8,7 @@ module.exports = {
       where: {
         id: req.params.id,
       },
-      include: [models.Business],
+      include: [models.Business, models.Rating],
     })
       .then((user) => {
         if (user) {

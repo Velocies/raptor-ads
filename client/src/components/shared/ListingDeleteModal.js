@@ -1,21 +1,17 @@
 import React from 'react';
-import { Icon, Label, Header, Modal, Button } from 'semantic-ui-react';
+import { Icon, Header, Modal, Button } from 'semantic-ui-react';
 
-const ListingDeleteModal = ({ handleDelete, listingId, userId }) =>
+const ListingDeleteModal = ({ handleDelete }) =>
   <Modal
-    trigger={<Label
-      className="deleteIcon"
-      circular floating
-    >
-      <Icon name="delete" color="red" />
-    </Label>}closeIcon="close"
+    trigger={<Button negative>Delete Listing</Button>}
+    closeIcon="close"
   >
     <Header icon="trash outline" content="Delete Image" />
     <Modal.Content>
       <p>Are you sure you want to delete this listing?</p>
     </Modal.Content>
     <Modal.Actions>
-      <Button onClick={() => handleDelete(userId, listingId)} color="green">
+      <Button onClick={() => handleDelete()} color="red">
         <Icon name="checkmark" /> Yes, please delete this listing.
       </Button>
     </Modal.Actions>
@@ -23,7 +19,6 @@ const ListingDeleteModal = ({ handleDelete, listingId, userId }) =>
 
 ListingDeleteModal.propTypes = {
   listingId: React.PropTypes.number.isRequired,
-  userId: React.PropTypes.number.isRequired,
   handleDelete: React.PropTypes.func.isRequired,
 };
 

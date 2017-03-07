@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { Container, Header, Loader } from 'semantic-ui-react';
+import { Container, Header, Loader, Message, Link } from 'semantic-ui-react';
 import { getAllReceivedMessages } from '../../../actions/inboxActions';
 
 class Inbox extends Component {
@@ -10,8 +10,12 @@ class Inbox extends Component {
     this.props.dispatch(getAllReceivedMessages(this.props.userId));
   }
 
+  convertTime(time) {
+    return moment(time).fromNow();
+  }
+
   render() {
-    const { isFetching } = this.props;
+    const { isFetching, allMessages } = this.props;
 
     if (isFetching) {
       return <Loader active inline="centered" />;
@@ -20,6 +24,17 @@ class Inbox extends Component {
     return (
       <Container textAlign="center">
         <Header as="h1" className="center">-- Inbox -- <br /></Header>
+
+        <Container textAlign="left">
+          {
+            allMessages && allMessages.map(message =>
+              <Message key={message.id}>
+                <Message.Header>{message.title}</Message.Header>
+                <Message.Content>Received {this.convertTime(message.createdAt)}</Message.Content>
+              </Message>,
+            )
+          }
+        </Container>
       </Container>
     );
   }
@@ -40,6 +55,7 @@ const mapStateToProps = (state) => {
 Inbox.propTypes = {
   userId: React.PropTypes.number.isRequired,
   isFetching: React.PropTypes.bool.isRequired,
+  allMessages: React.PropTypes.array.isRequired,
   dispatch: React.PropTypes.func.isRequired,
 };
 

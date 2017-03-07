@@ -111,7 +111,7 @@ class AllListings extends Component {
               <ListingInfoCard card={clickedListing} />
             </Grid.Column>
           </Grid>
-          <Header as={'h3'} color="green">Listings</Header>
+          <Header as={'h3'} color="black">Listings</Header>
           <Divider />
           <Card.Group itemsPerRow={4} stackable>
             {markers && markers.map(listing =>

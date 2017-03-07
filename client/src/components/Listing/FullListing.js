@@ -60,7 +60,8 @@ class FullListing extends Component {
 
   handleDelete() {
     const { listingId } = this.props;
-    this.props.dispatch(removeListing(listingId));
+    const { id: userId } = this.props.loggedInUser;
+    this.props.dispatch(removeListing(listingId, userId));
   }
 
 

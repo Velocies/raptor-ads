@@ -45,3 +45,7 @@ const ListingInfoCard = ({ card, onListingClick }) => {
 };
 
 export default ListingInfoCard;
+// to={`listings/${card.id}`}
+
+// http://127.0.0.1:3000/listings/9
+// http://127.0.0.1:3000/listings/9

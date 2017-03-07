@@ -95,6 +95,7 @@ export const addMapMarker = data =>
         defaultAnimation: 2,
         key: data.id,
         showInfo: false,
+        icon: image,
       };
       newData.position = newCenter;
       dispatch(getCurrentListingSuccess(newData));

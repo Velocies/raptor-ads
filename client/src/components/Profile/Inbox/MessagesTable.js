@@ -8,7 +8,7 @@ const MessagesTable = ({ allMessages, convertTime, onChange, onSubmit }) =>
       <Table.Row>
         <Table.HeaderCell>Subject</Table.HeaderCell>
         <Table.HeaderCell>Sender</Table.HeaderCell>
-        <Table.HeaderCell textAlign="right">Notes</Table.HeaderCell>
+        <Table.HeaderCell textAlign="right">Actions</Table.HeaderCell>
       </Table.Row>
     </Table.Header>
 

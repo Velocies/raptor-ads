@@ -6,13 +6,13 @@ import Inbox from './Inbox/Inbox';
 import ProfileSettings from './profileSettings';
 import ProfileNavbar from './profileNavbar';
 import { updateFormField, getCurrentProfile, updateProfile, deleteProfile, changeDisplay } from '../../actions/profileActions';
-// import { getUserDetails } from '../actions';
+import { getUserDetails } from '../UserDetails/actions';
 
 class Profile extends Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
-    this.componentDidMount = this.componentDidMount.bind(this);
+    // this.componentDidMount = this.componentDidMount.bind(this);
     this.onUpdateClick = this.onUpdateClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
     this.changeDisplay = this.changeDisplay.bind(this);
@@ -23,14 +23,10 @@ class Profile extends Component {
     this.props.profileForm.profileUpdated = false;
   }
 
-  componentDidMount() {
-    // this.user = null;
-    // if (this.props.loggedInUser === this.props.userId) {
-    //   this.user = this.props.dispatch(getCurrentProfile(this.props.loggedInUser));
-    // } else {
-    //   this.user = this.props.di
-    // }
-    this.props.dispatch(getCurrentProfile(this.props.loggedInUser));
+  componentWillMount() {
+    if (this.props.loggedInUser.id !== this.props.userId) {
+      this.props.dispatch(getUserDetails(this.props.userId));
+    }
   }
 
   onUpdateClick() {
@@ -61,11 +57,17 @@ class Profile extends Component {
     } = this.props.profileForm;
     const display = this.props.display;
     const loggedInUser = this.props.loggedInUser;
-    console.log('DISPLAY', loggedInUser);
+    let thisUser;
+    if (this.props.userId !== loggedInUser.id) {
+      thisUser = this.props.currentUserDetails;
+    } else {
+      thisUser = loggedInUser;
+    }
+    console.log('THIS USER', thisUser);
     return (
       <Container textAlign="center">
         {this.props.userId === loggedInUser.id && (<ProfileNavbar changeDisplay={this.changeDisplay} current={display} />)}
-        { display === 'dashboard' ? <ProfileDashboard loggedInUser={loggedInUser} /> : '' }
+        { display === 'dashboard' ? <ProfileDashboard loggedInUser={thisUser} /> : '' }
         { display === 'inbox' ? <Inbox /> : '' }
         { display === 'settings' ?
           <ProfileSettings
@@ -96,6 +98,7 @@ const mapStateToProps = (state) => {
   const { loggedInUser } = state.auth;
   const display = state.profile.display;
   const { pathname } = state.routing.locationBeforeTransitions;
+  const { currentUserDetails } = state.userDetails;
   let userId;
   pathname !== '/profile' ? userId = parseInt(pathname.split('/')[2]) : userId = false;
 
@@ -104,6 +107,7 @@ const mapStateToProps = (state) => {
     loggedInUser,
     display,
     userId,
+    currentUserDetails,
   };
 };
 

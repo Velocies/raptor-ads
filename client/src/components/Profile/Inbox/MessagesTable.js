@@ -31,7 +31,7 @@ const MessagesTable = ({ allMessages, convertTime, onChange, onSubmit }) =>
         >
           <Modal.Header>{message.title}</Modal.Header>
           <Modal.Content image>
-            <Image wrapped size="small" src="./client/src/assets/half-raptor.png" />
+            <Image wrapped size="small" src="/client/src/assets/half-raptor.png" />
             <Modal.Description>
               <Header>{message.title}</Header>
               <p>{`From: ${message.user.firstName} ${message.user.lastName}`}</p>
@@ -39,14 +39,12 @@ const MessagesTable = ({ allMessages, convertTime, onChange, onSubmit }) =>
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Button>
-              <ReplyFormModal
-                onChange={onChange}
-                onSubmit={onSubmit}
-                listingId={message.post.id}
-                userId={message.user.id}
-              />
-            </Button>
+            <ReplyFormModal
+              onChange={onChange}
+              onSubmit={onSubmit}
+              listingId={message.post.id}
+              userId={message.user.id}
+            />
           </Modal.Actions>
         </Modal>,
         )

@@ -12,6 +12,7 @@ import GoogleMapContainer from './AllListingsComponents/GoogleMap/GoogleMapConta
 import filterListings from '../../helpers/filterListings';
 import ListingInfoCard from './AllListingsComponents/ListingInfoCard';
 import Pagination from '../../Pagination/Pagination';
+import getPaginationItems from '../../Pagination/helpers/getPaginationItems';
 // import InitialMap from './GoogleMap/GoogleMap';
 
 

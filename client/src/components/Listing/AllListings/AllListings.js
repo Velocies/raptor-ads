@@ -11,6 +11,8 @@ import AllListingsFilter from './AllListingsComponents/AllListingsFilter';
 import GoogleMapContainer from './AllListingsComponents/GoogleMap/GoogleMapContainer';
 import filterListings from '../../helpers/filterListings';
 import ListingInfoCard from './AllListingsComponents/ListingInfoCard';
+import Pagination from '../../Pagination/Pagination';
+import getPaginationItems from '../../Pagination/helpers/getPaginationItems';
 // import InitialMap from './GoogleMap/GoogleMap';
 
 
@@ -69,7 +71,7 @@ class AllListings extends Component {
   }
 
   render() {
-    const { isFetching, allListings, cutBody, filters, clickedListing } = this.props;
+    const { isFetching, allListings, cutBody, filters, clickedListing, activeItem } = this.props;
     const distanceArray = [
       { key: 0, text: '10 Miles', value: 10 },
       { key: 1, text: '30 Miles', value: 30 },
@@ -83,6 +85,7 @@ class AllListings extends Component {
       this.props.dispatch(push(`/listings/${listingId}`));
     };
     const markers = filterListings(allListings, filters);
+    const startingIdx = 8 * (activeItem - 1);
 
     if (isFetching) {
       return <Loader active inline='centered' />;
@@ -117,7 +120,7 @@ class AllListings extends Component {
           <Header as={'h3'} color="black">Listings</Header>
           <Divider />
           <Card.Group itemsPerRow={4} stackable>
-            {markers && markers.map(listing =>
+            {markers && markers.slice(startingIdx, startingIdx + 8).map(listing =>
               <Listing
                 key={listing.id}
                 listingId={listing.id}
@@ -132,6 +135,10 @@ class AllListings extends Component {
               />
             )}
           </Card.Group>
+          <Divider hidden />
+          <Pagination
+            items={getPaginationItems(allListings, 8)}
+          />
         </Container>
       );
     }
@@ -143,7 +150,9 @@ const mapStateToProps = (state) => {
   const { id } = state.auth.loggedInUser;
   const loggedInUser = state.auth.loggedInUser;
   const { markers } = state.googleMap;
-  return { allListings, isFetching, id, searchField, loggedInUser, markers, filters, clickedListing };
+  const { activeItem } = state.pagination;
+
+  return { allListings, isFetching, id, searchField, loggedInUser, markers, filters, clickedListing, activeItem };
 };
 
 export default connect(mapStateToProps)(AllListings);

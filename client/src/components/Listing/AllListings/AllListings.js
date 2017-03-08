@@ -137,7 +137,7 @@ class AllListings extends Component {
           </Card.Group>
           <Divider hidden />
           <Pagination
-            items={getPaginationItems(allListings, 8)}
+            items={getPaginationItems(markers, 8)}
           />
         </Container>
       );

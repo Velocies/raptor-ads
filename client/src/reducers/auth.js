@@ -19,7 +19,6 @@ export const initialState = {
   loggedInUser: {
     firstName: '',
     id: 0,
-    business: {},
     ratings: [],
   },
 };
@@ -43,10 +42,6 @@ export const auth = (state = initialState, action) => {
         loggedInUser: {
           ...state.loggedInUser,
           ...action.data.user,
-          business: {
-            ...state.loggedInUser.business,
-            ...action.data.user.business,
-          },
         },
         signupForm: { ...state.signupForm, ...initialState.signupForm },
         loginForm: { ...state.loginForm, ...initialState.loginForm },

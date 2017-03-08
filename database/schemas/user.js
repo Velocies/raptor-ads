@@ -13,7 +13,6 @@ module.exports = (db, Sequelize) => {
     city: Sequelize.STRING,
     state: Sequelize.STRING,
     zip: Sequelize.STRING,
-    country: Sequelize.STRING,
     role: Sequelize.STRING,
     profile_img_path: Sequelize.STRING,
   });

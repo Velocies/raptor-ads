@@ -5,7 +5,7 @@ import ProfileDashboard from './ProfileDashboard';
 import Inbox from './Inbox/Inbox';
 import ProfileSettings from './profileSettings';
 import ProfileNavbar from './profileNavbar';
-import { updateFormField, getCurrentProfile, updateProfile, deleteProfile, changeDisplay } from '../../actions/profileActions';
+import { updateFormField, getCurrentProfile, updateProfile, deleteProfile, changeDisplay, getUserProfileListings } from '../../actions/profileActions';
 import { getUserDetails } from '../UserDetails/actions';
 
 class Profile extends Component {
@@ -26,6 +26,9 @@ class Profile extends Component {
   componentWillMount() {
     if (this.props.loggedInUser.id !== this.props.userId) {
       this.props.dispatch(getUserDetails(this.props.userId));
+      this.props.dispatch(getUserProfileListings(this.props.userId));
+    } else {
+      this.props.dispatch(getUserProfileListings(loggedInUser.id));
     }
   }
 

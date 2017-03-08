@@ -90,6 +90,7 @@ export const getUserProfileListings = user =>
     .then(res => {
       res.json()
       .then(data => {
+        console.log('USER PROFILE DATA', data)
         dispatch(getUserProfileListingsSuccess(data));
       });
     });

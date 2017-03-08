@@ -9,6 +9,7 @@ const initialState = {
     city: '',
     zip: '',
     state: '',
+    profile_img_path: '',
     role: 'customer',
     profileUpdated: false,
   },

@@ -55,6 +55,7 @@ class Profile extends Component {
       role,
       profileUpdated,
       business,
+      profile_img_path,
     } = this.props.profileForm;
     const display = this.props.display;
     const loggedInUser = this.props.loggedInUser;
@@ -84,6 +85,7 @@ class Profile extends Component {
             city={city}
             zip={zip}
             state={state}
+            profile_img_path={profile_img_path}
             role={role}
             profileUpdated={profileUpdated}
             business={business}

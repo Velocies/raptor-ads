@@ -11,7 +11,7 @@ const ProfileDashboard = ({ user }) =>
   <Grid width={16} >
     <Grid.Column width={3} textAlign="center" className="profileContainer">
       <Card style={{ width: '200px' }}>
-        <Image src="/client/src/assets/blankProfile.png" />
+        <Image src={user.profile_img_path || '/client/src/assets/blankProfile.png'} />
         <Header>
           { `${user.firstName} ${user.lastName}` }
         </Header>

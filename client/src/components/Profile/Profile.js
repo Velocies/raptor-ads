@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Container, Grid } from 'semantic-ui-react';
 import ProfileDashboard from './ProfileDashboard';
 import Inbox from './Inbox/Inbox';
 import ProfileSettings from './profileSettings';
 import ProfileNavbar from './profileNavbar';
 import { updateFormField, getCurrentProfile, updateProfile, deleteProfile, changeDisplay } from '../../actions/profileActions';
+// import { getUserDetails } from '../actions';
 
 class Profile extends Component {
   constructor(props) {
@@ -22,6 +24,12 @@ class Profile extends Component {
   }
 
   componentDidMount() {
+    // this.user = null;
+    // if (this.props.loggedInUser === this.props.userId) {
+    //   this.user = this.props.dispatch(getCurrentProfile(this.props.loggedInUser));
+    // } else {
+    //   this.user = this.props.di
+    // }
     this.props.dispatch(getCurrentProfile(this.props.loggedInUser));
   }
 
@@ -53,17 +61,12 @@ class Profile extends Component {
     } = this.props.profileForm;
     const display = this.props.display;
     const loggedInUser = this.props.loggedInUser;
+    console.log('DISPLAY', loggedInUser);
     return (
-      <div>
-        <ProfileNavbar changeDisplay={this.changeDisplay} />
-        { display === 'dashboard' ?
-          <ProfileDashboard loggedInUser={loggedInUser} />
-        : ''
-        }
-        { display === 'inbox' ?
-          <Inbox />
-        : ''
-        }
+      <Container textAlign="center">
+        {this.props.userId === loggedInUser.id && (<ProfileNavbar changeDisplay={this.changeDisplay} current={display} />)}
+        { display === 'dashboard' ? <ProfileDashboard loggedInUser={loggedInUser} /> : '' }
+        { display === 'inbox' ? <Inbox /> : '' }
         { display === 'settings' ?
           <ProfileSettings
             firstName={firstName}
@@ -83,7 +86,7 @@ class Profile extends Component {
           />
         : ''
         }
-      </div>
+      </Container>
     );
   }
 }
@@ -92,10 +95,15 @@ const mapStateToProps = (state) => {
   const { profileForm } = state.profile;
   const { loggedInUser } = state.auth;
   const display = state.profile.display;
+  const { pathname } = state.routing.locationBeforeTransitions;
+  let userId;
+  pathname !== '/profile' ? userId = parseInt(pathname.split('/')[2]) : userId = false;
+
   return {
     profileForm,
     loggedInUser,
     display,
+    userId,
   };
 };
 

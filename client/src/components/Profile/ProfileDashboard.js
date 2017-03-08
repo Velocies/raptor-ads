@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Image, Header, Card } from 'semantic-ui-react';
+import { Link } from 'react-router';
 import StarRatingComponent from 'react-star-rating-component';
 import getAverageRating from '../helpers/getAverageRating';
 import makeNamePossessive from '../helpers/makeNamePossessive';
@@ -33,12 +34,16 @@ const ProfileDashboard = ({ user }) =>
             editing={false}
             textAlign="center"
           />
+          <Link className="ratingsHeader" to={`/user/${user.id}/ratings`}>
           <Header className="ratingsHeader">
             View {makeNamePossessive(user.firstName)} ratings
-          </Header>
+            </Header>
+          </Link>
+          <Link className="ratingsHeader" to={`/user/${user.id}/ratings/new`}>
           <Header className="ratingsHeader">
-            Leave {user.firstName} a rating
-          </Header>
+            Write a Review for { user.firstName }
+            </Header>
+          </Link>
         </Card.Content>
       </Card>
     </Grid.Column>

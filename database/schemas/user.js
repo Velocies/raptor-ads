@@ -15,6 +15,7 @@ module.exports = (db, Sequelize) => {
     zip: Sequelize.STRING,
     country: Sequelize.STRING,
     role: Sequelize.STRING,
+    profile_img_path: Sequelize.STRING,
   });
 
   return User;

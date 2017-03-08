@@ -1,1 +1,1 @@
-// Pagination actions/index
+export const RESET_PAGINATION = "RESET_PAGINATION";

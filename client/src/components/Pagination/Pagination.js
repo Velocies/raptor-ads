@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
 class Pagination extends Component {
   constructor(props) {
     super();
-    // onMount reset pagination
+    this.props.dispatch(resetPagination());
   }
 
   render() {
@@ -16,4 +17,4 @@ class Pagination extends Component {
   }
 }
 
-export default Pagination;
+export default connect(state => state)(Pagination);

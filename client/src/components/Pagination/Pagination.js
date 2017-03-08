@@ -18,6 +18,7 @@ class Pagination extends Component {
     const { items, dispatch } = this.props;
     const { activeItem } = this.props.pagination;
 
+    if (!items) { return null; }
     return (
       <Menu pagination>
         {range(1, items + 1).map(num =>

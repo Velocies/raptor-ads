@@ -35,12 +35,7 @@ class ProSignup extends Component {
       email,
       password,
       passwordConfirmation,
-      companyName,
-      companyAddress,
-      companyCity,
-      companyState,
-      companyZip,
-      license,
+      businessName,
     } = this.props.signupForm;
 
     const { formErrors } = this.props;
@@ -91,8 +86,8 @@ class ProSignup extends Component {
                 <label htmlFor="businessName">Business Name</label>
                 <input
                   placeholder="Company Name"
-                  name="companyName"
-                  value={companyName}
+                  name="businessName"
+                  value={businessName}
                   onChange={e => this.onChange(e)}
                 />
               </Form.Field>

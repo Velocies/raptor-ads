@@ -6,38 +6,38 @@ import makeNamePossessive from '../helpers/makeNamePossessive';
 
 const listings = [1,2,3,4,5,6];
 
-const ProfileDashboard = ({ loggedInUser }) =>
+const ProfileDashboard = ({ user }) =>
   <Grid width={16} >
     <Grid.Column width={3} textAlign="center" className="profileContainer">
       <Card style={{ width: '200px' }}>
         <Image src="/client/src/assets/blankProfile.png" />
         <Header>
-          { `${loggedInUser.firstName} ${loggedInUser.lastName}` }
+          { `${user.firstName} ${user.lastName}` }
         </Header>
         <Card.Content>
           <Header className="dateHeader">
             Member since:
           </Header>
-          { new Date(loggedInUser.createdAt).toLocaleDateString() }
+          { new Date(user.createdAt).toLocaleDateString() }
         </Card.Content>
       </Card>
       <Card>
         <Card.Content>
           <Header className="dateHeader">
-            {makeNamePossessive(loggedInUser.firstName)} rating:
+            {makeNamePossessive(user.firstName)} rating:
           </Header>
           <StarRatingComponent
             name={'average'}
-            value={getAverageRating(loggedInUser.ratings)}
+            value={getAverageRating(user.ratings)}
             starColor="#31b234"
             editing={false}
             textAlign="center"
           />
           <Header className="ratingsHeader">
-            View {makeNamePossessive(loggedInUser.firstName)} ratings
+            View {makeNamePossessive(user.firstName)} ratings
           </Header>
           <Header className="ratingsHeader">
-            Leave {loggedInUser.firstName} a rating
+            Leave {user.firstName} a rating
           </Header>
         </Card.Content>
       </Card>
@@ -45,7 +45,7 @@ const ProfileDashboard = ({ loggedInUser }) =>
     <Grid.Column width={13}>
       <Card.Group itemsPerRow={1} stackable>
         {listings && listings.map(listing =>
-          <Card>{listing}</Card>
+          <Card>{listing}</Card>,
         )}
       </Card.Group>
     </Grid.Column>

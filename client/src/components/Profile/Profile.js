@@ -67,7 +67,7 @@ class Profile extends Component {
     return (
       <Container textAlign="center">
         {this.props.userId === loggedInUser.id && (<ProfileNavbar changeDisplay={this.changeDisplay} current={display} />)}
-        { display === 'dashboard' ? <ProfileDashboard loggedInUser={thisUser} /> : '' }
+        { display === 'dashboard' ? <ProfileDashboard user={thisUser} /> : '' }
         { display === 'inbox' ? <Inbox /> : '' }
         { display === 'settings' ?
           <ProfileSettings

@@ -77,3 +77,11 @@ body {
   border: 1px;
   border-color: black;
 }
+
+.dateHeader {
+  font-size: 16px !important;
+}
+
+.ratingsHeader {
+  font-size: 14px !important;
+}

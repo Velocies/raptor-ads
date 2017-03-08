@@ -5,8 +5,6 @@ import { validateSignup } from '../components/helpers/validateSignup';
 import { postUser, postLogin, postListing, deleteListing, getUserListings, getUserFromToken } from './api';
 import { changeCenter } from './googleMapActions';
 import validateListing from '../components/helpers/validateListing';
-import buildBusinessObj from '../components/helpers/buildBusinessObj';
-
 
 const urlRegex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
 
@@ -82,8 +80,7 @@ export const customerSignup = customer =>
   (dispatch, getState) => {
     validateSignup(customer, dispatch);
     if (isEmpty(getState().auth.formErrors)) {
-      const newCustomer = buildBusinessObj(customer);
-      postUser(newCustomer)
+      postUser(customer)
         .then((res) => {
           res.json()
             .then((data) => {

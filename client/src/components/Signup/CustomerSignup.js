@@ -14,6 +14,7 @@ class CustomerSignup extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    console.log('here in customer')
     const data = this.props.signupForm;
     this.props.dispatch(clearErrors());
     data.role = 'customer';
@@ -130,10 +131,6 @@ CustomerSignup.propTypes = {
     lastName: React.PropTypes.string.isRequired,
     password: React.PropTypes.string.isRequired,
     passwordConfirmation: React.PropTypes.string.isRequired,
-    address: React.PropTypes.string.isRequired,
-    city: React.PropTypes.string.isRequired,
-    state: React.PropTypes.string.isRequired,
-    zip: React.PropTypes.string.isRequired,
   }).isRequired,
   dispatch: React.PropTypes.func.isRequired,
 };

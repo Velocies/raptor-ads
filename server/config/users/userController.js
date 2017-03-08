@@ -2,13 +2,15 @@ const models = require('../../../database/schemas.js');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('jsonwebtoken');
 
+const secret = process.env.TOKEN_SECRET || 'bobbyisbadatstarcraft';
+
 module.exports = {
   getOne: (req, res) => {
     models.User.findOne({
       where: {
         id: req.params.id,
       },
-      include: [models.Business, models.Rating],
+      include: [models.Rating],
     })
       .then((user) => {
         if (user) {
@@ -20,7 +22,7 @@ module.exports = {
   },
 
   getAll: (req, res) => {
-    models.User.findAll({ include: [models.Business] })
+    models.User.findAll()
       .then((users) => {
         res.send(users);
       });
@@ -42,20 +44,15 @@ module.exports = {
             lastName: req.body.lastName,
             password: passwordToSave,
             email: req.body.email,
-            address: req.body.address,
-            city: req.body.city,
-            state: req.body.state,
-            zip: req.body.zip,
-            country: req.body.country,
             role: req.body.role,
-            business: req.body.business,
-          }, { include: [models.Business] })
+            businessName: req.body.businessName,
+          })
             .then((createdUser) => {
               const token = jwt.sign({
                 email: createdUser.email,
                 firstName: createdUser.firstName,
                 id: createdUser.id,
-              }, 'bobbyisbadatstarcraft', { expiresIn: '1h' });
+              }, secret, { expiresIn: '1h' });
 
               res.json({ token, user: createdUser });
             });
@@ -70,14 +67,12 @@ module.exports = {
       where: {
         id: req.params.id,
       },
-      include: [models.Business],
     })
       .then(() => {
         models.User.findOne({
           where: {
             id: req.params.id,
           },
-          include: [models.Business],
         })
           .then((user) => {
             res.json(user);

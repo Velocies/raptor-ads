@@ -1,4 +1,4 @@
-import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT, CHANGE_LOGIN_FIELD, LOGIN_SUCCESS, LOGIN_FAILURE, UPDATE_PROFILE_SUCCESS  } from '../constants';
+import { TOGGLE_SIGNUP_FORM, CHANGE_SIGNUP_FIELD, ADD_SIGNUP_ERROR, CLEAR_ERRORS, SIGNUP_SUCCESS, SIGNUP_FAILURE, CHANGE_LOGIN_FIELD, LOGIN_SUCCESS, LOGIN_FAILURE, UPDATE_PROFILE_SUCCESS } from '../constants';
 
 export const initialState = {
   signupForm: {
@@ -6,18 +6,9 @@ export const initialState = {
     firstName: '',
     email: '',
     lastName: '',
-    address: '',
-    city: '',
-    state: '',
-    zip: '',
+    businessName: null,
     password: '',
     passwordConfirmation: '',
-    companyName: '',
-    companyAddress: '',
-    companyCity: '',
-    companyZip: '',
-    companyState: '',
-    license: '',
   },
   loginForm: {
     email: '',
@@ -28,7 +19,6 @@ export const initialState = {
   loggedInUser: {
     firstName: '',
     id: 0,
-    business: {},
     ratings: [],
   },
 };
@@ -52,10 +42,6 @@ export const auth = (state = initialState, action) => {
         loggedInUser: {
           ...state.loggedInUser,
           ...action.data.user,
-          business: {
-            ...state.loggedInUser.business,
-            ...action.data.user.business,
-          },
         },
         signupForm: { ...state.signupForm, ...initialState.signupForm },
         loginForm: { ...state.loginForm, ...initialState.loginForm },

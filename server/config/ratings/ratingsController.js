@@ -12,7 +12,6 @@ module.exports = {
           model: models.Rating,
           include: [{ model: models.User, as: 'rater' }],
         },
-        { model: models.Business },
       ],
     })
       .then((ratings) => {

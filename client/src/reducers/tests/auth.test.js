@@ -17,16 +17,7 @@ describe('auth reducer', () => {
         lastName: '',
         password: '',
         passwordConfirmation: '',
-        address: '',
-        city: '',
-        state: '',
-        zip: '',
-        companyName: '',
-        companyAddress: '',
-        companyCity: '',
-        companyZip: '',
-        companyState: '',
-        license: '',
+        businessName: null,
       },
       loginForm: {
         email: '',
@@ -37,7 +28,7 @@ describe('auth reducer', () => {
       loggedInUser: {
         firstName: '',
         id: 0,
-        business: {},
+        ratings: [],
       },
     };
 
@@ -59,16 +50,7 @@ describe('auth reducer', () => {
         firstName: 'cory',
         email: '',
         lastName: '',
-        address: '',
-        city: '',
-        state: '',
-        zip: '',
-        companyName: '',
-        companyAddress: '',
-        companyCity: '',
-        companyZip: '',
-        companyState: '',
-        license: '',
+        businessName: null,
         password: '',
         passwordConfirmation: '',
       },
@@ -81,7 +63,7 @@ describe('auth reducer', () => {
       loggedInUser: {
         firstName: '',
         id: 0,
-        business: {},
+        ratings: [],
       },
     };
 
@@ -98,20 +80,11 @@ describe('auth reducer', () => {
         firstName: '',
         email: '',
         lastName: '',
-        address: '',
-        city: '',
-        state: '',
-        zip: '',
-        companyName: '',
-        companyAddress: '',
-        companyCity: '',
-        companyZip: '',
-        companyState: '',
-        license: '',
         password: '',
         passwordConfirmation: '',
+        businessName: null,
       },
-      formErrors: {'passwordMatch': 'passwords must match'},
+      formErrors: { passwordMatch: 'passwords must match' },
       loginForm: {
         email: '',
         password: '',
@@ -119,7 +92,7 @@ describe('auth reducer', () => {
       loggedInUser: {
         firstName: '',
         id: 0,
-        business: {},
+        ratings: [],
       },
     };
 
@@ -136,17 +109,8 @@ describe('auth reducer', () => {
         firstName: '',
         email: '',
         lastName: '',
-        address: '',
-        city: '',
-        state: '',
-        zip: '',
         password: '',
-        companyName: '',
-        companyAddress: '',
-        companyCity: '',
-        companyZip: '',
-        companyState: '',
-        license: '',
+        businessName: null,
         passwordConfirmation: '',
       },
       formErrors: { passwordConfirmation: 'dont match' },
@@ -157,7 +121,7 @@ describe('auth reducer', () => {
       loggedInUser: {
         firstName: '',
         id: 0,
-        business: {},
+        ratings: [],
       },
     };
 

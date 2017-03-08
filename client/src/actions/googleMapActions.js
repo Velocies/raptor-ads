@@ -103,3 +103,24 @@ export const addMapMarker = data =>
     });
   };
 
+// async.map(newData, (listing, callback) => {
+//       geocoder.geocode({ address: concatAddress(listing) }, (results, err) => {
+//         if (results) {
+//           console.log('HELLO FROM')
+//           const newCenter = {
+//             position: results[0].geometry.location,
+//             defaultAnimation: 2,
+//             key: listing.id,
+//             showInfo: false,
+//             icon: image,
+//           };
+//           listing.position = newCenter;
+//         } else {
+//           return false;
+//         }
+//       });
+//     }, (err, positionResults) => {
+//       console.log('HELLO FROM THERE')
+//       dispatch(getAllListingsSuccess(positionResults));
+//       dispatch(sortMarkersByDistance(positionResults));
+//     });

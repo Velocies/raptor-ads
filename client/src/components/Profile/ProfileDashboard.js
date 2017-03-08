@@ -4,12 +4,13 @@ import StarRatingComponent from 'react-star-rating-component';
 import getAverageRating from '../helpers/getAverageRating';
 import makeNamePossessive from '../helpers/makeNamePossessive';
 
+const listings = [1,2,3,4,5,6];
+
 const ProfileDashboard = ({ loggedInUser }) =>
   <Grid width={16} >
-    <Grid.Column width={1} />
-    <Grid.Column width={3} textAlign="center" className="profileContainer" >
+    <Grid.Column width={3} textAlign="center" className="profileContainer">
       <Card style={{ width: '200px' }}>
-        <Image src="./client/src/assets/blankProfile.png" />
+        <Image src="/client/src/assets/blankProfile.png" />
         <Header>
           { `${loggedInUser.firstName} ${loggedInUser.lastName}` }
         </Header>
@@ -40,6 +41,13 @@ const ProfileDashboard = ({ loggedInUser }) =>
           </Header>
         </Card.Content>
       </Card>
+    </Grid.Column>
+    <Grid.Column width={13}>
+      <Card.Group itemsPerRow={1} stackable>
+        {listings && listings.map(listing =>
+          <Card>{listing}</Card>
+        )}
+      </Card.Group>
     </Grid.Column>
   </Grid>;
 

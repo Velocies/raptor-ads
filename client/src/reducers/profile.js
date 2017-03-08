@@ -13,7 +13,7 @@ const initialState = {
     profileUpdated: false,
   },
   display: 'dashboard',
-  userListings: [],
+  profileUserListings: [],
 };
 export const profile = (state = initialState, action) => {
   switch (action.type) {
@@ -31,7 +31,7 @@ export const profile = (state = initialState, action) => {
     case CHANGE_DISPLAY:
       return ({ ...state, display: action.route });
     case GET_USER_PROFILE_LISTINGS_SUCCESS:
-      return ({ ...state, userListings: action.listings });
+      return ({ ...state, profileUserListings: action.listings });
     default:
       return state;
   }

@@ -27,8 +27,6 @@ class Profile extends Component {
     if (this.props.loggedInUser.id !== this.props.userId) {
       this.props.dispatch(getUserDetails(this.props.userId));
       this.props.dispatch(getUserProfileListings(this.props.userId));
-    } else {
-      this.props.dispatch(getUserProfileListings(loggedInUser.id));
     }
   }
 
@@ -61,16 +59,20 @@ class Profile extends Component {
     const display = this.props.display;
     const loggedInUser = this.props.loggedInUser;
     let thisUser;
+    let userListings;
     if (this.props.userId !== loggedInUser.id) {
       thisUser = this.props.currentUserDetails;
+      userListings = this.props.profileUserListings;
     } else {
       thisUser = loggedInUser;
+      userListings = this.props.userListings;
     }
     console.log('THIS USER', thisUser);
+    console.log('PASSED IN LISTINGS TO PROF DASH', userListings)
     return (
       <Container textAlign="center">
         {this.props.userId === loggedInUser.id && (<ProfileNavbar changeDisplay={this.changeDisplay} current={display} />)}
-        { display === 'dashboard' ? <ProfileDashboard user={thisUser} /> : '' }
+        { display === 'dashboard' ? <ProfileDashboard user={thisUser} userListings={userListings}/> : '' }
         { display === 'inbox' ? <Inbox /> : '' }
         { display === 'settings' ?
           <ProfileSettings
@@ -97,8 +99,9 @@ class Profile extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { profileForm } = state.profile;
+  const { profileForm, profileUserListings } = state.profile;
   const { loggedInUser } = state.auth;
+  const { userListings } = state.listing;
   const display = state.profile.display;
   const { pathname } = state.routing.locationBeforeTransitions;
   const { currentUserDetails } = state.userDetails;
@@ -111,6 +114,8 @@ const mapStateToProps = (state) => {
     display,
     userId,
     currentUserDetails,
+    userListings,
+    profileUserListings,
   };
 };
 

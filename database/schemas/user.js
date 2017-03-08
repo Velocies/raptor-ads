@@ -14,6 +14,7 @@ module.exports = (db, Sequelize) => {
     state: Sequelize.STRING,
     zip: Sequelize.STRING,
     role: Sequelize.STRING,
+    businessName: Sequelize.STRING,
     profile_img_path: Sequelize.STRING,
   });
 

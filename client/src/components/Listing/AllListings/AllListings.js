@@ -11,6 +11,7 @@ import AllListingsFilter from './AllListingsComponents/AllListingsFilter';
 import GoogleMapContainer from './AllListingsComponents/GoogleMap/GoogleMapContainer';
 import filterListings from '../../helpers/filterListings';
 import ListingInfoCard from './AllListingsComponents/ListingInfoCard';
+import Pagination from '../../Pagination/Pagination';
 // import InitialMap from './GoogleMap/GoogleMap';
 
 
@@ -132,6 +133,8 @@ class AllListings extends Component {
               />
             )}
           </Card.Group>
+          <Divider hidden />
+          <Pagination />
         </Container>
       );
     }

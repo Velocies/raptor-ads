@@ -9,6 +9,7 @@ import { getCurrentListing, changeContactField, sendMessage } from '../../action
 import { clearErrors, removeListing } from '../../actions/listingActions';
 import RatingCard from '../Ratings/RatingCard';
 import ListingDeleteModal from '../shared/ListingDeleteModal';
+import ReplyFormModal from '../Profile/Inbox/ReplyFormModal';
 
 class FullListing extends Component {
   constructor(props) {
@@ -97,7 +98,7 @@ class FullListing extends Component {
             </Grid.Column>
             <Grid.Column>
               <Grid.Row>
-                <GoogleMapContainer markers={currentListingArray}/>
+                <GoogleMapContainer markers={currentListingArray} />
               </Grid.Row>
               <Divider hidden />
               <Grid.Row columns={2}>
@@ -125,29 +126,12 @@ class FullListing extends Component {
                 </Grid.Column>
                 <Divider hidden />
                 <Grid.Column>
-                  <Modal trigger={<Button>Contact Them!</Button>}>
-                    <Modal.Header>Contact Form</Modal.Header>
-                    <Modal.Content>
-                      <Modal.Description>
-                        <Header>Send Them A Message!</Header>
-                        <Form onSubmit={e => this.onSubmit(e)}>
-                          <Form.Input
-                            name="title"
-                            label="Subject"
-                            placeholder="Subject"
-                            onChange={e => this.onChange(e)}
-                          />
-                          <Form.TextArea
-                            name="body"
-                            label="Message"
-                            placeholder="Tell them who you are and why you are contacting them..."
-                            onChange={e => this.onChange(e)}
-                          />
-                          <Form.Button>Send Message</Form.Button>
-                        </Form>
-                      </Modal.Description>
-                    </Modal.Content>
-                  </Modal>
+                  <ReplyFormModal
+                    onChange={this.onChange}
+                    onSubmit={this.onSubmit}
+                    listingId={currentListing.id}
+                    userId={loggedInUser.id}
+                  />
                 </Grid.Column>
               </Grid.Row>
             </Grid.Column>
@@ -162,19 +146,19 @@ class FullListing extends Component {
               </Header>
             </Grid.Row>
             { currentListing.user.ratings && !currentListing.user.ratings.length ?
-                <span>No Ratings for { currentListing.user.firstName }</span> :
-                <Grid>
-                  <Grid.Row centered>
-                    <Card.Group>
-                      { this.renderRecentRatings(currentListing.user.ratings) }
-                    </Card.Group>
-                  </Grid.Row>
-                  <Grid.Row>
-                    <Link to={`/user/${currentListing.user.id}/ratings`}>
-                      View All
-                    </Link>
-                  </Grid.Row>
-                </Grid>
+              <span>No Ratings for { currentListing.user.firstName }</span> :
+              <Grid>
+                <Grid.Row centered>
+                  <Card.Group>
+                    { this.renderRecentRatings(currentListing.user.ratings) }
+                  </Card.Group>
+                </Grid.Row>
+                <Grid.Row>
+                  <Link to={`/user/${currentListing.user.id}/ratings`}>
+                    View All
+                  </Link>
+                </Grid.Row>
+              </Grid>
             }
           </Grid>
         </Message>

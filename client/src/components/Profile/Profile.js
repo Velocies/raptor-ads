@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Container, Grid } from 'semantic-ui-react';
 import ProfileDashboard from './ProfileDashboard';
 import Inbox from './Inbox/Inbox';
 import ProfileSettings from './profileSettings';
@@ -53,13 +54,11 @@ class Profile extends Component {
     } = this.props.profileForm;
     const display = this.props.display;
     const loggedInUser = this.props.loggedInUser;
+    console.log('DISPLAY', display)
     return (
-      <div>
-        <ProfileNavbar changeDisplay={this.changeDisplay} />
-        { display === 'dashboard' ?
-          <ProfileDashboard loggedInUser={loggedInUser} />
-        : ''
-        }
+      <Container textAlign="center">
+        {this.props.userDetails === loggedInUser.id && (<ProfileNavbar changeDisplay={this.changeDisplay} current={display} />)}
+        { display === 'dashboard' ? <ProfileDashboard loggedInUser={loggedInUser} /> : '' }
         { display === 'inbox' ?
           <Inbox />
         : ''
@@ -83,7 +82,7 @@ class Profile extends Component {
           />
         : ''
         }
-      </div>
+      </Container>
     );
   }
 }
@@ -92,10 +91,15 @@ const mapStateToProps = (state) => {
   const { profileForm } = state.profile;
   const { loggedInUser } = state.auth;
   const display = state.profile.display;
+  const { pathname } = state.routing.locationBeforeTransitions;
+  let userDetails;
+  pathname !== '/profile' ? userDetails = parseInt(pathname.split('/')[2]) : userDetails = false;
+
   return {
     profileForm,
     loggedInUser,
     display,
+    userDetails,
   };
 };
 

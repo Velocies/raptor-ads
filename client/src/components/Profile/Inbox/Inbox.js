@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { Container, Header, Loader, Message, Link } from 'semantic-ui-react';
+import { Container, Header, Loader, Message, Modal } from 'semantic-ui-react';
 import { getAllReceivedMessages } from '../../../actions/inboxActions';
+import MessagesTable from './MessagesTable';
 
 class Inbox extends Component {
 
@@ -26,14 +27,7 @@ class Inbox extends Component {
         <Header as="h1" className="center">-- Inbox -- <br /></Header>
 
         <Container textAlign="left">
-          {
-            allMessages && allMessages.map(message =>
-              <Message key={message.id}>
-                <Message.Header>{message.title}</Message.Header>
-                <Message.Content>Received {this.convertTime(message.createdAt)}</Message.Content>
-              </Message>,
-            )
-          }
+          <MessagesTable allMessages={allMessages} convertTime={this.convertTime} />
         </Container>
       </Container>
     );

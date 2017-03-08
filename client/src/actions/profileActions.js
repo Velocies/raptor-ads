@@ -1,5 +1,6 @@
 import { push } from 'react-router-redux';
-import { UPDATE_FORM_FIELD, GET_CURRENT_PROFILE, UPDATE_PROFILE_SUCCESS, LOGOUT, CHANGE_DISPLAY } from '../constants';
+import { getUserListings } from './api'
+import { UPDATE_FORM_FIELD, GET_CURRENT_PROFILE, UPDATE_PROFILE_SUCCESS, LOGOUT, CHANGE_DISPLAY, GET_USER_PROFILE_LISTINGS, GET_USER_PROFILE_LISTINGS_SUCCESS } from '../constants';
 
 export const updateFormField = (field, value) =>
   ({
@@ -14,7 +15,7 @@ export const getCurrentProfile = user =>
     user,
   });
 
-export const patchUser = user => 
+export const patchUser = user =>
   fetch(`/api/users/${user.id}`, {
     method: 'PATCH',
     headers: {
@@ -71,8 +72,26 @@ export const deleteProfile = user =>
     });
   };
 
-  export const changeDisplay = route =>
+export const changeDisplay = route =>
   ({
     type: CHANGE_DISPLAY,
     route: route,
   });
+
+export const getUserProfileListingsSuccess = listings =>
+  ({
+    type: GET_USER_PROFILE_LISTINGS_SUCCESS,
+    listings,
+  });
+
+export const getUserProfileListings = user =>
+  (dispatch) => {
+    getUserListings(user)
+    .then(res => {
+      res.json()
+      .then(data => {
+        console.log('USER PROFILE DATA', data)
+        dispatch(getUserProfileListingsSuccess(data));
+      });
+    });
+  }

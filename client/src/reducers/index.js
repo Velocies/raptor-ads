@@ -10,6 +10,7 @@ import { profile } from './profile';
 import userDetails from '../components/UserDetails/reducers';
 import { LOGOUT } from '../constants';
 import { inbox } from './inbox';
+import { pagination } from '../components/Pagination/reducers';
 
 const appReducer = combineReducers({
   auth,
@@ -21,6 +22,7 @@ const appReducer = combineReducers({
   ratings,
   userDetails,
   googleMap,
+  pagination,
   routing: routerReducer,
 });
 

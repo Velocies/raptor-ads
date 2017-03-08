@@ -43,9 +43,12 @@ const Root = () =>
         <Route path="/user/:id/ratings" component={AllRatings} onEnter={requireAuth} />
         <Route path="/user/:id/ratings/new" component={NewRating} onEnter={requireAuth} />
         <Route path="/user/:id/details" component={UserDetails} onEnter={requireAuth} />
+        <Route path="/user/:id" component={Profile} />
         <Route path="*" component={NotFound} />
       </Route>
     </Router>
   </Provider>;
 
 export default Root;
+
+// <Route path="/user/:id/details" component={UserDetails} onEnter={requireAuth} />

@@ -1,5 +1,6 @@
-import { Table, Modal, Header, Image } from 'semantic-ui-react';
+import { Table, Modal, Header, Image, Container, Button } from 'semantic-ui-react';
 import React from 'react';
+import ReplyFormModal from './ReplyFormModal';
 
 const MessagesTable = ({ allMessages, convertTime }) => {
   return (
@@ -17,6 +18,7 @@ const MessagesTable = ({ allMessages, convertTime }) => {
         allMessages.map(message =>
           <Modal
             key={message.id}
+            size="small"
             trigger={
               <Table.Row>
                 <Table.Cell>
@@ -32,10 +34,16 @@ const MessagesTable = ({ allMessages, convertTime }) => {
             <Modal.Content image>
               <Image wrapped size="small" src="./client/src/assets/half-raptor.png" />
               <Modal.Description>
-                <Header textAlign="right">{message.title}</Header>
-                <p textAlign="right">{message.body}</p>
+                <Header>{message.title}</Header>
+                <p>{`From: ${message.user.firstName} ${message.user.lastName}`}</p>
+                <p>{message.body}</p>
               </Modal.Description>
             </Modal.Content>
+            <Modal.Actions>
+              <Button>
+                <ReplyFormModal />
+              </Button>
+            </Modal.Actions>
           </Modal>,
           )
         }

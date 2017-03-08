@@ -134,7 +134,9 @@ class AllListings extends Component {
             )}
           </Card.Group>
           <Divider hidden />
-          <Pagination />
+          <Pagination
+            items={getPaginationItems(allListings, 8)}
+          />
         </Container>
       );
     }

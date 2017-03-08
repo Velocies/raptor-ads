@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 class Pagination extends Component {
   constructor(props) {
     super();
-    this.props.dispatch(resetPagination());
   }
 
   render() {

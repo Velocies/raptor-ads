@@ -82,7 +82,7 @@ class Profile extends Component {
       <Container textAlign="center">
         { this.props.userId === loggedInUser.id && this.props.path && (<ProfileNavbar current={this.props.path} userId={this.props.userId} />)}
         { this.props.path === 'dashboard' || !this.props.path ? <ProfileDashboard isLoggedInUser={isLoggedInUser} user={thisUser} userListings={userListings} onListingClick={this.onListingClick} /> : '' }
-        { this.props.path === 'inbox' ? <Inbox /> : '' }
+        { this.props.path === 'inbox' && <Inbox userId={this.props.userId}/> }
         { this.props.path === 'settings' ?
           <ProfileSettings
             firstName={firstName}

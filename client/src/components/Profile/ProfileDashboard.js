@@ -7,7 +7,7 @@ import makeNamePossessive from '../helpers/makeNamePossessive';
 
 const listings = [1,2,3,4,5,6];
 
-const ProfileDashboard = ({ user }) =>
+const ProfileDashboard = ({ user, userListings }) =>
   <Grid width={16} >
     <Grid.Column width={3} textAlign="center" className="profileContainer">
       <Card style={{ width: '200px' }}>
@@ -49,9 +49,28 @@ const ProfileDashboard = ({ user }) =>
     </Grid.Column>
     <Grid.Column width={13}>
       <Card.Group itemsPerRow={1} stackable>
-        {listings && listings.map(listing =>
-          <Card>{listing}</Card>,
-        )}
+        {userListings && userListings.map(listing => {
+          let picturePath;
+          if (listing.pictures[0]) {
+            picturePath = listing.pictures[0].img_path;
+          } else {
+            picturePath = '/client/src/assets/noImageAvailable.jpg';
+          }
+          return (
+            <Card fluid className="dashboardCard">
+              <Card.Header>
+                <Image
+                  floated="left"
+                  style={{height: '160px', width: '160px'}}
+                  src={picturePath}
+                />
+                <Header style={{ marginTop: '2px' }} as={'h3'} color="green">
+                  {listing.title}
+                </Header>
+              </Card.Header>
+            </Card>
+          );
+        })}
       </Card.Group>
     </Grid.Column>
   </Grid>;

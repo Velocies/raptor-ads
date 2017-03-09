@@ -49,11 +49,14 @@ export const changeMarkerShowInfo = index =>
 export const sortMarkersByDistance = data =>
   (dispatch, getState) => {
     const markers = [...data];
+    console.log('MARKERS IN DISTANCE', markers)
     if (getState().googleMap.center.position) {
       const centerPosition = getState().googleMap.center.position;
       for (let i = 0; i < markers.length; i++) {
+        console.log('START COMPUTE DISTANCE', markers[i].position);
         if (markers[i].position) {
           markers[i].distanceFromCenter = google.maps.geometry.spherical.computeDistanceBetween(centerPosition, markers[i].position.position);
+          console.log('COMPUTE DISTANCE CALCULATED')
         }
       }
       // markers.sort((a, b) => a.distanceFromCenter - b.distanceFromCenter);
@@ -74,7 +77,6 @@ export const addMapMarkers = data =>
             position: results[0].geometry.location,
             defaultAnimation: 2,
             key: data[i].id,
-            showInfo: false,
             icon: image,
           };
           newData[i].position = newCenter;

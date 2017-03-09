@@ -10,12 +10,18 @@ const GoogleMapRender = withGoogleMap(props =>
     center={props.defaultCenter}
     zoom={12}
   >
-    {props.markers.map((marker, index) => (
-      <Marker
-        {...marker.position}
-        onClick={() => props.handleInfoWindow(marker, index)}
-      />
-    ))}
+    {props.markers.map((marker, index) => {
+      // console.log('MARKER HERE', index ,marker)
+      // console.log('MARKER POSITION HERE', index, marker['position']);
+      if (marker.position) {
+        return (
+        <Marker
+          {...marker.position}
+          onClick={() => props.handleInfoWindow(marker, index)}
+        />
+      )
+      }
+    })}
   </GoogleMap>
 );
 

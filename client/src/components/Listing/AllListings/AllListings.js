@@ -26,8 +26,9 @@ class AllListings extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.allListings.length === 0) {
+      console.log('COMPONENT DID MOUNT')
       this.props.dispatch(getAllListings());
     }
   }
@@ -86,7 +87,7 @@ class AllListings extends Component {
     };
     const markers = filterListings(allListings, filters);
     const startingIdx = 8 * (activeItem - 1);
-
+    console.log('MARKERS', markers);
     if (isFetching) {
       return <Loader active inline='centered' />;
     } else {

@@ -87,7 +87,6 @@ class AllListings extends Component {
     };
     const markers = filterListings(allListings, filters);
     const startingIdx = 8 * (activeItem - 1);
-    console.log('MARKERS', markers);
     if (isFetching) {
       return <Loader active inline='centered' />;
     } else {

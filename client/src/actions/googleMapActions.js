@@ -2,6 +2,7 @@ import { ADD_MAP_MARKER, CHANGE_CENTER, CHANGE_MARKER_SHOW_INFO, CHANGE_CENTER_S
 import concatAddress from '../components/helpers/concatAddress';
 import { getAllListingsSuccess } from './allListingActions';
 import { getCurrentListingSuccess } from './fullListingActions';
+import async from 'async';
 
 const geoCode = (data) => {
   const geocoder = new google.maps.Geocoder();
@@ -49,14 +50,11 @@ export const changeMarkerShowInfo = index =>
 export const sortMarkersByDistance = data =>
   (dispatch, getState) => {
     const markers = [...data];
-    console.log('MARKERS IN DISTANCE', markers)
     if (getState().googleMap.center.position) {
       const centerPosition = getState().googleMap.center.position;
       for (let i = 0; i < markers.length; i++) {
-        console.log('START COMPUTE DISTANCE', markers[i].position);
         if (markers[i].position) {
           markers[i].distanceFromCenter = google.maps.geometry.spherical.computeDistanceBetween(centerPosition, markers[i].position.position);
-          console.log('COMPUTE DISTANCE CALCULATED')
         }
       }
       // markers.sort((a, b) => a.distanceFromCenter - b.distanceFromCenter);
@@ -67,28 +65,25 @@ export const sortMarkersByDistance = data =>
 export const addMapMarkers = data =>
   (dispatch) => {
     const newData = [...data];
-    console.log('here before geocoder');
     const geocoder = new google.maps.Geocoder();
-    console.log('here bfore loop')
-    for (let i = 0; i < data.length; i++) {
-      geocoder.geocode({ address: concatAddress(data[i]) }, (results) => {
+    async.map(newData, (listing, callback) => {
+      geocoder.geocode({ address: concatAddress(listing) }, (results, err) => {
         if (results) {
           const newCenter = {
             position: results[0].geometry.location,
             defaultAnimation: 2,
-            key: data[i].id,
+            key: listing.id,
+            showInfo: false,
             icon: image,
           };
-          newData[i].position = newCenter;
-        }
-        console.log('here', i);
-        if (i === data.length - 1) {
-          console.log('here', newData);
-          dispatch(getAllListingsSuccess(newData));
-          dispatch(sortMarkersByDistance(newData));
+          listing.position = newCenter;
+        callback(null, listing);
         }
       });
-    }
+    }, (err, positionResults) => {
+      dispatch(getAllListingsSuccess(positionResults));
+      dispatch(sortMarkersByDistance(positionResults));
+    })
   };
 
 export const addMapMarker = data =>

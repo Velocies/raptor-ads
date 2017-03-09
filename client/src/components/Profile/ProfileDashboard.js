@@ -1,16 +1,17 @@
 import React from 'react';
-import { Grid, Image, Header, Card } from 'semantic-ui-react';
+import { Grid, Image, Header, Card, Divider } from 'semantic-ui-react';
+import { Link } from 'react-router';
 import StarRatingComponent from 'react-star-rating-component';
 import getAverageRating from '../helpers/getAverageRating';
 import makeNamePossessive from '../helpers/makeNamePossessive';
 
 const listings = [1,2,3,4,5,6];
 
-const ProfileDashboard = ({ user }) =>
+const ProfileDashboard = ({ user, userListings }) =>
   <Grid width={16} >
     <Grid.Column width={3} textAlign="center" className="profileContainer">
       <Card style={{ width: '200px' }}>
-        <Image src="/client/src/assets/blankProfile.png" />
+        <Image src={user.profile_img_path || '/client/src/assets/blankProfile.png'} />
         <Header>
           { `${user.firstName} ${user.lastName}` }
         </Header>
@@ -33,20 +34,51 @@ const ProfileDashboard = ({ user }) =>
             editing={false}
             textAlign="center"
           />
+          <Link className="ratingsHeader" to={`/user/${user.id}/ratings`}>
           <Header className="ratingsHeader">
             View {makeNamePossessive(user.firstName)} ratings
-          </Header>
+            </Header>
+          </Link>
+          <Link className="ratingsHeader" to={`/user/${user.id}/ratings/new`}>
           <Header className="ratingsHeader">
-            Leave {user.firstName} a rating
-          </Header>
+            Write a Review for { user.firstName }
+            </Header>
+          </Link>
         </Card.Content>
       </Card>
     </Grid.Column>
     <Grid.Column width={13}>
+      <Header>{makeNamePossessive(user.firstName)} listings:</Header>
       <Card.Group itemsPerRow={1} stackable>
-        {listings && listings.map(listing =>
-          <Card>{listing}</Card>,
-        )}
+        {userListings && userListings.map(listing => {
+          let picturePath;
+          if (listing.pictures[0]) {
+            picturePath = listing.pictures[0].img_path;
+          } else {
+            picturePath = '/client/src/assets/noImageAvailable.jpg';
+          }
+          return (
+            <Card fluid className="dashboardCard">
+              <Card.Header>
+                <Image
+                  floated="left"
+                  style={{height: '160px', width: '160px'}}
+                  src={picturePath}
+                />
+                <Header style={{ marginTop: '5px' }} as={'h3'} color="green">
+                  {listing.title}
+                </Header>
+                <Divider/>
+                <Card.Content>
+                  {listing.body}
+                </Card.Content>
+                <Card.Content style={{ marginTop: '63px', float: 'right', marginRight: '5px' }}>
+                {listing.city}, {listing.state}
+                </Card.Content>
+              </Card.Header>
+            </Card>
+          );
+        })}
       </Card.Group>
     </Grid.Column>
   </Grid>;

@@ -1,14 +1,27 @@
 import React from 'react';
-import { Button, Form, Grid, Header } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Image } from 'semantic-ui-react';
 import DeleteProfileModal from './deleteProfileModal';
 
-const ProfileSettings = ({ onDeleteClick, onUpdateClick, onChange, firstName, lastName, email, business, address, city, zip, state, role, profileUpdated }) =>
+const ProfileSettings = ({ onDeleteClick, onUpdateClick, onChange, firstName, lastName, email, business, address, city, zip, state, profile_img_path, role, profileUpdated }) =>
   <div>
     <div>
       <Header textAlign="center">Your Profile</Header>
     </div>
     <Grid width={16}>
-      <Grid.Column width={5} />
+      <Grid.Column width={5}>
+        <Form>
+          <Form.Field>
+            <label htmlFor="profile_img_path">Profile Picture</label>
+            <Image src={profile_img_path} />
+            <input
+              id="profile_img_path"
+              name="profile_img_path"
+              value={profile_img_path}
+              onChange={e => onChange(e)}
+            />
+          </Form.Field>
+        </Form>
+      </Grid.Column>
       <Grid.Column width={11}>
         <Form>
           <Form.Field width="8">
@@ -40,10 +53,10 @@ const ProfileSettings = ({ onDeleteClick, onUpdateClick, onChange, firstName, la
           </Form.Field>
           { role === 'customer' ? '' :
             <Form.Field width="8">
-              <label htmlFor="businessName">Business</label>
+              <label htmlFor="business.companyName">Business</label>
               <input
-                id="businessName"
-                name="businessName"
+                id="business.companyName"
+                name="business.companyName"
                 value={business.companyName}
                 onChange={e => onChange(e)}
               />

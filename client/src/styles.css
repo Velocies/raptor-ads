@@ -84,4 +84,10 @@ body {
 
 .ratingsHeader {
   font-size: 14px !important;
+  padding: 14px 0 0 0 !important;
+  color: #4183C4 !important;
+}
+
+.dashboardCard {
+  height: 160px !important;
 }

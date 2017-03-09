@@ -67,19 +67,19 @@ class Profile extends Component {
     const loggedInUser = this.props.loggedInUser;
     let thisUser;
     let userListings;
+    let isLoggedInUser = false;
     if (this.props.userId !== loggedInUser.id) {
       thisUser = this.props.currentUserDetails;
       userListings = this.props.profileUserListings;
     } else {
       thisUser = loggedInUser;
       userListings = this.props.userListings;
+      isLoggedInUser = true;
     }
-    console.log('THIS USER', thisUser);
-    console.log('PASSED IN LISTINGS TO PROF DASH', userListings)
     return (
       <Container textAlign="center">
         {this.props.userId === loggedInUser.id && (<ProfileNavbar changeDisplay={this.changeDisplay} current={display} />)}
-        { display === 'dashboard' ? <ProfileDashboard user={thisUser} userListings={userListings} onListingClick={this.onListingClick} /> : '' }
+        { display === 'dashboard' ? <ProfileDashboard isLoggedInUser={isLoggedInUser} user={thisUser} userListings={userListings} onListingClick={this.onListingClick} /> : '' }
         { display === 'inbox' ? <Inbox /> : '' }
         { display === 'settings' ?
           <ProfileSettings

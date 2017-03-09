@@ -38,10 +38,14 @@ export const postContactMessage = payload =>
     body: JSON.stringify(payload),
   });
 
-export const getReceivedMessages = userId =>
-  fetch(`/api/users/${userId}/messages`, {
-    method: 'GET',
-  });
+export const getReceivedMessages = userId => {
+  console.log('HELLO FROM HERE')
+  return (
+    fetch(`/api/users/${userId}/messages`, {
+      method: 'GET',
+    })
+  );
+};
 
 export const deleteListing = listingId =>
   fetch(`/api/listings/${listingId}`, {

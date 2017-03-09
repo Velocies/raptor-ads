@@ -6,10 +6,7 @@ export const initialState = {
   isFetching: false,
   searchField: '',
   filters: {
-    categories: {
-      'Home Improvement': false,
-      Technology: false,
-    },
+    categories: '',
     distance: false,
     sort: false,
   },

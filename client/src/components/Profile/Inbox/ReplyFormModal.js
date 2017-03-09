@@ -23,7 +23,7 @@ class ReplyFormModal extends Component {
       <Modal
         trigger={<Button onClick={this.handleOpen}>Contact Them!</Button>}
         open={this.state.modalOpen}
-        onClose={this.handleClose}
+        onClose={() => this.setState({ modalOpen: false })}
       >
         <Modal.Header>Contact Form</Modal.Header>
         <Modal.Content>

@@ -42,7 +42,7 @@ const Root = () =>
         <Route path="/listings" component={AllListings} />
         <Route path="/user/:id/ratings" component={AllRatings} onEnter={requireAuth} />
         <Route path="/user/:id/ratings/new" component={NewRating} onEnter={requireAuth} />
-        <Route path="/user/:id/details" component={UserDetails} onEnter={requireAuth} />
+        <Route path="/user/:id/details" component={Profile} />
         <Route path="/user/:id" component={Profile} />
         <Route path="*" component={NotFound} />
       </Route>

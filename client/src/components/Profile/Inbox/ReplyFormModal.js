@@ -42,7 +42,8 @@ class ReplyFormModal extends Component {
                 placeholder="Tell them who you are and why you are contacting them..."
                 onChange={e => this.props.onChange(e)}
               />
-              <Form.Button onClick={this.handleClose}>Send Message</Form.Button>
+              <Button onClick={this.handleClose}>Send Message</Button>
+              <Button onClick={() => { this.setState({ modalOpen: false }); }}>Cancel</Button>
             </Form>
           </Modal.Description>
         </Modal.Content>

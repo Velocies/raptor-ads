@@ -24,16 +24,18 @@ const ProfileDashboard = ({ user, userListings, onListingClick, isLoggedInUser }
       </Card>
       <Card>
         <Card.Content>
-          <Header className="dateHeader">
+          <Header className="dateHeader" style={{ marginBottom: '7px' }}>
             {makeNamePossessive(user.firstName)} rating:
           </Header>
-          <StarRatingComponent
-            name={'average'}
-            value={getAverageRating(user.ratings)}
-            starColor="#31b234"
-            editing={false}
-            textAlign="center"
-          />
+          {user.ratings && user.ratings.length === 0 ? <p style={{ marginTop: '0', marginBottom: '7px' }}>None</p> :
+            <StarRatingComponent
+              name={'average'}
+              value={getAverageRating(user.ratings)}
+              starColor="#31b234"
+              editing={false}
+              textAlign="center"
+            />
+          }
           <Link className="ratingsHeader" to={`/user/${user.id}/ratings`}>
           <Header className="ratingsHeader">
             View {makeNamePossessive(user.firstName)} ratings

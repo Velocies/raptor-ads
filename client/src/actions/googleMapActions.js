@@ -64,7 +64,9 @@ export const sortMarkersByDistance = data =>
 export const addMapMarkers = data =>
   (dispatch) => {
     const newData = [...data];
+    console.log('here before geocoder');
     const geocoder = new google.maps.Geocoder();
+    console.log('here bfore loop')
     for (let i = 0; i < data.length; i++) {
       geocoder.geocode({ address: concatAddress(data[i]) }, (results) => {
         if (results) {
@@ -77,7 +79,9 @@ export const addMapMarkers = data =>
           };
           newData[i].position = newCenter;
         }
+        console.log('here', i);
         if (i === data.length - 1) {
+          console.log('here', newData);
           dispatch(getAllListingsSuccess(newData));
           dispatch(sortMarkersByDistance(newData));
         }

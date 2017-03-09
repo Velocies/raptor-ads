@@ -17,20 +17,16 @@ export const getAllListings = () =>
   (dispatch, getState) => {
     dispatch(startFetchListings());
     fetchAllListings()
-    .then((res) => {
-      res.json()
-      .then((data) => {
-        if (getState().auth.loggedInUser.state || getState().auth.loggedInUser.business.companyState) {
-          if (getState().auth.loggedInUser.role === 'professional') {
-            dispatch(changeCenter(getState().auth.loggedInUser.business));
-          } else {
-            dispatch(changeCenter(getState().auth.loggedInUser));
-          }
-        }
-        // dispatch(getAllListingsSuccess(data));
-        dispatch(addMapMarkers(data));
+      .then((res) => {
+        res.json()
+          .then((data) => {
+            if (getState().auth.loggedInUser.state !== '') {
+              dispatch(changeCenter(getState().auth.loggedInUser));
+            }
+            // dispatch(getAllListingsSuccess(data));
+            dispatch(addMapMarkers(data));
+          });
       });
-    });
   };
 
 export const changeSearchField = value =>

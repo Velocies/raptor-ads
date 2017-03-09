@@ -58,8 +58,7 @@ const ProfileDashboard = ({ user, userListings, onListingClick }) =>
             picturePath = '/client/src/assets/noImageAvailable.jpg';
           }
           return (
-            <Card 
-              fluid 
+            <Card
               className="dashboardCard"
               onClick={() => onListingClick(listing.id)}
             >

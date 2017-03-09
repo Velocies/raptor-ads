@@ -1,4 +1,4 @@
-import { Table, Modal, Header, Image, Button } from 'semantic-ui-react';
+import { Table, Modal, Header, Image } from 'semantic-ui-react';
 import React from 'react';
 import ReplyFormModal from './ReplyFormModal';
 

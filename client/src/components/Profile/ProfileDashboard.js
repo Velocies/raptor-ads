@@ -7,7 +7,7 @@ import makeNamePossessive from '../helpers/makeNamePossessive';
 
 const listings = [1,2,3,4,5,6];
 
-const ProfileDashboard = ({ user, userListings, onListingClick }) =>
+const ProfileDashboard = ({ user, userListings, onListingClick, isLoggedInUser }) =>
   <Grid width={16} >
     <Grid.Column width={3} textAlign="center" className="profileContainer">
       <Card style={{ width: '200px' }}>
@@ -39,11 +39,13 @@ const ProfileDashboard = ({ user, userListings, onListingClick }) =>
             View {makeNamePossessive(user.firstName)} ratings
             </Header>
           </Link>
-          <Link className="ratingsHeader" to={`/user/${user.id}/ratings/new`}>
-          <Header className="ratingsHeader">
-            Write a Review for { user.firstName }
-            </Header>
-          </Link>
+          { isLoggedInUser ? '' :
+            <Link className="ratingsHeader" to={`/user/${user.id}/ratings/new`}>
+              <Header className="ratingsHeader">
+                Write a Review for { user.firstName }
+              </Header>
+            </Link>
+          }
         </Card.Content>
       </Card>
     </Grid.Column>

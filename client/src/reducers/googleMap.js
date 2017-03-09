@@ -6,7 +6,7 @@ export const initialState = {
 -121.14818130000003 },
 };
 
-const geocoder = new google.maps.Geocoder();
+//const geocoder = new google.maps.Geocoder();
 
 export const googleMap = (state = initialState, action) => {
   switch (action.type) {

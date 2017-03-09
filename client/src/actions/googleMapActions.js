@@ -68,7 +68,7 @@ export const addMapMarkers = data =>
     const geocoder = new google.maps.Geocoder();
     async.map(newData, (listing, callback) => {
       geocoder.geocode({ address: concatAddress(listing) }, (results, err) => {
-        if (results) {
+        if (results && results[0]) {
           const newCenter = {
             position: results[0].geometry.location,
             defaultAnimation: 2,

@@ -6,7 +6,7 @@ const db = require('../../database/database');
 
 const expect = chai.expect;
 describe('Begin', () => {
-  beforeEach(() => db.database.sync({ force: true }));
+  beforeEach(() => db.database.sync({ force: true }).then());
 
   describe('User Creation', () => {
     it('should respond with a statusCode of 200 for /users/api', (done) => {

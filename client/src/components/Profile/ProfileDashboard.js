@@ -48,6 +48,7 @@ const ProfileDashboard = ({ user, userListings }) =>
       </Card>
     </Grid.Column>
     <Grid.Column width={13}>
+      <Header>{makeNamePossessive(user.firstName)} listings:</Header>
       <Card.Group itemsPerRow={1} stackable>
         {userListings && userListings.map(listing => {
           let picturePath;

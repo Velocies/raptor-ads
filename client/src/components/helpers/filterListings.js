@@ -1,4 +1,5 @@
 const filterListings = (listings, filter) => {
+  console.log('filter THE LISTINGS HERE')
   let filteredListings = [...listings];
   if (listings.length !== 0) {
     if (filter.distance) {

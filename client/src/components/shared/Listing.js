@@ -39,7 +39,7 @@ Listing.propTypes = {
   type: React.PropTypes.string.isRequired,
   userId: React.PropTypes.number,
   listingId: React.PropTypes.number.isRequired,
-  handleDelete: React.PropTypes.func.isRequired,
+  handleDelete: React.PropTypes.func,
   pathname: React.PropTypes.string.isRequired,
 
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Image, Header, Card } from 'semantic-ui-react';
+import { Grid, Image, Header, Card, Divider } from 'semantic-ui-react';
 import { Link } from 'react-router';
 import StarRatingComponent from 'react-star-rating-component';
 import getAverageRating from '../helpers/getAverageRating';
@@ -65,9 +65,16 @@ const ProfileDashboard = ({ user, userListings }) =>
                   style={{height: '160px', width: '160px'}}
                   src={picturePath}
                 />
-                <Header style={{ marginTop: '2px' }} as={'h3'} color="green">
+                <Header style={{ marginTop: '5px' }} as={'h3'} color="green">
                   {listing.title}
                 </Header>
+                <Divider/>
+                <Card.Content>
+                  {listing.body}
+                </Card.Content>
+                <Card.Content style={{ marginTop: '63px', float: 'right', marginRight: '5px' }}>
+                {listing.city}, {listing.state}
+                </Card.Content>
               </Card.Header>
             </Card>
           );

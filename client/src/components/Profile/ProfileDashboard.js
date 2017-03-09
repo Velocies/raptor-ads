@@ -7,7 +7,7 @@ import makeNamePossessive from '../helpers/makeNamePossessive';
 
 const listings = [1,2,3,4,5,6];
 
-const ProfileDashboard = ({ user, userListings }) =>
+const ProfileDashboard = ({ user, userListings, onListingClick }) =>
   <Grid width={16} >
     <Grid.Column width={3} textAlign="center" className="profileContainer">
       <Card style={{ width: '200px' }}>
@@ -58,21 +58,25 @@ const ProfileDashboard = ({ user, userListings }) =>
             picturePath = '/client/src/assets/noImageAvailable.jpg';
           }
           return (
-            <Card fluid className="dashboardCard">
+            <Card 
+              fluid 
+              className="dashboardCard"
+              onClick={() => onListingClick(listing.id)}
+            >
               <Card.Header>
                 <Image
                   floated="left"
                   style={{height: '160px', width: '160px'}}
                   src={picturePath}
                 />
-                <Header style={{ marginTop: '5px' }} as={'h3'} color="green">
+                <Header style={{ marginTop: '6px', marginBottom: '0' }} as={'h3'} color="green">
                   {listing.title}
                 </Header>
                 <Divider/>
-                <Card.Content>
+                <Card.Content style={{ color: 'black' }}>
                   {listing.body}
                 </Card.Content>
-                <Card.Content style={{ marginTop: '63px', float: 'right', marginRight: '5px' }}>
+                <Card.Content style={{ marginTop: '63px', float: 'right', marginRight: '5px', color: 'black' }}>
                 {listing.city}, {listing.state}
                 </Card.Content>
               </Card.Header>

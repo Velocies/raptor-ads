@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Grid } from 'semantic-ui-react';
+import { push } from 'react-router-redux';
 import ProfileDashboard from './ProfileDashboard';
 import Inbox from './Inbox/Inbox';
 import ProfileSettings from './profileSettings';
@@ -15,6 +16,7 @@ class Profile extends Component {
     // this.componentDidMount = this.componentDidMount.bind(this);
     this.onUpdateClick = this.onUpdateClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
+    this.onListingClick = this.onListingClick.bind(this);
     this.changeDisplay = this.changeDisplay.bind(this);
   }
 
@@ -36,6 +38,10 @@ class Profile extends Component {
 
   onDeleteClick() {
     this.props.dispatch(deleteProfile(this.props.loggedInUser));
+  }
+
+  onListingClick(listingId) {
+    this.props.dispatch(push(`/listings/${listingId}`));
   }
 
   changeDisplay(route) {
@@ -73,7 +79,7 @@ class Profile extends Component {
     return (
       <Container textAlign="center">
         {this.props.userId === loggedInUser.id && (<ProfileNavbar changeDisplay={this.changeDisplay} current={display} />)}
-        { display === 'dashboard' ? <ProfileDashboard user={thisUser} userListings={userListings}/> : '' }
+        { display === 'dashboard' ? <ProfileDashboard user={thisUser} userListings={userListings} onListingClick={this.onListingClick} /> : '' }
         { display === 'inbox' ? <Inbox /> : '' }
         { display === 'settings' ?
           <ProfileSettings

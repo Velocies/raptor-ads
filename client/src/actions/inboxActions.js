@@ -20,7 +20,6 @@ export const getAllReceivedMessages = userId =>
     .then((res) => {
       res.json()
       .then((data) => {
-        console.log(data);
         dispatch(getReceivedMessagesSuccess(data));
       });
     });

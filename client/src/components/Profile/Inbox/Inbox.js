@@ -69,10 +69,8 @@ const mapStateToProps = (state) => {
   const { contactForm } = state.messages;
   const { isFetching, allMessages } = state.inbox;
   const { id } = state.auth.loggedInUser;
-  const userId = id;
 
   return {
-    userId,
     allMessages,
     isFetching,
     contactForm,

@@ -20,7 +20,7 @@ const DynamicLinks = ({ id, logout, location }) => {
         <Menu.Item
           color="green"
           as={Link}
-          to={`/user/${id}`}
+          to={`/user/${id}/dashboard`}
           active={location === '/profile'}
         >
           Profile

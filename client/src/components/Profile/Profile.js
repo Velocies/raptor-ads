@@ -27,10 +27,10 @@ class Profile extends Component {
 
   componentWillMount() {
     if (this.props.loggedInUser.id !== this.props.userId) {
-      console.log('COMPONENT MOUNTED');
       this.props.dispatch(getUserDetails(this.props.userId));
       this.props.dispatch(getUserProfileListings(this.props.userId));
     }
+
   }
 
   onUpdateClick() {
@@ -64,6 +64,7 @@ class Profile extends Component {
       business,
       profile_img_path,
     } = this.props.profileForm;
+    console.log('PATHNAME NEW IS', this.props.path)
     const display = this.props.display;
     const loggedInUser = this.props.loggedInUser;
     let thisUser;
@@ -79,10 +80,10 @@ class Profile extends Component {
     }
     return (
       <Container textAlign="center">
-        {this.props.userId === loggedInUser.id && (<ProfileNavbar changeDisplay={this.changeDisplay} current={display} />)}
-        { display === 'dashboard' ? <ProfileDashboard isLoggedInUser={isLoggedInUser} user={thisUser} userListings={userListings} onListingClick={this.onListingClick} /> : '' }
-        { display === 'inbox' ? <Inbox /> : '' }
-        { display === 'settings' ?
+        { this.props.userId === loggedInUser.id && this.props.path && (<ProfileNavbar current={this.props.path} userId={this.props.userId} />)}
+        { this.props.path === 'dashboard' || !this.props.path ? <ProfileDashboard isLoggedInUser={isLoggedInUser} user={thisUser} userListings={userListings} onListingClick={this.onListingClick} /> : '' }
+        { this.props.path === 'inbox' ? <Inbox /> : '' }
+        { this.props.path === 'settings' ?
           <ProfileSettings
             firstName={firstName}
             lastName={lastName}
@@ -116,6 +117,7 @@ const mapStateToProps = (state) => {
   const { currentUserDetails } = state.userDetails;
   let userId;
   pathname !== '/profile' ? userId = parseInt(pathname.split('/')[2]) : userId = false;
+  const path = pathname.split('/')[3]
 
   return {
     profileForm,
@@ -125,6 +127,7 @@ const mapStateToProps = (state) => {
     currentUserDetails,
     userListings,
     profileUserListings,
+    path,
   };
 };
 

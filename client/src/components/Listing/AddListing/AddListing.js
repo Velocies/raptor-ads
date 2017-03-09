@@ -129,7 +129,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch =>
   ({
     onChange: (e, data) => {
-      console.log('e', e, data, 'data');
       if (data) {
         if ( data.placeholder === 'State' ) {
           dispatch(changeListingField('state', data.value));

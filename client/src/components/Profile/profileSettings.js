@@ -51,13 +51,13 @@ const ProfileSettings = ({ onDeleteClick, onUpdateClick, onChange, firstName, la
               onChange={e => onChange(e)}
             />
           </Form.Field>
-          { role === 'customer' ? '' :
+          { role === 'customer' ? null :
             <Form.Field width="8">
               <label htmlFor="business.companyName">Business</label>
               <input
                 id="business.companyName"
-                name="business.companyName"
-                value={business.companyName}
+                name="companyName"
+                value={companyName}
                 onChange={e => onChange(e)}
               />
             </Form.Field>
@@ -67,7 +67,7 @@ const ProfileSettings = ({ onDeleteClick, onUpdateClick, onChange, firstName, la
             <input
               id="address"
               name="address"
-              value={!address ? business.companyAddress : address}
+              value={address}
               onChange={e => onChange(e)}
             />
           </Form.Field>
@@ -76,7 +76,7 @@ const ProfileSettings = ({ onDeleteClick, onUpdateClick, onChange, firstName, la
             <input
               id="city"
               name="city"
-              value={!city ? business.companyCity : city}
+              value={city}
               onChange={e => onChange(e)}
             />
           </Form.Field>
@@ -85,7 +85,7 @@ const ProfileSettings = ({ onDeleteClick, onUpdateClick, onChange, firstName, la
             <input
               id="zip"
               name="zip"
-              value={!zip ? business.companyZip : zip}
+              value={zip}
               onChange={e => onChange(e)}
             />
           </Form.Field>
@@ -94,7 +94,7 @@ const ProfileSettings = ({ onDeleteClick, onUpdateClick, onChange, firstName, la
             <input
               id="state"
               name="state"
-              value={!state ? business.companyState : state}
+              value={state}
               onChange={e => onChange(e)}
             />
           </Form.Field>

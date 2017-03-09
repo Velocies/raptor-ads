@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import moment from 'moment';
-import { Container, Header, Card, Button, Divider, Loader, Grid, Menu, Dropdown } from 'semantic-ui-react';
+import { Container, Header, Card, Divider, Loader, Grid } from 'semantic-ui-react';
 import { getAllListings, changeSearchField, changeFilterCategory, changeDistanceRadius, changeSortFilter, clearClickedListing } from '../../../actions/allListingActions';
 import { changeCenter, sortMarkersByDistance } from '../../../actions/googleMapActions';
 import Listing from '../../shared/Listing';
@@ -28,7 +28,6 @@ class AllListings extends Component {
 
   componentWillMount() {
     if (this.props.allListings.length === 0) {
-      console.log('COMPONENT DID MOUNT')
       this.props.dispatch(getAllListings());
     }
   }
@@ -144,6 +143,18 @@ class AllListings extends Component {
     }
   }
 }
+
+AllListings.propTypes = {
+  // listingForm: React.PropTypes.shape({
+  //   title: React.PropTypes.string.isRequired,
+  //   body: React.PropTypes.string.isRequired,
+  //   image: React.PropTypes.string.isRequired,
+  //   images: React.PropTypes.array.isRequired,
+  //   type: React.PropTypes.string.isRequired,
+  // }).isRequired,
+  // onChange: React.PropTypes.func.isRequired,
+  // onClick: React.PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => {
   const { allListings, isFetching, searchField, filters, clickedListing } = state.listings;

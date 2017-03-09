@@ -27,6 +27,7 @@ class Profile extends Component {
 
   componentWillMount() {
     if (this.props.loggedInUser.id !== this.props.userId) {
+      console.log('COMPONENT MOUNTED');
       this.props.dispatch(getUserDetails(this.props.userId));
       this.props.dispatch(getUserProfileListings(this.props.userId));
     }

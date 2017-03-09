@@ -23,7 +23,7 @@ export const getAllListings = () =>
             if (getState().auth.loggedInUser.state !== '') {
               dispatch(changeCenter(getState().auth.loggedInUser));
             }
-            // dispatch(getAllListingsSuccess(data));
+            dispatch(getAllListingsSuccess(data));
             dispatch(addMapMarkers(data));
           });
       });

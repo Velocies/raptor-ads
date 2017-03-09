@@ -15,7 +15,6 @@ import AddListing from './Listing/AddListing/AddListing';
 import AllListings from './Listing/AllListings/AllListings';
 import AllRatings from './Ratings/AllRatings';
 import NewRating from './Ratings/NewRating';
-import UserDetails from './UserDetails/UserDetails';
 
 
 const store = configureStore();

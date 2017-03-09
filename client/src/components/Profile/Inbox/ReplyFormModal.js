@@ -14,7 +14,7 @@ class ReplyFormModal extends Component {
   }
 
   handleClose(e) {
-    this.props.onSubmit(e, this.props.listingId, this.props.userId);
+    this.props.onSubmit(e, this.props.listingId, this.props.userId, this.props.senderId);
     this.setState({ modalOpen: false });
   }
 
@@ -55,6 +55,7 @@ class ReplyFormModal extends Component {
 ReplyFormModal.propTypes = {
   listingId: React.PropTypes.number.isRequired,
   userId: React.PropTypes.number.isRequired,
+  senderId: React.PropTypes.number.isRequired,
   onChange: React.PropTypes.func.isRequired,
   onSubmit: React.PropTypes.func.isRequired,
 };

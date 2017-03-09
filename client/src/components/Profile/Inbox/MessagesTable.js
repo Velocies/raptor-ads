@@ -34,7 +34,7 @@ const MessagesTable = ({ allMessages, convertTime, onChange, onSubmit }) =>
             <Image wrapped size="small" src="/client/src/assets/half-raptor.png" />
             <Modal.Description>
               <Header>{message.title}</Header>
-              <p>{`From: ${message.user.firstName} ${message.user.lastName}`}</p>
+              <p>{`From: ${message.sender.firstName} ${message.sender.lastName}`}</p>
               <p>{message.body}</p>
             </Modal.Description>
           </Modal.Content>
@@ -43,7 +43,8 @@ const MessagesTable = ({ allMessages, convertTime, onChange, onSubmit }) =>
               onChange={onChange}
               onSubmit={onSubmit}
               listingId={message.post.id}
-              userId={message.user.id}
+              userId={message.sender.id}
+              senderId={message.user.id}
             />
           </Modal.Actions>
         </Modal>,

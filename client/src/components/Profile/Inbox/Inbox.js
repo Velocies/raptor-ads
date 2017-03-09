@@ -19,11 +19,10 @@ class Inbox extends Component {
     this.props.dispatch(getAllReceivedMessages(this.props.userId));
   }
 
-  onSubmit(e, listingId, userId) {
+  onSubmit(e, listingId, userId, senderId) {
     e.preventDefault();
     const data = this.props.contactForm;
     const postId = listingId;
-    const senderId = this.props.userId;
     const payload = { title: data.title, body: data.body, postId, userId, senderId };
     this.props.dispatch(clearErrors());
     this.props.dispatch(sendMessage(payload));

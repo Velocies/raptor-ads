@@ -14,7 +14,7 @@ class ReplyFormModal extends Component {
   }
 
   handleClose(e) {
-    this.props.onSubmit(e, this.props.listingId, this.props.userId);
+    this.props.onSubmit(e, this.props.listingId, this.props.userId, this.props.senderId);
     this.setState({ modalOpen: false });
   }
 
@@ -42,7 +42,8 @@ class ReplyFormModal extends Component {
                 placeholder="Tell them who you are and why you are contacting them..."
                 onChange={e => this.props.onChange(e)}
               />
-              <Form.Button onClick={this.handleClose}>Send Message</Form.Button>
+              <Button onClick={this.handleClose}>Send Message</Button>
+              <Button onClick={() => { this.setState({ modalOpen: false }); }}>Cancel</Button>
             </Form>
           </Modal.Description>
         </Modal.Content>
@@ -54,6 +55,7 @@ class ReplyFormModal extends Component {
 ReplyFormModal.propTypes = {
   listingId: React.PropTypes.number.isRequired,
   userId: React.PropTypes.number.isRequired,
+  senderId: React.PropTypes.number.isRequired,
   onChange: React.PropTypes.func.isRequired,
   onSubmit: React.PropTypes.func.isRequired,
 };

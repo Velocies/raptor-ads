@@ -64,7 +64,6 @@ class Profile extends Component {
       business,
       profile_img_path,
     } = this.props.profileForm;
-    console.log('PATHNAME NEW IS', this.props.path)
     const display = this.props.display;
     const loggedInUser = this.props.loggedInUser;
     let thisUser;

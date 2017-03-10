@@ -1,12 +1,9 @@
 import { ADD_MAP_MARKER, CHANGE_CENTER, CHANGE_MARKER_SHOW_INFO, LOGIN_SUCCESS, GET_CURRENT_LISTING_SUCCESS, CHANGE_CENTER_SUCCESS, ADD_MAP_MARKERS_SUCCESS } from '../constants';
-import concatAddress from '../components/helpers/concatAddress';
 
 export const initialState = {
-  center: { lat: 38.6536082, lng:
--121.14818130000003 },
+  center: { lat: 38.6536082, lng: -121.14818130000003 },
 };
 
-//const geocoder = new google.maps.Geocoder();
 
 export const googleMap = (state = initialState, action) => {
   switch (action.type) {

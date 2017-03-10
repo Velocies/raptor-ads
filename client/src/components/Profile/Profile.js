@@ -13,7 +13,6 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
-    // this.componentDidMount = this.componentDidMount.bind(this);
     this.onUpdateClick = this.onUpdateClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
     this.onListingClick = this.onListingClick.bind(this);

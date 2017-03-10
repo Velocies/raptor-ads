@@ -24,12 +24,10 @@ class Profile extends Component {
     this.props.profileForm.profileUpdated = false;
   }
 
-  componentWillMount() {
-    if (this.props.loggedInUser.id !== this.props.userId) {
-      this.props.dispatch(getUserDetails(this.props.userId));
-      this.props.dispatch(getUserProfileListings(this.props.userId));
-    }
-
+  componentDidMount() {
+    console.log('MOUNTED');
+    this.props.dispatch(getUserDetails(this.props.userId));
+    this.props.dispatch(getUserProfileListings(this.props.userId));
   }
 
   onUpdateClick() {
@@ -82,24 +80,24 @@ class Profile extends Component {
         { this.props.path === 'dashboard' || !this.props.path ? <ProfileDashboard isLoggedInUser={isLoggedInUser} user={thisUser} userListings={userListings} onListingClick={this.onListingClick} /> : '' }
         { this.props.path === 'inbox' && <Inbox userId={this.props.userId}/> }
         { this.props.path === 'settings' ?
-          <ProfileSettings
-            firstName={firstName}
-            lastName={lastName}
-            email={email}
-            businessName={businessName}
-            address={address}
-            city={city}
-            zip={zip}
-            state={state}
-            profile_img_path={profile_img_path}
-            role={role}
-            profileUpdated={profileUpdated}
-            business={business}
-            onUpdateClick={this.onUpdateClick}
-            onDeleteClick={this.onDeleteClick}
-            onChange={this.onChange}
-          />
-        : ''
+            <ProfileSettings
+              firstName={firstName}
+              lastName={lastName}
+              email={email}
+              businessName={businessName}
+              address={address}
+              city={city}
+              zip={zip}
+              state={state}
+              profile_img_path={profile_img_path}
+              role={role}
+              profileUpdated={profileUpdated}
+              business={business}
+              onUpdateClick={this.onUpdateClick}
+              onDeleteClick={this.onDeleteClick}
+              onChange={this.onChange}
+            />
+            : ''
         }
       </Container>
     );

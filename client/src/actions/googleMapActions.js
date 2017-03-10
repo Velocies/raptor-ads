@@ -57,7 +57,6 @@ export const sortMarkersByDistance = data =>
           markers[i].distanceFromCenter = google.maps.geometry.spherical.computeDistanceBetween(centerPosition, markers[i].position.position);
         }
       }
-      // markers.sort((a, b) => a.distanceFromCenter - b.distanceFromCenter);
       dispatch(getAllListingsSuccess(markers));
     }
   };
@@ -68,7 +67,7 @@ export const addMapMarkers = data =>
     const geocoder = new google.maps.Geocoder();
     async.map(newData, (listing, callback) => {
       geocoder.geocode({ address: concatAddress(listing) }, (results, err) => {
-        if (results && results[0]) {
+        if (results) {
           const newCenter = {
             position: results[0].geometry.location,
             defaultAnimation: 2,
@@ -83,7 +82,7 @@ export const addMapMarkers = data =>
     }, (err, positionResults) => {
       dispatch(getAllListingsSuccess(positionResults));
       dispatch(sortMarkersByDistance(positionResults));
-    });
+    })
   };
 
 export const addMapMarker = data =>
@@ -103,25 +102,3 @@ export const addMapMarker = data =>
       dispatch(addMapMarkersSuccess([newCenter]));
     });
   };
-
-// async.map(newData, (listing, callback) => {
-//       geocoder.geocode({ address: concatAddress(listing) }, (results, err) => {
-//         if (results) {
-//           console.log('HELLO FROM')
-//           const newCenter = {
-//             position: results[0].geometry.location,
-//             defaultAnimation: 2,
-//             key: listing.id,
-//             showInfo: false,
-//             icon: image,
-//           };
-//           listing.position = newCenter;
-//         } else {
-//           return false;
-//         }
-//       });
-//     }, (err, positionResults) => {
-//       console.log('HELLO FROM THERE')
-//       dispatch(getAllListingsSuccess(positionResults));
-//       dispatch(sortMarkersByDistance(positionResults));
-//     });

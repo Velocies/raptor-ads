@@ -13,7 +13,6 @@ import filterListings from '../../helpers/filterListings';
 import ListingInfoCard from './AllListingsComponents/ListingInfoCard';
 import Pagination from '../../Pagination/Pagination';
 import getPaginationItems from '../../Pagination/helpers/getPaginationItems';
-// import InitialMap from './GoogleMap/GoogleMap';
 
 
 class AllListings extends Component {
@@ -27,6 +26,9 @@ class AllListings extends Component {
   }
 
   componentWillMount() {
+     if (this.props.loggedInUser.state !== '') {
+        this.props.dispatch(changeCenter(this.props.loggedInUser));
+      }
     if (this.props.allListings.length === 0) {
       this.props.dispatch(getAllListings());
     }
@@ -144,18 +146,6 @@ class AllListings extends Component {
     }
   }
 }
-
-AllListings.propTypes = {
-  // listingForm: React.PropTypes.shape({
-  //   title: React.PropTypes.string.isRequired,
-  //   body: React.PropTypes.string.isRequired,
-  //   image: React.PropTypes.string.isRequired,
-  //   images: React.PropTypes.array.isRequired,
-  //   type: React.PropTypes.string.isRequired,
-  // }).isRequired,
-  // onChange: React.PropTypes.func.isRequired,
-  // onClick: React.PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state) => {
   const { allListings, isFetching, searchField, filters, clickedListing } = state.listings;

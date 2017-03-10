@@ -60,6 +60,7 @@ class Profile extends Component {
       userListings = this.props.profileUserListings;
       isLoggedInUser = true;
     }
+    console.log('USER LISTINGS', userListings);
     return (
       <Container textAlign="center">
         { this.props.userId === loggedInUser.id && this.props.path && (<ProfileNavbar current={this.props.path} userId={this.props.userId} />)}

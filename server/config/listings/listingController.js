@@ -41,6 +41,7 @@ module.exports = {
     })
       .then((user) => {
         user.getPosts({
+          where: { isDeleted: false },
           include: [{ model: models.Picture }],
         })
           .then((posts) => {

@@ -161,10 +161,9 @@ const mapStateToProps = (state) => {
   const { allListings, isFetching, searchField, filters, clickedListing } = state.listings;
   const { id } = state.auth.loggedInUser;
   const loggedInUser = state.auth.loggedInUser;
-  const { markers } = state.googleMap;
   const { activeItem } = state.pagination;
 
-  return { allListings, isFetching, id, searchField, loggedInUser, markers, filters, clickedListing, activeItem };
+  return { allListings, isFetching, id, searchField, loggedInUser, filters, clickedListing, activeItem };
 };
 
 export default connect(mapStateToProps)(AllListings);

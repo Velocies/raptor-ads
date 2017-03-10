@@ -13,6 +13,7 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
+    // this.componentDidMount = this.componentDidMount.bind(this);
     this.onUpdateClick = this.onUpdateClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
     this.onListingClick = this.onListingClick.bind(this);
@@ -27,7 +28,6 @@ class Profile extends Component {
   componentDidMount() {
     this.props.dispatch(getUserDetails(this.props.userId));
     this.props.dispatch(getUserProfileListings(this.props.userId));
-  }
 
   onUpdateClick() {
     this.props.dispatch(updateProfile(this.props.profileForm));
@@ -46,20 +46,6 @@ class Profile extends Component {
   }
 
   render() {
-    const {
-      firstName,
-      lastName,
-      email,
-      businessName,
-      address,
-      city,
-      zip,
-      state,
-      role,
-      profileUpdated,
-      business,
-      profile_img_path,
-    } = this.props.profileForm;
     const display = this.props.display;
     const loggedInUser = this.props.loggedInUser;
     let thisUser;
@@ -78,25 +64,13 @@ class Profile extends Component {
         { this.props.userId === loggedInUser.id && this.props.path && (<ProfileNavbar current={this.props.path} userId={this.props.userId} />)}
         { this.props.path === 'dashboard' || !this.props.path ? <ProfileDashboard isLoggedInUser={isLoggedInUser} user={thisUser} userListings={userListings} onListingClick={this.onListingClick} /> : '' }
         { this.props.path === 'inbox' && <Inbox userId={this.props.userId}/> }
-        { this.props.path === 'settings' ?
-            <ProfileSettings
-              firstName={firstName}
-              lastName={lastName}
-              email={email}
-              businessName={businessName}
-              address={address}
-              city={city}
-              zip={zip}
-              state={state}
-              profile_img_path={profile_img_path}
-              role={role}
-              profileUpdated={profileUpdated}
-              business={business}
-              onUpdateClick={this.onUpdateClick}
-              onDeleteClick={this.onDeleteClick}
-              onChange={this.onChange}
-            />
-            : ''
+        { this.props.path === 'settings' &&
+          (<ProfileSettings
+            onUpdateClick={this.onUpdateClick}
+            onDeleteClick={this.onDeleteClick}
+            onChange={this.onChange}
+            {...this.props.profileForm }
+          />)
         }
       </Container>
     );

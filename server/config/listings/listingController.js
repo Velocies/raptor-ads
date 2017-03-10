@@ -37,7 +37,7 @@ module.exports = {
 
   getAllForUser: (req, res) => {
     models.User.find({
-      where: { id: req.params.id },
+      where: { id: req.params.id, isDeleted: false },
     })
       .then((user) => {
         user.getPosts({

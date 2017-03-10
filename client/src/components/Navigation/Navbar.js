@@ -8,7 +8,7 @@ const Navbar = ({ id, location, logout }) =>
     <Menu inverted borderless>
       <Menu.Item
         as={Link}
-        to="dashboard"
+        to="landing"
         className="logo"
       >
         <img alt="raptor" src="/client/src/assets/half-raptor.png" />

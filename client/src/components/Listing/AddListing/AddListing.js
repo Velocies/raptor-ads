@@ -51,9 +51,9 @@ class AddListing extends Component {
     return (
       <div>
         <Header color="green" textAlign="center"><Icon name="file text" />Add Listing</Header>
-        <Grid width={16}>
-          <Grid.Column width={5} />
-          <Grid.Column width={6}>
+        <Grid textAlign="center" columns={3}>
+          <Grid.Column columns={4} />
+          <Grid.Column columns={8}>
             {formErrors.title && <span className="formError">{formErrors.title}</span>}
             <Form onSubmit={e => this.onSubmit(e)}>
               <ListingTitle
@@ -69,7 +69,7 @@ class AddListing extends Component {
                 onChange={onChange}
                 getFormClass={this.getFormClass}
               />
-              {formErrors.image && <span className="formError">{formErrors.image}</span>}
+              {formErrors.address && <span className="formError">{formErrors.address}</span>}
               <Form.Field>
                 <label htmlFor="address">Street Address</label>
                 <input
@@ -79,6 +79,7 @@ class AddListing extends Component {
                   onChange={e => onChange(e)}
                 />
               </Form.Field>
+              {formErrors.city && <span className="formError">{formErrors.city}</span>}
               <Form.Field>
                 <label htmlFor="city">City</label>
                 <input
@@ -88,30 +89,34 @@ class AddListing extends Component {
                   onChange={e => onChange(e)}
                 />
               </Form.Field>
+              {formErrors.state && <span className="formError">{formErrors.state}</span>}
               <StateDropdown
                 onChange={onChange}
               />
+              {formErrors.zipcode && <span className="formError">{formErrors.zipcode}</span>}
               <Form.Field>
-              <label htmlFor="zipcode">Zipcode</label>
-              <input
-                name="zip"
-                placeholder="Zipcode"
-                value={zip}
-                onChange={e => onChange(e)}
+                <label htmlFor="zipcode">Zipcode</label>
+                <input
+                  name="zip"
+                  placeholder="Zipcode"
+                  value={zip}
+                  onChange={e => onChange(e)}
+                />
+              </Form.Field>
+              {formErrors.image && <span className="formError">{formErrors.image}</span>}
+              <ListingImage
+                onClick={onClick}
+                onChange={onChange}
+                image={image}
+                getFormClass={this.getFormClass}
               />
-            </Form.Field>
-            <ListingImage
-              onClick={onClick}
-              onChange={onChange}
-              image={image}
-              getFormClass={this.getFormClass}
-            />
-            <Form.Button className="ui center aligned grid" >Submit</Form.Button>
-          </Form>
-        </Grid.Column>
-      </Grid>
-      <ListingDisplayImages images={images} handleDelete={this.handleDelete} />
-    </div>
+              <Form.Button className="ui center aligned grid" >Submit</Form.Button>
+            </Form>
+          </Grid.Column>
+          <Grid.Column columns={4} />
+        </Grid>
+        <ListingDisplayImages images={images} handleDelete={this.handleDelete} />
+      </div>
     );
   }
 }

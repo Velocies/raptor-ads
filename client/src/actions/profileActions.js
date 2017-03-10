@@ -86,12 +86,10 @@ export const getUserProfileListingsSuccess = listings =>
 
 export const getUserProfileListings = user =>
   (dispatch) => {
-    console.log('IN HERE')
     getUserListings(user)
     .then(res => {
       res.json()
       .then(data => {
-        console.log('USER PROFILE DATA', data)
         dispatch(getUserProfileListingsSuccess(data));
       });
     });

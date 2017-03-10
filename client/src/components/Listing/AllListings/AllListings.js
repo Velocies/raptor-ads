@@ -84,8 +84,9 @@ class AllListings extends Component {
     const onListingClick = (listingId) => {
       this.props.dispatch(push(`/listings/${listingId}`));
     };
-    const markers = filterListings(allListings, filters);
     const startingIdx = 8 * (activeItem - 1);
+    const markers = filterListings(allListings, filters).slice(startingIdx, startingIdx + 8);
+    console.log('markers', markers);
     if (isFetching) {
       return <Loader active inline='centered' />;
     } else {
@@ -119,7 +120,7 @@ class AllListings extends Component {
           <Header as={'h3'} color="black">Listings</Header>
           <Divider />
           <Card.Group itemsPerRow={4} stackable>
-            {markers && markers.slice(startingIdx, startingIdx + 8).map(listing =>
+            {markers.map(listing =>
               <Listing
                 key={listing.id}
                 listingId={listing.id}
@@ -136,7 +137,7 @@ class AllListings extends Component {
           </Card.Group>
           <Divider hidden />
           <Pagination
-            items={getPaginationItems(markers, 8)}
+            items={getPaginationItems(allListings, 8)}
           />
         </Container>
       );

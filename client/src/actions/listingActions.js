@@ -81,7 +81,7 @@ export const uploadListing = data =>
               } else {
                 dispatch(postListingSuccess());
                 dispatch(fetchUserListings(data.id));
-                dispatch(push('/dashboard'));
+                dispatch(push(`/user/${data.id}/dashboard`));
                 dispatch(getAllListings());
               }
             });
@@ -94,7 +94,7 @@ export const removeListing = (listingId, userId) =>
     deleteListing(listingId)
       .then(() => {
         dispatch(fetchUserListings(userId));
-        dispatch(push('/dashboard'));
+        dispatch(push(`/user/${userId}/dashboard`));
       });
   };
 

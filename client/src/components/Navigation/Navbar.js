@@ -15,7 +15,7 @@ const Navbar = ({ id, location, logout }) =>
       </Menu.Item>
       <Menu.Item as={Link} to="/about" color="green" name="About Us" active={location === '/about'} />
       <Menu.Item as={Link} to="/listings" name="Listings" color="green" active={location === '/listings'} />
-      <Menu.Item as={Link} to="/addlisting" color="green" name="addlisting" active={location === '/addlisting'} />
+      <Menu.Item as={Link} to="/addlisting" color="green" name="Create Job Listing" active={location === '/addlisting'} />
       <DynamicLinks location={location} id={id} logout={logout} />
     </Menu>
   </Segment>;

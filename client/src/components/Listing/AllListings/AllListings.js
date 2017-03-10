@@ -147,6 +147,17 @@ class AllListings extends Component {
   }
 }
 
+AllListings.propTypes = {
+  allListings: React.PropTypes.array.isRequired,
+  isFetching: React.PropTypes.bool,
+  searchField: React.PropTypes.string.isRequired,
+  filters: React.PropTypes.object.isRequired,
+  clickedListing: React.PropTypes.object,
+  id: React.PropTypes.number.isRequired,
+  loggedInUser: React.PropTypes.object.isRequired,
+  activeItem: React.PropTypes.number.isRequired,
+};
+
 const mapStateToProps = (state) => {
   const { allListings, isFetching, searchField, filters, clickedListing } = state.listings;
   const { id } = state.auth.loggedInUser;

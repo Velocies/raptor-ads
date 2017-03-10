@@ -77,9 +77,6 @@ const About = () =>
                   <p>
                     <a href="https://github.com/bwuphan">GitHub</a>
                   </p>
-                  <p>
-                    <a href="https://jimmiegisclair.wordpress.com/">Blog</a>
-                  </p>
                 </Card.Meta>
               </Card.Content>
             </Card>
@@ -90,13 +87,7 @@ const About = () =>
                 <Card.Header>Tyler Mackay</Card.Header>
                 <Card.Meta>
                   <p>
-                    <a href="https://www.linkedin.com/in/jimmie-gisclair/">LinkedIn</a>
-                  </p>
-                  <p>
                     <a href="https://github.com/tylermackay587">GitHub</a>
-                  </p>
-                  <p>
-                    <a href="https://jimmiegisclair.wordpress.com/">Blog</a>
                   </p>
                 </Card.Meta>
               </Card.Content>

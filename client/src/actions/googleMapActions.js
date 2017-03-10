@@ -83,7 +83,7 @@ export const addMapMarkers = data =>
     }, (err, positionResults) => {
       dispatch(getAllListingsSuccess(positionResults));
       dispatch(sortMarkersByDistance(positionResults));
-    })
+    });
   };
 
 export const addMapMarker = data =>

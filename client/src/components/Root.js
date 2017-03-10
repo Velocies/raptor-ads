@@ -51,5 +51,3 @@ const Root = () =>
   </Provider>;
 
 export default Root;
-
-// <Route path="/user/:id/details" component={UserDetails} onEnter={requireAuth} />

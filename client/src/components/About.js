@@ -30,41 +30,75 @@ const About = () =>
             <Card>
               <Card.Content>
                 <Image centered size="medium" shape="rounded" src="https://media.licdn.com/media/AAEAAQAAAAAAAASfAAAAJDk4NzA1MjE0LTMwNWMtNDVlZC1hNWE3LWI1YzFjMzI1NmI2Yg.jpg" />
-                <Divider hidden />
+                <Divider />
                 <Card.Header>Jimmie Gisclair</Card.Header>
-                <Card.Description>
-                  Jimmie is a fucking racist bastard that hates Asians and pisses on Milfs.
-                </Card.Description>
+                <Card.Meta>
+                  <p>
+                    <a href="https://www.linkedin.com/in/jimmie-gisclair/">LinkedIn</a>
+                  </p>
+                  <p>
+                    <a href="https://github.com/Darkrender">GitHub</a>
+                  </p>
+                  <p>
+                    <a href="https://jimmiegisclair.wordpress.com/">Blog</a>
+                  </p>
+                </Card.Meta>
               </Card.Content>
             </Card>
             <Card>
               <Card.Content>
                 <Image centered size="medium" shape="rounded" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAnIAAAAJDQ5ZGQ2MmQyLThjYWItNDYyYi1iNzQ5LWQzYTc0ZGM1OGFiYQ.jpg" />
-                <Divider hidden />
+                <Divider />
                 <Card.Header>Cory Wolnewitz</Card.Header>
-                <Card.Description>
-                  Cory is a fucking cuck jew bastard that fails at poker for a living.
-                </Card.Description>
+                <Card.Meta>
+                  <Card.Meta>
+                    <p>
+                      <a href="https://www.linkedin.com/in/cory-wolnewitz/">LinkedIn</a>
+                    </p>
+                    <p>
+                      <a href="https://github.com/wolnewitz">GitHub</a>
+                    </p>
+                    <p>
+                      <a href="https://codecor.wordpress.com/">Blog</a>
+                    </p>
+                  </Card.Meta>
+                </Card.Meta>
               </Card.Content>
             </Card>
             <Card>
               <Card.Content>
                 <Image centered size="medium" shape="rounded" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAtOAAAAJDU5MTQ2MjFkLTU2NGYtNDg0Yi1iYjA1LWUyNjcxZWQyOThhYw.jpg" />
-                <Divider hidden />
+                <Divider />
                 <Card.Header>Bobby Phan</Card.Header>
-                <Card.Description>
-                  Bobby is a fucking Asian bitch that never brushes his hair, looks like Jackie Chan, and plays with his nipples.
-                </Card.Description>
+                <Card.Meta>
+                  <p>
+                    <a href="https://www.linkedin.com/in/bobby-phan-393b53135/">LinkedIn</a>
+                  </p>
+                  <p>
+                    <a href="https://github.com/bwuphan">GitHub</a>
+                  </p>
+                  <p>
+                    <a href="https://jimmiegisclair.wordpress.com/">Blog</a>
+                  </p>
+                </Card.Meta>
               </Card.Content>
             </Card>
             <Card>
               <Card.Content>
                 <Image centered size="medium" shape="rounded" src="https://i.gyazo.com/e6894fc283b7d1f8dda70737ccde1203.png" />
-                <Divider hidden />
+                <Divider />
                 <Card.Header>Tyler Mackay</Card.Header>
-                <Card.Description>
-                  Tyler just does not have any commits.
-                </Card.Description>
+                <Card.Meta>
+                  <p>
+                    <a href="https://www.linkedin.com/in/jimmie-gisclair/">LinkedIn</a>
+                  </p>
+                  <p>
+                    <a href="https://github.com/tylermackay587">GitHub</a>
+                  </p>
+                  <p>
+                    <a href="https://jimmiegisclair.wordpress.com/">Blog</a>
+                  </p>
+                </Card.Meta>
               </Card.Content>
             </Card>
           </Card.Group>

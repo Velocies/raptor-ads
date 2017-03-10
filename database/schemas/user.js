@@ -16,6 +16,7 @@ module.exports = (db, Sequelize) => {
     role: Sequelize.STRING,
     businessName: Sequelize.STRING,
     profile_img_path: Sequelize.STRING,
+    isDeleted: Sequelize.BOOLEAN,
   });
 
   return User;

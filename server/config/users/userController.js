@@ -9,6 +9,7 @@ module.exports = {
     models.User.findOne({
       where: {
         id: req.params.id,
+        isDeleted: false,
       },
       include: [models.Rating],
     })
@@ -22,7 +23,11 @@ module.exports = {
   },
 
   getAll: (req, res) => {
-    models.User.findAll()
+    models.User.findAll({
+      where: {
+        isDeleted: false,
+      },
+    })
       .then((users) => {
         res.send(users);
       });
@@ -46,6 +51,7 @@ module.exports = {
             email: req.body.email,
             role: req.body.role,
             businessName: req.body.businessName,
+            isDeleted: false,
           })
             .then((createdUser) => {
               const token = jwt.sign({
@@ -81,9 +87,10 @@ module.exports = {
   },
 
   deleteOne: (req, res) => {
-    models.User.destroy({
+    models.User.update({ isDeleted: true }, {
       where: {
         id: req.params.id,
+        isDeleted: false,
       },
     })
       .then((status) => {

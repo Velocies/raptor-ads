@@ -7,6 +7,7 @@ module.exports = (db, Sequelize) => {
     },
     title: Sequelize.STRING,
     body: Sequelize.TEXT,
+    isDeleted: Sequelize.BOOLEAN,
   });
 
   return Message;

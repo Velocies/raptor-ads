@@ -1,12 +1,12 @@
+const secret = process.env.TOKEN_SECRET || 'bobbyisbadatstarcraft';
 const models = require('../../../database/schemas.js');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('jsonwebtoken');
-const secret = process.env.TOKEN_SECRET || 'bobbyisbadatstarcraft';
 
 module.exports = {
   logIn: (req, res) => {
     models.User.findOne({
-      where: { email: req.body.email },
+      where: { email: req.body.email, isDeleted: false },
       include: [models.Rating],
     })
       .then((user) => {
@@ -34,7 +34,7 @@ module.exports = {
         res.status(400).send('Bad Token');
       } else {
         models.User.findOne({
-          where: { id: decoded.id },
+          where: { id: decoded.id, isDeleted: false },
           include: [models.Rating],
         })
           .then((user) => {

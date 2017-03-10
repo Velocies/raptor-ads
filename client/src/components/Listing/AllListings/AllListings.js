@@ -85,8 +85,8 @@ class AllListings extends Component {
       this.props.dispatch(push(`/listings/${listingId}`));
     };
     const startingIdx = 8 * (activeItem - 1);
-    const markers = filterListings(allListings, filters).slice(startingIdx, startingIdx + 8);
-    console.log('markers', markers);
+    const filteredListings = filterListings(allListings, filters);
+    const filteredMarkers = filteredListings.slice(startingIdx, startingIdx + 8);
     if (isFetching) {
       return <Loader active inline='centered' />;
     } else {
@@ -103,7 +103,7 @@ class AllListings extends Component {
           />
           <Grid width={16} stackable>
             <Grid.Column width={8}>
-              <GoogleMapContainer markers={markers}/>
+              <GoogleMapContainer markers={filteredMarkers} />
             </Grid.Column>
             <Grid.Column width={8}>
               <AllListingsSearch
@@ -120,7 +120,7 @@ class AllListings extends Component {
           <Header as={'h3'} color="black">Listings</Header>
           <Divider />
           <Card.Group itemsPerRow={4} stackable>
-            {markers.map(listing =>
+            {filteredMarkers.map(listing =>
               <Listing
                 key={listing.id}
                 listingId={listing.id}
@@ -137,7 +137,7 @@ class AllListings extends Component {
           </Card.Group>
           <Divider hidden />
           <Pagination
-            items={getPaginationItems(allListings, 8)}
+            items={getPaginationItems(filteredListings, 8)}
           />
         </Container>
       );

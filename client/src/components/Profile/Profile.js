@@ -25,7 +25,6 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    console.log('MOUNTED');
     this.props.dispatch(getUserDetails(this.props.userId));
     this.props.dispatch(getUserProfileListings(this.props.userId));
   }
@@ -71,7 +70,7 @@ class Profile extends Component {
       userListings = this.props.profileUserListings;
     } else {
       thisUser = loggedInUser;
-      userListings = this.props.userListings;
+      userListings = this.props.profileUserListings;
       isLoggedInUser = true;
     }
     return (

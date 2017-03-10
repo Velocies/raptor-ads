@@ -13,7 +13,7 @@ export const googleMap = (state = initialState, action) => {
     case CHANGE_CENTER_SUCCESS:
       return ({ ...state, center: action.location });
     case ADD_MAP_MARKERS_SUCCESS:
-      return ({ ...state, markers: action.markerArray });
+      return ({ ...state, filteredMarkers: action.markerArray });
     // case CHANGE_MARKER_SHOW_INFO:
     //   const markersClone = [...state.markers];
     //   markersClone[action.index].showInfo = !markersClone[action.index].showInfo;

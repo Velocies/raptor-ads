@@ -25,7 +25,9 @@ module.exports = {
 
   getAll: (err, res) => {
     models.Post.findAll({
-      where: {},
+      where: {
+        isDeleted: false,
+      },
       include: [{ model: models.Picture }],
     })
       .then((posts) => {

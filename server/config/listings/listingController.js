@@ -5,6 +5,7 @@ module.exports = {
     models.Post.findOne({
       where: {
         id: req.params.listId,
+        isDeleted: false,
       },
       include: [
         models.Picture,
@@ -59,6 +60,7 @@ module.exports = {
           city: req.body.city,
           state: req.body.state,
           zip: req.body.zip,
+          isDeleted: false,
         };
         models.Post.create(newPost, { include: [models.Picture] })
           .then((post) => {
@@ -82,9 +84,10 @@ module.exports = {
   },
 
   deleteOne: (req, res) => {
-    models.Post.destroy({
+    models.Post.update({ isDeleted: true }, {
       where: {
         id: req.params.listId,
+        isDeleted: false,
       },
     })
       .then((status) => {

@@ -3,9 +3,9 @@ import isEmpty from 'lodash/isEmpty';
 import { CHANGE_LISTING_FIELD, UPLOAD_LISTING_IMAGE, ADD_LISTING_FAILURE, ADD_LISTING_SUCCESS, GET_LISTINGS_SUCCESS, DELETE_IMAGE, FETCHING_LISTINGS, POST_LISTING_SUCCESS, ADD_LISTING_FORM_ERROR, CLEAR_ERRORS } from '../constants';
 import { postListing, deleteListing, getUserListings } from './api';
 import validateListing from '../components/helpers/validateListing';
+import { getAllListings } from './allListingActions';
 
 const urlRegex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
-
 
 export const changeListingField = (field, value) =>
   ({
@@ -82,6 +82,7 @@ export const uploadListing = data =>
                 dispatch(postListingSuccess());
                 dispatch(fetchUserListings(data.id));
                 dispatch(push('/dashboard'));
+                dispatch(getAllListings());
               }
             });
         });

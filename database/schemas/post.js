@@ -13,6 +13,7 @@ module.exports = (db, Sequelize) => {
     city: Sequelize.STRING,
     state: Sequelize.STRING,
     zip: Sequelize.STRING,
+    isDeleted: Sequelize.BOOLEAN,
   });
 
   return Post;

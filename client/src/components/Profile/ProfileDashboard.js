@@ -69,7 +69,7 @@ const ProfileDashboard = ({ user, userListings, onListingClick, isLoggedInUser }
               <Card.Header>
                 <Image
                   floated="left"
-                  style={{height: '160px', width: '160px'}}
+                  style={{ height: '160px', width: '160px' }}
                   src={picturePath}
                 />
                 <Header style={{ marginTop: '6px', marginBottom: '0' }} as={'h3'} color="green">

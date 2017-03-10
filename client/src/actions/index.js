@@ -89,7 +89,7 @@ export const customerSignup = customer =>
               }
               dispatch(signupSuccess(data));
               localStorage.setItem('raptor_token', data.token);
-              dispatch(push('dashboard'));
+              dispatch(push(`/user/${data.createdUser.id}/dashboard`));
             });
         });
     }
@@ -106,7 +106,7 @@ export const loginUser = data =>
             } else {
               dispatch(loginSuccess(payload));
               localStorage.setItem('raptor_token', payload.token);
-              dispatch(push('dashboard'));
+              dispatch(push(`/user/${payload.user.id}/dashboard`));
             }
           });
       });

@@ -6,10 +6,7 @@ export const initialState = {
   isFetching: false,
   searchField: '',
   filters: {
-    categories: {
-      'Home Improvement': false,
-      Technology: false,
-    },
+    category: false,
     distance: false,
     sort: false,
   },
@@ -25,7 +22,11 @@ export const listings = (state = initialState, action) => {
     case CHANGE_SEARCH_FIELD:
       return ({ ...state, searchField: action.value });
     case CHANGE_FILTER_CATEGORY:
-      return ({ ...state, filters: { ...state.filters, categories: {...state.filters.categories, [action.category]: !state.filters.categories[action.category] } } });
+      let newCategory = action.category.toLowerCase();
+      if (newCategory === state.filters.category) {
+        newCategory = false;
+      }
+      return ({ ...state, filters: { ...state.filters, category: newCategory } });
     case CHANGE_DISTANCE_RADIUS:
       return ({ ...state, filters: { ...state.filters, distance: action.distance } });
     case CHANGE_SORT_FILTER:

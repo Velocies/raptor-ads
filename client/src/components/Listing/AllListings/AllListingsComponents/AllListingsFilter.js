@@ -8,14 +8,14 @@ const AllListingsFilter = ({ onSelect, distanceArray, onSelectFilter, filters, o
       <Menu.Item
         id="homeImprovement"
         onClick={(e) => onSelectFilter(document.getElementById('homeImprovement').innerHTML)}
-        active={filters.categories['Home Improvement']}
+        active={filters.category === 'home improvement'}
       >
         Home Improvement
       </Menu.Item>
       <Menu.Item
         id="technology"
         onClick={(e) => onSelectFilter(document.getElementById('technology').innerHTML)}
-        active={filters.categories['Technology']}
+        active={filters.category === 'technology'}
       >
         Technology
       </Menu.Item>

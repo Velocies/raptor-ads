@@ -16,16 +16,9 @@ const filterListings = (listings, filter) => {
         });
       }
     }
-    if (filter.categories.Technology === true) {
-      filteredListings = filteredListings.filter((listing) => {
-        if (listing.type === 'technology') {
-          return listing;
-        }
-      });
-    }
-    if (filter.categories['Home Improvement'] === true) {
-      filteredListings = filteredListings.filter((listing) => {
-        if (listing.type === 'home improvement') {
+    if (filter.category) {
+      filteredListings = filteredListings.filter(listing => {
+        if (listing.type === filter.category) {
           return listing;
         }
       });

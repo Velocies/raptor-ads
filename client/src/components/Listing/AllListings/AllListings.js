@@ -13,7 +13,6 @@ import filterListings from '../../helpers/filterListings';
 import ListingInfoCard from './AllListingsComponents/ListingInfoCard';
 import Pagination from '../../Pagination/Pagination';
 import getPaginationItems from '../../Pagination/helpers/getPaginationItems';
-// import InitialMap from './GoogleMap/GoogleMap';
 
 
 class AllListings extends Component {
@@ -27,9 +26,16 @@ class AllListings extends Component {
   }
 
   componentWillMount() {
+    if (this.props.loggedInUser.state !== '') {
+      this.props.dispatch(changeCenter(this.props.loggedInUser));
+    }
     if (this.props.allListings.length === 0) {
       this.props.dispatch(getAllListings());
     }
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(clearClickedListing());
   }
 
   convertTime(time) {
@@ -60,15 +66,13 @@ class AllListings extends Component {
   }
 
   cutBody(body) {
+    let slicedBody;
     if (body.length > 20) {
-      body = body.slice(0, 20) + '...';
+      slicedBody = body.slice(0, 20) + '...';
     }
-    return body;
+    return slicedBody;
   }
 
-  componentWillUnmount() {
-    this.props.dispatch(clearClickedListing());
-  }
 
   render() {
     const { isFetching, allListings, cutBody, filters, clickedListing, activeItem } = this.props;
@@ -89,82 +93,79 @@ class AllListings extends Component {
     const filteredMarkers = filteredListings.slice(startingIdx, startingIdx + 8);
     if (isFetching) {
       return <Loader active inline='centered' />;
-    } else {
-      return (
-        <Container textAlign="center">
-          <AllListingsFilter
-            filters={filters}
-            onSelect={this.onSelect}
-            distanceArray={distanceArray}
-            onSelectFilter={this.onSelectFilter}
-            onSelectDistance={this.onSelectDistance}
-            onSelectSort={this.onSelectSort}
-            sortArray={sortArray}
-          />
-          <Grid width={16} stackable>
-            <Grid.Column width={8}>
-              <GoogleMapContainer markers={filteredMarkers} />
-            </Grid.Column>
-            <Grid.Column width={8}>
-              <AllListingsSearch
-                onClick={this.onClick}
-                onChange={this.onChange}
-                onSubmit={this.onSubmit}
-              />
-              <ListingInfoCard
-                card={clickedListing}
-                onListingClick={onListingClick}
-              />
-            </Grid.Column>
-          </Grid>
-          <Header as={'h3'} color="black">Listings</Header>
-          <Divider />
-          <Card.Group itemsPerRow={4} stackable>
-            {filteredMarkers.map(listing =>
-              <Listing
-                key={listing.id}
-                listingId={listing.id}
-                title={listing.title}
-                createdAt={this.convertTime(listing.createdAt)}
-                body={listing.body}
-                type={listing.type}
-                onClick={this.onClick}
-                handleDelete={this.handleDelete}
-                cutBody={this.cutBody}
-                onListingClick={onListingClick}
-              />
-            )}
-          </Card.Group>
-          <Divider hidden />
-          <Pagination
-            items={getPaginationItems(filteredListings, 8)}
-          />
-        </Container>
-      );
     }
+    return (
+      <Container textAlign="center">
+        <AllListingsFilter
+          filters={filters}
+          onSelect={this.onSelect}
+          distanceArray={distanceArray}
+          onSelectFilter={this.onSelectFilter}
+          onSelectDistance={this.onSelectDistance}
+          onSelectSort={this.onSelectSort}
+          sortArray={sortArray}
+        />
+        <Grid width={16} stackable>
+          <Grid.Column width={8}>
+            <GoogleMapContainer markers={filteredMarkers} />
+          </Grid.Column>
+          <Grid.Column width={8}>
+            <AllListingsSearch
+              onClick={this.onClick}
+              onChange={this.onChange}
+              onSubmit={this.onSubmit}
+            />
+            <ListingInfoCard
+              card={clickedListing}
+              onListingClick={onListingClick}
+            />
+          </Grid.Column>
+        </Grid>
+        <Header as={'h3'} color="black">Listings</Header>
+        <Divider />
+        <Card.Group itemsPerRow={4} stackable>
+          {filteredMarkers.map(listing =>
+            <Listing
+              key={listing.id}
+              listingId={listing.id}
+              title={listing.title}
+              createdAt={this.convertTime(listing.createdAt)}
+              body={listing.body}
+              type={listing.type}
+              onClick={this.onClick}
+              handleDelete={this.handleDelete}
+              cutBody={this.cutBody}
+              onListingClick={onListingClick}
+            />
+          )}
+        </Card.Group>
+        <Divider hidden />
+        <Pagination
+          items={getPaginationItems(filteredListings, 8)}
+        />
+      </Container>
+    );
   }
 }
 
 AllListings.propTypes = {
-  // listingForm: React.PropTypes.shape({
-  //   title: React.PropTypes.string.isRequired,
-  //   body: React.PropTypes.string.isRequired,
-  //   image: React.PropTypes.string.isRequired,
-  //   images: React.PropTypes.array.isRequired,
-  //   type: React.PropTypes.string.isRequired,
-  // }).isRequired,
-  // onChange: React.PropTypes.func.isRequired,
-  // onClick: React.PropTypes.func.isRequired,
+  allListings: React.PropTypes.array.isRequired,
+  isFetching: React.PropTypes.bool,
+  searchField: React.PropTypes.string.isRequired,
+  filters: React.PropTypes.object.isRequired,
+  clickedListing: React.PropTypes.object,
+  id: React.PropTypes.number.isRequired,
+  loggedInUser: React.PropTypes.object.isRequired,
+  activeItem: React.PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => {
   const { allListings, isFetching, searchField, filters, clickedListing } = state.listings;
   const { id } = state.auth.loggedInUser;
   const loggedInUser = state.auth.loggedInUser;
-  const { markers } = state.googleMap;
   const { activeItem } = state.pagination;
 
-  return { allListings, isFetching, id, searchField, loggedInUser, markers, filters, clickedListing, activeItem };
+  return { allListings, isFetching, id, searchField, loggedInUser, filters, clickedListing, activeItem };
 };
 
 export default connect(mapStateToProps)(AllListings);

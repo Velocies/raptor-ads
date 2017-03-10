@@ -47,7 +47,14 @@ module.exports = {
           subject: 'Response To Your Listing',
         }, (err, message) => { console.log(err || message); });
 
-        models.Message.create(req.body)
+        models.Message.create({
+          title: req.body.title,
+          body: req.body.body,
+          userId: req.body.userId,
+          senderId: req.body.senderId,
+          postId: req.body.postId,
+          isDeleted: false,
+        })
           .then((message) => {
             res.json(message);
           });

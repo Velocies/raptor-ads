@@ -89,7 +89,7 @@ export const customerSignup = customer =>
               }
               dispatch(signupSuccess(data));
               localStorage.setItem('raptor_token', data.token);
-              dispatch(push(`/user/${data.createdUser.id}/dashboard`));
+              dispatch(push(`/user/${data.user.id}/dashboard`));
             });
         });
     }

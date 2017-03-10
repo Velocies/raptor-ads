@@ -114,7 +114,7 @@ class FullListing extends Component {
                     </List.Item>
                     <List.Item>
                       <List.Icon name="marker" />
-                      <List.Content>{`${currentListing.user.city}, ${currentListing.user.state}`}</List.Content>
+                      <List.Content>{`${currentListing.city}, ${currentListing.state}`}</List.Content>
                     </List.Item>
                     <List.Item>
                       <List.Icon name="mail" />

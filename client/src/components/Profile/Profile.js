@@ -28,6 +28,7 @@ class Profile extends Component {
   componentDidMount() {
     this.props.dispatch(getUserDetails(this.props.userId));
     this.props.dispatch(getUserProfileListings(this.props.userId));
+  }
 
   onUpdateClick() {
     this.props.dispatch(updateProfile(this.props.profileForm));

@@ -15,7 +15,7 @@ import AddListing from './Listing/AddListing/AddListing';
 import AllListings from './Listing/AllListings/AllListings';
 import AllRatings from './Ratings/AllRatings';
 import NewRating from './Ratings/NewRating';
-
+import About from './About';
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
@@ -31,6 +31,7 @@ const Root = () =>
     <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={LandingPage} />
+        <Route path="/about" component={About} />
         <Route path="/landing" component={LandingPage} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />

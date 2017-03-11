@@ -6,7 +6,6 @@ import { LandingPage } from './LandingPage';
 import Signup from './Signup/Signup';
 import Login from './Login';
 import Profile from './Profile/Profile';
-import CustomerDashboard from './Dashboard/CustomerDashboard';
 import App from './App';
 import FullListing from './Listing/FullListing';
 import NotFound from './NotFound';

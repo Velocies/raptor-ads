@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { LandingPage } from './LandingPage';
+import LandingPage from './LandingPage';
 import Signup from './Signup/Signup';
 import Login from './Login';
 import Profile from './Profile/Profile';

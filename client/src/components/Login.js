@@ -22,14 +22,14 @@ class Login extends Component {
   }
 
   render() {
-    const { dispatch, email, password, formErrors } = this.props;
+    const { email, password, formErrors } = this.props;
     return (
       <div>
         <Header textAlign="center"><Icon name="user" />Log In</Header>
         <Grid width={16}>
           <Grid.Column width={5} />
           <Grid.Column width={11}>
-            {formErrors.invalidPass && <span className='formError'>{formErrors.invalidPass}</span>}
+            {formErrors.invalidPass && <span className="formError">{formErrors.invalidPass}</span>}
             <Form>
               <Form.Field width="8">
                 <label htmlFor="email">Email</label>
@@ -53,7 +53,7 @@ class Login extends Component {
               <Form.Field width="8">
                 <Button
                   type="submit"
-                  onClick={(e) => this.login(e)}
+                  onClick={e => this.login(e)}
                 >
                   Login
                 </Button>

@@ -1,13 +1,8 @@
+import async from 'async';
 import { ADD_MAP_MARKER, CHANGE_CENTER, CHANGE_MARKER_SHOW_INFO, CHANGE_CENTER_SUCCESS, ADD_MAP_MARKERS_SUCCESS } from '../constants';
 import concatAddress from '../components/helpers/concatAddress';
 import { getAllListingsSuccess } from './allListingActions';
 import { getCurrentListingSuccess } from './fullListingActions';
-import async from 'async';
-
-const geoCode = (data) => {
-  const geocoder = new google.maps.Geocoder();
-  return geocoder.geocode({ address: concatAddress(action.data.user) });
-};
 
 const image = '/client/src/assets/mini-raptor.png';
 
@@ -68,7 +63,6 @@ export const addMapMarkers = data =>
     async.map(newData, (listing, callback) => {
       geocoder.geocode({ address: concatAddress(listing) }, (results, err) => {
         if (results[0]) {
-          console.log('POSITION add')
           const newCenter = {
             position: results[0].geometry.location,
             defaultAnimation: 2,
@@ -81,15 +75,14 @@ export const addMapMarkers = data =>
         callback(null, listing);
       });
     }, (err, positionResults) => {
-      console.log('finished')
       dispatch(getAllListingsSuccess(positionResults));
       dispatch(sortMarkersByDistance(positionResults));
-    })
+    });
   };
 
 export const addMapMarker = data =>
   (dispatch) => {
-    const newData = {...data};
+    const newData = { ...data };
     const geocoder = new google.maps.Geocoder();
     geocoder.geocode({ address: concatAddress(data)}, (results) => {
       const newCenter = {

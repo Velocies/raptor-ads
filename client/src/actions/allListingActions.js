@@ -20,9 +20,6 @@ export const getAllListings = () =>
       .then((res) => {
         res.json()
           .then((data) => {
-            // if (getState().auth.loggedInUser.state !== '') {
-            //   dispatch(changeCenter(getState().auth.loggedInUser), 'allListings');
-            // }
             dispatch(getAllListingsSuccess(data));
             dispatch(addMapMarkers(data));
           });

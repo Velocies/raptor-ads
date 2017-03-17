@@ -16,6 +16,7 @@ const AllListingsSearch = ({ onChange, onSubmit }) =>
 
 AllListingsSearch.propTypes = {
   onChange: React.PropTypes.func.isRequired,
-}
+  onSubmit: React.PropTypes.func.isRequired,
+};
 
 export default AllListingsSearch;

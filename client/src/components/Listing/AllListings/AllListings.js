@@ -8,7 +8,7 @@ import { changeCenter, sortMarkersByDistance } from '../../../actions/googleMapA
 import Listing from '../../shared/Listing';
 import AllListingsSearch from './AllListingsComponents/AllListingsSearch';
 import AllListingsFilter from './AllListingsComponents/AllListingsFilter';
-import GoogleMapContainer from './AllListingsComponents/GoogleMap/GoogleMapContainer';
+import GoogleMapContainer from '../../GoogleMap/GoogleMapContainer';
 import filterListings from '../../helpers/filterListings';
 import ListingInfoCard from './AllListingsComponents/ListingInfoCard';
 import Pagination from '../../Pagination/Pagination';

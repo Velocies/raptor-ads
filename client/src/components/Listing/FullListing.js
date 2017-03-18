@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import Carousel from 'nuka-carousel';
 import moment from 'moment';
 import { Container, Grid, Image, Header, Divider, Message, List, Loader, Button, Modal, Form, Card } from 'semantic-ui-react';
-import GoogleMapContainer from './AllListings/AllListingsComponents/GoogleMap/GoogleMapContainer';
+import GoogleMapContainer from '../GoogleMap/GoogleMapContainer';
 import { getCurrentListing, changeContactField, sendMessage } from '../../actions/fullListingActions';
 import { clearErrors, removeListing } from '../../actions/listingActions';
 import RatingCard from '../Ratings/RatingCard';

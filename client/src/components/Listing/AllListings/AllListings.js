@@ -8,7 +8,7 @@ import { changeCenter, sortMarkersByDistance } from '../../../actions/googleMapA
 import Listing from '../../shared/Listing';
 import AllListingsSearch from './AllListingsComponents/AllListingsSearch';
 import AllListingsFilter from './AllListingsComponents/AllListingsFilter';
-import GoogleMapContainer from './AllListingsComponents/GoogleMap/GoogleMapContainer';
+import GoogleMapContainer from '../../GoogleMap/GoogleMapContainer';
 import filterListings from '../../helpers/filterListings';
 import ListingInfoCard from './AllListingsComponents/ListingInfoCard';
 import Pagination from '../../Pagination/Pagination';
@@ -38,10 +38,6 @@ class AllListings extends Component {
     this.props.dispatch(clearClickedListing());
   }
 
-  convertTime(time) {
-    return moment(time).fromNow();
-  }
-
   onSubmit(e) {
     e.preventDefault();
     this.props.dispatch(changeCenter(this.props.searchField));
@@ -65,6 +61,10 @@ class AllListings extends Component {
     this.props.dispatch(changeSortFilter(data.value));
   }
 
+  convertTime(time) {
+    return moment(time).fromNow();
+  }
+
   cutBody(body) {
     let slicedBody;
     if (body.length > 20) {
@@ -75,7 +75,7 @@ class AllListings extends Component {
 
 
   render() {
-    const { isFetching, allListings, cutBody, filters, clickedListing, activeItem } = this.props;
+    const { isFetching, allListings, Body, filters, clickedListing, activeItem } = this.props;
     const distanceArray = [
       { key: 0, text: '10 Miles', value: 10 },
       { key: 1, text: '30 Miles', value: 30 },
@@ -136,7 +136,7 @@ class AllListings extends Component {
               handleDelete={this.handleDelete}
               cutBody={this.cutBody}
               onListingClick={onListingClick}
-            />
+            />,
           )}
         </Card.Group>
         <Divider hidden />
@@ -157,6 +157,7 @@ AllListings.propTypes = {
   id: React.PropTypes.number.isRequired,
   loggedInUser: React.PropTypes.object.isRequired,
   activeItem: React.PropTypes.number.isRequired,
+  dispatch: React.PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {

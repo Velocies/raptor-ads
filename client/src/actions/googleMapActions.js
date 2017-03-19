@@ -45,7 +45,9 @@ export const changeMarkerShowInfo = index =>
 export const sortMarkersByDistance = data =>
   (dispatch, getState) => {
     const markers = [...data];
-    if (getState().googleMap.center.position) {
+    console.log('HELLO', getState().googleMap.center.position);
+    if (getState().googleMap.center) {
+      console.log('GETTING DISTANCE')
       const centerPosition = getState().googleMap.center.position;
       for (let i = 0; i < markers.length; i++) {
         if (markers[i].position) {

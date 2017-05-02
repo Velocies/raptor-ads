@@ -29,7 +29,7 @@ const About = () =>
           <Card.Group stackable>
             <Card>
               <Card.Content>
-                <Image centered size="medium" shape="rounded" src="https://media.licdn.com/media/AAEAAQAAAAAAAASfAAAAJDk4NzA1MjE0LTMwNWMtNDVlZC1hNWE3LWI1YzFjMzI1NmI2Yg.jpg" />
+                <Image centered size="medium" shape="rounded" src="http://bit.ly/2pRshhC" />
                 <Divider />
                 <Card.Header>Jimmie Gisclair</Card.Header>
                 <Card.Meta>
